@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A1AD6217-2A9D-4948-AA6F-BF0A12D66712}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SparkleAir.Infa.EFModel</RootNamespace>
+    <AssemblyName>SparkleAir.Infa.EFModel</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="EFModels\AirBookSeat.cs" />
+    <Compile Include="EFModels\AirCabin.cs" />
+    <Compile Include="EFModels\AirCabinRule.cs" />
+    <Compile Include="EFModels\AirCabinSeat.cs" />
+    <Compile Include="EFModels\AirFlight.cs" />
+    <Compile Include="EFModels\AirFlightManagement.cs" />
+    <Compile Include="EFModels\AirFlightSaleStatus.cs" />
+    <Compile Include="EFModels\AirFlightSeat.cs" />
+    <Compile Include="EFModels\AirFlightStatus.cs" />
+    <Compile Include="EFModels\AirMeal.cs" />
+    <Compile Include="EFModels\AirOwn.cs" />
+    <Compile Include="EFModels\AirPort.cs" />
+    <Compile Include="EFModels\AirTakeOffStatus.cs" />
+    <Compile Include="EFModels\AirType.cs" />
+    <Compile Include="EFModels\AppDbContext.cs" />
+    <Compile Include="EFModels\AriTicketPrice.cs" />
+    <Compile Include="EFModels\Campaign.cs" />
+    <Compile Include="EFModels\CampaignsCoupon.cs" />
+    <Compile Include="EFModels\CampaignsCouponAirFlight.cs" />
+    <Compile Include="EFModels\CampaignsCouponMember.cs" />
+    <Compile Include="EFModels\CampaignsDiscount.cs" />
+    <Compile Include="EFModels\CampaignsDiscountMember.cs" />
+    <Compile Include="EFModels\CampaignsDiscountStatusNotification.cs" />
+    <Compile Include="EFModels\CampaignsDiscountTFItem.cs" />
+    <Compile Include="EFModels\CampaignsFlightCouponsUsageHistory.cs" />
+    <Compile Include="EFModels\CampaignsTFDiscountUsageHistory.cs" />
+    <Compile Include="EFModels\CompanyDepartment.cs" />
+    <Compile Include="EFModels\CompanyJob.cs" />
+    <Compile Include="EFModels\CompanyStaff.cs" />
+    <Compile Include="EFModels\CompanyStaffLoginLog.cs" />
+    <Compile Include="EFModels\CompanyStaffsChangePasswordLog.cs" />
+    <Compile Include="EFModels\Country.cs" />
+    <Compile Include="EFModels\Luggage.cs" />
+    <Compile Include="EFModels\LuggageOrder.cs" />
+    <Compile Include="EFModels\Member.cs" />
+    <Compile Include="EFModels\MemberClass.cs" />
+    <Compile Include="EFModels\MemberLoginLog.cs" />
+    <Compile Include="EFModels\Message.cs" />
+    <Compile Include="EFModels\MessageBox.cs" />
+    <Compile Include="EFModels\MileageDetail.cs" />
+    <Compile Include="EFModels\PermissionGroup.cs" />
+    <Compile Include="EFModels\PermissionGroupsAddStaff.cs" />
+    <Compile Include="EFModels\PermissionPageInfo.cs" />
+    <Compile Include="EFModels\PermissionSetting.cs" />
+    <Compile Include="EFModels\SeatArea.cs" />
+    <Compile Include="EFModels\SeatGroup.cs" />
+    <Compile Include="EFModels\sysdiagram.cs" />
+    <Compile Include="EFModels\TFCategory.cs" />
+    <Compile Include="EFModels\TFItem.cs" />
+    <Compile Include="EFModels\TFOrderlist.cs" />
+    <Compile Include="EFModels\TFOrderStatus.cs" />
+    <Compile Include="EFModels\TFReserve.cs" />
+    <Compile Include="EFModels\TFReservelist.cs" />
+    <Compile Include="EFModels\TFWishlist.cs" />
+    <Compile Include="EFModels\Ticket.cs" />
+    <Compile Include="EFModels\TicketCancel.cs" />
+    <Compile Include="EFModels\TicketCancelStatus.cs" />
+    <Compile Include="EFModels\TicketDetail.cs" />
+    <Compile Include="EFModels\TicketInvoicingDetail.cs" />
+    <Compile Include="EFModels\TransferMethod.cs" />
+    <Compile Include="EFModels\TransferPayment.cs" />
+    <Compile Include="EFModels\TransferRefund.cs" />
+    <Compile Include="EFModels\TypeofPassenger.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
