@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AriFlights\AirFlightDto.cs" />
+    <Compile Include="AriFlights\AirFlightManagementDto.cs" />
     <Compile Include="Members\MemberDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
