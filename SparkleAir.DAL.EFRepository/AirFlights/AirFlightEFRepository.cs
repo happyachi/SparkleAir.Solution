@@ -55,11 +55,6 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
 			return flight;
 		}
 
-		public List<AirFlightManagementEntity> Search(AirFlightManagementEntity entity)
-		{
-			throw new NotImplementedException();
-		}
-
 		public void Update(AirFlightManagementEntity entity)
 		{
 			var flight = db.AirFlightManagements
@@ -79,6 +74,11 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
 
 				db.SaveChanges();
 			}
+		}
+
+		public List<AirFlightManagementEntity> Search(AirFlightManagementEntity entity)
+		{
+			throw new NotImplementedException();
 		}
 	}
 }

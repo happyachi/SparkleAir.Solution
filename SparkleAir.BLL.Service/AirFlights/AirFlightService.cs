@@ -18,7 +18,16 @@ namespace SparkleAir.BLL.Service.AirFlights
 		private const string AirlineCode = "SK";
 
 		// 判斷航班代碼是否重複
-		private Func<string, List<AirFlightManagementDto>, bool> isFlightCodeExist;
+		private Func<string, List<AirFlightManagementDto>, bool> isFlightCodeExist = (s, l) =>
+		{
+			bool isFlight = false;
+			foreach (var item in l)
+			{
+				isFlight = item.FlightCode == s;
+				if (isFlight) return true;
+			}
+			return false;
+		};
 
 		public AirFlightService(IAirFlightRepository repo)
 		{
@@ -36,6 +45,10 @@ namespace SparkleAir.BLL.Service.AirFlights
 			else if (dto.DepartureAirportId == dto.DestinationAirportId)
 			{
 				throw new Exception("出發地以及目的地有誤");
+			}
+			else if (!(dto.Mile > 0))
+			{
+				throw new Exception("里程輸入錯誤");
 			}
 
 			AirFlightManagementEntity entity = new AirFlightManagementEntity
@@ -112,6 +125,9 @@ namespace SparkleAir.BLL.Service.AirFlights
 
 		public List<AirFlightManagementDto> Search(AirFlightManagementDto dto)
 		{
+			// todo 根據 出發地(DropDown) 目的地(DropDown) 時間段(Range) 執飛時段(checkbox)去做篩選
+			// 是要傳整個 dto 還是 根據要的資料去寫參數(?
+
 			throw new Exception();
 		}
 	}

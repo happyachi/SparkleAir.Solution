@@ -30,6 +30,11 @@ namespace SparkleAir.DAL.DapperRepository.AirFlights
 			throw new NotImplementedException();
 		}
 
+		public List<AirFlightManagementEntity> Search(AirFlightManagementEntity entity)
+		{
+			throw new NotImplementedException();
+		}
+
 		public void Update(AirFlightManagementEntity entity)
 		{
 			throw new NotImplementedException();

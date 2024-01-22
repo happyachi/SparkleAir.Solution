@@ -30,7 +30,6 @@ namespace SparkleAir.FrontEnd.Site.Tests.Controllers
 			var mockRepo = Substitute.For<IAirFlightRepository>();
 			var mockService = Substitute.For<AirFlightService>(mockRepo);
 			var controller = new AirFlightsController(mockService);
-			var airLinecode = "SK";
 			var validVm = new AirFlightManagementVm
 			{
 				// 看是否能成功create
@@ -58,7 +57,6 @@ namespace SparkleAir.FrontEnd.Site.Tests.Controllers
 
 			mockService.Received(1).Create(Arg.Do<AirFlightManagementDto>(dto =>
 			{
-				flightCode = airLinecode + flightCode;
 				Assert.AreEqual(flightCode, dto.FlightCode);
 			}));
 		}
