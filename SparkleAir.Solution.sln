@@ -35,6 +35,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SparkleAir.DAL.DapperReposi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SparkleAir.DAL.EFRepository", "SparkleAir.DAL.EFRepository\SparkleAir.DAL.EFRepository.csproj", "{0FC6AFBA-5585-43BE-84AC-22DE8BC3DC74}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "方案項目", "方案項目", "{D5C11BFF-CE46-4F27-88D3-B54A06E3CF99}"
+	ProjectSection(SolutionItems) = preProject
+		ReadMe.txt = ReadMe.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
