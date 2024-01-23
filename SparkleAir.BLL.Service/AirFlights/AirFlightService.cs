@@ -2,6 +2,7 @@
 using SparkleAir.Infa.Dto.AriFlights;
 using SparkleAir.Infa.Entity.AirFlightsEntity;
 using SparkleAir.Infa.Utility.Exts.Entities;
+using SparkleAir.Infa.Utility.Helper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,6 +51,8 @@ namespace SparkleAir.BLL.Service.AirFlights
 			{
 				throw new Exception("里程輸入錯誤");
 			}
+
+			//DateTime departTime = TimeZoneHelper.ConvertToGMT(dto.DepartureTime);
 
 			AirFlightManagementEntity entity = new AirFlightManagementEntity
 			{
@@ -103,8 +106,21 @@ namespace SparkleAir.BLL.Service.AirFlights
 		public AirFlightManagementDto GetById(int id)
 		{
 			AirFlightManagementEntity entity = _repo.GetById(id) ?? throw new Exception("沒有這個航班");
-			AirFlightManagementDto dto = entity.ToDto();
-
+			AirFlightManagementDto dto = new AirFlightManagementDto
+			{
+				Id = entity.Id,
+                FlightCode = entity.FlightCode,
+                DepartureAirportId = entity.DepartureAirportId,
+                DestinationAirportId = entity.DestinationAirportId,
+                DepartureTerminal = entity.DepartureTerminal,
+                DestinationTerminal = entity.DestinationTerminal,
+                DepartureTime = entity.DepartureTime,
+                ArrivalTime = entity.ArrivalTime,
+                DayofWeek = entity.DayofWeek,
+                Mile = entity.Mile,
+                DepartureAirport = entity.DepartureAirport,
+                DestinationAirport = entity.DestinationAirport
+            };
 			return dto;
 		}
 

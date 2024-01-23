@@ -48,6 +48,8 @@
     <Compile Include="Exts\Models\AriFlightExts.cs" />
     <Compile Include="Exts\Models\MemberExts.cs" />
     <Compile Include="Helper\DAHelper.cs" />
+    <Compile Include="Helper\PartialView.cs" />
+    <Compile Include="Helper\TimeZoneHelper.cs" />
     <Compile Include="Helper\SqlDbHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

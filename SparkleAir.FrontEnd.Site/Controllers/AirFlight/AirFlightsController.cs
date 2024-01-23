@@ -197,10 +197,19 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
 		{
 			_service.Delete(id);
 		}
-		#endregion
+        #endregion
 
-		#region Search
-		// todo
-		#endregion
-	}
+        #region Search
+        // todo
+        #endregion
+
+        #region Details
+        public ActionResult DetailsPartial(int id)
+        {
+            // 根據ID獲取另一個VM的數據
+            var viewModel = _service.GetById(id);
+            return PartialView("_DetailsPartial", viewModel);
+        }
+        #endregion
+    }
 }
