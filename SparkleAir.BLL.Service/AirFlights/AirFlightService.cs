@@ -62,7 +62,9 @@ namespace SparkleAir.BLL.Service.AirFlights
 				DepartureTime = dto.DepartureTime,
 				ArrivalTime = dto.ArrivalTime,
 				DayofWeek = dto.DayofWeek,
-				Mile = dto.Mile
+				Mile = dto.Mile,
+				DepartureAirport = dto.DepartureAirport,
+				DestinationAirport = dto.DestinationAirport,
 			};
 
 			_repo.Create(entity);
@@ -90,7 +92,9 @@ namespace SparkleAir.BLL.Service.AirFlights
 				DepartureTime = x.DepartureTime,
 				ArrivalTime = x.ArrivalTime,
 				DayofWeek = x.DayofWeek,
-				Mile = x.Mile
+				Mile = x.Mile,
+				DepartureAirport = x.DepartureAirport,
+				DestinationAirport = x.DestinationAirport
 			}).ToList();
 
 			return dto;

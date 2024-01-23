@@ -23,7 +23,7 @@ namespace SparkleAir.Infa.Utility.Exts.Entities
 				DepartureTime = entity.DepartureTime,
 				ArrivalTime = entity.ArrivalTime,
 				DayofWeek = entity.DayofWeek,
-				Mile = entity.Mile
+				Mile = entity.Mile,
 			};
 			return dto;
 		}
@@ -41,7 +41,7 @@ namespace SparkleAir.Infa.Utility.Exts.Entities
 				DepartureTime = dto.DepartureTime,
 				ArrivalTime = dto.ArrivalTime,
 				DayofWeek = dto.DayofWeek,
-				Mile = dto.Mile
+				Mile = dto.Mile,
 			};
 			return entity;
 		}

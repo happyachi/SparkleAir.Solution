@@ -9,23 +9,21 @@ using System.Threading.Tasks;
 namespace SparkleAir.Infa.Utility.Exts.Models
 {
 	public static class AriFlightExts
-	{
-		public static AirFlightManagementEntity ToEntity(this AirFlightManagement airFlight)
+    {
+        public static AirFlightManagementEntity ToEntity(this AirFlightManagement airFlight)
 		{
 			AirFlightManagementEntity entity = new AirFlightManagementEntity
 			{
 				Id = airFlight.Id,
 				FlightCode = airFlight.FlightCode,
 				DepartureAirportId = airFlight.DepartureAirportId,
-				DestinationAirportId = airFlight.DepartureAirportId,
+				DestinationAirportId = airFlight.DestinationAirportId,
 				DepartureTerminal = airFlight.DepartureTerminal,
 				DestinationTerminal = airFlight.DestinationTerminal,
 				DepartureTime = airFlight.DepartureTime,
 				ArrivalTime = airFlight.ArrivalTime,
 				DayofWeek = airFlight.DayofWeek,
 				Mile = airFlight.Mile,
-				DepartureAirport = airFlight.AirPort.AirPortName,
-				DestinationAirport = airFlight.AirPort.AirPortName
 			};
 			return entity;
 		}

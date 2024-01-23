@@ -15,6 +15,11 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
 	{
 		AppDbContext db = new AppDbContext();
 
+		private Func<int,AppDbContext, string> airport = (a,db) =>
+		{
+			return db.AirPorts.Find(a).Lata;
+		};
+
 		public int Create(AirFlightManagementEntity entity)
 		{
 			AirFlightManagement airFlight = entity.ToModel();
@@ -40,7 +45,21 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
 				.AsNoTracking()
 				.Include(a => a.AirPort)
 				.ToList()
-				.Select(a => a.ToEntity())
+				.Select(a => new AirFlightManagementEntity
+				{
+					Id = a.Id,
+					FlightCode = a.FlightCode,
+					DepartureAirportId = a.DepartureAirportId,
+					DestinationAirportId = a.DestinationAirportId,
+					DepartureTerminal = a.DepartureTerminal,
+					DestinationTerminal = a.DestinationTerminal,
+					DepartureTime = a.DepartureTime,
+					ArrivalTime = a.ArrivalTime,
+					DayofWeek = a.DayofWeek,
+					Mile = a.Mile,
+					DepartureAirport = airport(a.DepartureAirportId,db),
+					DestinationAirport = airport(a.DestinationAirportId,db)
+				})
 				.ToList();
 
 			return flights;

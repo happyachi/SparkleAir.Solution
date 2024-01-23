@@ -208,6 +208,7 @@
     <Content Include="Views\Members\Index.cshtml" />
     <Content Include="Views\AirFlights\Index.cshtml" />
     <Content Include="Views\AirFlights\Create.cshtml" />
+    <Content Include="Views\AirFlights\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

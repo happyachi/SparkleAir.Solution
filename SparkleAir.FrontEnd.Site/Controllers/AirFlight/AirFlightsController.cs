@@ -57,7 +57,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
 				DestinationAirport = x.DestinationAirport,
 				DepartureTime = x.DepartureTime,
 				ArrivalTime = x.ArrivalTime,
-				DayofWeek = x.DayofWeek
+				DayofWeek = x.DayofWeek,
 			}).ToList();
 			return vm;
 		}
