@@ -15,13 +15,12 @@ namespace SparkleAir.Infa.Utility.Helper
         /// <param name="timeZone"></param>
         /// <returns></returns>
   
-        public static DateTime ConvertToGMT(string localTime, int timeZone)
+        public static DateTime ConvertToGMT(DateTime localTime, int timeZone)
         {
-            DateTime localDateTime = DateTime.ParseExact(localTime, "yyyy-MM-dd HH:mm:ss", null, System.Globalization.DateTimeStyles.AssumeLocal);
-            TimeSpan timeOffset = TimeSpan.FromHours(timeZone);
-            DateTime gmtTime = localDateTime - timeOffset;
+			TimeSpan timeOffset = TimeSpan.FromHours(timeZone);
+            DateTime gmtTime = localTime - timeOffset;
             return gmtTime;
-        }
+		}
 
         public static DateTime ConvertToLocal(DateTime gmtTime, int timeZone)
         {

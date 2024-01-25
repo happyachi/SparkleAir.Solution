@@ -43,7 +43,7 @@ namespace SparkleAir.BLL.Service.AirFlights
 			{
 				throw new Exception("航班代碼已存在");
 			}
-			else if (dto.DepartureAirportId == dto.DestinationAirportId)
+			else if (dto.DepartureAirport == dto.DestinationAirport)
 			{
 				throw new Exception("出發地以及目的地有誤");
 			}
@@ -52,7 +52,8 @@ namespace SparkleAir.BLL.Service.AirFlights
 				throw new Exception("里程輸入錯誤");
 			}
 
-			//DateTime departTime = TimeZoneHelper.ConvertToGMT(dto.DepartureTime);
+			DateTime departTime = TimeZoneHelper.ConvertToGMT(dto.DepartureTime, dto.DepartureTimeZone);
+			DateTime arrivaTime = TimeZoneHelper.ConvertToGMT(dto.ArrivalTime, dto.DestinationTimeZone);
 
 			AirFlightManagementEntity entity = new AirFlightManagementEntity
 			{
@@ -62,12 +63,14 @@ namespace SparkleAir.BLL.Service.AirFlights
 				DestinationAirportId = dto.DestinationAirportId,
 				DepartureTerminal = dto.DepartureTerminal,
 				DestinationTerminal = dto.DestinationTerminal,
-				DepartureTime = dto.DepartureTime,
-				ArrivalTime = dto.ArrivalTime,
+				DepartureTime = departTime,
+				ArrivalTime = arrivaTime,
 				DayofWeek = dto.DayofWeek,
 				Mile = dto.Mile,
 				DepartureAirport = dto.DepartureAirport,
 				DestinationAirport = dto.DestinationAirport,
+				DepartureTimeZone = dto.DepartureTimeZone,
+				DestinationTimeZone = dto.DestinationTimeZone,
 			};
 
 			_repo.Create(entity);
@@ -83,7 +86,6 @@ namespace SparkleAir.BLL.Service.AirFlights
 		public List<AirFlightManagementDto> GetAll()
 		{
 			List<AirFlightManagementEntity> entity = _repo.GetAll();
-
 			List<AirFlightManagementDto> dto = entity.Select(x => new AirFlightManagementDto
 			{
 				Id = x.Id,
@@ -92,12 +94,14 @@ namespace SparkleAir.BLL.Service.AirFlights
 				DestinationAirportId = x.DestinationAirportId,
 				DepartureTerminal = x.DepartureTerminal,
 				DestinationTerminal = x.DestinationTerminal,
-				DepartureTime = x.DepartureTime,
-				ArrivalTime = x.ArrivalTime,
+				DepartureTime = TimeZoneHelper.ConvertToLocal(x.DepartureTime, x.DepartureTimeZone),
+				ArrivalTime = TimeZoneHelper.ConvertToLocal(x.ArrivalTime, x.DestinationTimeZone),
 				DayofWeek = x.DayofWeek,
 				Mile = x.Mile,
 				DepartureAirport = x.DepartureAirport,
-				DestinationAirport = x.DestinationAirport
+				DestinationAirport = x.DestinationAirport,
+				DepartureTimeZone = x.DepartureTimeZone,
+				DestinationTimeZone = x.DestinationTimeZone
 			}).ToList();
 
 			return dto;
@@ -109,23 +113,27 @@ namespace SparkleAir.BLL.Service.AirFlights
 			AirFlightManagementDto dto = new AirFlightManagementDto
 			{
 				Id = entity.Id,
-                FlightCode = entity.FlightCode,
-                DepartureAirportId = entity.DepartureAirportId,
-                DestinationAirportId = entity.DestinationAirportId,
-                DepartureTerminal = entity.DepartureTerminal,
-                DestinationTerminal = entity.DestinationTerminal,
-                DepartureTime = entity.DepartureTime,
-                ArrivalTime = entity.ArrivalTime,
-                DayofWeek = entity.DayofWeek,
-                Mile = entity.Mile,
-                DepartureAirport = entity.DepartureAirport,
-                DestinationAirport = entity.DestinationAirport
-            };
+				FlightCode = entity.FlightCode,
+				DepartureAirportId = entity.DepartureAirportId,
+				DestinationAirportId = entity.DestinationAirportId,
+				DepartureTerminal = entity.DepartureTerminal,
+				DestinationTerminal = entity.DestinationTerminal,
+				DepartureTime = TimeZoneHelper.ConvertToLocal(entity.DepartureTime, entity.DepartureTimeZone),
+				ArrivalTime = TimeZoneHelper.ConvertToLocal(entity.ArrivalTime, entity.DestinationTimeZone),
+				DayofWeek = entity.DayofWeek,
+				Mile = entity.Mile,
+				DepartureAirport = entity.DepartureAirport,
+				DestinationAirport = entity.DestinationAirport,
+				DepartureTimeZone = entity.DepartureTimeZone,
+				DestinationTimeZone = entity.DestinationTimeZone,
+			};
 			return dto;
 		}
 
 		public void Update(AirFlightManagementDto dto)
 		{
+			DateTime departTime = TimeZoneHelper.ConvertToGMT(dto.DepartureTime, dto.DepartureTimeZone);
+			DateTime arrivaTime = TimeZoneHelper.ConvertToGMT(dto.ArrivalTime, dto.DestinationTimeZone);
 			AirFlightManagementEntity entity = new AirFlightManagementEntity
 			{
 				Id = dto.Id,
@@ -134,10 +142,14 @@ namespace SparkleAir.BLL.Service.AirFlights
 				DestinationAirportId = dto.DestinationAirportId,
 				DepartureTerminal = dto.DepartureTerminal,
 				DestinationTerminal = dto.DestinationTerminal,
-				DepartureTime = dto.DepartureTime,
-				ArrivalTime = dto.ArrivalTime,
+				DepartureTime = departTime,
+				ArrivalTime = arrivaTime,
 				DayofWeek = dto.DayofWeek,
-				Mile = dto.Mile
+				Mile = dto.Mile,
+				DepartureAirport = dto.DepartureAirport,
+				DestinationAirport = dto.DestinationAirport,
+				DepartureTimeZone = dto.DepartureTimeZone,
+				DestinationTimeZone = dto.DestinationTimeZone,
 			};
 
 			_repo.Update(entity);

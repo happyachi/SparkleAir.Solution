@@ -92,12 +92,16 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
 			{
 				Id = vm.Id,
 				FlightCode = vm.FlightCode,
+				DepartureAirport = vm.DepartureAirport,
 				DepartureAirportId = vm.DepartureAirportId,
+				DestinationAirport = vm.DestinationAirport,
 				DestinationAirportId = vm.DestinationAirportId,
 				DepartureTime = vm.DepartureTime,
 				ArrivalTime = vm.ArrivalTime,
 				DayofWeek = vm.DayofWeek,
-				Mile = vm.Mile
+				Mile = vm.Mile,
+				DepartureTimeZone = vm.DepartureTimeZone,
+				DestinationTimeZone = vm.ArrivalTimeZone
 			};
 
 			_service.Create(dto);
@@ -107,7 +111,6 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
 		#region Edit With Update
 		public ActionResult Edit(int id)
 		{
-			if (!ModelState.IsValid) return View();
 			try
 			{
 				AirFlightManagementVm vm = Get(id);
@@ -128,14 +131,18 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
 			{
 				Id = id,
 				FlightCode = dto.FlightCode,
+				DepartureAirport = dto.DepartureAirport,
 				DepartureAirportId = dto.DepartureAirportId,
+				DestinationAirport = dto.DestinationAirport,
 				DestinationAirportId = dto.DestinationAirportId,
 				DepartureTerminal = dto.DepartureTerminal,
 				DestinationTerminal = dto.DestinationTerminal,
 				DepartureTime = dto.DepartureTime,
 				ArrivalTime = dto.ArrivalTime,
 				DayofWeek = dto.DayofWeek,
-				Mile = dto.Mile
+				Mile = dto.Mile,
+				DepartureTimeZone = dto.DepartureTimeZone,
+				ArrivalTimeZone = dto.DestinationTimeZone
 			};
 			return vm;
 		}
@@ -143,7 +150,8 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
 		[HttpPost]
 		public ActionResult Edit(AirFlightManagementVm vm)
 		{
-			if (!ModelState.IsValid) return View();
+
+			if (!ModelState.IsValid) return View(vm);
 
 			try
 			{
@@ -163,14 +171,18 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
 			{
 				Id = vm.Id,
 				FlightCode = vm.FlightCode,
+				DepartureAirport = vm.DepartureAirport,
 				DepartureAirportId = vm.DepartureAirportId,
+				DestinationAirport = vm.DestinationAirport,
 				DestinationAirportId = vm.DestinationAirportId,
 				DepartureTerminal = vm.DepartureTerminal,
 				DestinationTerminal = vm.DestinationTerminal,
 				DepartureTime = vm.DepartureTime,
 				ArrivalTime = vm.ArrivalTime,
 				DayofWeek = vm.DayofWeek,
-				Mile = vm.Mile
+				Mile = vm.Mile,
+				DepartureTimeZone = vm.DepartureTimeZone,
+				DestinationTimeZone = vm.ArrivalTimeZone
 			};
 
 			_service.Update(dto);
@@ -189,8 +201,8 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
 			catch (Exception ex)
 			{
 				ModelState.AddModelError("", ex.Message);
-				return View();
-			}
+                return RedirectToAction("Index");
+            }
 		}
 
 		private void DeleteFlight(int id)
@@ -201,6 +213,10 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
 
         #region Search
         // todo
+		private void Search()
+		{
+
+		}
         #endregion
 
         #region Details

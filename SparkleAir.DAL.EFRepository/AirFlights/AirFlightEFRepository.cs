@@ -11,107 +11,130 @@ using SparkleAir.Infa.Utility.Exts.Models;
 
 namespace SparkleAir.DAL.EFRepository.AirFlights
 {
-    public class AirFlightEFRepository : IAirFlightRepository
-    {
-        AppDbContext db = new AppDbContext();
+	public class AirFlightEFRepository : IAirFlightRepository
+	{
+		AppDbContext db = new AppDbContext();
 
-        private Func<int, AppDbContext, string> airport = (a, db) =>
-        {
-            return db.AirPorts.Find(a).Lata;
-        };
+		private Func<int, AppDbContext, (string, int)> airport = (a, db) =>
+		{
+			var datas = db.AirPorts.Find(a);
 
-        public int Create(AirFlightManagementEntity entity)
-        {
-            AirFlightManagement airFlight = entity.ToModel();
+			return (datas.Lata, datas.TimeArea);
+		};
 
-            db.AirFlightManagements.Add(airFlight);
-            db.SaveChanges();
+		private Func<string, AppDbContext, int> airportId = (a, db) =>
+		{
+			var data = db.AirPorts.Where(AirPort => a == AirPort.Lata).FirstOrDefault().Id;
 
-            return airFlight.Id;
-        }
+			return data;
+		};
 
-        public void Delete(int id)
-        {
-            var flight = db.AirFlightManagements.Find(id);
+		public int Create(AirFlightManagementEntity entity)
+		{
+			AirFlightManagement airFlight = new AirFlightManagement
+			{
+				FlightCode = entity.FlightCode,
+				DepartureAirportId = airportId(entity.DepartureAirport, db),
+				DestinationAirportId = airportId(entity.DestinationAirport, db),
+				DepartureTerminal = entity.DepartureTerminal,
+				DestinationTerminal = entity.DestinationTerminal,
+				DepartureTime = entity.DepartureTime,
+				ArrivalTime = entity.ArrivalTime,
+				DayofWeek = entity.DayofWeek,
+				Mile = entity.Mile,
+			};
 
-            db.AirFlightManagements.Remove(flight);
+			db.AirFlightManagements.Add(airFlight);
+			db.SaveChanges();
 
-            db.SaveChanges();
-        }
+			return airFlight.Id;
+		}
 
-        public List<AirFlightManagementEntity> GetAll()
-        {
-            var flights = db.AirFlightManagements
-                .AsNoTracking()
-                .Include(a => a.AirPort)
-                .ToList()
-                .Select(a => new AirFlightManagementEntity
-                {
-                    Id = a.Id,
-                    FlightCode = a.FlightCode,
-                    DepartureAirportId = a.DepartureAirportId,
-                    DestinationAirportId = a.DestinationAirportId,
-                    DepartureTerminal = a.DepartureTerminal,
-                    DestinationTerminal = a.DestinationTerminal,
-                    DepartureTime = a.DepartureTime,
-                    ArrivalTime = a.ArrivalTime,
-                    DayofWeek = a.DayofWeek,
-                    Mile = a.Mile,
-                    DepartureAirport = airport(a.DepartureAirportId, db),
-                    DestinationAirport = airport(a.DestinationAirportId, db)
-                })
-                .ToList();
+		public void Delete(int id)
+		{
+			var flight = db.AirFlightManagements.Find(id);
 
-            return flights;
-        }
+			db.AirFlightManagements.Remove(flight);
 
-        public AirFlightManagementEntity GetById(int id)
-        {
-            var flight = db.AirFlightManagements
-                .Find(id);
-            var airplain = new AirFlightManagementEntity
-            {
-                Id = flight.Id,
-                FlightCode = flight.FlightCode,
-                DepartureAirportId = flight.DepartureAirportId,
-                DestinationAirportId = flight.DestinationAirportId,
-                DepartureTerminal = flight.DepartureTerminal,
-                DestinationTerminal = flight.DestinationTerminal,
-                DepartureTime = flight.DepartureTime,
-                ArrivalTime = flight.ArrivalTime,
-                DayofWeek = flight.DayofWeek,
-                Mile = flight.Mile,
-                DepartureAirport = airport(flight.DepartureAirportId, db),
-                DestinationAirport = airport(flight.DestinationAirportId, db)
-            };
+			db.SaveChanges();
+		}
 
-            return airplain;
-        }
+		public List<AirFlightManagementEntity> GetAll()
+		{
+			var flights = db.AirFlightManagements
+				.AsNoTracking()
+				.Include(a => a.AirPort)
+				.ToList()
+				.Select(a => new AirFlightManagementEntity
+				{
+					Id = a.Id,
+					FlightCode = a.FlightCode,
+					DepartureAirportId = a.DepartureAirportId,
+					DestinationAirportId = a.DestinationAirportId,
+					DepartureTerminal = a.DepartureTerminal,
+					DestinationTerminal = a.DestinationTerminal,
+					DepartureTime = a.DepartureTime,
+					ArrivalTime = a.ArrivalTime,
+					DayofWeek = a.DayofWeek,
+					Mile = a.Mile,
+					DepartureAirport = airport(a.DepartureAirportId, db).Item1,
+					DestinationAirport = airport(a.DestinationAirportId, db).Item1,
+					DepartureTimeZone = airport(a.DepartureAirportId, db).Item2,
+					DestinationTimeZone = airport(a.DestinationAirportId, db).Item2
+				})
+				.ToList();
 
-        public void Update(AirFlightManagementEntity entity)
-        {
-            var flight = db.AirFlightManagements
-                .FirstOrDefault(f => f.Id == entity.Id);
+			return flights;
+		}
 
-            if (flight != null)
-            {
-                flight.FlightCode = entity.FlightCode;
-                flight.DepartureAirportId = entity.DepartureAirportId;
-                flight.DestinationAirportId = entity.DestinationAirportId;
-                flight.DepartureTerminal = entity.DepartureTerminal;
-                flight.DestinationTerminal = entity.DestinationTerminal;
-                flight.DepartureTime = entity.DepartureTime;
-                flight.ArrivalTime = entity.ArrivalTime;
-                flight.DayofWeek = entity.DayofWeek;
-                flight.Mile = entity.Mile;
+		public AirFlightManagementEntity GetById(int id)
+		{
+			var flight = db.AirFlightManagements
+				.Find(id);
+			var airplain = new AirFlightManagementEntity
+			{
+				Id = flight.Id,
+				FlightCode = flight.FlightCode,
+				DepartureAirportId = flight.DepartureAirportId,
+				DestinationAirportId = flight.DestinationAirportId,
+				DepartureTerminal = flight.DepartureTerminal,
+				DestinationTerminal = flight.DestinationTerminal,
+				DepartureTime = flight.DepartureTime,
+				ArrivalTime = flight.ArrivalTime,
+				DayofWeek = flight.DayofWeek,
+				Mile = flight.Mile,
+				DepartureAirport = airport(flight.DepartureAirportId, db).Item1,
+				DestinationAirport = airport(flight.DestinationAirportId, db).Item1,
+				DepartureTimeZone = airport(flight.DepartureAirportId, db).Item2,
+				DestinationTimeZone = airport(flight.DestinationAirportId, db).Item2
+			};
 
-                db.SaveChanges();
-            }
-        }
+			return airplain;
+		}
 
-        public List<AirFlightManagementEntity> Search(AirFlightManagementEntity entity)
-        {
-            throw new NotImplementedException();
-        }
-    }
+		public void Update(AirFlightManagementEntity entity)
+		{
+			var flight = db.AirFlightManagements
+				.FirstOrDefault(f => f.Id == entity.Id);
+
+			if (flight != null)
+			{
+				flight.FlightCode = entity.FlightCode;
+				flight.DepartureAirportId = airportId(entity.DepartureAirport, db);
+				flight.DestinationAirportId = airportId(entity.DestinationAirport, db);
+				flight.DepartureTerminal = entity.DepartureTerminal;
+				flight.DestinationTerminal = entity.DestinationTerminal;
+				flight.DepartureTime = entity.DepartureTime;
+				flight.ArrivalTime = entity.ArrivalTime;
+				flight.DayofWeek = entity.DayofWeek;
+				flight.Mile = entity.Mile;
+			}
+			db.SaveChanges();
+		}
+
+		public List<AirFlightManagementEntity> Search(AirFlightManagementEntity entity)
+		{
+			throw new NotImplementedException();
+		}
+	}
 }

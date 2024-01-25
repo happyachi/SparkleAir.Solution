@@ -18,10 +18,12 @@ namespace SparkleAir.FrontEnd.Site.Models.ViewModels.AirFlights
 
 		[Display(Name = "出發地")]
 		[Required(ErrorMessage = "{0} 必填")]
+		public string DepartureAirport { get; set; }
 		public int DepartureAirportId { get; set; }
 
 		[Display(Name = "目的地")]
 		[Required(ErrorMessage = "{0} 必填")]
+		public string DestinationAirport { get; set; }
 		public int DestinationAirportId { get; set; }
 
 		[Display(Name = "出發地航廈")]
@@ -34,12 +36,12 @@ namespace SparkleAir.FrontEnd.Site.Models.ViewModels.AirFlights
 
 		[Display(Name = "出發時間")]
 		[Required(ErrorMessage = "{0} 必填")]
-		[Column(TypeName = "datetime2")]
+		[DisplayFormat(DataFormatString = "{0:HH:mm}")]
 		public DateTime DepartureTime { get; set; }
 
 		[Required(ErrorMessage = "{0} 必填")]
 		[Display(Name = "抵達時間")]
-		[Column(TypeName = "datetime2")]
+		[DisplayFormat(DataFormatString = "{0:HH:mm}")]
 		public DateTime ArrivalTime { get; set; }
 
 		[Display(Name = "執飛日")]
@@ -50,5 +52,10 @@ namespace SparkleAir.FrontEnd.Site.Models.ViewModels.AirFlights
 		[Display(Name = "班次里程")]
 		[Required(ErrorMessage = "{0} 必填")]
 		public int Mile { get; set; }
+
+		[Display(Name = "出發地時區")]
+		public int DepartureTimeZone { get; set; }
+		[Display(Name = "目的地時區")]
+		public int ArrivalTimeZone { get; set; }
 	}
 }

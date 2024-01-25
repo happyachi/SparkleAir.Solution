@@ -3,7 +3,9 @@
 <p>目的地: @Model.DestinationAirport</p>
 <p>出發航廈: @Model.DepartureTerminal</p>
 <p>抵達航廈: @Model.DestinationTerminal</p>
-<p>出發時間: @Model.DepartureTime</p>
-<p>抵達時間: @Model.ArrivalTime</p>
+<p>出發時間: @Model.DepartureTime.ToString("HH:mm") UTC+@(Model.DepartureTimeZone)</p>
+<p>抵達時間: @Model.ArrivalTime.ToString("HH:mm") UTC+@(Model.DestinationTimeZone)</p>
 <p>執飛時間: @Model.DayofWeek</p>
 <p>飛行里程: @Model.Mile</p>
+@*<p>UTC+ @Model.DepartureTimeZone</p>
+<p>UTC+ @Model.DestinationTimeZone</p>*@

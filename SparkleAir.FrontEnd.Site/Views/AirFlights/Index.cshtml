@@ -3,7 +3,23 @@
 @{
 	ViewBag.Title = "Index";
 }
-
+@section styles{
+	<style>
+	#divMore {
+	width: auto;
+	height: auto;
+	border: 1px solid gray;
+	position: absolute;
+	background-color: white;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	/*四周隱影*/
+	border-radius: 10px;
+	padding: 10px;
+	font-size: 0.8em;
+	z-index: 999;
+	}
+	</style>
+}
 <h2>航班管理</h2>
 
 @Html.ActionLink("新增航班", "Create", null, new { @class = "btn btn-sm btn-dark mt-2 mb-2" })
