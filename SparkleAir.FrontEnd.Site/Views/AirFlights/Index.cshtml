@@ -5,19 +5,19 @@
 }
 @section styles{
 	<style>
-	#divMore {
-	width: auto;
-	height: auto;
-	border: 1px solid gray;
-	position: absolute;
-	background-color: white;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-	/*四周隱影*/
-	border-radius: 10px;
-	padding: 10px;
-	font-size: 0.8em;
-	z-index: 999;
-	}
+		#divMore {
+			width: auto;
+			height: auto;
+			border: 1px solid gray;
+			position: absolute;
+			background-color: white;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+			/*四周隱影*/
+			border-radius: 10px;
+			padding: 10px;
+			font-size: 0.8em;
+			z-index: 999;
+		}
 	</style>
 }
 <h2>航班管理</h2>
@@ -25,7 +25,17 @@
 @Html.ActionLink("新增航班", "Create", null, new { @class = "btn btn-sm btn-dark mt-2 mb-2" })
 <div class="row">
 	<div style="overflow:auto">
-		<table class="table text-center">
+		<form id="filterForm">
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label">航班編號:</label>
+				<div class="col-sm-4">
+					<input type="text" class="form-control" id="FlightCode" name="FlightCode">
+				</div>
+			</div>
+			<!-- 其他篩選條件... -->
+			<button type="button" class="btn btn-sm btn-dark" onclick="applyFilter()">搜尋</button>
+		</form>
+		<table class="table text-center" id="flights">
 			<tr>
 				<th>
 					@Html.DisplayNameFor(model => model.FlightCode)
@@ -118,5 +128,23 @@
 		document.querySelector('#divMore').addEventListener('click', function (event) {
 			event.stopPropagation();
 		});
+
+
+		function applyFilter() {
+    // 獲取表單數據
+    var formData = $('#filterForm').serialize();
+
+    // 構建 URL
+    var url = '@Url.Action("Search", "AirFlights")' + '?' + formData;
+
+    // 發送 AJAX 請求
+    fetch(url)
+        .then(response => response.text())
+        .then(data => {
+            // 更新表格內容或其他視圖操作，根據你的需求
+            $('#flights').html(data);
+        })
+        .catch(error => console.error('Error:', error));
+}
 	</script>
 }

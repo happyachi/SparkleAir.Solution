@@ -150,6 +150,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewModels\AirFlights\AirFlightManagementIndexVm.cs" />
+    <Compile Include="Models\ViewModels\AirFlights\AirFlightManagementSearchVm.cs" />
     <Compile Include="Models\ViewModels\AirFlights\AirFlightManagementVm.cs" />
     <Compile Include="Models\ViewModels\Members\MemberIndexVm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
