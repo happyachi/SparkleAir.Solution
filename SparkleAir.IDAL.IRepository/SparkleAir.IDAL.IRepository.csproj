@@ -45,6 +45,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SparkleAir.Infa.Criteria\SparkleAir.Infa.Criteria.csproj">
+      <Project>{1887f4fa-d97f-432f-b936-b47ecc87a94e}</Project>
+      <Name>SparkleAir.Infa.Criteria</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SparkleAir.Infa.Dto\SparkleAir.Infa.Dto.csproj">
       <Project>{2431caf2-a681-4bb8-9973-3e568f7a7453}</Project>
       <Name>SparkleAir.Infa.Dto</Name>

@@ -25,6 +25,8 @@ namespace SparkleAir.Infa.EFModel.EFModels
         [StringLength(100)]
         public string Ddescribe { get; set; }
 
+        public string Criteria { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PermissionGroupsAddStaff> PermissionGroupsAddStaffs { get; set; }
 

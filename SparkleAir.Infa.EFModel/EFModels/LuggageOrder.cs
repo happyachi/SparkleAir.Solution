@@ -20,7 +20,7 @@ namespace SparkleAir.Infa.EFModel.EFModels
 
         public int OrderTime { get; set; }
 
-        public int TransferPaymentId { get; set; }
+        public int TransferPaymentsId { get; set; }
 
         [Required]
         [StringLength(10)]

@@ -14,7 +14,7 @@ namespace SparkleAir.Infa.EFModel.EFModels
 
         public int AirCabinId { get; set; }
 
-        public int SeatNum { get; set; }
+        public int? SeatNum { get; set; }
 
         public virtual AirCabin AirCabin { get; set; }
 
