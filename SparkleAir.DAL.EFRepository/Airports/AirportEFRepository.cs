@@ -39,8 +39,25 @@ namespace SparkleAir.DAL.EFRepository.Airports
 
         public int Create(AirportEntity model)
         {
-            throw new NotImplementedException();
+            AirPort airport = new AirPort
+            {
+                Lata = model.Lata,
+                Gps = model.Gps,
+                Country = model.Country,
+                City = model.City,
+                AirPortName = model.AirPortName,
+                TimeArea = model.TimeArea,
+                Zone = model.Zone,
+                CityIntroduction = model.CityIntroduction,
+                Img = model.Img,
+                Continent = model.Continent
+            };
+            db.AirPorts.Add(airport);
+            db.SaveChanges();
+            return airport.Id;
         }
+
+
 
         public void Delete(int id)
         {
@@ -51,14 +68,48 @@ namespace SparkleAir.DAL.EFRepository.Airports
 
         public AirportEntity Get(int id)
         {
-            throw new NotImplementedException();
+            var get = db.AirPorts.Find(id);
+
+            AirportEntity en =new AirportEntity()
+            {
+                Id = get.Id,
+                Lata = get.Lata,
+                Gps = get.Gps,
+                Country = get.Country,
+                City = get.City,
+                AirPortName = get.AirPortName,
+                TimeArea = get.TimeArea,
+                Zone = get.Zone,
+                CityIntroduction = get.CityIntroduction,
+                Img = get.Img,
+                Continent = get.Continent
+            };
+
+            return en;
         }
 
         
 
         public void Update(AirportEntity model)
         {
-            throw new NotImplementedException();
+            var get = db.AirPorts.Find(model.Id);
+            if (get != null)
+            {
+                get.Id = model.Id;
+                get.Lata = model.Lata;
+                get.Gps = model.Gps;
+                get.Country = model.Country;
+                get.City = model.City;
+                get.AirPortName = model.AirPortName;
+                get.TimeArea = model.TimeArea;
+                get.Zone = model.Zone;
+                get.CityIntroduction = model.CityIntroduction;
+                get.Img = model.Img;
+                get.Continent = model.Continent;
+
+            }
+
+            db.SaveChanges();
         }
     }
 }

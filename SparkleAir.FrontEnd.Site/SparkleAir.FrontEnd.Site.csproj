@@ -206,6 +206,9 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Members\Index.cshtml" />
     <Content Include="Views\Airports\Index.cshtml" />
+    <Content Include="Views\Airports\Create.cshtml" />
+    <Content Include="Views\Airports\Details.cshtml" />
+    <Content Include="Views\Airports\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

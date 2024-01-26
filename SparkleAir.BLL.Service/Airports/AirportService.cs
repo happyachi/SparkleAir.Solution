@@ -14,7 +14,7 @@ namespace SparkleAir.BLL.Service.Airports
     {
         private readonly IAirportRepository _repo;
 
-        public AirportService(IAirportRepository repo)
+        public AirportService(IAirportRepository repo) //接收IAirportRepository,方便可以使用Dapper或是EF
         {
             _repo = repo;
         }
@@ -49,6 +49,82 @@ namespace SparkleAir.BLL.Service.Airports
         {
             _repo.Delete(id);
         }
+
+        //新增
+        public int Create(AirportDto dto)
+        {
+            AirportEntity entity = new AirportEntity
+            {
+                Id = dto.Id,
+                Lata= dto.Lata,
+                Gps = dto.Gps,
+                Country = dto.Country,
+                City = dto.City,
+                AirPortName = dto.AirPortName,
+                TimeArea = dto.TimeArea,
+                Zone = dto.Zone,
+                CityIntroduction = dto.CityIntroduction,
+                Img = dto.Img,
+                Continent = dto.Continent,
+
+            };
+            _repo.Create(entity);  //沒呼叫AirportEFRepository是因為AirportEFRepository有實作interface,所以呼叫_repo也就好
+            return entity.Id;
+        }
+
+
+        //取得一筆
+        public AirportDto Get(int id)
+        {
+            AirportEntity entity = _repo.Get(id);
+
+            AirportDto dto = new AirportDto
+            {
+                Id = entity.Id,
+                Lata = entity.Lata,
+                Gps = entity.Gps,
+                Country = entity.Country,
+                City = entity.City,
+                AirPortName = entity.AirPortName,
+                TimeArea = entity.TimeArea,
+                Zone = entity.Zone,
+                CityIntroduction = entity.CityIntroduction,
+                Img = entity.Img,
+                Continent = entity.Continent,
+            };
+
+            return dto;
+        }
+
+
+        //更新
+        public void Update(AirportDto dto)
+        {
+            AirportEntity entity = new AirportEntity
+            {
+                Id = dto.Id,
+                Lata = dto.Lata,
+                Gps = dto.Gps,
+                Country = dto.Country,
+                City = dto.City,
+                AirPortName = dto.AirPortName,
+                TimeArea = dto.TimeArea,
+                Zone = dto.Zone,
+                CityIntroduction = dto.CityIntroduction,
+                Img = dto.Img,
+                Continent = dto.Continent,
+            };
+
+
+            _repo.Update(entity);
+        }
+
+
+
+
+
+
+
 
 
     }
