@@ -1,4 +1,5 @@
-﻿using SparkleAir.Infa.Entity.AirFlightsEntity;
+﻿using SparkleAir.Infa.Criteria.AirFlights;
+using SparkleAir.Infa.Entity.AirFlightsEntity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,6 @@ namespace SparkleAir.IDAL.IRepository.AirFlights
 		void Update(AirFlightManagementEntity entity);
 		void Delete(int id);
 		AirFlightManagementEntity GetById(int id);
-		List<AirFlightManagementEntity> Search(AirFlightManagementEntity entity);
+		List<AirFlightManagementEntity> Search(AirFlightManagementSearch entity);
 	}
 }

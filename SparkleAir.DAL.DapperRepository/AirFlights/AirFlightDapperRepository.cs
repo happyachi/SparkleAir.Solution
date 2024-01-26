@@ -1,4 +1,5 @@
 ﻿using SparkleAir.IDAL.IRepository.AirFlights;
+using SparkleAir.Infa.Criteria.AirFlights;
 using SparkleAir.Infa.Entity.AirFlightsEntity;
 using System;
 using System.Collections.Generic;
@@ -35,7 +36,12 @@ namespace SparkleAir.DAL.DapperRepository.AirFlights
 			throw new NotImplementedException();
 		}
 
-		public void Update(AirFlightManagementEntity entity)
+        public List<AirFlightManagementEntity> Search(AirFlightManagementSearch entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(AirFlightManagementEntity entity)
 		{
 			throw new NotImplementedException();
 		}

@@ -3,17 +3,16 @@
 @{
 	ViewBag.Title = "Create";
 }
-
 <h2>新增航班</h2>
-
-
 @using (Html.BeginForm())
 {
 	@Html.AntiForgeryToken()
 
-	<div class="form-horizontal">
-		<hr />
-		@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<div class="form-horizontal">
+	<hr />
+	@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+	@Html.HiddenFor(model => model.ArrivalAirportId)
+	@Html.HiddenFor(model => model.DepartureAirportId)
 	<div class="mb-3">
 
 		@Html.LabelFor(model => model.FlightCode, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -23,111 +22,76 @@
 
 	</div>
 
-		<div class="mb-3">
-			@Html.LabelFor(model => model.DepartureAirport, htmlAttributes: new { @class = "control-label col-md-2" })
+	<div class="mb-3">
+		@Html.LabelFor(model => model.DepartureAirport, htmlAttributes: new { @class = "control-label col-md-2" })
 
-			@Html.EditorFor(model => model.DepartureAirport, new { htmlAttributes = new { @class = "form-control" } })
-			@Html.ValidationMessageFor(model => model.DepartureAirport, "", new { @class = "text-danger" })
+		@Html.EditorFor(model => model.DepartureAirport, new { htmlAttributes = new { @class = "form-control" } })
+		@Html.ValidationMessageFor(model => model.DepartureAirport, "", new { @class = "text-danger" })
 
-		</div>
+	</div>
 
-		<!--<div class="mb-3">
-			@Html.HiddenFor(model => model.DepartureAirportId)-->
-			@*@Html.LabelFor(model => model.DepartureAirportId, htmlAttributes: new { @class = "control-label col-md-2" })
+	<div class="mb-3">
+		@Html.LabelFor(model => model.ArrivalAirport, htmlAttributes: new { @class = "control-label col-md-2" })
 
-				@Html.EditorFor(model => model.DepartureAirportId, new { htmlAttributes = new { @class = "form-control" } })
-				@Html.ValidationMessageFor(model => model.DepartureAirportId, "", new { @class = "text-danger" })*@
+		@Html.EditorFor(model => model.ArrivalAirport, new { htmlAttributes = new { @class = "form-control" } })
+		@Html.ValidationMessageFor(model => model.ArrivalAirport, "", new { @class = "text-danger" })
 
-		<!--</div>-->
+	</div>
+	<div class="mb-3">
+		@Html.LabelFor(model => model.DepartureTerminal, htmlAttributes: new { @class = "control-label col-md-2" })
 
-		<div class="mb-3">
-			@Html.LabelFor(model => model.ArrivalAirport, htmlAttributes: new { @class = "control-label col-md-2" })
+		@Html.EditorFor(model => model.DepartureTerminal, new { htmlAttributes = new { @class = "form-control" } })
+		@Html.ValidationMessageFor(model => model.DepartureTerminal, "", new { @class = "text-danger" })
 
-			@Html.EditorFor(model => model.ArrivalAirport, new { htmlAttributes = new { @class = "form-control" } })
-			@Html.ValidationMessageFor(model => model.ArrivalAirport, "", new { @class = "text-danger" })
+	</div>
 
-		</div>
+	<div class="mb-3">
+		@Html.LabelFor(model => model.ArrivalTerminal, htmlAttributes: new { @class = "control-label col-md-2" })
 
-		<!--<div class="mb-3">
-			@Html.HiddenFor(model => model.ArrivalAirportId)-->
-			@*@Html.LabelFor(model => model.ArrivalAirportId, htmlAttributes: new { @class = "control-label col-md-2" })
+		@Html.EditorFor(model => model.ArrivalTerminal, new { htmlAttributes = new { @class = "form-control" } })
+		@Html.ValidationMessageFor(model => model.ArrivalTerminal, "", new { @class = "text-danger" })
 
-				@Html.EditorFor(model => model.ArrivalAirportId, new { htmlAttributes = new { @class = "form-control" } })
-				@Html.ValidationMessageFor(model => model.ArrivalAirportId, "", new { @class = "text-danger" })*@
+	</div>
 
-		<!--</div>-->
+	<div class="mb-3">
+		@Html.LabelFor(model => model.DepartureTime, htmlAttributes: new { @class = "control-label col-md-2" })
 
-		<div class="mb-3">
-			@Html.LabelFor(model => model.DepartureTerminal, htmlAttributes: new { @class = "control-label col-md-2" })
+		@Html.EditorFor(model => model.DepartureTime, new { htmlAttributes = new { @class = "form-control" } })
+		@Html.ValidationMessageFor(model => model.DepartureTime, "", new { @class = "text-danger" })
 
-			@Html.EditorFor(model => model.DepartureTerminal, new { htmlAttributes = new { @class = "form-control" } })
-			@Html.ValidationMessageFor(model => model.DepartureTerminal, "", new { @class = "text-danger" })
+	</div>
 
-		</div>
+	<div class="mb-3">
+		@Html.LabelFor(model => model.ArrivalTime, htmlAttributes: new { @class = "control-label col-md-2" })
 
-		<div class="mb-3">
-			@Html.LabelFor(model => model.ArrivalTerminal, htmlAttributes: new { @class = "control-label col-md-2" })
+		@Html.EditorFor(model => model.ArrivalTime, new { htmlAttributes = new { @class = "form-control" } })
+		@Html.ValidationMessageFor(model => model.ArrivalTime, "", new { @class = "text-danger" })
 
-			@Html.EditorFor(model => model.ArrivalTerminal, new { htmlAttributes = new { @class = "form-control" } })
-			@Html.ValidationMessageFor(model => model.ArrivalTerminal, "", new { @class = "text-danger" })
+	</div>
 
-		</div>
+	<div class="mb-3">
+		@Html.LabelFor(model => model.DayofWeek, htmlAttributes: new { @class = "control-label col-md-2" })
 
-		<div class="mb-3">
-			@Html.LabelFor(model => model.DepartureTime, htmlAttributes: new { @class = "control-label col-md-2" })
+		@Html.EditorFor(model => model.DayofWeek, new { htmlAttributes = new { @class = "form-control" } })
+		@Html.ValidationMessageFor(model => model.DayofWeek, "", new { @class = "text-danger" })
 
-			@Html.EditorFor(model => model.DepartureTime, new { htmlAttributes = new { @class = "form-control" } })
-			@Html.ValidationMessageFor(model => model.DepartureTime, "", new { @class = "text-danger" })
+	</div>
 
-		</div>
+	<div class="mb-3">
+		@Html.LabelFor(model => model.Mile, htmlAttributes: new { @class = "control-label col-md-2" })
 
-		<div class="mb-3">
-			@Html.LabelFor(model => model.ArrivalTime, htmlAttributes: new { @class = "control-label col-md-2" })
+		@Html.EditorFor(model => model.Mile, new { htmlAttributes = new { @class = "form-control" } })
+		@Html.ValidationMessageFor(model => model.Mile, "", new { @class = "text-danger" })
 
-			@Html.EditorFor(model => model.ArrivalTime, new { htmlAttributes = new { @class = "form-control" } })
-			@Html.ValidationMessageFor(model => model.ArrivalTime, "", new { @class = "text-danger" })
+	</div>
 
-		</div>
-
-		<div class="mb-3">
-			@Html.LabelFor(model => model.DayofWeek, htmlAttributes: new { @class = "control-label col-md-2" })
-
-			@Html.EditorFor(model => model.DayofWeek, new { htmlAttributes = new { @class = "form-control" } })
-			@Html.ValidationMessageFor(model => model.DayofWeek, "", new { @class = "text-danger" })
-
-		</div>
-
-		<div class="mb-3">
-			@Html.LabelFor(model => model.Mile, htmlAttributes: new { @class = "control-label col-md-2" })
-
-			@Html.EditorFor(model => model.Mile, new { htmlAttributes = new { @class = "form-control" } })
-			@Html.ValidationMessageFor(model => model.Mile, "", new { @class = "text-danger" })
-
-		</div>
-
-		@*<div class="mb-3">
-			@Html.LabelFor(model => model.DepartureTimeZone, htmlAttributes: new { @class = "control-label col-md-2" })
-
-			@Html.EditorFor(model => model.DepartureTimeZone, new { htmlAttributes = new { @class = "form-control" } })
-			@Html.ValidationMessageFor(model => model.DepartureTimeZone, "", new { @class = "text-danger" })
-
-		</div>
-
-		<div class="mb-3">
-			@Html.LabelFor(model => model.ArrivalTimeZone, htmlAttributes: new { @class = "control-label col-md-2" })
-
-			@Html.EditorFor(model => model.ArrivalTimeZone, new { htmlAttributes = new { @class = "form-control" } })
-			@Html.ValidationMessageFor(model => model.ArrivalTimeZone, "", new { @class = "text-danger" })
-
-		</div>*@
-
-		<div class="mb-3">
-			<div class="col-md-offset-2 col-md-10">
-				<input type="submit" value="新增" class="btn btn-dark" />
-				@Html.ActionLink("返回","Index",null, new {@class="btn btn-dark"})
-			</div>
+	<div class="mb-3">
+		<div class="col-md-offset-2 col-md-10">
+			<input type="submit" value="新增" class="btn btn-dark" />
+			@Html.ActionLink("返回", "Index", null, new { @class = "btn btn-dark" })
 		</div>
 	</div>
+</div>
 }
 
 

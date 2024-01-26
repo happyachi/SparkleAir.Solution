@@ -1,4 +1,5 @@
 ﻿using SparkleAir.IDAL.IRepository.AirFlights;
+using SparkleAir.Infa.Criteria.AirFlights;
 using SparkleAir.Infa.Dto.AriFlights;
 using SparkleAir.Infa.Entity.AirFlightsEntity;
 using SparkleAir.Infa.Utility.Exts.Entities;
@@ -155,27 +156,53 @@ namespace SparkleAir.BLL.Service.AirFlights
             _repo.Update(entity);
         }
 
-        public List<AirFlightManagementDto> Search(AirFlightManagementDto dto)
+        //public List<AirFlightManagementDto> Search(AirFlightManagementDto dto)
+        //{
+        //    AirFlightManagementEntity entity = new AirFlightManagementEntity
+        //    {
+        //        FlightCode = dto.FlightCode,
+        //        DepartureAirport = dto.DepartureAirport,
+        //        ArrivalAirport = dto.ArrivalAirport,
+        //        DepartureTime = dto.DepartureTime,
+        //        ArrivalTime = dto.ArrivalTime,
+        //        DayofWeek = dto.DayofWeek
+        //    };
+        //    var list = _repo.Search(entity);
+
+        //    return list.Select(x => new AirFlightManagementDto
+        //    {
+        //        FlightCode = x.FlightCode,
+        //        DepartureAirport = x.DepartureAirport,
+        //        ArrivalAirport = x.ArrivalAirport,
+        //        DepartureTime = x.DepartureTime,
+        //        ArrivalTime = x.ArrivalTime,
+        //        DayofWeek = x.DayofWeek
+        //    }).ToList();
+
+        //    // todo 根據 出發地(DropDown) 目的地(DropDown) 時間段(Range) 執飛時段(checkbox)去做篩選
+        //    // 是要傳整個 dto 還是 根據要的資料去寫參數(?
+        //}
+        public List<AirFlightManagementDto> Search(AirFlightManagementSearch dto)
         {
-            AirFlightManagementEntity entity = new AirFlightManagementEntity
-            {
-                FlightCode = dto.FlightCode,
-                DepartureAirport = dto.DepartureAirport,
-                ArrivalAirport = dto.ArrivalAirport,
-                DepartureTime = dto.DepartureTime,
-                ArrivalTime = dto.ArrivalTime,
-                DayofWeek = dto.DayofWeek
-            };
-            var list = _repo.Search(entity);
+           
+            var list = _repo.Search(dto);
 
             return list.Select(x => new AirFlightManagementDto
             {
+                Id = x.Id,
                 FlightCode = x.FlightCode,
+                DepartureAirportId = x.DepartureAirportId,
+                ArrivalAirportId = x.ArrivalAirportId,
+                DepartureTerminal = x.DepartureTerminal,
+                ArrivalTerminal = x.ArrivalTerminal,
+                DepartureTime = TimeZoneHelper.ConvertToLocal(x.DepartureTime, x.DepartureTimeZone),
+                ArrivalTime = TimeZoneHelper.ConvertToLocal(x.ArrivalTime, x.ArrivalTimeZone),
+                DayofWeek = x.DayofWeek,
+                Mile = x.Mile,
                 DepartureAirport = x.DepartureAirport,
                 ArrivalAirport = x.ArrivalAirport,
-                DepartureTime = x.DepartureTime,
-                ArrivalTime = x.ArrivalTime,
-                DayofWeek = x.DayofWeek
+                DepartureTimeZone = x.DepartureTimeZone,
+                ArrivalTimeZone = x.ArrivalTimeZone,
             }).ToList();
 
             // todo 根據 出發地(DropDown) 目的地(DropDown) 時間段(Range) 執飛時段(checkbox)去做篩選

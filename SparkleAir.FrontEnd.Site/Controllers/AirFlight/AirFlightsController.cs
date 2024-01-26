@@ -10,6 +10,7 @@ using SparkleAir.DAL.EFRepository.AirFlights;
 using SparkleAir.FrontEnd.Site.Models.ViewModels.AirFlights;
 using SparkleAir.Infa.Dto.AriFlights;
 using SparkleAir.Infa.Utility.Helper;
+using SparkleAir.Infa.Criteria.AirFlights;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
 {
@@ -214,38 +215,27 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
 
         #region Search
         // todo
-        [HttpGet]
-        public ActionResult Search(AirFlightManagementSearchVm vm)
+        //[HttpGet]
+        public ActionResult SearchPartial(AirFlightManagementSearch vm)
         {
             var viewModel = SearchAirFlights(vm);
-            return PartialView("Index",viewModel);
+            return PartialView("_SearchPartial",viewModel);
         }
-        private List<AirFlightManagementSearchVm> SearchAirFlights(AirFlightManagementSearchVm vm)
+        private List<AirFlightManagementIndexVm> SearchAirFlights(AirFlightManagementSearch vm)
         {
-            AirFlightManagementDto dto = new AirFlightManagementDto
-            {
-                FlightCode = vm.FlightCode,
-                DepartureAirport = vm.DepartureAirport,
-                ArrivalAirport = vm.ArrivalAirport,
-                DepartureTime = vm.DepartureStartTime,
-                ArrivalTime = vm.ArrivalStartTime,
-                DayofWeek = vm.FlightDays.ToString()
-            };
+            var list = _service.Search(vm);
 
-            var list = _service.Search(dto);
-
-            return list.Select(data => new AirFlightManagementSearchVm
+            return list.Select(data => new AirFlightManagementIndexVm
             {
+                Id = data.Id,
                 FlightCode = data.FlightCode,
                 DepartureAirport = data.DepartureAirport,
                 ArrivalAirport = data.ArrivalAirport,
-                DepartureStartTime = data.DepartureTime,
-                ArrivalStartTime = data.ArrivalTime,
-                FlightDays = data.DayofWeek.FlightDays()
+                DepartureTime = data.DepartureTime,
+                ArrivalTime = data.ArrivalTime,
+                DayofWeek = data.DayofWeek.FlightDays().ToString()
             }).ToList();
         }
-
-
         #endregion
 
         #region Details
@@ -253,6 +243,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
         {
             // 根據ID獲取另一個VM的數據
             var viewModel = _service.GetById(id);
+            //ViewBag.ItemId = id;
             return PartialView("_DetailsPartial", viewModel);
         }
         #endregion

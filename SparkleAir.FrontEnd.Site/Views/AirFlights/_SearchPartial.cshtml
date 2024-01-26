@@ -1,8 +1,5 @@
 ﻿@model IEnumerable<SparkleAir.FrontEnd.Site.Models.ViewModels.AirFlights.AirFlightManagementIndexVm>
 
-@{
-	ViewBag.Title = "Index";
-}
 @section styles{
 	<style>
 		#divMore {
@@ -20,9 +17,6 @@
 		}
 	</style>
 }
-<h2>航班管理</h2>
-
-@Html.ActionLink("新增航班", "Create", null, new { @class = "btn btn-sm btn-dark mt-2 mb-2" })
 <div class="row" id="datas">
 	<div style="overflow:auto">
 		<form id="filterForm">
@@ -83,9 +77,7 @@
 					</td>
 					<td>
 						@Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-sm btn-dark" }) |
-						@Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-sm btn-dark details-link", data_id = item.Id })
-					</td>
-					<td>
+						@Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-sm btn-dark details-link", data_id = item.Id, @onclick = $"getDetail({item.Id})" })
 					</td>
 				</tr>
 			}
@@ -93,11 +85,11 @@
 	</div>
 </div>
 <div id="divMore" style="display:none"></div>
-
 <script>
 		document.querySelectorAll(".details-link").forEach(function (link) {
 			link.addEventListener('click', function (event) {
 				event.preventDefault();
+				console.log("xxx")
 				showModal(link.dataset.id); // 通過 dataset 獲取 itemId
 			});
 		});

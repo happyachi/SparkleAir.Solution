@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
 using SparkleAir.Infa.Utility.Exts.Models;
+using SparkleAir.Infa.Criteria.AirFlights;
 
 namespace SparkleAir.DAL.EFRepository.AirFlights
 {
@@ -132,21 +133,29 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
             db.SaveChanges();
         }
 
-        public List<AirFlightManagementEntity> Search(AirFlightManagementEntity entity)
+        public List<AirFlightManagementEntity> Search(AirFlightManagementSearch entity)
         {
-            var query = db.AirFlightManagements.AsNoTracking().Include(a => a.AirPort).Select(a => new AirFlightManagementEntity
+            var query = db.AirFlightManagements.AsNoTracking().Include(a => a.AirPort).ToList().Select(a => new AirFlightManagementEntity
             {
+                Id = a.Id,
                 FlightCode = a.FlightCode,
-                DepartureAirport = a.AirPort.AirPortName,
-                ArrivalAirport = a.AirPort.AirPortName,
+                DepartureAirportId = a.DepartureAirportId,
+                ArrivalAirportId = a.ArrivalAirportId,
+                DepartureTerminal = a.DepartureTerminal,
+                ArrivalTerminal = a.ArrivalTerminal,
                 DepartureTime = a.DepartureTime,
                 ArrivalTime = a.ArrivalTime,
-                DayofWeek = a.DayofWeek
+                DayofWeek = a.DayofWeek,
+                Mile = a.Mile,
+                DepartureAirport = airport(a.DepartureAirportId, db).Item1,
+                ArrivalAirport = airport(a.ArrivalAirportId, db).Item1,
+                DepartureTimeZone = airport(a.DepartureAirportId, db).Item2,
+                ArrivalTimeZone = airport(a.ArrivalAirportId, db).Item2
             });
 
             if (!string.IsNullOrEmpty(entity.FlightCode))
             {
-                query = query.Where(e => e.FlightCode == entity.FlightCode);
+                query = query.Where(e => e.FlightCode.Contains(entity.FlightCode));
             }
 
             if (!string.IsNullOrEmpty(entity.DepartureAirport))
@@ -159,14 +168,21 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
                 query = query.Where(e => e.ArrivalAirport == entity.ArrivalAirport);
             }
 
-            if (entity.DepartureTime != default(TimeSpan))
+            if (entity.DepartureStartTime != default(TimeSpan))
             {
-                query = query.Where(e => e.DepartureTime >= entity.DepartureTime);
+                query = query.Where(e => e.DepartureTime >= entity.DepartureStartTime);
             }
-
-            if (entity.ArrivalTime != default(TimeSpan))
+            if(entity.DepartureEndTime != default(TimeSpan))
             {
-                query = query.Where(e => e.ArrivalTime >= entity.ArrivalTime);
+                query = query.Where(e => e.DepartureTime <= entity.DepartureEndTime);
+            }
+            if (entity.ArrivalStartTime != default(TimeSpan))
+            {
+                query = query.Where(e => e.ArrivalTime >= entity.ArrivalStartTime);
+            }
+            if (entity.ArrivalEndTime != default(TimeSpan))
+            {
+                query = query.Where(e => e.DepartureTime <= entity.ArrivalEndTime);
             }
             return query.ToList();
         }

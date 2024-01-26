@@ -150,7 +150,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewModels\AirFlights\AirFlightManagementIndexVm.cs" />
-    <Compile Include="Models\ViewModels\AirFlights\AirFlightManagementSearchVm.cs" />
     <Compile Include="Models\ViewModels\AirFlights\AirFlightManagementVm.cs" />
     <Compile Include="Models\ViewModels\Members\MemberIndexVm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -212,6 +211,7 @@
     <Content Include="Views\AirFlights\Create.cshtml" />
     <Content Include="Views\AirFlights\Edit.cshtml" />
     <Content Include="Views\AirFlights\_DetailsPartial.cshtml" />
+    <Content Include="Views\AirFlights\_SearchPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
