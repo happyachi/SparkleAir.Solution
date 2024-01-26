@@ -18,12 +18,11 @@ namespace SparkleAir.Infa.EFModel.EFModels
         [Column(TypeName = "datetime2")]
         public DateTime UsedDate { get; set; }
 
-        [Required]
         [StringLength(20)]
         public string Status { get; set; }
 
         [Column(TypeName = "datetime2")]
-        public DateTime DateCreated { get; set; }
+        public DateTime? DateCreated { get; set; }
 
         public int OriginalPrice { get; set; }
 
