@@ -15,6 +15,6 @@ namespace SparkleAir.IDAL.IRepository.AirFlights
 		void Update(AirFlightManagementEntity entity);
 		void Delete(int id);
 		AirFlightManagementEntity GetById(int id);
-		List<AirFlightManagementEntity> Search(AirFlightManagementSearch entity);
+		List<AirFlightManagementEntity> Search(AirFlightManagementSearchCriteria entity);
 	}
 }

@@ -45,5 +45,32 @@ namespace SparkleAir.Infa.Utility.Exts.Models
 			};
 			return airFlight;
 		}
-	}
+
+        public static int GetAirportId(this string lata, AppDbContext db)
+        {
+            var data = db.AirPorts.FirstOrDefault(airPort => airPort.Lata == lata);
+            return data.Id;
+        }
+
+        public static (string, int) GetAirport(this int airportId, AppDbContext db)
+        {
+            var data = db.AirPorts.Find(airportId);
+
+            return (data.Lata, data.TimeArea);
+        }
+
+        //public static Func<int, AppDbContext, (string, int)> airport = (a, db) =>
+        //{
+        //    var datas = db.AirPorts.Find(a);
+
+        //    return (datas.Lata, datas.TimeArea);
+        //};
+
+        //public static Func<string, AppDbContext, int> airportId = (a, db) =>
+        //{
+        //    var data = db.AirPorts.Where(AirPort => a == AirPort.Lata).FirstOrDefault().Id;
+
+        //    return data;
+        //};
+    }
 }

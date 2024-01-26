@@ -36,7 +36,7 @@ namespace SparkleAir.DAL.DapperRepository.AirFlights
 			throw new NotImplementedException();
 		}
 
-        public List<AirFlightManagementEntity> Search(AirFlightManagementSearch entity)
+        public List<AirFlightManagementEntity> Search(AirFlightManagementSearchCriteria entity)
         {
             throw new NotImplementedException();
         }

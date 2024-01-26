@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SparkleAir.Infa.Criteria.AirFlights
 {
-    public class AirFlightManagementSearch
+    public class AirFlightManagementSearchCriteria
     {
         public int Id { get; set; }
         public string FlightCode { get; set; }

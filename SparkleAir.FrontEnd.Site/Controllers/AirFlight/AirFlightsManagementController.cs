@@ -214,12 +214,12 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
         #endregion
 
         #region Search
-        public ActionResult SearchPartial(AirFlightManagementSearch vm)
+        public ActionResult SearchPartial(AirFlightManagementSearchCriteria vm)
         {
             var viewModel = SearchAirFlights(vm);
             return PartialView("_SearchPartial",viewModel);
         }
-        private List<AirFlightManagementIndexVm> SearchAirFlights(AirFlightManagementSearch vm)
+        private List<AirFlightManagementIndexVm> SearchAirFlights(AirFlightManagementSearchCriteria vm)
         {
             var list = _service.Search(vm);
 

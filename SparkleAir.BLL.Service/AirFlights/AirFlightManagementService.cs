@@ -182,7 +182,7 @@ namespace SparkleAir.BLL.Service.AirFlights
         //    // todo 根據 出發地(DropDown) 目的地(DropDown) 時間段(Range) 執飛時段(checkbox)去做篩選
         //    // 是要傳整個 dto 還是 根據要的資料去寫參數(?
         //}
-        public List<AirFlightManagementDto> Search(AirFlightManagementSearch dto)
+        public List<AirFlightManagementDto> Search(AirFlightManagementSearchCriteria dto)
         {
            
             var list = _repo.Search(dto);
