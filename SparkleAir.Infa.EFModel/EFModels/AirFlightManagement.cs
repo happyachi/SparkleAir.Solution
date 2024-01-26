@@ -24,25 +24,25 @@ namespace SparkleAir.Infa.EFModel.EFModels
 
         public int DepartureAirportId { get; set; }
 
-        public int DestinationAirportId { get; set; }
+        public int ArrivalAirportId { get; set; }
 
         [StringLength(15)]
         public string DepartureTerminal { get; set; }
 
         [StringLength(15)]
-        public string DestinationTerminal { get; set; }
+        public string ArrivalTerminal { get; set; }
 
-        [Column(TypeName = "datetime2")]
-        public DateTime DepartureTime { get; set; }
+        public TimeSpan DepartureTime { get; set; }
 
-        [Column(TypeName = "datetime2")]
-        public DateTime ArrivalTime { get; set; }
+        public TimeSpan ArrivalTime { get; set; }
 
         [Required]
         [StringLength(15)]
         public string DayofWeek { get; set; }
 
         public int Mile { get; set; }
+
+        public int CrossDay { get; set; }
 
         public virtual AirPort AirPort { get; set; }
 

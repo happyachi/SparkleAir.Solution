@@ -10,7 +10,7 @@ namespace SparkleAir.Infa.EFModel.EFModels
     {
         public int Id { get; set; }
 
-        public int MermberId { get; set; }
+        public int MermberIsd { get; set; }
 
         public int TotalMile { get; set; }
 
