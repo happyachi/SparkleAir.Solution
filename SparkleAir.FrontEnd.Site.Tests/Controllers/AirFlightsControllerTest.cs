@@ -27,9 +27,9 @@ namespace SparkleAir.FrontEnd.Site.Tests.Controllers
 		public void CreatePost_CallsServiceCreate(int id, string flightCode, int departureAirportid, int destinationAirportId, string departurTerminal, string destinationTermanal, string departureTime, string arrivalTime, string dayofWeek, int mile)
 		{
 			// Arrange
-			var mockRepo = Substitute.For<IAirFlightRepository>();
-			var mockService = Substitute.For<AirFlightService>(mockRepo);
-			var controller = new AirFlightsController(mockService);
+			var mockRepo = Substitute.For<IAirFlightManagementRepository>();
+			var mockService = Substitute.For<AirFlightManagementService>(mockRepo);
+			var controller = new AirFlightsManagementController(mockService);
 			var validVm = new AirFlightManagementVm
 			{
 				// 看是否能成功create

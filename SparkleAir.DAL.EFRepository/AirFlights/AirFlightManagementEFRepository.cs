@@ -12,7 +12,7 @@ using SparkleAir.Infa.Criteria.AirFlights;
 
 namespace SparkleAir.DAL.EFRepository.AirFlights
 {
-    public class AirFlightEFRepository : IAirFlightRepository
+    public class AirFlightManagementEFRepository : IAirFlightManagementRepository
     {
         AppDbContext db = new AppDbContext();
 

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SparkleAir.DAL.DapperRepository.AirFlights
 {
-	public class AirFlightDapperRepository : IAirFlightRepository
+	public class AirFlightDapperRepository : IAirFlightManagementRepository
 	{
 		public int Create(AirFlightManagementEntity entity)
 		{

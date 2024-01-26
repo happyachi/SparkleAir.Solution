@@ -12,9 +12,9 @@ using System.Threading.Tasks;
 
 namespace SparkleAir.BLL.Service.AirFlights
 {
-    public class AirFlightService
+    public class AirFlightManagementService
     {
-        private readonly IAirFlightRepository _repo;
+        private readonly IAirFlightManagementRepository _repo;
 
         // 公司代碼
         private const string AirlineCode = "SK";
@@ -31,7 +31,7 @@ namespace SparkleAir.BLL.Service.AirFlights
             return false;
         };
 
-        public AirFlightService(IAirFlightRepository repo)
+        public AirFlightManagementService(IAirFlightManagementRepository repo)
         {
             _repo = repo;
         }

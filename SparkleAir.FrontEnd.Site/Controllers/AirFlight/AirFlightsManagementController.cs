@@ -14,25 +14,25 @@ using SparkleAir.Infa.Criteria.AirFlights;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
 {
-    public class AirFlightsController : Controller
+    public class AirFlightsManagementController : Controller
     {
         #region CTOR
 
-        private IAirFlightRepository _repo;
-        private AirFlightService _service;
+        private IAirFlightManagementRepository _repo;
+        private AirFlightManagementService _service;
 
-        public AirFlightsController()
+        public AirFlightsManagementController()
         {
             //EF
-            _repo = new AirFlightEFRepository();
+            _repo = new AirFlightManagementEFRepository();
 
             //DP
             //_repo = new AirFlightDapperRepository();
-            _service = new AirFlightService(_repo);
+            _service = new AirFlightManagementService(_repo);
         }
 
         //for testing
-        public AirFlightsController(AirFlightService service)
+        public AirFlightsManagementController(AirFlightManagementService service)
         {
             _service = service;
         }
@@ -214,8 +214,6 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
         #endregion
 
         #region Search
-        // todo
-        //[HttpGet]
         public ActionResult SearchPartial(AirFlightManagementSearch vm)
         {
             var viewModel = SearchAirFlights(vm);

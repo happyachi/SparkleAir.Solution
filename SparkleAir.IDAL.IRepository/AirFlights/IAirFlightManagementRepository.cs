@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SparkleAir.IDAL.IRepository.AirFlights
 {
-	public interface IAirFlightRepository
+	public interface IAirFlightManagementRepository
 	{
 		List<AirFlightManagementEntity> GetAll();
 		int Create(AirFlightManagementEntity entity);

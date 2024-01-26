@@ -103,7 +103,7 @@
 		});
 
 		function showModal(itemId) {
-			fetch('@Url.Content("~/AirFlights/DetailsPartial")' + `?id=${itemId}`)
+			fetch('@Url.Content("~/AirFlightsManagement/DetailsPartial")' + `?id=${itemId}`)
 				.then(response => response.text())
 				.then(data => {
 					const div = document.querySelector('#divMore');
@@ -139,7 +139,7 @@
     var formData = $('#filterForm').serialize();
 
     // 構建 URL
-    var url = '@Url.Action("SearchPartial", "AirFlights")' + '?' + formData;
+    var url = '@Url.Action("SearchPartial", "AirFlightsManagement")' + '?' + formData;
 
     // 發送 AJAX 請求
     fetch(url)

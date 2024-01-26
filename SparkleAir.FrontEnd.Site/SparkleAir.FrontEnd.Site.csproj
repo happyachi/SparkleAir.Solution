@@ -143,7 +143,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\AirFlight\AirFlightsController.cs" />
+    <Compile Include="Controllers\AirFlight\AirFlightsManagementController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Members\MembersController.cs" />
     <Compile Include="Global.asax.cs">
@@ -207,11 +207,11 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Members\Index.cshtml" />
-    <Content Include="Views\AirFlights\Index.cshtml" />
-    <Content Include="Views\AirFlights\Create.cshtml" />
-    <Content Include="Views\AirFlights\Edit.cshtml" />
-    <Content Include="Views\AirFlights\_DetailsPartial.cshtml" />
-    <Content Include="Views\AirFlights\_SearchPartial.cshtml" />
+    <Content Include="Views\AirFlightsManagement\Index.cshtml" />
+    <Content Include="Views\AirFlightsManagement\Create.cshtml" />
+    <Content Include="Views\AirFlightsManagement\Edit.cshtml" />
+    <Content Include="Views\AirFlightsManagement\_DetailsPartial.cshtml" />
+    <Content Include="Views\AirFlightsManagement\_SearchPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
