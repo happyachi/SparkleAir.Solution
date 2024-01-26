@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Campaigns\ICampaignsCouponsRepository.cs" />
+    <Compile Include="Campaigns\ICampaignsDiscountsRepository.cs" />
     <Compile Include="Airport\IAirportRepository.cs" />
     <Compile Include="Members\IMemberRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -59,5 +61,6 @@
       <Name>SparkleAir.Infa.Entity</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

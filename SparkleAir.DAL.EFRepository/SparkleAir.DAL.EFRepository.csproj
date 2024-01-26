@@ -51,9 +51,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Campaigns\CampaignsCouponsEFRepository.cs" />
+    <Compile Include="Campaigns\CampaignsDiscountsEFRepository.cs" />
     <Compile Include="Airports\AirportEFRepository.cs" />
     <Compile Include="Members\MemberEFRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TaxFree\TFItemEFRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SparkleAir.IDAL.IRepository\SparkleAir.IDAL.IRepository.csproj">
@@ -81,6 +84,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
