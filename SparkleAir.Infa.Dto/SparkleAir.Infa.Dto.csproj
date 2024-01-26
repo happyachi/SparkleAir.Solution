@@ -41,8 +41,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Campaigns\CampaignsCouponDto.cs" />
+    <Compile Include="Campaigns\CampaignsDiscountDto.cs" />
     <Compile Include="Members\MemberDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SparkleAir.Infa.EFModel\SparkleAir.Infa.EFModel.csproj">
+      <Project>{A1AD6217-2A9D-4948-AA6F-BF0A12D66712}</Project>
+      <Name>SparkleAir.Infa.EFModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

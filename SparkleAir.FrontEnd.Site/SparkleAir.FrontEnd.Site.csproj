@@ -143,11 +143,17 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\Campaigns\CampaignsCouponController.cs" />
+    <Compile Include="Controllers\Campaigns\CampaignsDiscountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Members\MembersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModels\Campaigns\CampaignsCouponIndexVm.cs" />
+    <Compile Include="Models\ViewModels\Campaigns\CampaignsCouponVm.cs" />
+    <Compile Include="Models\ViewModels\Campaigns\CampaignsDiscountIndexVm.cs" />
+    <Compile Include="Models\ViewModels\Campaigns\CampaignsDiscountVm.cs" />
     <Compile Include="Models\ViewModels\Members\MemberIndexVm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -203,9 +209,16 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Members\Index.cshtml" />
+    <Content Include="Views\CampaignsCoupon\Index.cshtml" />
+    <Content Include="Views\CampaignsCoupon\Create.cshtml" />
+    <Content Include="Views\CampaignsDiscount\Index.cshtml" />
+    <Content Include="Views\CampaignsDiscount\Create.cshtml" />
+    <Content Include="Views\CampaignsDiscount\Edit.cshtml" />
+    <Content Include="Views\CampaignsCoupon\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Campaigns\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
