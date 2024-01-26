@@ -1,6 +1,7 @@
 [V]新增方案資料夾，新增專案
 	01表現層：
 		SparkleAir.FrontEnd.Site (MVC)
+		SparkleAir.Web.API (API)
 
 	02商業邏輯層：
 		SparkleAir.BLL.Service (類別庫)
@@ -12,13 +13,16 @@
 		SparkleAir.DAL.EFRepository (類別庫)
 
 	04基礎建設層：
+		SparkleAir.Infa.Criteria (類別庫)
 		SparkleAir.Infa.Dto (類別庫)
 		SparkleAir.Infa.EFModel (類別庫)
 		SparkleAir.Infa.Entity (類別庫)
 		SparkleAir.Infa.Utility (類別庫)
+		SparkleAir.Infa.ViewModel (類別庫)
 
 	05單元測試：
 		SparkleAir.FrontEnd.Site.Tests
+		SparkleAir.Web.API.Tests
 
 [V]加入參考
 	SparkleAir.FrontEnd.Site 參考：
@@ -30,17 +34,20 @@
 		SparkleAir.Infa.Dto
 		SparkleAir.Infa.EFModel
 		SparkleAir.Infa.Utility
-
+		SparkleAir.Infa.Criteria
+		SparkleAir.Infa.ViewModel
 
 	SparkleAir.BLL.Service 參考：
 		SparkleAir.IDAL.IRepository
 		SparkleAir.Infa.Dto
 		SparkleAir.Infa.Entity
 		SparkleAir.Infa.Utility
+		SparkleAir.Infa.Criteria
 
 	SparkleAir.IDAL.IRepository 參考：
 		SparkleAir.Infa.Dto
 		SparkleAir.Infa.Entity
+		SparkleAir.Infa.Criteria
 
 	SparkleAir.DAL.DapperRepository, SparkleAir.DAL.DTORepository, SparkleAir.DAL.EFRepository
 	以上三個 Repository 參考的內容是一樣的：
@@ -48,6 +55,7 @@
 		SparkleAir.Infa.EFModel
 		SparkleAir.Infa.Entity
 		SparkleAir.Infa.Utility
+		SparkleAir.Infa.Criteria
 		
 	SparkleAir.Infa.Utility 參考：
 		SparkleAir.Infa.Dto
@@ -83,3 +91,25 @@
 		加入：Dapper
 
 [V]建置方案
+
+[]建置API專案
+	Global.asax加入以下程式碼，達成回傳的Data為JSON格式
+		GlobalConfiguration.Configuration.Formatters.XmlFormatter.SupportedMediaTypes.Clear();
+
+	管理套件加入：
+		EntityFramework
+		Dapper
+
+	加入參考
+		SparkleAir.BLL.Service
+		SparkleAir.IDAL.IRepository
+		SparkleAir.DAL.DapperRepository
+		SparkleAir.DAL.DTORepository
+		SparkleAir.DAL.EFRepository
+		SparkleAir.Infa.Dto
+		SparkleAir.Infa.EFModel
+		SparkleAir.Infa.Utility
+		SparkleAir.Infa.Criteria
+		SparkleAir.Infa.ViewModel
+
+		
