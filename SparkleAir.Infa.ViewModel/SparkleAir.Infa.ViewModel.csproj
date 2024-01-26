@@ -46,6 +46,8 @@
     <Compile Include="Campaigns\CampaignsCouponVm.cs" />
     <Compile Include="Campaigns\CampaignsDiscountIndexVm.cs" />
     <Compile Include="Campaigns\CampaignsDiscountVm.cs" />
+    <Compile Include="Airports\AirportCreateVm.cs" />
+    <Compile Include="Airports\AirportIndexVm.cs" />
     <Compile Include="Members\MemberIndexVm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
