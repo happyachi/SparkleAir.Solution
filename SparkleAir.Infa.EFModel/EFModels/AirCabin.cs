@@ -21,7 +21,7 @@ namespace SparkleAir.Infa.EFModel.EFModels
 
         [Required]
         [StringLength(30)]
-        public string ClassLevel { get; set; }
+        public string CabinClass { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AirCabinRule> AirCabinRules { get; set; }

@@ -28,6 +28,9 @@ namespace SparkleAir.Infa.EFModel.EFModels
         [StringLength(3000)]
         public string Image { get; set; }
 
+        [MaxLength(100)]
+        public byte[] ImageBit { get; set; }
+
         [Required]
         [StringLength(10)]
         public string Category { get; set; }

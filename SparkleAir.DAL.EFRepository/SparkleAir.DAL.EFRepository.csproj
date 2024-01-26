@@ -61,6 +61,10 @@
       <Project>{73007f85-f88e-4292-ab16-8a5798a9a6fb}</Project>
       <Name>SparkleAir.IDAL.IRepository</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SparkleAir.Infa.Criteria\SparkleAir.Infa.Criteria.csproj">
+      <Project>{1887f4fa-d97f-432f-b936-b47ecc87a94e}</Project>
+      <Name>SparkleAir.Infa.Criteria</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SparkleAir.Infa.EFModel\SparkleAir.Infa.EFModel.csproj">
       <Project>{a1ad6217-2a9d-4948-aa6f-bf0a12d66712}</Project>
       <Name>SparkleAir.Infa.EFModel</Name>
