@@ -1,4 +1,5 @@
 ﻿using SparkleAir.IDAL.IRepository.Members;
+using SparkleAir.Infa.Criteria.Members;
 using SparkleAir.Infa.Dto.Members;
 using SparkleAir.Infa.Entity.Members;
 using SparkleAir.Infa.Utility.Exts.Entities;
@@ -22,10 +23,21 @@ namespace SparkleAir.BLL.Service.Members
 		public List<MemberDto> GetAll()
 		{
 			var list = _repo.GetAll()
-				.Select(m => m.ToDto())
+				.Select(m => m.EntityToDto())
 				.ToList();
 
 			return list;
 		}
+
+
+		public MemberDto Get(MemberGetCriteria criteria) 
+		{
+			var member = _repo.Get(criteria);
+
+            var dto = member.EntityToDto();
+
+            return dto;
+
+        }
 	}
 }

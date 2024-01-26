@@ -1,4 +1,5 @@
 ﻿using SparkleAir.IDAL.IRepository.Members;
+using SparkleAir.Infa.Criteria.Members;
 using SparkleAir.Infa.EFModel.EFModels;
 using SparkleAir.Infa.Entity.Members;
 using SparkleAir.Infa.Utility.Exts.Models;
@@ -18,6 +19,25 @@ namespace SparkleAir.DAL.EFRepository.Members
         {
             _db = new AppDbContext();
         }
+
+        public MemberEntity Get(MemberGetCriteria criteria)
+        {
+			var member = _db.Members;
+			var query = new Member();
+
+            if (criteria.Id != null)
+			{
+                query = member.Find(criteria.Id);
+
+            }
+			if (criteria.Account != null)
+			{
+                query = member.FirstOrDefault(x => x.Account == criteria.Account);
+            }
+
+			return query.MemberToEntity();
+        }
+
         public List<MemberEntity> GetAll()
 		{
 			var entities = _db.Members.AsNoTracking()
@@ -25,8 +45,10 @@ namespace SparkleAir.DAL.EFRepository.Members
 				{
 					Id = member.Id,
 					MemberClassId = member.MemberClassId,
-					CountryId = member.CountryId,
-					Account = member.Account,
+					MemberClassName = member.MemberClass.Name,
+                    CountryId = member.CountryId,
+					CountryName = member.Country.ChineseName,
+                    Account = member.Account,
 					Password = member.Password,
 					ChineseLastName = member.ChineseLastName,
 					ChineseFirstName = member.ChineseFirstName,
