@@ -44,6 +44,7 @@
     <Compile Include="Airtype&amp;Owns\PlaneEntity.cs" />
     <Compile Include="Members\MemberEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TaxFree\TFItemEntity.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

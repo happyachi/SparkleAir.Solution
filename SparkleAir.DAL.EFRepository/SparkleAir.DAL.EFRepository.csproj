@@ -54,6 +54,7 @@
     <Compile Include="Airtype&amp;Owns\PlaneRepository.cs" />
     <Compile Include="Members\MemberEFRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TaxFree\TFItemEFRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SparkleAir.IDAL.IRepository\SparkleAir.IDAL.IRepository.csproj">
