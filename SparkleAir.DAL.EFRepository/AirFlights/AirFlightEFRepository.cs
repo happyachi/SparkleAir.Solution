@@ -35,9 +35,9 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
             {
                 FlightCode = entity.FlightCode,
                 DepartureAirportId = airportId(entity.DepartureAirport, db),
-                DestinationAirportId = airportId(entity.DestinationAirport, db),
+                ArrivalAirportId= airportId(entity.ArrivalAirport, db),
                 DepartureTerminal = entity.DepartureTerminal,
-                DestinationTerminal = entity.DestinationTerminal,
+                ArrivalTerminal = entity.ArrivalTerminal,
                 DepartureTime = entity.DepartureTime,
                 ArrivalTime = entity.ArrivalTime,
                 DayofWeek = entity.DayofWeek,
@@ -70,17 +70,17 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
                     Id = a.Id,
                     FlightCode = a.FlightCode,
                     DepartureAirportId = a.DepartureAirportId,
-                    DestinationAirportId = a.DestinationAirportId,
+                    ArrivalAirportId = a.ArrivalAirportId,
                     DepartureTerminal = a.DepartureTerminal,
-                    DestinationTerminal = a.DestinationTerminal,
+                    ArrivalTerminal = a.ArrivalTerminal,
                     DepartureTime = a.DepartureTime,
                     ArrivalTime = a.ArrivalTime,
                     DayofWeek = a.DayofWeek,
                     Mile = a.Mile,
                     DepartureAirport = airport(a.DepartureAirportId, db).Item1,
-                    DestinationAirport = airport(a.DestinationAirportId, db).Item1,
+                    ArrivalAirport = airport(a.ArrivalAirportId, db).Item1,
                     DepartureTimeZone = airport(a.DepartureAirportId, db).Item2,
-                    DestinationTimeZone = airport(a.DestinationAirportId, db).Item2
+                    ArrivalTimeZone = airport(a.ArrivalAirportId, db).Item2
                 })
                 .ToList();
 
@@ -96,17 +96,17 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
                 Id = flight.Id,
                 FlightCode = flight.FlightCode,
                 DepartureAirportId = flight.DepartureAirportId,
-                DestinationAirportId = flight.DestinationAirportId,
+                ArrivalAirportId = flight.ArrivalAirportId,
                 DepartureTerminal = flight.DepartureTerminal,
-                DestinationTerminal = flight.DestinationTerminal,
+                ArrivalTerminal = flight.ArrivalTerminal,
                 DepartureTime = flight.DepartureTime,
                 ArrivalTime = flight.ArrivalTime,
                 DayofWeek = flight.DayofWeek,
                 Mile = flight.Mile,
                 DepartureAirport = airport(flight.DepartureAirportId, db).Item1,
-                DestinationAirport = airport(flight.DestinationAirportId, db).Item1,
+                ArrivalAirport = airport(flight.ArrivalAirportId, db).Item1,
                 DepartureTimeZone = airport(flight.DepartureAirportId, db).Item2,
-                DestinationTimeZone = airport(flight.DestinationAirportId, db).Item2
+                ArrivalTimeZone = airport(flight.ArrivalAirportId, db).Item2
             };
 
             return airplain;
@@ -121,9 +121,9 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
             {
                 flight.FlightCode = entity.FlightCode;
                 flight.DepartureAirportId = airportId(entity.DepartureAirport, db);
-                flight.DestinationAirportId = airportId(entity.DestinationAirport, db);
+                flight.ArrivalAirportId = airportId(entity.ArrivalAirport, db);
                 flight.DepartureTerminal = entity.DepartureTerminal;
-                flight.DestinationTerminal = entity.DestinationTerminal;
+                flight.ArrivalTerminal = entity.ArrivalTerminal;
                 flight.DepartureTime = entity.DepartureTime;
                 flight.ArrivalTime = entity.ArrivalTime;
                 flight.DayofWeek = entity.DayofWeek;
@@ -138,7 +138,7 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
             {
                 FlightCode = a.FlightCode,
                 DepartureAirport = a.AirPort.AirPortName,
-                DestinationAirport = a.AirPort.AirPortName,
+                ArrivalAirport = a.AirPort.AirPortName,
                 DepartureTime = a.DepartureTime,
                 ArrivalTime = a.ArrivalTime,
                 DayofWeek = a.DayofWeek
@@ -154,17 +154,17 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
                 query = query.Where(e => e.DepartureAirport == entity.DepartureAirport);
             }
 
-            if (!string.IsNullOrEmpty(entity.DestinationAirport))
+            if (!string.IsNullOrEmpty(entity.ArrivalAirport))
             {
-                query = query.Where(e => e.DestinationAirport == entity.DestinationAirport);
+                query = query.Where(e => e.ArrivalAirport == entity.ArrivalAirport);
             }
 
-            if (entity.DepartureTime != default(DateTime))
+            if (entity.DepartureTime != default(TimeSpan))
             {
                 query = query.Where(e => e.DepartureTime >= entity.DepartureTime);
             }
 
-            if (entity.ArrivalTime != default(DateTime))
+            if (entity.ArrivalTime != default(TimeSpan))
             {
                 query = query.Where(e => e.ArrivalTime >= entity.ArrivalTime);
             }

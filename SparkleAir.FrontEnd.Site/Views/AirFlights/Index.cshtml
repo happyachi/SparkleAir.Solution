@@ -44,7 +44,7 @@
 					@Html.DisplayNameFor(model => model.DepartureAirport)
 				</th>
 				<th>
-					@Html.DisplayNameFor(model => model.DestinationAirport)
+					@Html.DisplayNameFor(model => model.ArrivalAirport)
 				</th>
 				<th>
 					@Html.DisplayNameFor(model => model.DepartureTime)
@@ -67,13 +67,15 @@
 						@Html.DisplayFor(modelItem => item.DepartureAirport)
 					</td>
 					<td>
-						@Html.DisplayFor(modelItem => item.DestinationAirport)
+						@Html.DisplayFor(modelItem => item.ArrivalAirport)
 					</td>
 					<td>
-						@Html.DisplayFor(modelItem => item.DepartureTime)
+						@*@Html.DisplayFor(modelItem => item.DepartureTime)*@
+						@Html.Raw(item.DepartureTime.ToString("hh\\:mm"))
 					</td>
 					<td>
-						@Html.DisplayFor(modelItem => item.ArrivalTime)
+						@*@Html.DisplayFor(modelItem => item.ArrivalTime)*@
+						@Html.Raw(item.ArrivalTime.ToString("hh\\:mm"))
 					</td>
 					<td>
 						@Html.DisplayFor(modelItem => item.DayofWeek)

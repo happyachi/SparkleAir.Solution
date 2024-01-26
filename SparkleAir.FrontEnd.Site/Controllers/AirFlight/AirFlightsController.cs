@@ -55,7 +55,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
                 Id = x.Id,
                 FlightCode = x.FlightCode,
                 DepartureAirport = x.DepartureAirport,
-                DestinationAirport = x.DestinationAirport,
+                ArrivalAirport = x.ArrivalAirport,
                 DepartureTime = x.DepartureTime,
                 ArrivalTime = x.ArrivalTime,
                 DayofWeek = x.DayofWeek,
@@ -95,14 +95,14 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
                 FlightCode = vm.FlightCode,
                 DepartureAirport = vm.DepartureAirport,
                 DepartureAirportId = vm.DepartureAirportId,
-                DestinationAirport = vm.DestinationAirport,
-                DestinationAirportId = vm.DestinationAirportId,
+                ArrivalAirport = vm.ArrivalAirport,
+                ArrivalAirportId = vm.ArrivalAirportId,
                 DepartureTime = vm.DepartureTime,
                 ArrivalTime = vm.ArrivalTime,
                 DayofWeek = vm.DayofWeek,
                 Mile = vm.Mile,
                 DepartureTimeZone = vm.DepartureTimeZone,
-                DestinationTimeZone = vm.ArrivalTimeZone
+                ArrivalTimeZone = vm.ArrivalTimeZone
             };
 
             _service.Create(dto);
@@ -134,16 +134,16 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
                 FlightCode = dto.FlightCode,
                 DepartureAirport = dto.DepartureAirport,
                 DepartureAirportId = dto.DepartureAirportId,
-                DestinationAirport = dto.DestinationAirport,
-                DestinationAirportId = dto.DestinationAirportId,
+                ArrivalAirport = dto.ArrivalAirport,
+                ArrivalAirportId = dto.ArrivalAirportId,
                 DepartureTerminal = dto.DepartureTerminal,
-                DestinationTerminal = dto.DestinationTerminal,
+                ArrivalTerminal = dto.ArrivalTerminal,
                 DepartureTime = dto.DepartureTime,
                 ArrivalTime = dto.ArrivalTime,
                 DayofWeek = dto.DayofWeek,
                 Mile = dto.Mile,
                 DepartureTimeZone = dto.DepartureTimeZone,
-                ArrivalTimeZone = dto.DestinationTimeZone
+                ArrivalTimeZone = dto.ArrivalTimeZone
             };
             return vm;
         }
@@ -174,16 +174,16 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
                 FlightCode = vm.FlightCode,
                 DepartureAirport = vm.DepartureAirport,
                 DepartureAirportId = vm.DepartureAirportId,
-                DestinationAirport = vm.DestinationAirport,
-                DestinationAirportId = vm.DestinationAirportId,
+                ArrivalAirport = vm.ArrivalAirport,
+                ArrivalAirportId = vm.ArrivalAirportId,
                 DepartureTerminal = vm.DepartureTerminal,
-                DestinationTerminal = vm.DestinationTerminal,
+                ArrivalTerminal = vm.ArrivalTerminal,
                 DepartureTime = vm.DepartureTime,
                 ArrivalTime = vm.ArrivalTime,
                 DayofWeek = vm.DayofWeek,
                 Mile = vm.Mile,
                 DepartureTimeZone = vm.DepartureTimeZone,
-                DestinationTimeZone = vm.ArrivalTimeZone
+                ArrivalTimeZone = vm.ArrivalTimeZone
             };
 
             _service.Update(dto);
@@ -226,7 +226,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
             {
                 FlightCode = vm.FlightCode,
                 DepartureAirport = vm.DepartureAirport,
-                DestinationAirport = vm.ArrivalAirport,
+                ArrivalAirport = vm.ArrivalAirport,
                 DepartureTime = vm.DepartureStartTime,
                 ArrivalTime = vm.ArrivalStartTime,
                 DayofWeek = vm.FlightDays.ToString()
@@ -238,7 +238,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
             {
                 FlightCode = data.FlightCode,
                 DepartureAirport = data.DepartureAirport,
-                ArrivalAirport = data.DestinationAirport,
+                ArrivalAirport = data.ArrivalAirport,
                 DepartureStartTime = data.DepartureTime,
                 ArrivalStartTime = data.ArrivalTime,
                 FlightDays = data.DayofWeek.FlightDays()

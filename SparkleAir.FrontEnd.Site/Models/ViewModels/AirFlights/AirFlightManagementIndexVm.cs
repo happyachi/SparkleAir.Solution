@@ -18,15 +18,13 @@ namespace SparkleAir.FrontEnd.Site.Models.ViewModels.AirFlights
 		public string DepartureAirport { get; set; }
 
 		[Display(Name = "目的地")]
-		public string DestinationAirport { get; set; }
+		public string ArrivalAirport { get; set; }
 
 		[Display(Name = "出發時間")]
-		[DisplayFormat(DataFormatString = "{0:HH:mm}")]
-		public DateTime DepartureTime { get; set; }
+        public TimeSpan DepartureTime { get; set; }
 
 		[Display(Name = "抵達時間")]
-		[DisplayFormat(DataFormatString = "{0:HH:mm}")]
-		public DateTime ArrivalTime { get; set; }
+        public TimeSpan ArrivalTime { get; set; }
 
 		[Display(Name = "執飛日")]
 		public string DayofWeek { get; set; }
