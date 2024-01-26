@@ -9,10 +9,10 @@ namespace SparkleAir.Infa.Entity.Campaigns
 {
     public class CampaignsDiscountEntity
     {
-        public CampaignsDiscountEntity(int id, int campaignid, string name, DateTime datecreated, DateTime datestart, DateTime dateend, string status, decimal discountvalue, decimal value, decimal bundleskus, string membercriteria, string tfitemscriteria, Campaign campaign)
+        public CampaignsDiscountEntity(string name, DateTime datecreated, DateTime datestart, DateTime dateend, string status, decimal discountvalue, decimal value, decimal bundleskus, string membercriteria, string tfitemscriteria)
         {
-            Id = id;
-            CampaignId = campaignid;
+            //Id = id;
+            //CampaignId = campaignid;
             Name = name;
             DateCreated = datecreated;
             DateStart = datestart;
@@ -23,7 +23,7 @@ namespace SparkleAir.Infa.Entity.Campaigns
             BundleSKUs = bundleskus;
             MemberCriteria = membercriteria;
             TFItemsCriteria = tfitemscriteria;
-            Campaign = campaign;
+            //Campaign = campaign;
         }
 
         public int Id { get; set; }
@@ -50,13 +50,14 @@ namespace SparkleAir.Infa.Entity.Campaigns
 
         public string TFItemsCriteria { get; set; }
 
-        public virtual Campaign Campaign { get; set; }
+        public string Campaign { get; set; }
+
 
         public virtual ICollection<CampaignsDiscountMember> CampaignsDiscountMembers { get; set; }
 
         public virtual ICollection<CampaignsDiscountTFItem> CampaignsDiscountTFItems { get; set; }
 
         public virtual ICollection<CampaignsTFDiscountUsageHistory> CampaignsTFDiscountUsageHistories { get; set; }
-        public Campaign Campaign1 { get; }
+        public string Campaign1 { get; }
     }
 }

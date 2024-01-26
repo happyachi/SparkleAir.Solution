@@ -21,12 +21,12 @@ namespace SparkleAir.BLL.Service.Campaigns
         public int Create(CampaignsCouponDto dto)
         {
             CampaignsCouponEntity entity = new CampaignsCouponEntity(
-                dto.Id,
-              dto.Name,
+             
               dto.CampaignId,
+              dto.Name,
               dto.DateStart,
               dto.DateEnd,
-              dto.DateCreated,
+              DateTime.Now,
               dto.Status,
               dto.DiscountQuantity,
               dto.DiscountValue,
@@ -38,6 +38,7 @@ namespace SparkleAir.BLL.Service.Campaigns
               dto.MemberCriteria,
               dto.AirFlightsCriteria,
               dto.Campaign
+              //dto.Id
                 );
 
             _repo.Create(entity);
@@ -55,11 +56,11 @@ namespace SparkleAir.BLL.Service.Campaigns
             CampaignsCouponDto dto = new CampaignsCouponDto
             {
                 Id = id,
-                Name = entity.Name,
                 CampaignId = entity.CampaignId,
+                Name = entity.Name,
+                DateCreated = entity.DateCreated,
                 DateStart = entity.DateStart,
                 DateEnd = entity.DateEnd,
-                DateCreated = DateTime.Now,
                 Status = entity.Status,
                 DiscountQuantity = entity.DiscountQuantity,
                 DiscountValue = entity.DiscountValue,
@@ -81,23 +82,23 @@ namespace SparkleAir.BLL.Service.Campaigns
 
             List<CampaignsCouponDto> dto = entity.Select(c => new CampaignsCouponDto
             {
-                Id = c.Id,
+                //Id = c.Id,
                 Name = c.Name,
-                CampaignId = c.CampaignId,
+                //CampaignId = c.CampaignId,
                 DateStart = c.DateStart,
                 DateEnd = c.DateEnd,
-                DateCreated = DateTime.Now,
+                DateCreated = c.DateCreated,
                 Status = c.Status,
-                DiscountQuantity = c.DiscountQuantity,
-                DiscountValue = c.DiscountValue,
-                AvailableQuantity = c.AvailableQuantity,
-                MinimumOrderValue = c.MinimumOrderValue,
-                MaximumDiscountAmount = c.MaximumDiscountAmount,
+                //DiscountQuantity = c.DiscountQuantity,
+                //DiscountValue = c.DiscountValue,
+                //AvailableQuantity = c.AvailableQuantity,
+                //MinimumOrderValue = c.MinimumOrderValue,
+                //MaximumDiscountAmount = c.MaximumDiscountAmount,
                 Code = c.Code,
-                DisplayDescription = c.DisplayDescription,
-                MemberCriteria = c.MemberCriteria,
-                AirFlightsCriteria = c.AirFlightsCriteria,
-                Campaign = c.Campaign
+                //DisplayDescription = c.DisplayDescription,
+                //MemberCriteria = c.MemberCriteria,
+                //AirFlightsCriteria = c.AirFlightsCriteria,
+                //Campaign = c.Campaign
             }).ToList();
 
             return dto;
@@ -107,9 +108,9 @@ namespace SparkleAir.BLL.Service.Campaigns
         {
             CampaignsCouponEntity entity = new CampaignsCouponEntity
             (
-              dto.Id,
-              dto.Name,
+              //dto.Id,
               dto.CampaignId,
+              dto.Name,
               dto.DateStart,
               dto.DateEnd,
               dto.DateCreated,

@@ -36,8 +36,7 @@ namespace SparkleAir.DAL.EFRepository.Campaigns
                 Code = entity.Code,
                 DisplayDescription = entity.DisplayDescription,
                 MemberCriteria = entity.MemberCriteria,
-                AirFlightsCriteria = entity.AirFlightsCriteria,
-                Campaign = entity.Campaign
+                AirFlightsCriteria = entity.AirFlightsCriteria
             };
 
             db.CampaignsCoupons.Add(coupon);
@@ -75,9 +74,9 @@ namespace SparkleAir.DAL.EFRepository.Campaigns
             var coupon = db.CampaignsCoupons.Find(entity.Id);
             if (coupon != null)
             {
-                coupon.Id = entity.Id;
-                coupon.Name = entity.Name;
+                //coupon.Id = entity.Id;
                 coupon.CampaignId = entity.CampaignId;
+                coupon.Name = entity.Name;
                 coupon.DateStart = entity.DateStart;
                 coupon.DateEnd = entity.DateEnd;
                 coupon.DateCreated = entity.DateCreated;
@@ -91,7 +90,7 @@ namespace SparkleAir.DAL.EFRepository.Campaigns
                 coupon.DisplayDescription = entity.DisplayDescription;
                 coupon.MemberCriteria = entity.MemberCriteria;
                 coupon.AirFlightsCriteria = entity.AirFlightsCriteria;
-                coupon.Campaign = entity.Campaign;
+               
             };
             db.SaveChanges();
         }

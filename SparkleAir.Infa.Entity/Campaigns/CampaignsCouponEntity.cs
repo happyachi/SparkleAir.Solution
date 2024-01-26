@@ -9,7 +9,7 @@ namespace SparkleAir.Infa.Entity.Campaigns
 {
     public class CampaignsCouponEntity
     {
-        public CampaignsCouponEntity(int id ,string name, int campaignId, DateTime dateStart, DateTime dateEnd, DateTime dateCreated, string status, int discountQuantity, decimal discountValue, int availableQuantity, int? minimumOrderValue, int maximumDiscountAmount, string code, bool displayDescription, string memberCriteria, string airFlightsCriteria, Campaign campaign)
+        public CampaignsCouponEntity(int campaignId, string name, DateTime dateStart, DateTime dateEnd, DateTime dateCreated, string status, int discountQuantity, decimal discountValue, int availableQuantity, int? minimumOrderValue, int maximumDiscountAmount, string code, bool displayDescription, string memberCriteria, string airFlightsCriteria,string campaign,int id=-1)
         {
             Id = id;
             CampaignId = campaignId;
@@ -27,7 +27,7 @@ namespace SparkleAir.Infa.Entity.Campaigns
             DisplayDescription = displayDescription;
             MemberCriteria = memberCriteria;
             AirFlightsCriteria = airFlightsCriteria;
-            Campaign1 = campaign;
+            Campaign = campaign;
         }
 
         public int Id { get; set; }
@@ -62,14 +62,14 @@ namespace SparkleAir.Infa.Entity.Campaigns
 
         public string AirFlightsCriteria { get; set; }
 
-        public virtual Campaign Campaign { get; set; }
+        public string Campaign { get; set; }
 
         public virtual ICollection<CampaignsCouponAirFlight> CampaignsCouponAirFlights { get; set; }
 
         public virtual ICollection<CampaignsCouponMember> CampaignsCouponMembers { get; set; }
 
         public virtual ICollection<CampaignsFlightCouponsUsageHistory> CampaignsFlightCouponsUsageHistories { get; set; }
-        public Campaign Campaign1 { get; }
+       // public string Campaign1 { get; }
     }
 
 }

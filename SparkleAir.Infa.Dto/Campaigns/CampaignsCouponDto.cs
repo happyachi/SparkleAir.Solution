@@ -41,7 +41,7 @@ namespace SparkleAir.Infa.Dto.Campaigns
 
         public string AirFlightsCriteria { get; set; }
 
-        public virtual Campaign Campaign { get; set; }
+        public  string Campaign { get; set; }
 
         public virtual ICollection<CampaignsCouponAirFlight> CampaignsCouponAirFlights { get; set; }
 

@@ -13,9 +13,9 @@ namespace SparkleAir.Infa.Utility.Exts.Models
         public static CampaignsCouponEntity ToEntity(this CampaignsCoupon coupon)
         {
             CampaignsCouponEntity campaignsCouponEntity = new CampaignsCouponEntity(
-               coupon.Id,
-               coupon.Name,
+
                coupon.CampaignId,
+               coupon.Name,
                coupon.DateStart,
                coupon.DateEnd,
                coupon.DateCreated,
@@ -29,7 +29,8 @@ namespace SparkleAir.Infa.Utility.Exts.Models
                coupon.DisplayDescription,
                coupon.MemberCriteria,
                coupon.AirFlightsCriteria,
-               coupon.Campaign
+               coupon.Campaign.CampaignType,
+               coupon.Id
             );  
             return campaignsCouponEntity;
         }

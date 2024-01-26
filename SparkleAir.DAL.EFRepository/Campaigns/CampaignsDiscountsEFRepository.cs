@@ -18,9 +18,9 @@ namespace SparkleAir.DAL.EFRepository.Campaigns
         {
             CampaignsDiscount discount = new CampaignsDiscount()
             {
-                Id = entity.Id,
+                //Id = entity.Id,
                 Name = entity.Name,
-                CampaignId = entity.CampaignId,
+                //CampaignId = entity.CampaignId,
                 DateStart = entity.DateStart,
                 DateEnd = entity.DateEnd,
                 DateCreated = DateTime.Now,
@@ -30,7 +30,7 @@ namespace SparkleAir.DAL.EFRepository.Campaigns
                 BundleSKUs = entity.BundleSKUs,
                 MemberCriteria = entity.MemberCriteria,
                 TFItemsCriteria = entity.TFItemsCriteria,
-                Campaign = entity.Campaign
+                //Campaign = entity.Campaign
             };
 
             db.CampaignsDiscounts.Add(discount);
@@ -56,9 +56,21 @@ namespace SparkleAir.DAL.EFRepository.Campaigns
         {
             var discount = db.CampaignsDiscounts.AsNoTracking()
                              //.Include(d => d.Campaign)
-                             .OrderBy(d => d.DateCreated)
-                             .Select(func)
-                             .ToList();
+                             //.OrderBy(d => d.DateCreated)
+                             .Select(entity =>new CampaignsDiscountEntity(
+                                 //entity.Id,
+                                 //entity.CampaignId,
+                                 entity.Name, DateTime.Now,
+                                 entity.DateStart,
+                                 entity.DateEnd,
+                                 entity.Status,
+                                 entity.DiscountValue,
+                                 entity.Value,
+                                 entity.BundleSKUs,
+                                 entity.MemberCriteria,
+                                 entity.TFItemsCriteria
+                                 //entity.Campaign.CampaignType            
+                                )).ToList();
 
             return discount;
         }
@@ -81,7 +93,7 @@ namespace SparkleAir.DAL.EFRepository.Campaigns
                 discount.BundleSKUs = entity.BundleSKUs;
                 discount.MemberCriteria = entity.MemberCriteria;
                 discount.TFItemsCriteria = entity.TFItemsCriteria;
-                discount.Campaign = entity.Campaign;
+                //discount.Campaign = entity.Campaign;
             };
             db.SaveChanges();
         }
