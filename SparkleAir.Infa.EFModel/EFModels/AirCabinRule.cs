@@ -35,19 +35,17 @@ namespace SparkleAir.Infa.EFModel.EFModels
 
         public bool PreSelectedSeat { get; set; }
 
-        public int AccumulatedMile { get; set; }
+        public double AccumulatedMile { get; set; }
 
-        public int MileUpgrade { get; set; }
+        public bool MileUpgrade { get; set; }
 
-        [Column(TypeName = "datetime2")]
-        public DateTime TicketVaildity { get; set; }
+        public int TicketVaildity { get; set; }
 
-        public decimal RefundFee { get; set; }
+        public int RefundFee { get; set; }
 
-        public decimal NoShowFee { get; set; }
+        public int NoShowFee { get; set; }
 
-        [StringLength(10)]
-        public string FreeWifi { get; set; }
+        public bool FreeWifi { get; set; }
 
         public virtual AirCabin AirCabin { get; set; }
 

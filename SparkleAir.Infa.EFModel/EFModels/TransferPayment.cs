@@ -27,7 +27,6 @@ namespace SparkleAir.Infa.EFModel.EFModels
 
         public decimal PaymentAmount { get; set; }
 
-        [Required]
         [StringLength(1000)]
         public string Info { get; set; }
 
