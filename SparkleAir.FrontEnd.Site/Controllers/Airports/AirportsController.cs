@@ -52,6 +52,21 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Airports
         }
 
 
+        public ActionResult Delete(int id)
+        {
+            
+                DeleteAirport(id);
+                return RedirectToAction("Index");
+           
+        }
+      
+        private void DeleteAirport(int id)
+        {
+            var service = new AirportService(efRepository);
+            service.Delete(id);
+        }
+
+
 
 
     }

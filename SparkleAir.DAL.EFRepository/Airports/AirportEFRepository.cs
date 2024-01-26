@@ -44,7 +44,9 @@ namespace SparkleAir.DAL.EFRepository.Airports
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            var Airport = db.AirPorts.Find(id);
+            db.AirPorts.Remove(Airport);
+            db.SaveChanges();
         }
 
         public AirportEntity Get(int id)

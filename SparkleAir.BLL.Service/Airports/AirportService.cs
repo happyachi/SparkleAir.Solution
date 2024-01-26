@@ -40,8 +40,14 @@ namespace SparkleAir.BLL.Service.Airports
                 Continent = p.Continent,
 
             }).ToList();
-
             return dto;
+        }
+
+
+        //刪除
+        public void Delete(int id)
+        {
+            _repo.Delete(id);
         }
 
 
