@@ -74,7 +74,7 @@ namespace SparkleAir.DAL.EFRepository.Campaigns
             var coupon = db.CampaignsCoupons.Find(entity.Id);
             if (coupon != null)
             {
-                //coupon.Id = entity.Id;
+                coupon.Id = entity.Id;
                 coupon.CampaignId = entity.CampaignId;
                 coupon.Name = entity.Name;
                 coupon.DateStart = entity.DateStart;

@@ -31,7 +31,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
 
             List<CampaignsCouponIndexVm> vm = dto.Select(c => new CampaignsCouponIndexVm
             {
-                //Id = c.Id,
+                Id = c.Id,
                 Name = c.Name,
                 DateStart = c.DateStart,
                 DateEnd = c.DateEnd,
@@ -147,9 +147,9 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
             var service = new CampaignsCouponsService(repo);
             CampaignsCouponDto dto = new CampaignsCouponDto
             {
-                //Id = vm.Id,
+                Id = vm.Id,
                 Name = vm.Name,
-                CampaignId = vm.CampaignId,
+                CampaignId = 4,
                 DateStart = vm.DateStart,
                 DateEnd = vm.DateEnd,
                 DateCreated = vm.DateCreated,
@@ -171,12 +171,12 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
         #endregion
 
         #region Delete
-        public ActionResult Delete()
-        {
-            return View();
-        }
+        //public ActionResult Delete()
+        //{
+        //    return View();
+        //}
 
-        [HttpPost]
+        
         public ActionResult Delete(int id)
         {
             if (!ModelState.IsValid) return View();
@@ -197,8 +197,6 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
             var service = new CampaignsCouponsService(repo);
             service.Delete(id);
         }
-
-
         #endregion
     }
 }

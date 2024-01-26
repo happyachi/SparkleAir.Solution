@@ -210,7 +210,6 @@
     <Content Include="Views\CampaignsDiscount\Index.cshtml" />
     <Content Include="Views\CampaignsCoupon\Create.cshtml" />
     <Content Include="Views\CampaignsCoupon\Edit.cshtml" />
-    <Content Include="Views\CampaignsCoupon\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

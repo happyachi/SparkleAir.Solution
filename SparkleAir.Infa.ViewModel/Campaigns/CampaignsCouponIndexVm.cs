@@ -5,7 +5,7 @@ namespace SparkleAir.FrontEnd.Site.Models.ViewModels.Campaigns
 {
     public class CampaignsCouponIndexVm
     {
-        //public int Id { get; set; }
+        public int Id { get; set; }
 
         [Display(Name = "優惠券名稱")]
         public string Name { get; set; }

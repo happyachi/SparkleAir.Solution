@@ -82,23 +82,23 @@ namespace SparkleAir.BLL.Service.Campaigns
 
             List<CampaignsCouponDto> dto = entity.Select(c => new CampaignsCouponDto
             {
-                //Id = c.Id,
+                Id = c.Id,
                 Name = c.Name,
-                //CampaignId = c.CampaignId,
+                CampaignId = c.CampaignId,
                 DateStart = c.DateStart,
                 DateEnd = c.DateEnd,
                 DateCreated = c.DateCreated,
                 Status = c.Status,
-                //DiscountQuantity = c.DiscountQuantity,
-                //DiscountValue = c.DiscountValue,
-                //AvailableQuantity = c.AvailableQuantity,
-                //MinimumOrderValue = c.MinimumOrderValue,
-                //MaximumDiscountAmount = c.MaximumDiscountAmount,
+                DiscountQuantity = c.DiscountQuantity,
+                DiscountValue = c.DiscountValue,
+                AvailableQuantity = c.AvailableQuantity,
+                MinimumOrderValue = c.MinimumOrderValue,
+                MaximumDiscountAmount = c.MaximumDiscountAmount,
                 Code = c.Code,
-                //DisplayDescription = c.DisplayDescription,
-                //MemberCriteria = c.MemberCriteria,
-                //AirFlightsCriteria = c.AirFlightsCriteria,
-                //Campaign = c.Campaign
+                DisplayDescription = c.DisplayDescription,
+                MemberCriteria = c.MemberCriteria,
+                AirFlightsCriteria = c.AirFlightsCriteria,
+                Campaign = c.Campaign
             }).ToList();
 
             return dto;
@@ -108,7 +108,6 @@ namespace SparkleAir.BLL.Service.Campaigns
         {
             CampaignsCouponEntity entity = new CampaignsCouponEntity
             (
-              //dto.Id,
               dto.CampaignId,
               dto.Name,
               dto.DateStart,
@@ -124,8 +123,9 @@ namespace SparkleAir.BLL.Service.Campaigns
               dto.DisplayDescription,
               dto.MemberCriteria,
               dto.AirFlightsCriteria,
-              dto.Campaign
-                );
+              dto.Campaign,
+              dto.Id
+            );
 
             _repo.Update(entity);
         }
