@@ -223,13 +223,15 @@
     <Content Include="Views\CompanyDepartments\Index.cshtml" />
     <Content Include="Views\CompanyDepartments\Create.cshtml" />
     <Content Include="Views\CompanyDepartments\Edit.cshtml" />
+    <Content Include="Views\CompanyJobs\Index.cshtml" />
+    <Content Include="Views\CompanyJobs\Create.cshtml" />
+    <Content Include="Views\CompanyJobs\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\ViewModels\Members\" />
     <Folder Include="Views\Campaigns\" />
     <Folder Include="Views\Companies\" />
-    <Folder Include="Views\CompanyJobs\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
