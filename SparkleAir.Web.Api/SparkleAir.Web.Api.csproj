@@ -333,6 +333,10 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SparkleAir.BLL.Service\SparkleAir.BLL.Service.csproj">
+      <Project>{c3f49393-96c1-4b8c-b468-717a2f73ef89}</Project>
+      <Name>SparkleAir.BLL.Service</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SparkleAir.DAL.DapperRepository\SparkleAir.DAL.DapperRepository.csproj">
       <Project>{217749e9-e16e-4906-bac3-32c1214f451c}</Project>
       <Name>SparkleAir.DAL.DapperRepository</Name>
@@ -341,9 +345,21 @@
       <Project>{559447d2-15a2-4cc2-9155-fd159037ace8}</Project>
       <Name>SparkleAir.DAL.DTORepository</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SparkleAir.DAL.EFRepository\SparkleAir.DAL.EFRepository.csproj">
+      <Project>{0fc6afba-5585-43be-84ac-22de8bc3dc74}</Project>
+      <Name>SparkleAir.DAL.EFRepository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SparkleAir.IDAL.IRepository\SparkleAir.IDAL.IRepository.csproj">
+      <Project>{73007f85-f88e-4292-ab16-8a5798a9a6fb}</Project>
+      <Name>SparkleAir.IDAL.IRepository</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SparkleAir.Infa.Criteria\SparkleAir.Infa.Criteria.csproj">
       <Project>{1887f4fa-d97f-432f-b936-b47ecc87a94e}</Project>
       <Name>SparkleAir.Infa.Criteria</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SparkleAir.Infa.Dto\SparkleAir.Infa.Dto.csproj">
+      <Project>{2431caf2-a681-4bb8-9973-3e568f7a7453}</Project>
+      <Name>SparkleAir.Infa.Dto</Name>
     </ProjectReference>
     <ProjectReference Include="..\SparkleAir.Infa.EFModel\SparkleAir.Infa.EFModel.csproj">
       <Project>{a1ad6217-2a9d-4948-aa6f-bf0a12d66712}</Project>
@@ -352,6 +368,10 @@
     <ProjectReference Include="..\SparkleAir.Infa.Utility\SparkleAir.Infa.Utility.csproj">
       <Project>{3b17053d-b105-432e-a867-05a051c94158}</Project>
       <Name>SparkleAir.Infa.Utility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SparkleAir.Infa.ViewModel\SparkleAir.Infa.ViewModel.csproj">
+      <Project>{4b7a6ecf-2f6d-449b-83d0-6e08d3e43a40}</Project>
+      <Name>SparkleAir.Infa.ViewModel</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

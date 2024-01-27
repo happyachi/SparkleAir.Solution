@@ -110,7 +110,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\SparkleAir.Web.Api\SparkleAir.Web.Api.csproj">
-      <Project>{827D86DA-7B59-44FD-8C04-46D77FFF308A}</Project>
+      <Project>{827d86da-7b59-44fd-8c04-46d77fff308a}</Project>
       <Name>SparkleAir.Web.Api</Name>
     </ProjectReference>
   </ItemGroup>
