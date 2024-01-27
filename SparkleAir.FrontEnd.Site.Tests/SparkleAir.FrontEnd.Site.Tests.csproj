@@ -98,12 +98,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SparkleAir.FrontEnd.Site\SparkleAir.FrontEnd.Site.csproj">
-      <Project>{F24C52E9-0D8F-42AE-9CCD-2257D5D5E44D}</Project>
-      <Name>SparkleAir.FrontEnd.Site</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

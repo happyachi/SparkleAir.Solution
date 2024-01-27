@@ -44,6 +44,8 @@
   <ItemGroup>
     <Compile Include="Exts\Dtos\MemberDtoExts.cs" />
     <Compile Include="Exts\Entities\MemberEntityExts.cs" />
+    <Compile Include="Exts\Models\CampaignsCouponExts.cs" />
+    <Compile Include="Exts\Models\CampaignsDiscountExts.cs.cs" />
     <Compile Include="Exts\Models\MemberExts.cs" />
     <Compile Include="Helper\Members\MemberFunc.cs" />
     <Compile Include="Helper\Members\MemberWhereFunc.cs" />

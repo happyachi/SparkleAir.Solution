@@ -41,6 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Campaigns\CampaignsCouponsService.cs" />
+    <Compile Include="Campaigns\CampaignsDiscountsService.cs.cs" />
+    <Compile Include="Airports\AirportService.cs" />
     <Compile Include="Members\MemberLoginLogService.cs" />
     <Compile Include="Members\MemberService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -58,6 +61,10 @@
       <Project>{2431caf2-a681-4bb8-9973-3e568f7a7453}</Project>
       <Name>SparkleAir.Infa.Dto</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SparkleAir.Infa.EFModel\SparkleAir.Infa.EFModel.csproj">
+      <Project>{A1AD6217-2A9D-4948-AA6F-BF0A12D66712}</Project>
+      <Name>SparkleAir.Infa.EFModel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SparkleAir.Infa.Entity\SparkleAir.Infa.Entity.csproj">
       <Project>{88fb70a6-7d2c-40d0-a6a6-90cd80d5c422}</Project>
       <Name>SparkleAir.Infa.Entity</Name>
@@ -67,5 +74,6 @@
       <Name>SparkleAir.Infa.Utility</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

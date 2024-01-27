@@ -143,6 +143,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\Campaigns\CampaignsCouponController.cs" />
+    <Compile Include="Controllers\Campaigns\CampaignsDiscountController.cs" />
+    <Compile Include="Controllers\Airports\AirportsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Members\MemberLoginLogsController.cs" />
     <Compile Include="Controllers\Members\MembersController.cs" />
@@ -204,12 +207,21 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Members\Index.cshtml" />
+    <Content Include="Views\CampaignsCoupon\Index.cshtml" />
+    <Content Include="Views\CampaignsDiscount\Index.cshtml" />
+    <Content Include="Views\CampaignsCoupon\Create.cshtml" />
+    <Content Include="Views\CampaignsCoupon\Edit.cshtml" />
+    <Content Include="Views\Airports\Index.cshtml" />
+    <Content Include="Views\Airports\Create.cshtml" />
+    <Content Include="Views\Airports\Details.cshtml" />
+    <Content Include="Views\Airports\Edit.cshtml" />
     <Content Include="Views\Members\Get.cshtml" />
     <Content Include="Views\Members\Edit.cshtml" />
     <Content Include="Views\MemberLoginLogs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Campaigns\" />
     <Folder Include="Models\ViewModels\Members\" />
   </ItemGroup>
   <ItemGroup>

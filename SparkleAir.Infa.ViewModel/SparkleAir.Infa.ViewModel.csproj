@@ -42,10 +42,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Campaigns\CampaignsCouponIndexVm.cs" />
+    <Compile Include="Campaigns\CampaignsCouponVm.cs" />
+    <Compile Include="Campaigns\CampaignsDiscountIndexVm.cs" />
+    <Compile Include="Campaigns\CampaignsDiscountVm.cs" />
+    <Compile Include="Airports\AirportCreateVm.cs" />
+    <Compile Include="Airports\AirportIndexVm.cs" />
     <Compile Include="Members\MemberIndexVm.cs" />
     <Compile Include="Members\MemberLoginLogIndexVm.cs" />
     <Compile Include="Members\MemberUpdateVm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="TaxFree\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
