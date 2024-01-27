@@ -19,8 +19,8 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Members
 {
     public class MembersController : Controller
     {
-		private IMemberRepository _repo;
-		private MemberService _service;
+		private readonly IMemberRepository _repo;
+		private readonly MemberService _service;
 		public MembersController()
         {
 			// EF
@@ -65,8 +65,10 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Members
 
             try
             {
-                MemberGetCriteria criteria = new MemberGetCriteria();
-                criteria.Id = id;
+                MemberGetCriteria criteria = new MemberGetCriteria()
+                {
+                    Id = id
+                };
 
                 MemberIndexVm memberVm = GetMember(criteria);
                 return View(memberVm);
@@ -84,8 +86,10 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Members
 
             try
             {
-                MemberGetCriteria criteria = new MemberGetCriteria();
-                criteria.Id = id;
+                MemberGetCriteria criteria = new MemberGetCriteria()
+                {
+                    Id = id
+                };
 
                 MemberUpdateVm memberVm = GetUpdateMember(criteria);
                 return View(memberVm);
