@@ -47,7 +47,11 @@
     <Compile Include="Exts\Entities\AirFlightEntityExts.cs" />
     <Compile Include="Exts\Entities\MemberEntityExts.cs" />
     <Compile Include="Exts\Models\AriFlightExts.cs" />
+    <Compile Include="Exts\Models\CampaignsCouponExts.cs" />
+    <Compile Include="Exts\Models\CampaignsDiscountExts.cs.cs" />
     <Compile Include="Exts\Models\MemberExts.cs" />
+    <Compile Include="Helper\Members\MemberFunc.cs" />
+    <Compile Include="Helper\Members\MemberWhereFunc.cs" />
     <Compile Include="Helper\DAHelper.cs" />
     <Compile Include="Helper\SplitFlightDaysHelper.cs" />
     <Compile Include="Helper\PartialView.cs" />

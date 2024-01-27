@@ -43,8 +43,19 @@
   <ItemGroup>
     <Compile Include="AirFlightsEntity\AirFlightEntity.cs" />
     <Compile Include="AirFlightsEntity\AirFlightManagementEntity.cs" />
+    <Compile Include="Campaigns\CampaignsCouponEntity.cs" />
+    <Compile Include="Campaigns\CampaignsDiscountEntity.cs" />
+    <Compile Include="Airports\AirportEntity.cs" />
     <Compile Include="Members\MemberEntity.cs" />
+    <Compile Include="Members\MemberLoginLogEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TaxFree\TFItemEntity.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SparkleAir.Infa.EFModel\SparkleAir.Infa.EFModel.csproj">
+      <Project>{a1ad6217-2a9d-4948-aa6f-bf0a12d66712}</Project>
+      <Name>SparkleAir.Infa.EFModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

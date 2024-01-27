@@ -1,4 +1,5 @@
-﻿using SparkleAir.Infa.Dto.Members;
+﻿using SparkleAir.Infa.Criteria.Members;
+using SparkleAir.Infa.Dto.Members;
 using SparkleAir.Infa.Entity.Members;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,10 @@ namespace SparkleAir.IDAL.IRepository.Members
 {
 	public interface IMemberRepository
 	{
-		List<MemberEntity> GetAll();
-	}
+		List<MemberEntity> Search(MemberSearchCriteria criteria);
+
+        MemberEntity Get (MemberGetCriteria criteria);
+
+		void Update(MemberEntity entity);
+    }
 }

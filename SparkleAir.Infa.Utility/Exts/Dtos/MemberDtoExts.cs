@@ -10,33 +10,33 @@ namespace SparkleAir.Infa.Utility.Exts.Dtos
 {
 	public static class MemberDtoExts
 	{
-		//public static MemberVm ToDto(this MemberDto member)
-		//{
-		//	MemberVm memberVm = new MemberVm
-		//	{
-		//		Id = member.Id,
-		//		MemberClassId = member.MemberClassId,
-		//		CountryId = member.CountryId,
-		//		Account = member.Account,
-		//		Password = member.Password,
-		//		ChineseLastName = member.ChineseLastName,
-		//		ChineseFirstName = member.ChineseFirstName,
-		//		EnglishLastName = member.EnglishLastName,
-		//		EnglishFirstName = member.EnglishFirstName,
-		//		Gender = member.Gender,
-		//		DateOfBirth = member.DateOfBirth,
-		//		Phone = member.Phone,
-		//		Email = member.Email,
-		//		TotalMileage = member.TotalMileage,
-		//		PassportNumber = member.PassportNumber,
-		//		PassportExpiryDate = member.PassportExpiryDate,
-		//		RegistrationTime = member.RegistrationTime,
-		//		LastPasswordChangeTime = member.LastPasswordChangeTime,
-		//		IsAllow = member.IsAllow,
-		//		ConfirmCode = member.ConfirmCode
-		//	};
+		public static MemberEntity DotToEntity(this MemberDto member)
+		{
+            MemberEntity memberEntity = new MemberEntity
+            {
+				Id = member.Id,
+				MemberClassId = member.MemberClassId,
+				CountryId = member.CountryId,
+				Account = member.Account,
+				Password = member.Password,
+				ChineseLastName = member.ChineseLastName,
+				ChineseFirstName = member.ChineseFirstName,
+				EnglishLastName = member.EnglishLastName,
+				EnglishFirstName = member.EnglishFirstName,
+				Gender = member.Gender,
+				DateOfBirth = member.DateOfBirth,
+				Phone = member.Phone,
+				Email = member.Email,
+				TotalMileage = member.TotalMileage,
+				PassportNumber = member.PassportNumber,
+				PassportExpiryDate = member.PassportExpiryDate,
+				RegistrationTime = member.RegistrationTime,
+				LastPasswordChangeTime = member.LastPasswordChangeTime,
+				IsAllow = member.IsAllow,
+				ConfirmCode = member.ConfirmCode
+			};
 
-		//	return memberVm;
-		//}
+			return memberEntity;
+		}
 	}
 }

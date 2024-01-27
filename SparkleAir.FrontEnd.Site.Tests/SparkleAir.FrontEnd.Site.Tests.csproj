@@ -117,7 +117,7 @@
       <Name>SparkleAir.BLL.Service</Name>
     </ProjectReference>
     <ProjectReference Include="..\SparkleAir.FrontEnd.Site\SparkleAir.FrontEnd.Site.csproj">
-      <Project>{F24C52E9-0D8F-42AE-9CCD-2257D5D5E44D}</Project>
+      <Project>{f24c52e9-0d8f-42ae-9ccd-2257d5d5e44d}</Project>
       <Name>SparkleAir.FrontEnd.Site</Name>
     </ProjectReference>
     <ProjectReference Include="..\SparkleAir.IDAL.IRepository\SparkleAir.IDAL.IRepository.csproj">

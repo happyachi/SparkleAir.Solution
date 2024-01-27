@@ -41,7 +41,7 @@ namespace SparkleAir.Infa.EFModel.EFModels
 
         public decimal Value { get; set; }
 
-        public decimal? BundleSKUs { get; set; }
+        public decimal BundleSKUs { get; set; }
 
         [StringLength(4000)]
         public string MemberCriteria { get; set; }
