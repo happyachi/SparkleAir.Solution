@@ -54,6 +54,8 @@
     <Compile Include="Campaigns\CampaignsCouponsEFRepository.cs" />
     <Compile Include="Campaigns\CampaignsDiscountsEFRepository.cs" />
     <Compile Include="Airports\AirportEFRepository.cs" />
+    <Compile Include="AirFlights\AirFlightEFRepository.cs" />
+    <Compile Include="AirFlights\AirFlightManagementEFRepository.cs" />
     <Compile Include="Members\MemberEFRepository.cs" />
     <Compile Include="Members\MemberLoginLogEFRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

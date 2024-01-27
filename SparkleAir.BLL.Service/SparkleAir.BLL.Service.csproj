@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AirFlights\AirFlightManagementService.cs" />
+    <Compile Include="AirFlights\AirFlightService.cs" />
     <Compile Include="Campaigns\CampaignsCouponsService.cs" />
     <Compile Include="Campaigns\CampaignsDiscountsService.cs.cs" />
     <Compile Include="Airports\AirportService.cs" />

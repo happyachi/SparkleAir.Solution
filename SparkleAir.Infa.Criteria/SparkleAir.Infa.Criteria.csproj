@@ -41,10 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AirFlights\AirFlightManagementSearchCriteria.cs" />
     <Compile Include="Members\MemberGetCriteria.cs" />
     <Compile Include="Members\MemberLoginLogSearchCriteria.cs" />
     <Compile Include="Members\MemberSearchCriteria.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
