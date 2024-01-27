@@ -146,6 +146,8 @@
     <Compile Include="Controllers\Campaigns\CampaignsCouponController.cs" />
     <Compile Include="Controllers\Campaigns\CampaignsDiscountController.cs" />
     <Compile Include="Controllers\Airports\AirportsController.cs" />
+    <Compile Include="Controllers\CompaniesAndPermissions\CompanyDepartmentsController.cs" />
+    <Compile Include="Controllers\CompaniesAndPermissions\CompanyJobsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Members\MemberLoginLogsController.cs" />
     <Compile Include="Controllers\Members\MembersController.cs" />
@@ -218,11 +220,16 @@
     <Content Include="Views\Members\Get.cshtml" />
     <Content Include="Views\Members\Edit.cshtml" />
     <Content Include="Views\MemberLoginLogs\Index.cshtml" />
+    <Content Include="Views\CompanyDepartments\Index.cshtml" />
+    <Content Include="Views\CompanyDepartments\Create.cshtml" />
+    <Content Include="Views\CompanyDepartments\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Campaigns\" />
     <Folder Include="Models\ViewModels\Members\" />
+    <Folder Include="Views\Campaigns\" />
+    <Folder Include="Views\Companies\" />
+    <Folder Include="Views\CompanyJobs\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

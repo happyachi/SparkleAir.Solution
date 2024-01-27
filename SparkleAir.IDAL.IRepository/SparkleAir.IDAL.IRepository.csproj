@@ -44,6 +44,8 @@
     <Compile Include="Campaigns\ICampaignsCouponsRepository.cs" />
     <Compile Include="Campaigns\ICampaignsDiscountsRepository.cs" />
     <Compile Include="Airport\IAirportRepository.cs" />
+    <Compile Include="CompanyAndPermission\ICompanyDepartmentRepository.cs" />
+    <Compile Include="CompanyAndPermission\ICompanyJobRepository.cs" />
     <Compile Include="Members\IMemberLoginLogRepository.cs" />
     <Compile Include="Members\IMemberRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

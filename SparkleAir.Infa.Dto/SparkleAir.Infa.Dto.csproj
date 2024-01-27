@@ -44,6 +44,8 @@
     <Compile Include="Campaigns\CampaignsCouponDto.cs" />
     <Compile Include="Campaigns\CampaignsDiscountDto.cs" />
     <Compile Include="Airport\AirportDto.cs" />
+    <Compile Include="CompanyAndPermission\CompanyDepartmentDto.cs" />
+    <Compile Include="CompanyAndPermission\CompanyJobDto.cs" />
     <Compile Include="Members\MemberDto.cs" />
     <Compile Include="Members\MemberLoginLogDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

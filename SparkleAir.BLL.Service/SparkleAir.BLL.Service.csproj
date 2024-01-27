@@ -44,6 +44,8 @@
     <Compile Include="Campaigns\CampaignsCouponsService.cs" />
     <Compile Include="Campaigns\CampaignsDiscountsService.cs.cs" />
     <Compile Include="Airports\AirportService.cs" />
+    <Compile Include="CompanyAndPermission\CompanyDepartmentService.cs" />
+    <Compile Include="CompanyAndPermission\CompanyJobService.cs" />
     <Compile Include="Members\MemberLoginLogService.cs" />
     <Compile Include="Members\MemberService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

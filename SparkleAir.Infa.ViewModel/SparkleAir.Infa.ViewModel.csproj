@@ -48,6 +48,7 @@
     <Compile Include="Campaigns\CampaignsDiscountVm.cs" />
     <Compile Include="Airports\AirportCreateVm.cs" />
     <Compile Include="Airports\AirportIndexVm.cs" />
+    <Compile Include="CompanyAndPermission\CompanyDepartmentIndexVm.cs" />
     <Compile Include="Members\MemberIndexVm.cs" />
     <Compile Include="Members\MemberLoginLogIndexVm.cs" />
     <Compile Include="Members\MemberUpdateVm.cs" />
