@@ -1,9 +1,10 @@
-﻿<h3>航班編號: @Model.FlightCode</h3>
+﻿<h3>@Model.FlightCode</h3>
+<p>機型: @Model.FlightModel</p>
 <p>出發地: @Model.DepartureAirport</p>
 <p>目的地: @Model.ArrivalAirport</p>
 <p>出發航廈: @Model.DepartureTerminal</p>
 <p>抵達航廈: @Model.ArrivalTerminal</p>
-<p>出發時間: @Model.DepartureTime.ToString("hh\\:mm") UTC+@(Model.DepartureTimeZone)</p>
-<p>抵達時間: @Model.ArrivalTime.ToString("hh\\:mm") UTC+@(Model.ArrivalTimeZone)</p>
+<p>出發時間: @Model.DepartureTime.ToString("hh\\:mm") UTC @(Model.DepartureTimeZone)</p>
+<p>抵達時間: @Model.ArrivalTime.ToString("hh\\:mm") UTC @(Model.ArrivalTimeZone)</p>
 <p>執飛時間: @Model.DayofWeek</p>
 <p>飛行里程: @Model.Mile</p>

@@ -11,14 +11,14 @@ namespace SparkleAir.Infa.Utility.Helper
 
     public static class SplitFlightDaysHelper
     {
-        public static FlightDate FlightDays(this string flightDays)
+        public static FlightDate[] FlightDays(this string flightDays)
         {
             var dayNumbers = flightDays.Split(',').Select(int.Parse);
 
-            // 將數字轉換為列舉值
-            var days = (FlightDate)dayNumbers.Sum();
+            // 數字轉換 FlightDate 陣列
+            var daysArray = dayNumbers.Select(number => (FlightDate)number).ToArray();
 
-            return days;
+            return daysArray;
         }
     }
 }

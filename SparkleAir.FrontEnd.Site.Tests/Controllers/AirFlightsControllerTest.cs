@@ -2,10 +2,11 @@
 using NSubstitute;
 using SparkleAir.BLL.Service.AirFlights;
 using SparkleAir.FrontEnd.Site.Controllers.AirFlight;
-using SparkleAir.FrontEnd.Site.Models.ViewModels.AirFlights;
+//using SparkleAir.FrontEnd.Site.Models.ViewModels.AirFlights;
 using SparkleAir.IDAL.IRepository.AirFlights;
 using SparkleAir.Infa.Dto.AriFlights;
 using SparkleAir.Infa.Entity.AirFlightsEntity;
+using SparkleAir.Infa.ViewModel.AirFlights;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace SparkleAir.FrontEnd.Site.Tests.Controllers
 		[DataRow(4, "004", 4, 3, "", "", "0001-01-01 16:30:00", "0001-01-01 18:30:00", "2,4,6", 1500000)]
 		[DataRow(5, "005", 5, 6, "", "", "0001-01-01 16:30:00", "0001-01-01 18:30:00", "2,4,6", 1700000)]
 		[DataRow(6, "001", 6, 5, "", "", "0001-01-01 16:30:00", "0001-01-01 18:30:00", "2,4,6", 1900000)]
-		public void CreatePost_CallsServiceCreate(int id, string flightCode, int departureAirportid, int destinationAirportId, string departurTerminal, string destinationTermanal, string departureTime, string arrivalTime, string dayofWeek, int mile)
+		public void CreatePost_CallsServiceCreate(int id, string flightCode, int departureAirportid, int ArrivalAirportId, string departurTerminal, string ArrivalTermanal, string departureTime, string arrivalTime, string dayofWeek, int mile)
 		{
 			// Arrange
 			var mockRepo = Substitute.For<IAirFlightManagementRepository>();
@@ -36,11 +37,11 @@ namespace SparkleAir.FrontEnd.Site.Tests.Controllers
 				Id = id,
 				FlightCode = flightCode,
 				DepartureAirportId = departureAirportid,
-				DestinationAirportId = destinationAirportId,
+				ArrivalAirportId = ArrivalAirportId,
 				DepartureTerminal = departurTerminal,
-				DestinationTerminal = destinationTermanal,
-				DepartureTime = DateTime.Parse(departureTime),
-				ArrivalTime = DateTime.Parse(arrivalTime),
+				ArrivalTerminal = ArrivalTermanal,
+				DepartureTime = TimeSpan.Parse(departureTime),
+				ArrivalTime =TimeSpan.Parse(arrivalTime),
 				DayofWeek = dayofWeek,
 				Mile = mile
 			};

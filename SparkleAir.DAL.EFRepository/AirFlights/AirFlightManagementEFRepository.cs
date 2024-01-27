@@ -16,6 +16,8 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
     {
         AppDbContext db = new AppDbContext();
 
+        private Func<AirFlightManagement, AirFlightManagementEntity> ToEntityFunc = (e) => e.ToAirFlightManagementEntity();
+
         public int Create(AirFlightManagementEntity entity)
         {
             AirFlightManagement airFlight = new AirFlightManagement
@@ -51,24 +53,9 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
             var flights = db.AirFlightManagements
                 .AsNoTracking()
                 .Include(a => a.AirPort)
+                .Include(a => a.AirFlights)
                 .ToList()
-                .Select(a => new AirFlightManagementEntity
-                {
-                    Id = a.Id,
-                    FlightCode = a.FlightCode,
-                    DepartureAirportId = a.DepartureAirportId,
-                    ArrivalAirportId = a.ArrivalAirportId,
-                    DepartureTerminal = a.DepartureTerminal,
-                    ArrivalTerminal = a.ArrivalTerminal,
-                    DepartureTime = a.DepartureTime,
-                    ArrivalTime = a.ArrivalTime,
-                    DayofWeek = a.DayofWeek,
-                    Mile = a.Mile,
-                    DepartureAirport = a.DepartureAirportId.GetAirport(db).Item1,
-                    ArrivalAirport = a.ArrivalAirportId.GetAirport(db).Item1,
-                    DepartureTimeZone = a.DepartureAirportId.GetAirport(db).Item2,
-                    ArrivalTimeZone = a.ArrivalAirportId.GetAirport(db).Item2
-                })
+                .Select(ToEntityFunc)
                 .ToList();
 
             return flights;
@@ -78,23 +65,7 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
         {
             var flight = db.AirFlightManagements
                 .Find(id);
-            var airplain = new AirFlightManagementEntity
-            {
-                Id = flight.Id,
-                FlightCode = flight.FlightCode,
-                DepartureAirportId = flight.DepartureAirportId,
-                ArrivalAirportId = flight.ArrivalAirportId,
-                DepartureTerminal = flight.DepartureTerminal,
-                ArrivalTerminal = flight.ArrivalTerminal,
-                DepartureTime = flight.DepartureTime,
-                ArrivalTime = flight.ArrivalTime,
-                DayofWeek = flight.DayofWeek,
-                Mile = flight.Mile,
-                DepartureAirport = flight.DepartureAirportId.GetAirport(db).Item1,
-                ArrivalAirport = flight.ArrivalAirportId.GetAirport(db).Item1,
-                DepartureTimeZone = flight.DepartureAirportId.GetAirport(db).Item2,
-                ArrivalTimeZone = flight.ArrivalAirportId.GetAirport(db).Item2
-            };
+            var airplain = ToEntityFunc(flight);
 
             return airplain;
         }
@@ -121,23 +92,7 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
 
         public List<AirFlightManagementEntity> Search(AirFlightManagementSearchCriteria entity)
         {
-            var query = db.AirFlightManagements.AsNoTracking().Include(a => a.AirPort).ToList().Select(a => new AirFlightManagementEntity
-            {
-                Id = a.Id,
-                FlightCode = a.FlightCode,
-                DepartureAirportId = a.DepartureAirportId,
-                ArrivalAirportId = a.ArrivalAirportId,
-                DepartureTerminal = a.DepartureTerminal,
-                ArrivalTerminal = a.ArrivalTerminal,
-                DepartureTime = a.DepartureTime,
-                ArrivalTime = a.ArrivalTime,
-                DayofWeek = a.DayofWeek,
-                Mile = a.Mile,
-                DepartureAirport = a.DepartureAirportId.GetAirport(db).Item1,
-                ArrivalAirport = a.ArrivalAirportId.GetAirport(db).Item1,
-                DepartureTimeZone = a.DepartureAirportId.GetAirport(db).Item2,
-                ArrivalTimeZone = a.ArrivalAirportId.GetAirport(db).Item2
-            });
+            var query = db.AirFlightManagements.AsNoTracking().Include(a => a.AirPort).ToList().Select(ToEntityFunc);
 
             if (!string.IsNullOrEmpty(entity.FlightCode))
             {

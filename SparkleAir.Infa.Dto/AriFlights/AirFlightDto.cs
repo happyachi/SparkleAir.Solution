@@ -6,21 +6,25 @@ using System.Threading.Tasks;
 
 namespace SparkleAir.Infa.Dto.AriFlights
 {
-	public class AirFlightDto
-	{
-		public int Id { get; set; }
-		public int AirOwnId { get; set; }
-		public int AirFlightManagementId { get; set; }
-		public DateTime ScheduledDeparture { get; set; }
-		public DateTime ScheduledArrival { get; set; }
-		public int AirFlightSaleStatusId { get; set; }
+    public class AirFlightDto
+    {
+        public int Id { get; set; }
+        public int AirOwnId { get; set; }
+        public int AirFlightManagementId { get; set; }
+        public DateTime ScheduledDeparture { get; set; }
+        public DateTime ScheduledArrival { get; set; }
+        public int AirFlightSaleStatusId { get; set; }
 
-		//from Airtypes 寫委派轉型
-		//from AirOwnId => AirTypeId => flightModel
-		public string FlightModel { get; set; }
-		public string FlightCode { get; set; }
-        public string DepartureAirPort { get; set; }
-        public string ArrivalAirPort { get; set; }
+        //from Airtypes 寫委派轉型
+        //from AirOwnId => AirTypeId => flightModel
+        public string FlightModel { get; set; }
+        public string FlightCode { get; set; }
+        public string DepartureAirport { get; set; }
+        public string ArrivalAirport { get; set; }
         public string AirFlightSaleStatus { get; set; }
-	}
+        public string DayofWeek { get; set; }
+
+        public int DepartureTimeZone { get; set; }
+        public int ArrivalTimeZone { get; set; }
+    }
 }

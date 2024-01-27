@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,6 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AirFlights\AirFlightCreateVm.cs" />
+    <Compile Include="AirFlights\AirFlightIndexVm.cs" />
+    <Compile Include="AirFlights\AirFlightManagementIndexVm.cs" />
+    <Compile Include="AirFlights\AirFlightManagementVm.cs" />
+    <Compile Include="AirFlights\AirFlightVm.cs" />
     <Compile Include="Members\MemberIndexVm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -7,10 +7,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using SparkleAir.DAL.EFRepository.AirFlights;
-using SparkleAir.FrontEnd.Site.Models.ViewModels.AirFlights;
 using SparkleAir.Infa.Dto.AriFlights;
 using SparkleAir.Infa.Utility.Helper;
 using SparkleAir.Infa.Criteria.AirFlights;
+using SparkleAir.Infa.ViewModel.AirFlights;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
 {
@@ -75,7 +75,6 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
         [HttpPost]
         public ActionResult Create(AirFlightManagementVm vm)
         {
-            if (!ModelState.IsValid) return View();
             try
             {
                 CreateFlight(vm);
@@ -144,7 +143,8 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
                 DayofWeek = dto.DayofWeek,
                 Mile = dto.Mile,
                 DepartureTimeZone = dto.DepartureTimeZone,
-                ArrivalTimeZone = dto.ArrivalTimeZone
+                ArrivalTimeZone = dto.ArrivalTimeZone,
+                AriOwnId = (int)dto.AirOwnId
             };
             return vm;
         }
@@ -217,7 +217,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
         public ActionResult SearchPartial(AirFlightManagementSearchCriteria vm)
         {
             var viewModel = SearchAirFlights(vm);
-            return PartialView("_SearchPartial",viewModel);
+            return PartialView("_SearchPartial", viewModel);
         }
         private List<AirFlightManagementIndexVm> SearchAirFlights(AirFlightManagementSearchCriteria vm)
         {
@@ -231,7 +231,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
                 ArrivalAirport = data.ArrivalAirport,
                 DepartureTime = data.DepartureTime,
                 ArrivalTime = data.ArrivalTime,
-                DayofWeek = data.DayofWeek.FlightDays().ToString()
+                DayofWeek = data.DayofWeek.ToString()
             }).ToList();
         }
         #endregion
@@ -241,7 +241,10 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
         {
             // 根據ID獲取另一個VM的數據
             var viewModel = _service.GetById(id);
-            //ViewBag.ItemId = id;
+            if (viewModel.FlightModel == "")
+            {
+                viewModel.FlightModel = "未設定";
+            }
             return PartialView("_DetailsPartial", viewModel);
         }
         #endregion

@@ -102,7 +102,9 @@ namespace SparkleAir.BLL.Service.AirFlights
                 DepartureAirport = x.DepartureAirport,
                 ArrivalAirport = x.ArrivalAirport,
                 DepartureTimeZone = x.DepartureTimeZone,
-                ArrivalTimeZone = x.ArrivalTimeZone
+                ArrivalTimeZone = x.ArrivalTimeZone,
+                AirOwnId =x.AirOwnId,
+                FlightModel = x.FlightModel
             }).ToList();
 
             return dto;
@@ -127,6 +129,8 @@ namespace SparkleAir.BLL.Service.AirFlights
                 ArrivalAirport = entity.ArrivalAirport,
                 DepartureTimeZone = entity.DepartureTimeZone,
                 ArrivalTimeZone = entity.ArrivalTimeZone,
+                AirOwnId = entity.AirOwnId,
+                FlightModel = entity.FlightModel
             };
             return dto;
         }
@@ -203,6 +207,7 @@ namespace SparkleAir.BLL.Service.AirFlights
                 ArrivalAirport = x.ArrivalAirport,
                 DepartureTimeZone = x.DepartureTimeZone,
                 ArrivalTimeZone = x.ArrivalTimeZone,
+                AirOwnId = x.AirOwnId
             }).ToList();
 
             // todo 根據 出發地(DropDown) 目的地(DropDown) 時間段(Range) 執飛時段(checkbox)去做篩選

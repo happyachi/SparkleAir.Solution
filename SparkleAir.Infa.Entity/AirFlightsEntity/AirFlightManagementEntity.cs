@@ -32,5 +32,8 @@ namespace SparkleAir.Infa.Entity.AirFlightsEntity
 		public string ArrivalAirport { get; set; }
 		public int DepartureTimeZone { get; set; }
 		public int ArrivalTimeZone { get; set; }
-	}
+
+        public int? AirOwnId { get; set; }
+		public string FlightModel { get; set; }
+    }
 }
