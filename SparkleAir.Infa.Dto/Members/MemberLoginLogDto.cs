@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SparkleAir.Infa.Entity.Members
+namespace SparkleAir.Infa.Dto.Members
 {
-    public class MemberLoginLogEntity
+    public class MemberLoginLogDto
     {
         public int Id { get; set; }
 

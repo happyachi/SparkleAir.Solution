@@ -206,11 +206,11 @@
     <Content Include="Views\Members\Index.cshtml" />
     <Content Include="Views\Members\Get.cshtml" />
     <Content Include="Views\Members\Edit.cshtml" />
+    <Content Include="Views\MemberLoginLogs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\ViewModels\Members\" />
-    <Folder Include="Views\MemberLoginLogs\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

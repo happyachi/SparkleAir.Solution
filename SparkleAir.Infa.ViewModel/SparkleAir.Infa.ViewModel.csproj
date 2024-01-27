@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Members\MemberIndexVm.cs" />
+    <Compile Include="Members\MemberLoginLogIndexVm.cs" />
     <Compile Include="Members\MemberUpdateVm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
