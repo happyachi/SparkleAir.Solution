@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SparkleAir.FrontEnd.Site.Models.ViewModels.Members.MemberIndexVm>
+﻿@model IEnumerable<SparkleAir.Infa.ViewModel.Members.MemberIndexVm>
 
 @{
     ViewBag.Title = "Index";
@@ -15,7 +15,13 @@
             @Html.DisplayNameFor(model => model.MemberClassId)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.MemberClassName)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.CountryId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CountryName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ChineseLastName)
@@ -56,7 +62,13 @@
             @Html.DisplayFor(modelItem => item.MemberClassId)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.MemberClassName)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.CountryId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CountryName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ChineseLastName)

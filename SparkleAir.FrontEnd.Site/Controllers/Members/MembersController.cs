@@ -1,9 +1,12 @@
-﻿using SparkleAir.BLL.Service.Members;
+﻿using Microsoft.Ajax.Utilities;
+using SparkleAir.BLL.Service.Members;
 using SparkleAir.DAL.DapperRepository.Members;
 using SparkleAir.DAL.EFRepository.Members;
-using SparkleAir.FrontEnd.Site.Models.ViewModels.Members;
 using SparkleAir.IDAL.IRepository.Members;
+using SparkleAir.Infa.Criteria.Members;
+using SparkleAir.Infa.Dto.Members;
 using SparkleAir.Infa.EFModel.EFModels;
+using SparkleAir.Infa.ViewModel.Members;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,35 +24,144 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Members
 		public MembersController()
         {
 			// EF
-			// _repo = new MemberEFRepository(); 
+			_repo = new MemberEFRepository(); 
 
 			// Dapper
-			_repo = new MemberDapperRepository(); 
+			// _repo = new MemberDapperRepository(); 
 
 			_service = new MemberService(_repo);
 		}
         // GET: Members
         public ActionResult Index()
         {
-            var dtoList = _service.GetAll();
-            var vmList = dtoList.Select(x => new MemberIndexVm
+            MemberSearchCriteria criteria = null;
+
+            var dtoList = _service.Search(criteria);
+            var vmList = dtoList.Select(member => new MemberIndexVm
             {
-				Id = x.Id,
-				MemberClassId = x.MemberClassId,
-				CountryId = x.CountryId,
-				ChineseLastName = x.ChineseLastName,
-				ChineseFirstName = x.ChineseFirstName,
-				EnglishLastName = x.EnglishLastName,
-				EnglishFirstName = x.EnglishFirstName,
-				DateOfBirth = x.DateOfBirth,
-				Gender = x.Gender,
-				Phone = x.Phone,
-				Email = x.Email,
-				TotalMileage = x.TotalMileage,
-				PassportNumber = x.PassportNumber
-			}).ToList();
+                Id = member.Id,
+                MemberClassId = member.MemberClassId,
+                MemberClassName = member.MemberClassName,
+                CountryId = member.CountryId,
+                CountryName = member.CountryName,
+                ChineseLastName = member.ChineseLastName,
+                ChineseFirstName = member.ChineseFirstName,
+                EnglishLastName = member.EnglishLastName,
+                EnglishFirstName = member.EnglishFirstName,
+                DateOfBirth = member.DateOfBirth,
+                Gender = member.Gender,
+                Phone = member.Phone,
+                Email = member.Email,
+                TotalMileage = member.TotalMileage,
+                PassportNumber = member.PassportNumber
+            }).ToList();
 
 			return View(vmList);
         }
+
+        public ActionResult Details(int id)
+		{
+            if (!ModelState.IsValid) return RedirectToAction("Index");
+
+            try
+            {
+                MemberGetCriteria criteria = new MemberGetCriteria();
+                criteria.Id = id;
+
+                MemberIndexVm memberVm = GetMember(criteria);
+                return View(memberVm);
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", ex.Message);
+                return View();
+            }
+        }
+
+        public ActionResult Edit(int id)
+        {
+            if (!ModelState.IsValid) return RedirectToAction("Index");
+
+            try
+            {
+                MemberGetCriteria criteria = new MemberGetCriteria();
+                criteria.Id = id;
+
+                MemberUpdateVm memberVm = GetUpdateMember(criteria);
+                return View(memberVm);
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", ex.Message);
+                return View();
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Edit(MemberUpdateVm vm)
+        {
+            if (!ModelState.IsValid) return View(vm);
+
+            try
+            {
+                UpdateMember(vm);
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", ex.Message);
+                return View(vm);
+            }
+        }
+
+        private void UpdateMember(MemberUpdateVm vm)
+        {
+            MemberDto dto = new MemberDto()
+            {
+                Id = vm.Id,
+                IsAllow = vm.IsAllow
+            };
+
+            _service.Update(dto);
+        }
+
+        public MemberIndexVm GetMember(MemberGetCriteria criteria)
+        {
+            var member = _service.Get(criteria);
+            var vm = new MemberIndexVm
+            {
+                Id = member.Id,
+                MemberClassId = member.MemberClassId,
+                MemberClassName = member.MemberClassName,
+                CountryId = member.CountryId,
+                CountryName = member.CountryName,
+                ChineseLastName = member.ChineseLastName,
+                ChineseFirstName = member.ChineseFirstName,
+                EnglishLastName = member.EnglishLastName,
+                EnglishFirstName = member.EnglishFirstName,
+                DateOfBirth = member.DateOfBirth,
+                Gender = member.Gender,
+                Phone = member.Phone,
+                Email = member.Email,
+                TotalMileage = member.TotalMileage,
+                PassportNumber = member.PassportNumber,
+            };
+
+            return vm;
+        }
+
+        public MemberUpdateVm GetUpdateMember(MemberGetCriteria criteria)
+        {
+            var member = _service.Get(criteria);
+            var vm = new MemberUpdateVm
+            {
+                Id = member.Id,
+                IsAllow = member.IsAllow
+            };
+
+            return vm;
+        }
+
+
     }
 }

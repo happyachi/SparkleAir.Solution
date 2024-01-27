@@ -55,6 +55,7 @@
     <Compile Include="Campaigns\CampaignsDiscountsEFRepository.cs" />
     <Compile Include="Airports\AirportEFRepository.cs" />
     <Compile Include="Members\MemberEFRepository.cs" />
+    <Compile Include="Members\MemberLoginLogEFRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TaxFree\TFItemEFRepository.cs" />
   </ItemGroup>

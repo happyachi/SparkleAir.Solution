@@ -9,12 +9,9 @@ using System.Threading.Tasks;
 
 namespace SparkleAir.IDAL.IRepository.Members
 {
-	public interface IMemberRepository
-	{
-		List<MemberEntity> Search(MemberSearchCriteria criteria);
+    public interface IMemberLoginLogRepository
+    {
+        List<MemberLoginLogEntity> Search(MemberLoginLogSearchCriteria criteria);
 
-        MemberEntity Get (MemberGetCriteria criteria);
-
-		void Update(MemberEntity entity);
     }
 }

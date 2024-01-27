@@ -11,14 +11,16 @@ namespace SparkleAir.Infa.Utility.Exts.Entities
 {
 	public static class MemberEntityExts
 	{
-		public static MemberDto ToDto(this MemberEntity member)
+		public static MemberDto EntityToDto(this MemberEntity member)
 		{
 			MemberDto memberDto = new MemberDto
 			{
 				Id = member.Id,
 				MemberClassId = member.MemberClassId,
-				CountryId = member.CountryId,
-				Account = member.Account,
+                MemberClassName = member.MemberClassName,
+                CountryId = member.CountryId,
+                CountryName = member.CountryName,
+                Account = member.Account,
 				Password = member.Password,
 				ChineseLastName = member.ChineseLastName,
 				ChineseFirstName = member.ChineseFirstName,

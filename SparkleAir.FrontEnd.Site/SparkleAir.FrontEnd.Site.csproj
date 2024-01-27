@@ -147,11 +147,11 @@
     <Compile Include="Controllers\Campaigns\CampaignsDiscountController.cs" />
     <Compile Include="Controllers\Airports\AirportsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Members\MemberLoginLogsController.cs" />
     <Compile Include="Controllers\Members\MembersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\ViewModels\Members\MemberIndexVm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -215,10 +215,14 @@
     <Content Include="Views\Airports\Create.cshtml" />
     <Content Include="Views\Airports\Details.cshtml" />
     <Content Include="Views\Airports\Edit.cshtml" />
+    <Content Include="Views\Members\Get.cshtml" />
+    <Content Include="Views\Members\Edit.cshtml" />
+    <Content Include="Views\MemberLoginLogs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Campaigns\" />
+    <Folder Include="Models\ViewModels\Members\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
