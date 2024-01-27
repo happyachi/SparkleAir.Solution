@@ -46,7 +46,7 @@ namespace SparkleAir.Infa.Entity.Members
 
 		public DateTime LastPasswordChangeTime { get; set; }
 
-		public bool IsAllow { get; set; }
+		public bool? IsAllow { get; set; }
 
 		public string ConfirmCode { get; set; }
 	}

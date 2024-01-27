@@ -4,6 +4,7 @@ using SparkleAir.DAL.DapperRepository.Members;
 using SparkleAir.DAL.EFRepository.Members;
 using SparkleAir.IDAL.IRepository.Members;
 using SparkleAir.Infa.Criteria.Members;
+using SparkleAir.Infa.Dto.Members;
 using SparkleAir.Infa.EFModel.EFModels;
 using SparkleAir.Infa.ViewModel.Members;
 using System;
@@ -33,7 +34,9 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Members
         // GET: Members
         public ActionResult Index()
         {
-            var dtoList = _service.GetAll();
+            MemberSearchCriteria criteria = null;
+
+            var dtoList = _service.Search(criteria);
             var vmList = dtoList.Select(member => new MemberIndexVm
             {
                 Id = member.Id,
@@ -56,9 +59,9 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Members
 			return View(vmList);
         }
 
-        public ActionResult Get(int id)
+        public ActionResult Details(int id)
 		{
-            if (!ModelState.IsValid) return View();
+            if (!ModelState.IsValid) return RedirectToAction("Index");
 
             try
             {
@@ -75,14 +78,33 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Members
             }
         }
 
+        public ActionResult Edit(int id)
+        {
+            if (!ModelState.IsValid) return RedirectToAction("Index");
+
+            try
+            {
+                MemberGetCriteria criteria = new MemberGetCriteria();
+                criteria.Id = id;
+
+                MemberUpdateVm memberVm = GetUpdateMember(criteria);
+                return View(memberVm);
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", ex.Message);
+                return View();
+            }
+        }
+
         [HttpPost]
-        public ActionResult Edit(MemberIndexVm vm)
+        public ActionResult Edit(MemberUpdateVm vm)
         {
             if (!ModelState.IsValid) return View(vm);
 
             try
             {
-                EditMember(vm);
+                UpdateMember(vm);
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
@@ -92,9 +114,15 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Members
             }
         }
 
-        private void EditMember(MemberIndexVm vm)
+        private void UpdateMember(MemberUpdateVm vm)
         {
-            throw new NotImplementedException();
+            MemberDto dto = new MemberDto()
+            {
+                Id = vm.Id,
+                IsAllow = vm.IsAllow
+            };
+
+            _service.Update(dto);
         }
 
         public MemberIndexVm GetMember(MemberGetCriteria criteria)
@@ -116,7 +144,19 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Members
                 Phone = member.Phone,
                 Email = member.Email,
                 TotalMileage = member.TotalMileage,
-                PassportNumber = member.PassportNumber
+                PassportNumber = member.PassportNumber,
+            };
+
+            return vm;
+        }
+
+        public MemberUpdateVm GetUpdateMember(MemberGetCriteria criteria)
+        {
+            var member = _service.Get(criteria);
+            var vm = new MemberUpdateVm
+            {
+                Id = member.Id,
+                IsAllow = member.IsAllow
             };
 
             return vm;

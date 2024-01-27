@@ -11,8 +11,10 @@ namespace SparkleAir.IDAL.IRepository.Members
 {
 	public interface IMemberRepository
 	{
-		List<MemberEntity> GetAll();
+		List<MemberEntity> Search(MemberSearchCriteria criteria);
 
         MemberEntity Get (MemberGetCriteria criteria);
+
+		void Update(MemberEntity entity);
     }
 }

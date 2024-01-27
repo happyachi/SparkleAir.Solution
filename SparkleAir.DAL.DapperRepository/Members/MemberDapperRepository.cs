@@ -25,7 +25,7 @@ namespace SparkleAir.DAL.DapperRepository.Members
             throw new NotImplementedException();
         }
 
-        public List<MemberEntity> GetAll()
+        public List<MemberEntity> Search(MemberSearchCriteria criteria)
 		{
 			string sql = @"SELECT * FROM Members";
 
@@ -35,5 +35,10 @@ namespace SparkleAir.DAL.DapperRepository.Members
 				return entity;
 			}
 		}
-	}
+
+        public void Update(MemberEntity entity)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
