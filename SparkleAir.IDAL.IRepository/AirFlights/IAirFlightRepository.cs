@@ -11,5 +11,6 @@ namespace SparkleAir.IDAL.IRepository.AirFlights
     {
         void Create(AirFlightEntity entity);
         AirFlightEntity GetById(int id);
+        List<AirFlightEntity> GetAll();
     }
 }

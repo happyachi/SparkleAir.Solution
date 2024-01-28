@@ -13,7 +13,8 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
     public class AirFlightEFRepository : IAirFlightRepository
     {
         private AppDbContext db = new AppDbContext();
-
+        private Func<AirFlight, AirFlightEntity> ToEntityFunc = (f) => f.ToAirFlightEntity();
+       
         public void Create(AirFlightEntity entity)
         {
             AirFlight airFlight = new AirFlight
@@ -26,6 +27,16 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
             };
             db.AirFlights.Add(airFlight);
             db.SaveChanges();
+        }
+
+        public List<AirFlightEntity> GetAll()
+        {
+            var flights = db.AirFlights
+                .AsNoTracking()
+                .ToList()
+                .Select(ToEntityFunc)
+                .ToList();
+            return flights;
         }
 
         public AirFlightEntity GetById(int id)

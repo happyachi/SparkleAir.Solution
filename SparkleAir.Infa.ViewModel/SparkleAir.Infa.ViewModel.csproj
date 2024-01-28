@@ -44,9 +44,11 @@
   <ItemGroup>
     <Compile Include="AirFlights\AirFlightCreateVm.cs" />
     <Compile Include="AirFlights\AirFlightIndexVm.cs" />
+    <Compile Include="AirFlights\AirFlightManagementCreateVm.cs" />
     <Compile Include="AirFlights\AirFlightManagementIndexVm.cs" />
     <Compile Include="AirFlights\AirFlightManagementVm.cs" />
     <Compile Include="AirFlights\AirFlightVm.cs" />
+    <Compile Include="AirFlights\SeatConfiguration.cs" />
     <Compile Include="Campaigns\CampaignsCouponIndexVm.cs" />
     <Compile Include="Campaigns\CampaignsCouponVm.cs" />
     <Compile Include="Campaigns\CampaignsDiscountIndexVm.cs" />

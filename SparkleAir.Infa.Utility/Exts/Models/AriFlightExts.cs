@@ -11,12 +11,14 @@ namespace SparkleAir.Infa.Utility.Exts.Models
 {
     public static class AriFlightExts
     {
+        //用lata取得Id
         public static int GetAirportId(this string lata, AppDbContext db)
         {
             var data = db.AirPorts.FirstOrDefault(airPort => airPort.Lata == lata);
             return data.Id;
         }
 
+        //用Id取得Lata
         public static (string, int) GetAirport(this int airportId, AppDbContext db)
         {
             var data = db.AirPorts.Find(airportId);
@@ -24,11 +26,13 @@ namespace SparkleAir.Infa.Utility.Exts.Models
             return (data.Lata, data.TimeArea);
         }
 
+        //取得AirOwnId 給 ToAirFlightManagementEntity 用的
         public static int? GetAirOwnId(this IEnumerable<AirFlight> airFlights)
         {
             return airFlights?.Select(f => f.AirOwnId).FirstOrDefault();
         }
 
+        //取得AirOwnId 給 EF 用的
         public static int? GetAirOwnIdByFlightModel(this string flightModel, AppDbContext db)
         {
             var airOwnId = db.AirOwns
@@ -40,30 +44,25 @@ namespace SparkleAir.Infa.Utility.Exts.Models
             return airOwnId;
         }
 
-        //public static string GetFlightModel(this int? airownId, AppDbContext db)
-        //{
-        //    var flightModel = db.AirOwns
-        //            .Where(ao => ao.Id == airownId)
-        //            .Join(db.AirFlights, ao => ao.Id, af => af.AirOwnId, (ao, af) => new { ao, af })
-        //            .Join(db.AirFlightManagements, a => a.af.AirFlightManagementId, afm => afm.Id, (a, afm) => afm)
-        //            .Select(a => a.AirTypeId) // 選擇 AirTypeId
-        //            .Join(db.AirTypes, airTypeId => airTypeId, airtype => airtype.Id, (airTypeId, airtype) => airtype.FlightModel)
-        //            .FirstOrDefault();
-
-        //    return flightModel ?? "";
-        //}
-
-        public static string GetFlightModelByAirOwnId(this AppDbContext db, int? airOwnId)
+        //取得FlightModel
+        public static (string, string) GetFlightModelByAirOwnId(this AppDbContext db, int? airOwnId)
         {
             var flightModel = db.AirOwns
                             .Where(ao => ao.Id == airOwnId)
                             .Join(db.AirTypes, ao => ao.AirTypeId, ty => ty.Id, (ao, ty) => ty.FlightModel)
                             .FirstOrDefault();
-
-            return flightModel ?? "";
+            var num = db.AirOwns.Where(ao => ao.Id == airOwnId).FirstOrDefault();
+            if (num == null)
+            {
+                return (flightModel?? "", "");
+            }
+            else
+            {
+            return (flightModel ?? "", num.RegistrationNum);
+            }
         }
 
-        //AirFlightManagement To AirFlightManagementEntity
+        //轉換AirFlightManagement To AirFlightManagementEntity
         public static AirFlightManagementEntity ToAirFlightManagementEntity(this AirFlightManagement afm)
         {
             AppDbContext db = new AppDbContext();
@@ -83,12 +82,13 @@ namespace SparkleAir.Infa.Utility.Exts.Models
                 DepartureTimeZone = afm.DepartureAirportId.GetAirport(db).Item2,
                 ArrivalTimeZone = afm.ArrivalAirportId.GetAirport(db).Item2,
                 AirOwnId = afm.AirFlights.GetAirOwnId(),
-                FlightModel = db.GetFlightModelByAirOwnId(afm.AirFlights.GetAirOwnId()),
+                FlightModel = db.GetFlightModelByAirOwnId(afm.AirFlights.GetAirOwnId()).Item1,
             };
             return entity;
         }
 
-        //用迴圈跑值班表
+        //用迴圈跑值班表(一個月內的)
+        //todo 可以設定要跑出多久之後的班表
         public static List<DateTime> GetScheduledFlights(this DateTime currentDate, FlightDate[] days, DateTime today)
         {
             var scheduledFlights = new List<DateTime>();
@@ -116,6 +116,47 @@ namespace SparkleAir.Infa.Utility.Exts.Models
                 }
             }
             return scheduledFlights;
+        }
+
+        //轉換AirFlight To AirFlightEntity
+        public static AirFlightEntity ToAirFlightEntity(this AirFlight af)
+        {
+            AppDbContext db = new AppDbContext();
+            AirFlightEntity entity = new AirFlightEntity
+            {
+                Id = af.Id,
+                AirOwnId = af.AirOwnId,
+                AirFlightManagementId = af.AirFlightManagementId,
+                ScheduledDeparture = af.ScheduledDeparture,
+                ScheduledArrival = af.ScheduledArrival,
+                AirFlightSaleStatusId = af.AirFlightSaleStatusId,
+                FlightModel = db.GetFlightModelByAirOwnId(af.AirOwnId).Item1,
+                FlightCode = db.GetFlightCode(af.AirFlightManagementId).Item3,
+                DepartureAirport = db.GetFlightCode(af.AirFlightManagementId).Item6,
+                ArrivalAirport = db.GetFlightCode(af.AirFlightManagementId).Item7,
+                DepartureAirportId = db.GetFlightCode(af.AirFlightManagementId).Item1,
+                ArrivalAirportId = db.GetFlightCode(af.AirFlightManagementId).Item2,
+                DepartureTimeZone = db.GetFlightCode(af.AirFlightManagementId).Item4,
+                ArrivalTimeZone = db.GetFlightCode(af.AirFlightManagementId).Item5,
+                AirFlightSaleStatus = af.AirFlightSaleStatusId.GetSaleStatus(db),
+                DayofWeek = db.GetFlightCode(af.AirFlightManagementId).Item8,
+                RegistrationNum = db.GetFlightModelByAirOwnId(af.AirOwnId).Item2
+            };
+            return entity;
+        }
+        public static string GetSaleStatus(this int statusId, AppDbContext db)
+        {
+            var status = db.AirFlightSaleStatuses.Find(statusId);
+            return status.Status;
+        }
+        //取得ToAirFlightEntity所需相關訊息
+        public static (int, int, string, int, int, string, string, string) GetFlightCode(this AppDbContext db, int id)
+        {
+            //出發地ID 目的地ID 航班編號 出發地時區 目的地時區 出發地機場 目的地機場,執飛日
+            var data = db.AirFlightManagements.Find(id);
+            var departureAirport = data.DepartureAirportId.GetAirport(db);
+            var arrivarAirport = data.ArrivalAirportId.GetAirport(db);
+            return (data.DepartureAirportId, data.ArrivalAirportId, data.FlightCode, departureAirport.Item2, arrivarAirport.Item2, departureAirport.Item1, arrivarAirport.Item1, data.DayofWeek);
         }
     }
 }

@@ -11,7 +11,7 @@ namespace SparkleAir.Infa.ViewModel.AirFlights
     {
         public int Id { get; set; }
 
-        public int AirOwnId { get; set; }
+        //public int AirOwnId { get; set; }
 
         [Display(Name = "航班編號")]
         public string FlightCode { get; set; }
@@ -20,16 +20,23 @@ namespace SparkleAir.Infa.ViewModel.AirFlights
         [Display(Name = "機型")]
         public string FlightModel { get; set; }
 
+        [Display(Name = "註冊編號")]
+        public string RegistrationNum { get; set; }
+
         [Display(Name = "出發地")]
-        public string DepartureAirPort { get; set; }
+        public string DepartureAirport { get; set; }
 
         [Display(Name = "目的地")]
-        public string ArrivalAriPort { get; set; }
+        public string ArrivalAirport { get; set; }
 
         [Display(Name = "起飛時間")]
         public DateTime ScheduledDeparture { get; set; }
 
         [Display(Name = "抵達時間")]
         public DateTime ScheduledArrival { get; set; }
+        //public int DepartureAirportId { get; set; }
+        //public int ArrivalAirportId { get; set; }
+        //public int DepartureTimeZone { get; set; }
+        //public int ArrivalTimeZone { get; set; }
     }
 }

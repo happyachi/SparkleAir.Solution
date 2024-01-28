@@ -19,25 +19,56 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
     {
         #region CTOR
 
-        private IAirFlightRepository _repo;
-        private AirFlightService _service;
+        private IAirFlightRepository _airFlightRepo;
+        private AirFlightService _airFlightService;
         private IAirFlightManagementRepository _flightManagementRepo;
         private AirFlightManagementService _flightManagementService;
         public AirFlightsController()
         {
-            _repo = new AirFlightEFRepository();
+            _airFlightRepo = new AirFlightEFRepository();
             _flightManagementRepo = new AirFlightManagementEFRepository();
             _flightManagementService = new AirFlightManagementService(_flightManagementRepo);
-            _service = new AirFlightService(_repo);
-
+            _airFlightService = new AirFlightService(_airFlightRepo);
         }
 
         #endregion
-        // GET: AirFlights
+
+        #region Index
+
         public ActionResult Index()
         {
-            return View();
+            List<AirFlightIndexVm> datas = GetAll();
+            return View(datas);
         }
+
+        private List<AirFlightIndexVm> GetAll()
+        {
+            List<AirFlightDto> dto = _airFlightService.GetAll();
+
+            List<AirFlightIndexVm> vm = dto.Select(x => new AirFlightIndexVm
+            {
+                Id = x.Id,
+                FlightCode = x.FlightCode,
+                FlightModel = x.FlightModel,
+                DepartureAirport = x.DepartureAirport,
+                ArrivalAirport = x.ArrivalAirport,
+                ScheduledDeparture = x.ScheduledDeparture,
+                ScheduledArrival = x.ScheduledArrival,
+                RegistrationNum = x.RegistrationNum
+            }).ToList();
+
+            return vm;
+        }
+
+        //public ActionResult CalendarPartial()
+        //{
+        //    List<AirFlightIndexVm> datas = GetAll();
+        //    return PartialView("_CalendarPartial", datas);
+        //}
+        #endregion
+
+        #region Create & Connect AirOwnId
+        //先 get AirFlightManagementVm 的資料 => 設定AirOwnID(FlightModel) => Create 一個月內的班表 
         public ActionResult Create(int id)
         {
             AirFlightCreateVm data = Get(id);
@@ -68,6 +99,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
             };
             return flight;
         }
+
         private DateTime CalculateNextFlightDate(FlightDate[] days)
         {
             DateTime tomorrow = DateTime.Today.AddDays(1);
@@ -91,7 +123,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
             try
             {
                 CreateFlight(vm);
-                return RedirectToAction("Index","AirFlightsManagement");
+                return RedirectToAction("Index", "AirFlightsManagement");
             }
             catch (Exception ex)
             {
@@ -113,13 +145,18 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
                 ArrivalAirport = vm.ArrivalAirport,
                 ScheduledDeparture = vm.ScheduledDeparture,
                 ScheduledArrival = vm.ScheduledArrival,
-                AirFlightSaleStatusId = 1,
+                AirFlightSaleStatusId = 1, // 預設為 1 (銷售中)
                 DayofWeek = vm.DayofWeek,
                 DepartureTimeZone = vm.DepartureTimeZone,
                 ArrivalTimeZone = vm.ArrivalTimeZone
             };
-
-            _service.Create(dto);
+            _airFlightService.Create(dto);
         }
+
+        #endregion
+
+        #region Create More Flights
+       
+        #endregion
     }
 }

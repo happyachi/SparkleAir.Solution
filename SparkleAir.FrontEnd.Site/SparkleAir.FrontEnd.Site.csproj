@@ -144,6 +144,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AirFlight\AirFlightsController.cs" />
+    <Compile Include="Controllers\AirFlight\AirFlightSeatsController.cs" />
     <Compile Include="Controllers\AirFlight\AirFlightsManagementController.cs" />
     <Compile Include="Controllers\Campaigns\CampaignsCouponController.cs" />
     <Compile Include="Controllers\Campaigns\CampaignsDiscountController.cs" />
@@ -226,11 +227,14 @@
     <Content Include="Views\AirFlightsManagement\_DetailsPartial.cshtml" />
     <Content Include="Views\AirFlightsManagement\_SearchPartial.cshtml" />
     <Content Include="Views\AirFlights\Create.cshtml" />
+    <Content Include="Views\AirFlights\Index.cshtml" />
+    <Content Include="Views\AirFlights\_CalendarPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Campaigns\" />
     <Folder Include="Models\ViewModels\Members\" />
+    <Folder Include="Views\AirFlightSeats\" />
+    <Folder Include="Views\Campaigns\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

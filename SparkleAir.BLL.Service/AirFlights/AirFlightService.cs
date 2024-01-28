@@ -19,6 +19,7 @@ namespace SparkleAir.BLL.Service.AirFlights
         {
             _repo = repo;
         }
+
         public void Create(AirFlightDto dto)
         {
             FlightDate[] days = dto.DayofWeek.FlightDays();
@@ -31,8 +32,8 @@ namespace SparkleAir.BLL.Service.AirFlights
             foreach (var scheduledFlight in scheduledFlights)
             {
                 // 將起飛時間和抵達時間與日期結合
-                DateTime scheduledDeparture = scheduledFlight.Date + TimeZoneHelper.ConvertToGMT(dto.ScheduledDeparture.TimeOfDay,dto.DepartureTimeZone);
-                DateTime scheduledArrival = scheduledFlight.Date + TimeZoneHelper.ConvertToGMT(dto.ScheduledArrival.TimeOfDay,dto.ArrivalTimeZone);
+                DateTime scheduledDeparture = scheduledFlight.Date + TimeZoneHelper.ConvertToGMT(dto.ScheduledDeparture.TimeOfDay, dto.DepartureTimeZone);
+                DateTime scheduledArrival = scheduledFlight.Date + TimeZoneHelper.ConvertToGMT(dto.ScheduledArrival.TimeOfDay, dto.ArrivalTimeZone);
 
                 AirFlightEntity entity = new AirFlightEntity
                 {
@@ -54,6 +55,7 @@ namespace SparkleAir.BLL.Service.AirFlights
             }
         }
 
+        //還未使用到
         public AirFlightDto GetById(int id)
         {
             var entity = _repo.GetById(id);
@@ -71,6 +73,34 @@ namespace SparkleAir.BLL.Service.AirFlights
                 ArrivalAirport = entity.ArrivalAirport,
                 AirFlightSaleStatus = entity.AirFlightSaleStatus,
             };
+
+            return dto;
+        }
+
+        public List<AirFlightDto> GetAll()
+        {
+            List<AirFlightEntity> entity = _repo.GetAll();
+
+            List<AirFlightDto> dto = entity.Select(x => new AirFlightDto
+            {
+                Id = x.Id,
+                AirOwnId = x.AirOwnId,
+                AirFlightManagementId = x.AirFlightManagementId,
+                ScheduledDeparture = x.ScheduledDeparture.Date + TimeZoneHelper.ConvertToLocal(x.ScheduledDeparture.TimeOfDay, x.DepartureTimeZone),
+                ScheduledArrival = x.ScheduledArrival.Date + TimeZoneHelper.ConvertToLocal(x.ScheduledArrival.TimeOfDay, x.ArrivalTimeZone),
+                AirFlightSaleStatusId = x.AirFlightSaleStatusId,
+                FlightModel = x.FlightModel,
+                FlightCode = x.FlightCode,
+                DepartureAirport = x.DepartureAirport,
+                ArrivalAirport = x.ArrivalAirport,
+                AirFlightSaleStatus = x.AirFlightSaleStatus,
+                DayofWeek = x.DayofWeek,
+                DepartureTimeZone = x.DepartureTimeZone,
+                ArrivalTimeZone = x.ArrivalTimeZone,
+                DepartureAirportId = x.DepartureAirportId,
+                ArrivalAirportId = x.ArrivalAirportId,
+                RegistrationNum = x.RegistrationNum
+            }).ToList();
 
             return dto;
         }

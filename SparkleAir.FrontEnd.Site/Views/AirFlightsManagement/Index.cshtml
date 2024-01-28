@@ -71,11 +71,9 @@
 						@Html.DisplayFor(modelItem => item.ArrivalAirport)
 					</td>
 					<td>
-						@*@Html.DisplayFor(modelItem => item.DepartureTime)*@
 						@Html.Raw(item.DepartureTime.ToString("hh\\:mm"))
 					</td>
 					<td>
-						@*@Html.DisplayFor(modelItem => item.ArrivalTime)*@
 						@Html.Raw(item.ArrivalTime.ToString("hh\\:mm"))
 					</td>
 					<td>
@@ -85,6 +83,7 @@
 						@Html.ActionLink("編輯", "Edit", new { id = item.Id }, new { @class = "btn btn-sm btn-dark" }) |
 						@Html.ActionLink("詳細資訊", "Details", new { id = item.Id }, new { @class = "btn btn-sm btn-dark details-link", data_id = item.Id }) |
 						@Html.ActionLink("機型設定", "Create", "AirFlights", new { id = item.Id }, new { @class = "btn btn-sm btn-dark" })
+						@*@Html.ActionLink("刪除航班", "Delete", new { id = item.Id }, new { @class = "btn btn-sm btn-dark" })*@
 					</td>
 				</tr>
 			}

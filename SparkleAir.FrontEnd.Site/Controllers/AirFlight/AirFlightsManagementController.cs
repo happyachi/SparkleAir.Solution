@@ -64,17 +64,20 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
             return vm;
         }
 
+        #endregion
+
+        #region Create
+
         public ActionResult Create()
         {
             return View();
         }
 
-        #endregion
-
-        #region Create
         [HttpPost]
-        public ActionResult Create(AirFlightManagementVm vm)
+        public ActionResult Create(AirFlightManagementCreateVm vm)
         {
+            if(!ModelState.IsValid) return View();
+
             try
             {
                 CreateFlight(vm);
@@ -87,16 +90,14 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
             }
         }
 
-        private void CreateFlight(AirFlightManagementVm vm)
+        private void CreateFlight(AirFlightManagementCreateVm vm)
         {
             AirFlightManagementDto dto = new AirFlightManagementDto
             {
                 Id = vm.Id,
                 FlightCode = vm.FlightCode,
                 DepartureAirport = vm.DepartureAirport,
-                DepartureAirportId = vm.DepartureAirportId,
                 ArrivalAirport = vm.ArrivalAirport,
-                ArrivalAirportId = vm.ArrivalAirportId,
                 DepartureTime = vm.DepartureTime,
                 ArrivalTime = vm.ArrivalTime,
                 DayofWeek = vm.DayofWeek,
@@ -144,7 +145,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
                 Mile = dto.Mile,
                 DepartureTimeZone = dto.DepartureTimeZone,
                 ArrivalTimeZone = dto.ArrivalTimeZone,
-                AriOwnId = (int)dto.AirOwnId
+                AirOwnId = (int)dto.AirOwnId
             };
             return vm;
         }
