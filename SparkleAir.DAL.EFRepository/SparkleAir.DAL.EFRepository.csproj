@@ -56,6 +56,7 @@
     <Compile Include="Airports\AirportEFRepository.cs" />
     <Compile Include="CompanyAndPermission\CompanyDepartmentEFRepository.cs" />
     <Compile Include="CompanyAndPermission\CompanyJobEFRepository.cs" />
+    <Compile Include="CompanyAndPermission\CompanyStaffEFRepository.cs" />
     <Compile Include="Members\MemberEFRepository.cs" />
     <Compile Include="Members\MemberLoginLogEFRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -148,6 +148,7 @@
     <Compile Include="Controllers\Airports\AirportsController.cs" />
     <Compile Include="Controllers\CompaniesAndPermissions\CompanyDepartmentsController.cs" />
     <Compile Include="Controllers\CompaniesAndPermissions\CompanyJobsController.cs" />
+    <Compile Include="Controllers\CompaniesAndPermissions\CompanyStaffsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Members\MemberLoginLogsController.cs" />
     <Compile Include="Controllers\Members\MembersController.cs" />
@@ -226,6 +227,10 @@
     <Content Include="Views\CompanyJobs\Index.cshtml" />
     <Content Include="Views\CompanyJobs\Create.cshtml" />
     <Content Include="Views\CompanyJobs\Edit.cshtml" />
+    <Content Include="Views\CompanyStaffs\Index.cshtml" />
+    <Content Include="Views\CompanyStaffs\Create.cshtml" />
+    <Content Include="Views\CompanyStaffs\Edit.cshtml" />
+    <Content Include="Views\CompanyStaffs\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

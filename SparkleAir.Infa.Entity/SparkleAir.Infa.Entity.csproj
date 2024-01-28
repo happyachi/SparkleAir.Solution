@@ -46,6 +46,7 @@
     <Compile Include="Airports\AirportEntity.cs" />
     <Compile Include="CompanyAndPermission\CompanyDepartmentEntity.cs" />
     <Compile Include="CompanyAndPermission\CompanyJobEntity.cs" />
+    <Compile Include="CompanyAndPermission\CompanyStaffEntity.cs" />
     <Compile Include="Members\MemberEntity.cs" />
     <Compile Include="Members\MemberLoginLogEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -46,6 +46,7 @@
     <Compile Include="Airport\IAirportRepository.cs" />
     <Compile Include="CompanyAndPermission\ICompanyDepartmentRepository.cs" />
     <Compile Include="CompanyAndPermission\ICompanyJobRepository.cs" />
+    <Compile Include="CompanyAndPermission\ICompanyStaffRepository.cs" />
     <Compile Include="Members\IMemberLoginLogRepository.cs" />
     <Compile Include="Members\IMemberRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
