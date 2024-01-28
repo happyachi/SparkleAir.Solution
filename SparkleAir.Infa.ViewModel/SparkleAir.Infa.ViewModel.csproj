@@ -51,6 +51,8 @@
     <Compile Include="CompanyAndPermission\CompanyDepartmentIndexVm.cs" />
     <Compile Include="CompanyAndPermission\CompanyJobIndexVm.cs" />
     <Compile Include="CompanyAndPermission\CompanyStaffIndexVm.cs" />
+    <Compile Include="CompanyAndPermission\CompanyStaffLoginLogIndexVm.cs" />
+    <Compile Include="CompanyAndPermission\CompanyStaffsChangePasswordLogIndexVm.cs" />
     <Compile Include="Members\MemberIndexVm.cs" />
     <Compile Include="Members\MemberLoginLogIndexVm.cs" />
     <Compile Include="Members\MemberUpdateVm.cs" />

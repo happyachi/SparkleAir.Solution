@@ -46,6 +46,8 @@
     <Compile Include="Airports\AirportService.cs" />
     <Compile Include="CompanyAndPermission\CompanyDepartmentService.cs" />
     <Compile Include="CompanyAndPermission\CompanyJobService.cs" />
+    <Compile Include="CompanyAndPermission\CompanyStaffLoginLogService.cs" />
+    <Compile Include="CompanyAndPermission\CompanyStaffsChangePasswordLogService.cs" />
     <Compile Include="CompanyAndPermission\CompanyStaffService.cs" />
     <Compile Include="Members\MemberLoginLogService.cs" />
     <Compile Include="Members\MemberService.cs" />
