@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AirFlightsEntity\AirFlightEntity.cs" />
+    <Compile Include="AirFlightsEntity\AirFlightManagementEntity.cs" />
     <Compile Include="Campaigns\CampaignsCouponEntity.cs" />
     <Compile Include="Campaigns\CampaignsDiscountEntity.cs" />
     <Compile Include="Airports\AirportEntity.cs" />
