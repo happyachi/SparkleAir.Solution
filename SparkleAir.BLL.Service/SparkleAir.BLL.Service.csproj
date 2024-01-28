@@ -49,6 +49,10 @@
     <Compile Include="CompanyAndPermission\CompanyStaffLoginLogService.cs" />
     <Compile Include="CompanyAndPermission\CompanyStaffsChangePasswordLogService.cs" />
     <Compile Include="CompanyAndPermission\CompanyStaffService.cs" />
+    <Compile Include="CompanyAndPermission\PermissionGroupsAddStaffService.cs" />
+    <Compile Include="CompanyAndPermission\PermissionGroupService.cs" />
+    <Compile Include="CompanyAndPermission\PermissionPageInfoService.cs" />
+    <Compile Include="CompanyAndPermission\PermissionSettingService.cs" />
     <Compile Include="Members\MemberLoginLogService.cs" />
     <Compile Include="Members\MemberService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -59,6 +59,10 @@
     <Compile Include="CompanyAndPermission\CompanyStaffEFRepository.cs" />
     <Compile Include="CompanyAndPermission\CompanyStaffLoginLogEFRepository.cs" />
     <Compile Include="CompanyAndPermission\CompanyStaffsChangePasswordLogEFRepository.cs" />
+    <Compile Include="CompanyAndPermission\PermissionGroupEFRepository.cs" />
+    <Compile Include="CompanyAndPermission\PermissionGroupsAddStaffEFRepository.cs" />
+    <Compile Include="CompanyAndPermission\PermissionPageInfoEFRepository.cs" />
+    <Compile Include="CompanyAndPermission\PermissionSettingEFRepository.cs" />
     <Compile Include="Members\MemberEFRepository.cs" />
     <Compile Include="Members\MemberLoginLogEFRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

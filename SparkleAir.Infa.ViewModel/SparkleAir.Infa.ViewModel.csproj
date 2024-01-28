@@ -53,6 +53,10 @@
     <Compile Include="CompanyAndPermission\CompanyStaffIndexVm.cs" />
     <Compile Include="CompanyAndPermission\CompanyStaffLoginLogIndexVm.cs" />
     <Compile Include="CompanyAndPermission\CompanyStaffsChangePasswordLogIndexVm.cs" />
+    <Compile Include="CompanyAndPermission\PermissionGroupIndexVm.cs" />
+    <Compile Include="CompanyAndPermission\PermissionGroupsAddStaffIndexVm.cs" />
+    <Compile Include="CompanyAndPermission\PermissionPageInfoIndexVm.cs" />
+    <Compile Include="CompanyAndPermission\PermissionSettingIndexVm.cs" />
     <Compile Include="Members\MemberIndexVm.cs" />
     <Compile Include="Members\MemberLoginLogIndexVm.cs" />
     <Compile Include="Members\MemberUpdateVm.cs" />

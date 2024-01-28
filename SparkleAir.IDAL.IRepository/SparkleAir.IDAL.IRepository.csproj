@@ -49,6 +49,10 @@
     <Compile Include="CompanyAndPermission\ICompanyStaffLoginLogRepository.cs" />
     <Compile Include="CompanyAndPermission\ICompanyStaffRepository.cs" />
     <Compile Include="CompanyAndPermission\ICompanyStaffsChangePasswordLogRepository.cs" />
+    <Compile Include="CompanyAndPermission\IPermissionGroupRepository.cs" />
+    <Compile Include="CompanyAndPermission\IPermissionGroupsAddStaffRepository.cs" />
+    <Compile Include="CompanyAndPermission\IPermissionPageInfoRepository.cs" />
+    <Compile Include="CompanyAndPermission\IPermissionSettingRepository.cs" />
     <Compile Include="Members\IMemberLoginLogRepository.cs" />
     <Compile Include="Members\IMemberRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
