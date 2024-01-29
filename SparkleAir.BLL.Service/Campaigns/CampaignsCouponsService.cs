@@ -18,6 +18,24 @@ namespace SparkleAir.BLL.Service.Campaigns
 
         public int Create(CampaignsCouponDto dto)
         {
+            // 檢查 datastart 和 dataend 期間不能超過三個月
+            if (!CamapignsTimeHelper.IsDateRangeValid(dto.DateStart, dto.DateEnd))
+            {
+                throw new ArgumentException("活動期間不能超過三個月。");
+            }
+
+            // 檢查 datastart 必須是現在的時間半小時以後
+            if (!CamapignsTimeHelper.IsStartDateValid(dto.DateStart))
+            {
+                throw new ArgumentException("開始時間必須在目前時間的半小時後");
+            }
+
+            // 檢查 MaximumDiscountAmount 必須小於等於 MinimumOrderValue
+            if (!PriceHelper.IsMaximumDiscountValid(dto.MaximumDiscountAmount, dto.MinimumOrderValue))
+            {
+                throw new ArgumentException("最高折扣金額不得大於最低消費金額。");
+            }
+
             string status = CamapignsTimeHelper.DetermineStatus(dto.DateStart, dto.DateEnd);
 
             CampaignsCouponEntity entity = new CampaignsCouponEntity(
@@ -30,7 +48,7 @@ namespace SparkleAir.BLL.Service.Campaigns
               status,
               dto.DiscountQuantity,
               dto.DiscountValue,
-              dto.AvailableQuantity,
+              dto.DiscountQuantity,
               dto.MinimumOrderValue,
               dto.MaximumDiscountAmount,
               dto.Code,
@@ -40,18 +58,6 @@ namespace SparkleAir.BLL.Service.Campaigns
               dto.Campaign
               //dto.Id
                 );
-
-            // 檢查 datastart 和 dataend 期間不能超過三個月
-            if (!CamapignsTimeHelper.IsDateRangeValid(dto.DateStart, dto.DateEnd))
-            {
-                throw new ArgumentException("活動期間不能超過三個月。");
-            }
-
-            // 檢查 datastart 必須是現在的時間半小時以後
-            if (!CamapignsTimeHelper.IsStartDateValid(dto.DateStart))
-            {
-                throw new ArgumentException("開始時間必須在目前時間的半小時後");
-            }
 
             _repo.Create(entity);
             return entity.Id;
