@@ -58,6 +58,7 @@
     <Compile Include="Members\IMemberLoginLogRepository.cs" />
     <Compile Include="Airtype&amp;Owns\IAirSeatRepository.cs" />
     <Compile Include="Airtype&amp;Owns\IPlaneRepository.cs" />
+    <Compile Include="Luggage\ILuggageRepository.cs" />
     <Compile Include="Members\IMemberRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -58,6 +58,7 @@
     <Compile Include="Members\MemberLoginLogService.cs" />
     <Compile Include="Airtype&amp;Owns\AirSeatService.cs" />
     <Compile Include="Airtype&amp;Owns\PlaneService.cs" />
+    <Compile Include="Luggage\LuggageService.cs" />
     <Compile Include="Members\MemberService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

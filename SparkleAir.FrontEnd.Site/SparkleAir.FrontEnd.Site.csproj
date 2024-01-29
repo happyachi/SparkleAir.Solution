@@ -160,6 +160,7 @@
     <Compile Include="Controllers\Airtype&amp;Owns\PlanesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Members\MemberLoginLogsController.cs" />
+    <Compile Include="Controllers\Luggages\LuggageController.cs" />
     <Compile Include="Controllers\Members\MembersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -265,6 +266,9 @@
     <Content Include="Views\Planes\Create.cshtml" />
     <Content Include="Views\Planes\Update.cshtml" />
     <Content Include="Views\Planes\Delete.cshtml" />
+    <Content Include="Views\Luggage\Index.cshtml" />
+    <Content Include="Views\Luggage\Create.cshtml" />
+    <Content Include="Views\Luggage\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
