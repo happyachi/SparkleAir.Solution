@@ -23,12 +23,16 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
         private AirFlightService _airFlightService;
         private IAirFlightManagementRepository _flightManagementRepo;
         private AirFlightManagementService _flightManagementService;
+        private IAirFlightSeatsRepository _flightSeatsRepo;
+        private AirFlightSeatsService _flightSeatsService;
         public AirFlightsController()
         {
             _airFlightRepo = new AirFlightEFRepository();
             _flightManagementRepo = new AirFlightManagementEFRepository();
             _flightManagementService = new AirFlightManagementService(_flightManagementRepo);
             _airFlightService = new AirFlightService(_airFlightRepo);
+            _flightSeatsRepo = new AirFlightSeatsEFRepository();
+            _flightSeatsService = new AirFlightSeatsService(_flightSeatsRepo);
         }
 
         #endregion
@@ -67,11 +71,12 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
         //}
         #endregion
 
-        #region Create & Connect AirOwnId
+        #region Create & Connect AirOwnId & Create Flight Model Seats
         //先 get AirFlightManagementVm 的資料 => 設定AirOwnID(FlightModel) => Create 一個月內的班表 
         public ActionResult Create(int id)
         {
             AirFlightCreateVm data = Get(id);
+            _flightSeatsService.Create(data.Id);
             return View(data);
         }
 

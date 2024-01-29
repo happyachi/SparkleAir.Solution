@@ -42,7 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AirFlights\AirFlightManagementService.cs" />
+    <Compile Include="AirFlights\AirFlightSeatsService.cs" />
     <Compile Include="AirFlights\AirFlightService.cs" />
+    <Compile Include="AirFlights\SeatGroupService.cs" />
     <Compile Include="Campaigns\CampaignsCouponsService.cs" />
     <Compile Include="Campaigns\CampaignsDiscountsService.cs.cs" />
     <Compile Include="Airports\AirportService.cs" />

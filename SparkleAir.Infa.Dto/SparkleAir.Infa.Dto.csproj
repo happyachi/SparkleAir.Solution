@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="AriFlights\AirFlightDto.cs" />
     <Compile Include="AriFlights\AirFlightManagementDto.cs" />
+    <Compile Include="AriFlights\AirFlightSeatsDto.cs" />
     <Compile Include="Campaigns\CampaignsCouponDto.cs" />
     <Compile Include="Campaigns\CampaignsDiscountDto.cs" />
     <Compile Include="Airport\AirportDto.cs" />

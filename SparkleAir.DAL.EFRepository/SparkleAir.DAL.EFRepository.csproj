@@ -51,6 +51,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AirFlights\AirFlightSeatsEFRepository.cs" />
+    <Compile Include="AirFlights\SeatGroupEFRepository.cs" />
     <Compile Include="Campaigns\CampaignsCouponsEFRepository.cs" />
     <Compile Include="Campaigns\CampaignsDiscountsEFRepository.cs" />
     <Compile Include="Airports\AirportEFRepository.cs" />
