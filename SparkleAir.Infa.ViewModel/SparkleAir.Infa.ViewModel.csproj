@@ -50,9 +50,8 @@
     <Compile Include="Airports\AirportIndexVm.cs" />
     <Compile Include="Members\MemberIndexVm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TaxFree\TFItemVm.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="TaxFree\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
