@@ -1,4 +1,4 @@
-﻿using SparkleAir.IDAL.IRepository.Airport;
+﻿  using SparkleAir.IDAL.IRepository.Airport;
 using SparkleAir.Infa.EFModel.EFModels;
 using SparkleAir.Infa.Entity.Airports;
 using System;

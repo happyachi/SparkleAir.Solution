@@ -15,7 +15,7 @@ namespace SparkleAir.IDAL.IRepository.TaxFree
 
         int Create(TFItemEntity entity);
 
-        void Delete(TFItemEntity entity);
+        void Delete(int id);
 
 
     }

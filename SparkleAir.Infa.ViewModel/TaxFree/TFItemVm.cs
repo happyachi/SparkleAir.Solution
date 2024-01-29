@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SparkleAir.Infa.ViewModel.TaxFree
 {
-    public class TFItemEntity
+    public class TFItemVm
     {
         public int Id { get; set; }
 
@@ -28,12 +28,12 @@ namespace SparkleAir.Infa.ViewModel.TaxFree
 
         public bool IsPublished { get; set; }
 
-        public int TFCategoryId { get; set; }
-        public virtual TFCategororyEntity TFCategory { get; set; }
+        //public int TFCategoryId { get; set; }
+        public virtual TFCategororyVm TFCategory { get; set; }
 
     }
 
-    public class TFCategororyEntity
+    public class TFCategororyVm
     {
         public int Id { get; set; }
 
