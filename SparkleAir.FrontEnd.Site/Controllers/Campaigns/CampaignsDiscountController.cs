@@ -74,14 +74,14 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
                 CampaignId = vm.CampaignId,
                 DateStart = vm.DateStart,
                 DateEnd = vm.DateEnd,
-                DateCreated = DateTime.Now,
+                DateCreated = vm.DateCreated,
                 Status = vm.Status,
                 DiscountValue = vm.DiscountValue,
                 Value = vm.Value,
                 BundleSKUs = vm.BundleSKUs,
                 MemberCriteria = vm.MemberCriteria,
                 TFItemsCriteria = vm.TFItemsCriteria,
-                Campaign=vm.Campaign
+                Campaign = vm.Campaign
             };
 
             service.Create(dto);
@@ -105,7 +105,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
                 CampaignId = get.CampaignId,
                 DateStart = get.DateStart,
                 DateEnd = get.DateEnd,
-                DateCreated = DateTime.Now,
+                DateCreated = get.DateCreated,
                 Status = get.Status,
                 DiscountValue = get.DiscountValue,
                 Value= get.Value,
@@ -142,14 +142,14 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
                 CampaignId = vm.CampaignId,
                 DateStart = vm.DateStart,
                 DateEnd = vm.DateEnd,
-                DateCreated = DateTime.Now,
+                DateCreated = vm.DateCreated,
                 Status = vm.Status,
                 DiscountValue = vm.DiscountValue,
                 Value = vm.Value,
                 BundleSKUs = vm.BundleSKUs,
                 MemberCriteria = vm.MemberCriteria,
                 TFItemsCriteria = vm.TFItemsCriteria,
-                Campaign = vm.Campaign
+                Campaign = "促銷組合"
             };
             service.Update(dto);
         }

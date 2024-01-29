@@ -87,7 +87,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
                 DisplayDescription = vm.DisplayDescription,
                 MemberCriteria = vm.MemberCriteria,
                 AirFlightsCriteria = vm.AirFlightsCriteria,
-                Campaign = vm.Campaign
+                Campaign = "優惠券"
             };
             service.Create(dto);
         }

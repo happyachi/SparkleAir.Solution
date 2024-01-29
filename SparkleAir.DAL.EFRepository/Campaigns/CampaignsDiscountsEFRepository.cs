@@ -25,7 +25,7 @@ namespace SparkleAir.DAL.EFRepository.Campaigns
                 CampaignId = entity.CampaignId,
                 DateStart = entity.DateStart,
                 DateEnd = entity.DateEnd,
-                DateCreated = DateTime.Now,
+                DateCreated = entity.DateCreated,
                 Status = entity.Status,
                 DiscountValue = entity.DiscountValue,
                 Value = entity.Value,

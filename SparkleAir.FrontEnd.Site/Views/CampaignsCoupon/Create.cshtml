@@ -12,24 +12,21 @@
     @Html.AntiForgeryToken()
     
 <div class="form-horizontal">
-    <h4>CampaignsCouponVm</h4>
     <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(model => model.CampaignId, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.CampaignId, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.CampaignId, "", new { @class = "text-danger" })
-        </div>
-    </div>
 
-    <div class="form-group">
+    <select name="CampaignId" id="CampaignId" class="form-select" aria-label="Default select example">
+        <option selected>請下拉選擇</option>
+        <option value="1">折扣金額</option>
+        <option value="4">折扣折數</option>
+    </select>
+   
+    @*<div class="form-group">
         @Html.LabelFor(model => model.Campaign, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.Campaign, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.Campaign, "", new { @class = "text-danger" })
         </div>
-    </div>
+    </div>*@
 
     <div class="form-group">
         @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
