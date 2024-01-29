@@ -1,6 +1,8 @@
 ﻿using SparkleAir.IDAL.IRepository.Airport;
 using SparkleAir.IDAL.IRepository.TaxFree;
+using SparkleAir.Infa.Dto.Airport;
 using SparkleAir.Infa.Dto.TaxFree;
+using SparkleAir.Infa.Entity.Airports;
 using SparkleAir.Infa.Entity.TaxFree;
 using System;
 using System.Collections.Generic;
@@ -79,9 +81,26 @@ namespace SparkleAir.BLL.Service.TaxFree
             _repo.Update(entity);
         }
 
-        public TFItemDto Get(int Id)
+        public TFItemDto Getid(int Id)
         {
-            throw new NotImplementedException();
+            TFItemEntity entity = _repo.Getid(Id);
+
+            TFItemDto dto = new TFItemDto 
+
+            {
+                Id = entity.Id,
+                Name = entity.Name,
+                SerialNumber = entity.SerialNumber,
+                Image = entity.Image,
+                Quantity = entity.Quantity,
+                UnitPrice = entity.UnitPrice,
+                Description = entity.Description,
+                IsPublished = entity.IsPublished,
+                TFCategoriesId = entity.TFCategoriesId
+
+            };
+
+            return dto;
         }
 
     }

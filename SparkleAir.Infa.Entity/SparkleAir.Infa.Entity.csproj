@@ -58,6 +58,7 @@
     <Compile Include="Members\MemberEntity.cs" />
     <Compile Include="Members\MemberLoginLogEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TaxFree\TFCategoryEntity.cs" />
     <Compile Include="TaxFree\TFItemEntity.cs" />
   </ItemGroup>
   <ItemGroup>

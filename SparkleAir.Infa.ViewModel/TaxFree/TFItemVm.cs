@@ -29,15 +29,9 @@ namespace SparkleAir.Infa.ViewModel.TaxFree
         public bool IsPublished { get; set; }
 
         //public int TFCategoryId { get; set; }
-        public virtual TFCategororyVm TFCategory { get; set; }
+        public virtual TFCategoryVm TFCategory { get; set; }
 
     }
 
-    public class TFCategororyVm
-    {
-        public int Id { get; set; }
-
-        public string Category { get; set; }
-
-    }
+    
 }

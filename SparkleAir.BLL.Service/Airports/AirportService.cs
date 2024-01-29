@@ -76,7 +76,7 @@ namespace SparkleAir.BLL.Service.Airports
         //取得一筆
         public AirportDto Get(int id)
         {
-            AirportEntity entity = _repo.Get(id);
+            AirportEntity entity = _repo.Getid(id);
 
             AirportDto dto = new AirportDto
             {

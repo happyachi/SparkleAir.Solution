@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
 using System.Data.Entity.Core.Metadata.Edm;
+using SparkleAir.Infa.Entity.Airports;
 
 namespace SparkleAir.DAL.EFRepository.TaxFree
 {
@@ -90,9 +91,25 @@ namespace SparkleAir.DAL.EFRepository.TaxFree
             throw new NotImplementedException();
         }
 
-        public TFItemEntity Get(int id)
+        public TFItemEntity Getid(int id)
         {
-            throw new NotImplementedException();
+            var db = new AppDbContext();
+            var get = db.TFItems.Find(id);
+
+            TFItemEntity getitem = new TFItemEntity()
+            {
+                Id = get.Id,
+                Name = get.Name,
+                SerialNumber = get.SerialNumber,
+                Image = get.Image,
+                Quantity = get.Quantity,
+                UnitPrice = get.UnitPrice,
+                Description = get.Description,
+                IsPublished = get.IsPublished,
+                TFCategoriesId = get.TFCategoriesId
+            };
+
+            return getitem;
         }
 
         //public void Delete(int id)
