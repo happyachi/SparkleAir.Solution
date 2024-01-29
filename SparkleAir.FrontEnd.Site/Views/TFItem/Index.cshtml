@@ -35,9 +35,6 @@
         <th>
             @Html.DisplayNameFor(model => model.IsPublished)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TFCategoriesId)
-        </th>
         <th></th>
     </tr>
 
@@ -66,9 +63,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.IsPublished)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TFCategoriesId)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
