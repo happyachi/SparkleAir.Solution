@@ -65,6 +65,8 @@
     <Compile Include="CompanyAndPermission\PermissionGroupsAddStaffEFRepository.cs" />
     <Compile Include="CompanyAndPermission\PermissionPageInfoEFRepository.cs" />
     <Compile Include="CompanyAndPermission\PermissionSettingEFRepository.cs" />
+    <Compile Include="Airtype&amp;Owns\AirSeatRepository.cs" />
+    <Compile Include="Airtype&amp;Owns\PlaneRepository.cs" />
     <Compile Include="Members\MemberEFRepository.cs" />
     <Compile Include="Members\MemberLoginLogEFRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

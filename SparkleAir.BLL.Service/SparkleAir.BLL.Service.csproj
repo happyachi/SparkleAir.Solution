@@ -56,10 +56,16 @@
     <Compile Include="CompanyAndPermission\PermissionPageInfoService.cs" />
     <Compile Include="CompanyAndPermission\PermissionSettingService.cs" />
     <Compile Include="Members\MemberLoginLogService.cs" />
+    <Compile Include="Airtype&amp;Owns\AirSeatService.cs" />
+    <Compile Include="Airtype&amp;Owns\PlaneService.cs" />
     <Compile Include="Members\MemberService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SparkleAir.DAL.EFRepository\SparkleAir.DAL.EFRepository.csproj">
+      <Project>{0FC6AFBA-5585-43BE-84AC-22DE8BC3DC74}</Project>
+      <Name>SparkleAir.DAL.EFRepository</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SparkleAir.IDAL.IRepository\SparkleAir.IDAL.IRepository.csproj">
       <Project>{73007f85-f88e-4292-ab16-8a5798a9a6fb}</Project>
       <Name>SparkleAir.IDAL.IRepository</Name>
@@ -83,6 +89,10 @@
     <ProjectReference Include="..\SparkleAir.Infa.Utility\SparkleAir.Infa.Utility.csproj">
       <Project>{3b17053d-b105-432e-a867-05a051c94158}</Project>
       <Name>SparkleAir.Infa.Utility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SparkleAir.Infa.ViewModel\SparkleAir.Infa.ViewModel.csproj">
+      <Project>{4B7A6ECF-2F6D-449B-83D0-6E08D3E43A40}</Project>
+      <Name>SparkleAir.Infa.ViewModel</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

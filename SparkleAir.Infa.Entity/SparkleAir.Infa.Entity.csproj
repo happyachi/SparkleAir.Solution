@@ -55,6 +55,8 @@
     <Compile Include="CompanyAndPermission\PermissionGroupsAddStaffEntity.cs" />
     <Compile Include="CompanyAndPermission\PermissionPageInfoEntity.cs" />
     <Compile Include="CompanyAndPermission\PermissionSettingEntity.cs" />
+    <Compile Include="Airtype&amp;Owns\AirSeatEntity.cs" />
+    <Compile Include="Airtype&amp;Owns\PlaneEntity.cs" />
     <Compile Include="Members\MemberEntity.cs" />
     <Compile Include="Members\MemberLoginLogEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

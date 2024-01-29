@@ -157,6 +157,7 @@
     <Compile Include="Controllers\CompaniesAndPermissions\PermissionGroupsController.cs" />
     <Compile Include="Controllers\CompaniesAndPermissions\PermissionPageInfosController.cs" />
     <Compile Include="Controllers\CompaniesAndPermissions\PermissionSettingsController.cs" />
+    <Compile Include="Controllers\Airtype&amp;Owns\PlanesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Members\MemberLoginLogsController.cs" />
     <Compile Include="Controllers\Members\MembersController.cs" />
@@ -259,12 +260,19 @@
     <Content Include="Views\PermissionSettings\Index.cshtml" />
     <Content Include="Views\PermissionSettings\Create.cshtml" />
     <Content Include="Views\PermissionSettings\Edit.cshtml" />
+    <Content Include="Views\Planes\Index.cshtml" />
+    <Content Include="Views\Planes\Details.cshtml" />
+    <Content Include="Views\Planes\Create.cshtml" />
+    <Content Include="Views\Planes\Update.cshtml" />
+    <Content Include="Views\Planes\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\ViewModels\Members\" />
     <Folder Include="Views\Campaigns\" />
     <Folder Include="Views\Companies\" />
+    <Folder Include="Models\ViewModels\Airtype&amp;Owns\" />
+    <Folder Include="Views\Airtype&amp;Owns\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

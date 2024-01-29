@@ -62,6 +62,8 @@
     <Compile Include="CompanyAndPermission\PermissionGroupsAddStaffIndexVm.cs" />
     <Compile Include="CompanyAndPermission\PermissionPageInfoIndexVm.cs" />
     <Compile Include="CompanyAndPermission\PermissionSettingIndexVm.cs" />
+    <Compile Include="Airtype&amp;Owns\PlaneVm.cs" />
+    <Compile Include="Airtype&amp;Owns\PlaneVmIndex.cs" />
     <Compile Include="Members\MemberIndexVm.cs" />
     <Compile Include="Members\MemberLoginLogIndexVm.cs" />
     <Compile Include="Members\MemberUpdateVm.cs" />
