@@ -68,6 +68,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TaxFree\TFCategoryVm.cs" />
     <Compile Include="TaxFree\TFItemVm.cs" />
+    <Compile Include="TaxFree\TFOrderlistsVm.cs" />
+    <Compile Include="TaxFree\TFOrderStatusVm.cs" />
+    <Compile Include="TaxFree\TFReservelistsVm.cs" />
+    <Compile Include="TaxFree\TFReservesVm.cs" />
+    <Compile Include="TaxFree\TFWishlistsVm.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
