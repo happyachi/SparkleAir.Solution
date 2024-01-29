@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Airtype&amp;Owns\AirSeatRepository.cs" />
     <Compile Include="Airtype&amp;Owns\PlaneRepository.cs" />
     <Compile Include="Members\MemberEFRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Airtype&amp;Owns\AirSeatDto.cs" />
     <Compile Include="Airtype&amp;Owns\PlaneDto.cs" />
     <Compile Include="Members\MemberDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
