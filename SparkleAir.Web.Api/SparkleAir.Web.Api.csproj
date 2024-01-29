@@ -193,30 +193,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
-    <Content Include="Content\bootstrap-grid.css" />
-    <Content Include="Content\bootstrap-grid.min.css" />
-    <Content Include="Content\bootstrap-grid.rtl.css" />
-    <Content Include="Content\bootstrap-grid.rtl.min.css" />
-    <Content Include="Content\bootstrap-reboot.css" />
-    <Content Include="Content\bootstrap-reboot.min.css" />
-    <Content Include="Content\bootstrap-reboot.rtl.css" />
-    <Content Include="Content\bootstrap-reboot.rtl.min.css" />
-    <Content Include="Content\bootstrap-utilities.css" />
-    <Content Include="Content\bootstrap-utilities.min.css" />
-    <Content Include="Content\bootstrap-utilities.rtl.css" />
-    <Content Include="Content\bootstrap-utilities.rtl.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\bootstrap.rtl.css" />
-    <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\css\volt.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Scripts\bootstrap.bundle.js" />
-    <Content Include="Scripts\bootstrap.bundle.min.js" />
-    <Content Include="Scripts\bootstrap.esm.js" />
-    <Content Include="Scripts\bootstrap.esm.min.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
     <Content Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\ResourceModel.cshtml" />
@@ -236,12 +215,219 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
-    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
-    <Content Include="Scripts\jquery-3.4.1.js" />
-    <Content Include="Scripts\jquery-3.4.1.min.js" />
-    <Content Include="Scripts\jquery-3.4.1.slim.js" />
-    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <Content Include="Content\css\volt.css.map" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\js\volt.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\cjs\enums.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\cjs\popper-base.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\cjs\popper-lite.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\cjs\popper.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\createPopper.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\dom-utils\contains.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\dom-utils\getBoundingClientRect.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\dom-utils\getClippingRect.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\dom-utils\getCompositeRect.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\dom-utils\getComputedStyle.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\dom-utils\getDocumentElement.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\dom-utils\getDocumentRect.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\dom-utils\getHTMLElementScroll.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\dom-utils\getLayoutRect.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\dom-utils\getNodeName.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\dom-utils\getNodeScroll.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\dom-utils\getOffsetParent.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\dom-utils\getParentNode.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\dom-utils\getScrollParent.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\dom-utils\getViewportRect.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\dom-utils\getWindow.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\dom-utils\getWindowScroll.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\dom-utils\getWindowScrollBarX.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\dom-utils\instanceOf.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\dom-utils\isScrollParent.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\dom-utils\isTableElement.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\dom-utils\listScrollParents.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\enums.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\index.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\modifiers\applyStyles.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\modifiers\arrow.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\modifiers\computeStyles.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\modifiers\eventListeners.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\modifiers\flip.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\modifiers\hide.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\modifiers\index.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\modifiers\offset.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\modifiers\popperOffsets.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\modifiers\preventOverflow.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\popper-base.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\popper-lite.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\popper.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\types.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\utils\computeAutoPlacement.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\utils\computeOffsets.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\utils\debounce.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\utils\detectOverflow.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\utils\expandToHashMap.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\utils\format.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\utils\getAltAxis.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\utils\getAltLen.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\utils\getBasePlacement.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\utils\getFreshSideObject.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\utils\getMainAxisFromPlacement.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\utils\getOppositePlacement.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\utils\getOppositeVariationPlacement.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\utils\getVariation.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\utils\math.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\utils\mergeByName.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\utils\mergePaddingObject.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\utils\orderModifiers.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\utils\rectToClientRect.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\utils\uniqueBy.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\utils\validateModifiers.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\esm\utils\within.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\umd\enums.min.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\umd\popper-base.min.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\umd\popper-lite.min.js" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\umd\popper.min.js" />
+    <Content Include="Scripts\vendor\bootstrap\dist\css\bootstrap-grid.min.css" />
+    <Content Include="Scripts\vendor\bootstrap\dist\css\bootstrap-grid.rtl.min.css" />
+    <Content Include="Scripts\vendor\bootstrap\dist\css\bootstrap-reboot.min.css" />
+    <Content Include="Scripts\vendor\bootstrap\dist\css\bootstrap-reboot.rtl.min.css" />
+    <Content Include="Scripts\vendor\bootstrap\dist\css\bootstrap-utilities.min.css" />
+    <Content Include="Scripts\vendor\bootstrap\dist\css\bootstrap-utilities.rtl.min.css" />
+    <Content Include="Scripts\vendor\bootstrap\dist\css\bootstrap.min.css" />
+    <Content Include="Scripts\vendor\bootstrap\dist\css\bootstrap.rtl.min.css" />
+    <Content Include="Scripts\vendor\bootstrap\dist\js\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\vendor\bootstrap\dist\js\bootstrap.esm.min.js" />
+    <Content Include="Scripts\vendor\bootstrap\dist\js\bootstrap.min.js" />
+    <Content Include="Scripts\vendor\chartist-plugin-tooltips\dist\chartist-plugin-tooltip.css" />
+    <Content Include="Scripts\vendor\chartist-plugin-tooltips\dist\chartist-plugin-tooltip.min.js" />
+    <Content Include="Scripts\vendor\chartist\dist\chartist.min.css" />
+    <Content Include="Scripts\vendor\chartist\dist\chartist.min.js" />
+    <Content Include="Scripts\vendor\notyf\notyf.es.js" />
+    <Content Include="Scripts\vendor\notyf\notyf.min.css" />
+    <Content Include="Scripts\vendor\notyf\notyf.min.js" />
+    <Content Include="Scripts\vendor\notyf\notyf.umd.js" />
+    <Content Include="Scripts\vendor\nouislider\dist\nouislider.min.css" />
+    <Content Include="Scripts\vendor\nouislider\dist\nouislider.min.js" />
+    <Content Include="Scripts\vendor\nouislider\dist\nouislider.min.mjs" />
+    <Content Include="Scripts\vendor\nouislider\dist\nouislider.mjs" />
+    <Content Include="Scripts\vendor\onscreen\dist\index.js" />
+    <Content Include="Scripts\vendor\onscreen\dist\on-screen.es6.js" />
+    <Content Include="Scripts\vendor\onscreen\dist\on-screen.umd.min.js" />
+    <Content Include="Scripts\vendor\sass\node_modules\immutable\dist\immutable.es.js" />
+    <Content Include="Scripts\vendor\sass\node_modules\immutable\dist\immutable.min.js" />
+    <Content Include="Scripts\vendor\sass\sass.dart.js" />
+    <Content Include="Scripts\vendor\sass\sass.default.dart.js" />
+    <Content Include="Scripts\vendor\sass\sass.js" />
+    <Content Include="Scripts\vendor\simplebar\dist\simplebar-core.esm.js" />
+    <Content Include="Scripts\vendor\simplebar\dist\simplebar.esm.js" />
+    <Content Include="Scripts\vendor\simplebar\dist\simplebar.min.css" />
+    <Content Include="Scripts\vendor\simplebar\dist\simplebar.min.js" />
+    <Content Include="Scripts\vendor\simplebar\dist\simplebar.umd.js" />
+    <Content Include="Scripts\vendor\smooth-scroll\dist\smooth-scroll.min.js" />
+    <Content Include="Scripts\vendor\smooth-scroll\dist\smooth-scroll.polyfills.min.js" />
+    <Content Include="Scripts\vendor\sweetalert2\dist\sweetalert2.all.min.js" />
+    <Content Include="Scripts\vendor\sweetalert2\dist\sweetalert2.min.css" />
+    <Content Include="Scripts\vendor\sweetalert2\dist\sweetalert2.min.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\css\datepicker-bs4.min.css" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\css\datepicker-bs5.min.css" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\css\datepicker-bulma.min.css" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\css\datepicker-foundation.min.css" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\css\datepicker.min.css" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\datepicker-full.min.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\datepicker.min.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\ar-DZ.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\ar-tn.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\ar.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\az.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\bg.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\bm.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\bn.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\br.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\bs.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\ca.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\cs.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\cy.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\da.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\de.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\el.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\en-AU.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\en-CA.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\en-GB.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\en-IE.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\en-NZ.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\en-ZA.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\eo.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\es.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\et.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\eu.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\fa.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\fi.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\fo.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\fr-CH.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\fr.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\gl.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\he.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\hi.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\hr.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\hu.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\hy.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\id.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\is.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\it-CH.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\it.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\ja.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\ka.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\kk.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\km.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\ko.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\lt.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\lv.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\me.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\mk.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\mn.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\mr.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\ms.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\nl-BE.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\nl.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\no.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\oc.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\pl.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\pt-BR.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\pt.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\ro.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\ru.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\si.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\sk.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\sl.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\sq.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\sr-latn.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\sr.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\sv.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\sw.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\ta.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\tg.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\th.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\tk.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\tr.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\uk.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\uz-cyrl.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\uz-latn.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\vi.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\zh-CN.js" />
+    <Content Include="Scripts\vendor\vanillajs-datepicker\dist\js\locales\zh-TW.js" />
+    <Content Include="Scripts\vendor\waypoints\lib\jquery.waypoints.min.js" />
+    <Content Include="Scripts\vendor\waypoints\lib\noframework.waypoints.min.js" />
+    <Content Include="Scripts\vendor\waypoints\lib\shortcuts\infinite.min.js" />
+    <Content Include="Scripts\vendor\waypoints\lib\shortcuts\inview.min.js" />
+    <Content Include="Scripts\vendor\waypoints\lib\shortcuts\sticky.min.js" />
+    <Content Include="Scripts\vendor\waypoints\lib\waypoints.debug.js" />
+    <Content Include="Scripts\vendor\waypoints\lib\zepto.waypoints.min.js" />
+    <Content Include="Scripts\vendor\waypoints\licenses.txt" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -250,7 +436,6 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
-    <Content Include="Content\Site.css" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -260,77 +445,26 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Scripts\bootstrap.min.js.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Scripts\bootstrap.js.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Scripts\bootstrap.esm.min.js.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Scripts\bootstrap.esm.js.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Scripts\bootstrap.bundle.js.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Content\bootstrap.rtl.min.css.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Content\bootstrap.rtl.css.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Content\bootstrap.min.css.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Content\bootstrap.css.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Content\bootstrap-utilities.rtl.min.css.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Content\bootstrap-utilities.rtl.css.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Content\bootstrap-utilities.min.css.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Content\bootstrap-utilities.css.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Content\bootstrap-reboot.rtl.min.css.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Content\bootstrap-reboot.rtl.css.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Content\bootstrap-reboot.min.css.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Content\bootstrap-reboot.css.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Content\bootstrap-grid.rtl.min.css.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Content\bootstrap-grid.rtl.css.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Content\bootstrap-grid.min.css.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Content\bootstrap-grid.css.map" />
+    <Folder Include="Scripts\vendor\chartist\dist\scss\settings\" />
+    <Folder Include="Scripts\vendor\sass\types\legacy\" />
+    <Folder Include="Scripts\vendor\sass\types\logger\" />
+    <Folder Include="Scripts\vendor\sass\types\util\" />
+    <Folder Include="Scripts\vendor\sass\types\value\" />
+    <Folder Include="Scripts\vendor\waypoints\src\" />
+    <Folder Include="Scripts\vendor\waypoints\test\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.4.1.min.map" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\cjs\enums.js.flow" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\cjs\popper-base.js.flow" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\cjs\popper-lite.js.flow" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\cjs\popper.js.flow" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\umd\enums.min.js.flow" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\umd\popper-base.min.js.flow" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\umd\popper-lite.min.js.flow" />
+    <Content Include="Scripts\vendor\%40popperjs\core\dist\umd\popper.min.js.flow" />
+    <Content Include="Scripts\vendor\sass\node_modules\immutable\dist\immutable.js.flow" />
+    <Content Include="Scripts\vendor\waypoints\testem.json" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SparkleAir.BLL.Service\SparkleAir.BLL.Service.csproj">
