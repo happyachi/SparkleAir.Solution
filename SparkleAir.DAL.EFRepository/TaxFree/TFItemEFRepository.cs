@@ -90,6 +90,11 @@ namespace SparkleAir.DAL.EFRepository.TaxFree
             throw new NotImplementedException();
         }
 
+        public TFItemEntity Get(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         //public void Delete(int id)
         //{
         //    var ItemGet = db.TFItems.Find(id);

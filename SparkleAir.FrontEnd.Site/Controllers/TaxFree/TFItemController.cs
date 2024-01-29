@@ -25,6 +25,11 @@ namespace SparkleAir.FrontEnd.Site.Controllers.TaxFree
             List<TFItemVm> data = Get();
             return View(data);
         }
+        public ActionResult Details(int id)
+        {
+            TFItemVm vm =Get(id);
+            return View(vm);
+        }
 
         private List<TFItemVm> Get()
         {
@@ -49,6 +54,120 @@ namespace SparkleAir.FrontEnd.Site.Controllers.TaxFree
             }).ToList();
 
             return vm;
+        }
+
+        public ActionResult Delete(int id)
+        {
+            DeleteItem(id);
+            return View("Index");
+        }
+
+        private void DeleteItem(int id)
+        {
+            var service = new TaxFreeService(TFRepository);
+            service.Delete(id);
+        }
+
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(TFItemVm vm)
+        {
+            if(!ModelState.IsValid)
+            {
+                return View();
+            }
+            try
+            {
+                CreateItem(vm);
+                return RedirectToAction("Index");
+            }catch(Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, ex.Message);
+                return View(vm);
+            }
+            
+        }
+
+        private void CreateItem(TFItemVm vm)
+        {
+            var service = new TaxFreeService(TFRepository);
+            TFItemDto dto = new TFItemDto
+            {
+                Id = vm.Id,
+                Name = vm.Name,
+                TFCategoriesId = vm.TFCategoriesId,
+                SerialNumber = vm.SerialNumber,
+                Image = vm.Image,
+                Quantity = vm.Quantity,
+                UnitPrice = vm.UnitPrice,
+                Description = vm.Description,
+                IsPublished = vm.IsPublished,
+
+            };
+            service.Create(dto);
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var TFItem = Get(id);
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Edit(TFItemVm vm)
+        {
+            if (!ModelState.IsValid) { return View(); }
+            try
+            {
+                UpdateItem(vm);
+                return RedirectToAction("Index");
+            }catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, ex.Message);
+            }
+            return View(vm);
+
+        }
+
+        private void UpdateItem(TFItemVm vm)
+        {
+            var service = new TaxFreeService(TFRepository);
+            TFItemDto dto = new TFItemDto
+            {
+                Id = vm.Id,
+                Name = vm.Name,
+                TFCategoriesId = vm.TFCategoriesId,
+                SerialNumber = vm.SerialNumber,
+                Image = vm.Image,
+                Quantity = vm.Quantity,
+                UnitPrice = vm.UnitPrice,
+                Description = vm.Description,
+                IsPublished = vm.IsPublished,
+
+            }; service.Update(dto);
+        }
+
+        private TFItemVm Get(int id)
+        {
+            var service = new TaxFreeService(TFRepository);
+            var dto = service.Get(id);
+
+            return new TFItemVm
+            {
+                Id = dto.Id,
+                TFCategoriesId = dto.TFCategoriesId,
+                Name = dto.Name,
+                SerialNumber = dto.SerialNumber,
+                Image = dto.Image,
+                Quantity = dto.Quantity,
+                UnitPrice = dto.UnitPrice,
+                Description = dto.Description,
+                IsPublished = dto.IsPublished,
+            };
         }
     }
 }

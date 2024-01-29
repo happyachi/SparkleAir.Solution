@@ -79,6 +79,11 @@ namespace SparkleAir.BLL.Service.TaxFree
             _repo.Update(entity);
         }
 
+        public TFItemDto Get(int Id)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 
 }

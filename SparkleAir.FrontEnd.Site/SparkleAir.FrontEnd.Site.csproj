@@ -390,6 +390,9 @@
     <Content Include="Views\PermissionSettings\Create.cshtml" />
     <Content Include="Views\PermissionSettings\Edit.cshtml" />
     <Content Include="Views\TFItem\Index.cshtml" />
+    <Content Include="Views\TFItem\Create.cshtml" />
+    <Content Include="Views\TFItem\Edit.cshtml" />
+    <Content Include="Views\TFItem\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
