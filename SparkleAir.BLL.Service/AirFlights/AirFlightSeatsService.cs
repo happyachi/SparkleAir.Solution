@@ -14,9 +14,9 @@ namespace SparkleAir.BLL.Service.AirFlights
         {
             _repo = repo;
         }
-        public void Create(int managementId)
+        public void Create777300ER(int flightId)
         {
-            _repo.Create(managementId);
+            _repo.Create777300ER(flightId);
         }
     }
 }

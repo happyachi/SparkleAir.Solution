@@ -15,12 +15,13 @@ namespace SparkleAir.BLL.Service.AirFlights
     public class AirFlightService
     {
         private readonly IAirFlightRepository _repo;
+        private readonly IAirFlightSeatsRepository _repoSeats;
         public AirFlightService(IAirFlightRepository repo)
         {
             _repo = repo;
         }
 
-        public void Create(AirFlightDto dto)
+        public List<int> Create(AirFlightDto dto)
         {
             FlightDate[] days = dto.DayofWeek.FlightDays();
             var today = DateTime.Today;
@@ -28,7 +29,7 @@ namespace SparkleAir.BLL.Service.AirFlights
             int thisYear = today.Year;
             DateTime currentDate = new DateTime(thisYear, thisMonth, 1);
             List<DateTime> scheduledFlights = currentDate.GetScheduledFlights(days, today);
-
+            List<int> ids = new List<int>();
             foreach (var scheduledFlight in scheduledFlights)
             {
                 // 將起飛時間和抵達時間與日期結合
@@ -37,7 +38,6 @@ namespace SparkleAir.BLL.Service.AirFlights
 
                 AirFlightEntity entity = new AirFlightEntity
                 {
-                    Id = dto.Id,
                     AirOwnId = dto.AirOwnId,
                     FlightCode = dto.FlightCode,
                     FlightModel = dto.FlightModel,
@@ -49,10 +49,11 @@ namespace SparkleAir.BLL.Service.AirFlights
                     DayofWeek = dto.DayofWeek,
                     ScheduledDeparture = scheduledDeparture,
                     ScheduledArrival = scheduledArrival
-                };
-
-                _repo.Create(entity);
+                };                
+                var flight = _repo.Create(entity);
+                ids.Add(flight);
             }
+            return ids;
         }
 
         //還未使用到

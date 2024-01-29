@@ -36,8 +36,9 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
             return View();
         }
 
-        public ActionResult CreateFlightSeats()
+        public ActionResult CreateFlightSeats(int FlightId)
         {
+            _airFlightSeatsService.Create777300ER(FlightId);
             return View();
         }
     }

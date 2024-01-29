@@ -8,6 +8,6 @@ namespace SparkleAir.IDAL.IRepository.AirFlights
 {
     public interface IAirFlightSeatsRepository
     {
-        void Create(int managementId);
+        void Create777300ER(int flightId);
     }
 }

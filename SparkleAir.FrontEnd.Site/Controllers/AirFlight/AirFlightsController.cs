@@ -89,8 +89,6 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
         public ActionResult Create(int id)
         {
             AirFlightCreateVm data = Get(id);
-           
-            _flightSeatsService.Create(data.Id);
             return View(data);
         }
 
@@ -104,7 +102,6 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
             DateTime nextFlightDate = CalculateNextFlightDate(flightDays);
             var flight = new AirFlightCreateVm
             {
-                Id = vm.Id,
                 AirFlightManagementId = id,
                 FlightModel = vm.FlightModel,
                 FlightCode = vm.FlightCode,
@@ -142,7 +139,11 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
             if (!ModelState.IsValid) return View();
             try
             {
-                CreateFlight(vm);
+                List<int> flightIds = CreateFlight(vm);
+                foreach (var flightId in flightIds)
+                {
+                    _flightSeatsService.Create777300ER(flightId);
+                }
                 return RedirectToAction("Index", "AirFlightsManagement");
             }
             catch (Exception ex)
@@ -152,11 +153,11 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
             }
         }
 
-        private void CreateFlight(AirFlightCreateVm vm)
+        private List<int> CreateFlight(AirFlightCreateVm vm)
         {
+            List<int> flightIds = new List<int>();
             AirFlightDto dto = new AirFlightDto
             {
-                Id = vm.Id,
                 AirOwnId = vm.AirOwnId,
                 AirFlightManagementId = vm.AirFlightManagementId,
                 FlightCode = vm.FlightCode,
@@ -170,13 +171,14 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
                 DepartureTimeZone = vm.DepartureTimeZone,
                 ArrivalTimeZone = vm.ArrivalTimeZone
             };
-            _airFlightService.Create(dto);
+            flightIds = _airFlightService.Create(dto);
+            return flightIds;
         }
 
         #endregion
 
         #region Create More Flights
-       
+
         #endregion
     }
 }
