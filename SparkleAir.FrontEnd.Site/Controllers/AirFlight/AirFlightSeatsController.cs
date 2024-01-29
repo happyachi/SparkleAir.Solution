@@ -13,14 +13,17 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
     {
         private ISeatGroupRepository _seatGroupRepo;
         private SeatGroupService _seatGroupService;
+        private IAirFlightSeatsRepository _airFlightSeatsRepo;
+        private AirFlightSeatsService _airFlightSeatsService;
         public AirFlightSeatsController()
         {
             _seatGroupRepo = new SeatGroupEFRepository();
             _seatGroupService = new SeatGroupService(_seatGroupRepo);
-
+            _airFlightSeatsRepo = new AirFlightSeatsEFRepository();
+            _airFlightSeatsService = new AirFlightSeatsService(_airFlightSeatsRepo);
         }
 
-       
+
         // GET: AirFlightSeats
         public ActionResult Index()
         {

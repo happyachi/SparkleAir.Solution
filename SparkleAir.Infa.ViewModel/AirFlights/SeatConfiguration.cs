@@ -9,7 +9,8 @@ namespace SparkleAir.Infa.ViewModel.AirFlights
     public class SeatConfiguration
     {
         public string FlightModel { get; set; }
+        public int AirTypeId { get; set; }
         public int TotalSeats { get; set; }
-        public Dictionary<string, int> CabinSeats { get; set; } = new Dictionary<string, int>();
+        public Dictionary<int, int> CabinSeats { get; set; } = new Dictionary<int, int>();
     }
 }

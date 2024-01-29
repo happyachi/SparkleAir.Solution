@@ -12,8 +12,7 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
     {
         public void Create(int managementId)
         {
-            AirFlightSeatsEntity entity = new AirFlightSeatsEntity();
-
+            AirFlightSeatsEntity entity;
         }
     }
 }

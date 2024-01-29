@@ -1,6 +1,9 @@
 ﻿using SparkleAir.BLL.Service.AirFlights;
+using SparkleAir.BLL.Service.Airtype_Owns;
 using SparkleAir.DAL.EFRepository.AirFlights;
+using SparkleAir.DAL.EFRepository.Airtype_Owns;
 using SparkleAir.IDAL.IRepository.AirFlights;
+using SparkleAir.IDAL.IRepository.Airtype_Owns;
 using SparkleAir.Infa.Criteria.AirFlights;
 using SparkleAir.Infa.Dto.AriFlights;
 using SparkleAir.Infa.EFModel.EFModels;
@@ -25,6 +28,11 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
         private AirFlightManagementService _flightManagementService;
         private IAirFlightSeatsRepository _flightSeatsRepo;
         private AirFlightSeatsService _flightSeatsService;
+        private IAirSeatRepository _airSeatRepo;
+        private AirSeatService _airSeatService;
+
+        private IPlaneRepository _planeRepo;
+        private PlaneService _planeService;
         public AirFlightsController()
         {
             _airFlightRepo = new AirFlightEFRepository();
@@ -33,6 +41,11 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
             _airFlightService = new AirFlightService(_airFlightRepo);
             _flightSeatsRepo = new AirFlightSeatsEFRepository();
             _flightSeatsService = new AirFlightSeatsService(_flightSeatsRepo);
+            _airSeatRepo = new AirSeatRepository();
+            _airSeatService = new AirSeatService(_airSeatRepo);
+
+            _planeRepo = new PlaneRepository();
+            _planeService = new PlaneService(_planeRepo);
         }
 
         #endregion
@@ -76,9 +89,11 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
         public ActionResult Create(int id)
         {
             AirFlightCreateVm data = Get(id);
+           
             _flightSeatsService.Create(data.Id);
             return View(data);
         }
+
 
         private AirFlightCreateVm Get(int id)
         {
@@ -100,7 +115,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
                 ScheduledDeparture = nextFlightDate.Add(vm.DepartureTime),
                 ScheduledArrival = nextFlightDate.Add(vm.ArrivalTime),
                 DepartureTimeZone = vm.DepartureTimeZone,
-                ArrivalTimeZone = vm.ArrivalTimeZone
+                ArrivalTimeZone = vm.ArrivalTimeZone,
             };
             return flight;
         }

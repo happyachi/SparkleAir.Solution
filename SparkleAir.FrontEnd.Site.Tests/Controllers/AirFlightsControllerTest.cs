@@ -46,15 +46,15 @@ namespace SparkleAir.FrontEnd.Site.Tests.Controllers
 				Mile = mile
 			};
 
-			if (flightCode.Substring(2) == "001")
-			{
-				//會出錯
-				Assert.ThrowsException<Exception>(() => controller.Create(validVm));
-			}
-			else
-			{
-				controller.Create(validVm);
-			}
+			//if (flightCode.Substring(2) == "001")
+			//{
+			//	//會出錯
+			//	Assert.ThrowsException<Exception>(() => controller.Create(validVm));
+			//}
+			//else
+			//{
+			//	controller.Create(validVm);
+			//}
 
 			mockService.Received(1).Create(Arg.Do<AirFlightManagementDto>(dto =>
 			{

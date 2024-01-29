@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SparkleAir.Infa.Utility.Helper;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -39,7 +40,7 @@ namespace SparkleAir.Infa.ViewModel.AirFlights
         [DisplayFormat(DataFormatString = "{0:HH:mm}")]
         public TimeSpan DepartureTime { get; set; }
 
-        [Required(ErrorMessage = "{0} 必填")]
+        [Required(ErrorMessage = DAHelper.Required)]
         [Display(Name = "抵達時間")]
         [DisplayFormat(DataFormatString = "{0:HH:mm}")]
         public TimeSpan ArrivalTime { get; set; }
