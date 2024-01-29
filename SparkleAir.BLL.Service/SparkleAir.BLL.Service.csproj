@@ -73,7 +73,7 @@
       <Name>SparkleAir.Infa.Dto</Name>
     </ProjectReference>
     <ProjectReference Include="..\SparkleAir.Infa.EFModel\SparkleAir.Infa.EFModel.csproj">
-      <Project>{A1AD6217-2A9D-4948-AA6F-BF0A12D66712}</Project>
+      <Project>{a1ad6217-2a9d-4948-aa6f-bf0a12d66712}</Project>
       <Name>SparkleAir.Infa.EFModel</Name>
     </ProjectReference>
     <ProjectReference Include="..\SparkleAir.Infa.Entity\SparkleAir.Infa.Entity.csproj">

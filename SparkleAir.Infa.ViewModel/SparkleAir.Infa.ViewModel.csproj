@@ -235,5 +235,11 @@
     <None Include="Content\DataTables\css\semanticui.scss" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SparkleAir.Infa.Utility\SparkleAir.Infa.Utility.csproj">
+      <Project>{3b17053d-b105-432e-a867-05a051c94158}</Project>
+      <Name>SparkleAir.Infa.Utility</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
