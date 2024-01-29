@@ -1,0 +1,68 @@
+﻿@model SparkleAir.Infa.ViewModel.AirFlights.AirFlightCreateVm
+
+@{
+	ViewBag.Title = "Create";
+}
+
+<h2>@Model.FlightCode 航班管理</h2>
+
+
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+	<hr />
+	@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+	@Html.HiddenFor(model => model.AirOwnId)
+	@Html.HiddenFor(model => model.AirFlightManagementId)
+	@Html.HiddenFor(model => model.DayofWeek)
+	@Html.HiddenFor(model => model.Id)
+	@Html.HiddenFor(model => model.DepartureTimeZone)
+	@Html.HiddenFor(model => model.ArrivalTimeZone)
+	@Html.HiddenFor(model => model.FlightCode)
+
+	<div class="mb-3">
+		@Html.LabelFor(model => model.FlightModel, htmlAttributes: new { @class = "control-label col-md-2" })
+
+		@Html.EditorFor(model => model.FlightModel, new { htmlAttributes = new { @class = "form-control" } })
+		@Html.ValidationMessageFor(model => model.FlightModel, "", new { @class = "text-danger" })
+	</div>
+
+	<div class="mb-3">
+		@Html.LabelFor(model => model.DepartureAirport, htmlAttributes: new { @class = "me-3" })
+		@Html.DisplayFor(model => model.DepartureAirport)
+		@Html.HiddenFor(model => model.DepartureAirport)
+
+	</div>
+
+	<div class="mb-3">
+		@Html.LabelFor(model => model.ArrivalAirport, htmlAttributes: new { @class = "me-3" })
+		@Html.DisplayFor(model => model.ArrivalAirport)
+		@Html.HiddenFor(model => model.ArrivalAirport)
+	</div>
+
+	<div class="mb-3">
+		@Html.LabelFor(model => model.ScheduledDeparture, htmlAttributes: new { @class = "me-3" })
+		@Html.DisplayFor(model => model.ScheduledDeparture)
+		@Html.HiddenFor(model => model.ScheduledDeparture)
+	</div>
+
+	<div class="mb-3">
+		@Html.LabelFor(model => model.ScheduledArrival, htmlAttributes: new { @class = "me-3" })
+		@Html.DisplayFor(model => model.ScheduledArrival)
+		@Html.HiddenFor(model => model.ScheduledArrival)
+	</div>
+
+	<div class="mb-3">
+		<div class="col-md-offset-2 col-md-10">
+			<input type="submit" value="新增" class="btn btn-dark" />
+			@Html.ActionLink("返回", "Index", "AirFlightsManagement", null, new { @class = "btn btn-dark" })
+		</div>
+	</div>
+</div>
+}
+
+@section Scripts {
+	@Scripts.Render("~/bundles/jqueryval")
+}

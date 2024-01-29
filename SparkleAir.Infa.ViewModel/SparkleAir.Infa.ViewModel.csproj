@@ -42,9 +42,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AirFlights\AirFlightCreateVm.cs" />
+    <Compile Include="AirFlights\AirFlightIndexVm.cs" />
+    <Compile Include="AirFlights\AirFlightManagementIndexVm.cs" />
+    <Compile Include="AirFlights\AirFlightManagementVm.cs" />
+    <Compile Include="AirFlights\AirFlightVm.cs" />
+    <Compile Include="Campaigns\CampaignsCouponIndexVm.cs" />
+    <Compile Include="Campaigns\CampaignsCouponVm.cs" />
+    <Compile Include="Campaigns\CampaignsDiscountIndexVm.cs" />
+    <Compile Include="Campaigns\CampaignsDiscountVm.cs" />
+    <Compile Include="Airports\AirportCreateVm.cs" />
+    <Compile Include="Airports\AirportIndexVm.cs" />
+    <Compile Include="CompanyAndPermission\CompanyDepartmentIndexVm.cs" />
+    <Compile Include="CompanyAndPermission\CompanyJobIndexVm.cs" />
+    <Compile Include="CompanyAndPermission\CompanyStaffIndexVm.cs" />
+    <Compile Include="CompanyAndPermission\CompanyStaffLoginLogIndexVm.cs" />
+    <Compile Include="CompanyAndPermission\CompanyStaffsChangePasswordLogIndexVm.cs" />
+    <Compile Include="CompanyAndPermission\PermissionGroupIndexVm.cs" />
+    <Compile Include="CompanyAndPermission\PermissionGroupsAddStaffIndexVm.cs" />
+    <Compile Include="CompanyAndPermission\PermissionPageInfoIndexVm.cs" />
+    <Compile Include="CompanyAndPermission\PermissionSettingIndexVm.cs" />
     <Compile Include="Airtype&amp;Owns\PlaneVm.cs" />
     <Compile Include="Airtype&amp;Owns\PlaneVmIndex.cs" />
     <Compile Include="Members\MemberIndexVm.cs" />
+    <Compile Include="Members\MemberLoginLogIndexVm.cs" />
+    <Compile Include="Members\MemberUpdateVm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

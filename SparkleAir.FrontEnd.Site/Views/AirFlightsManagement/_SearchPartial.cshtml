@@ -1,0 +1,146 @@
+﻿@model IEnumerable<SparkleAir.Infa.ViewModel.AirFlights.AirFlightManagementIndexVm>
+
+@section styles{
+	<style>
+		#divMore {
+			width: auto;
+			height: auto;
+			border: 1px solid gray;
+			position: absolute;
+			background-color: white;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+			/*四周隱影*/
+			border-radius: 10px;
+			padding: 10px;
+			font-size: 0.8em;
+			z-index: 999;
+		}
+	</style>
+}
+<div class="row" id="datas">
+	<div style="overflow:auto">
+		<form id="filterForm" class="text-center align-items-center">
+			<div class="form-group row">
+				<label class="col-form-label col-1">航班:</label>
+				<div class="col-sm-2">
+					<input type="text" class="form-control" id="FlightCode" name="FlightCode">
+				</div>
+				<button type="button" class="btn btn-sm btn-dark col-sm-1" onclick="applyFilter()">搜尋</button>
+			</div>
+			<!-- 其他篩選條件... -->
+		</form>
+		<table class="table text-center" id="flights">
+			<tr>
+				<th>
+					@Html.DisplayNameFor(model => model.FlightCode)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.DepartureAirport)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.ArrivalAirport)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.DepartureTime)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.ArrivalTime)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.DayofWeek)
+				</th>
+				<th></th>
+			</tr>
+
+			@foreach (var item in Model)
+			{
+				<tr class="text-center">
+					<td>
+						@Html.DisplayFor(modelItem => item.FlightCode)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.DepartureAirport)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.ArrivalAirport)
+					</td>
+					<td>
+						@*@Html.DisplayFor(modelItem => item.DepartureTime)*@
+						@Html.Raw(item.DepartureTime.ToString("hh\\:mm"))
+					</td>
+					<td>
+						@*@Html.DisplayFor(modelItem => item.ArrivalTime)*@
+						@Html.Raw(item.ArrivalTime.ToString("hh\\:mm"))
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.DayofWeek)
+					</td>
+					<td>
+						@Html.ActionLink("編輯", "Edit", new { id = item.Id }, new { @class = "btn btn-sm btn-dark" }) |
+						@Html.ActionLink("詳細資訊", "Details", new { id = item.Id }, new { @class = "btn btn-sm btn-dark details-link", data_id = item.Id }) |
+						@Html.ActionLink("機型設定", "Create", "AirFlights", new { id = item.Id }, new { @class = "btn btn-sm btn-dark" })
+					</td>
+				</tr>
+			}
+		</table>
+	</div>
+</div>
+<div id="divMore" style="display:none"></div>
+<script>
+		document.querySelectorAll(".details-link").forEach(function (link) {
+			link.addEventListener('click', function (event) {
+				event.preventDefault();
+				console.log("xxx")
+				showModal(link.dataset.id); // 通過 dataset 獲取 itemId
+			});
+		});
+
+		function showModal(itemId) {
+			fetch('@Url.Content("~/AirFlightsManagement/DetailsPartial")' + `?id=${itemId}`)
+				.then(response => response.text())
+				.then(data => {
+					const div = document.querySelector('#divMore');
+					div.innerHTML = data;
+				})
+				.catch(error => console.error('Error:', error));
+
+			const x = event.clientX;
+			const y = event.clientY;
+			const div = document.querySelector('#divMore');
+			div.style.left = `${x}px`;
+			div.style.top = `${y}px`;
+			div.style.display = 'block';
+			event.stopPropagation();
+		}
+
+		// 添加此代码來隐藏div
+		document.body.addEventListener('click', function (event) {
+			const div = document.querySelector('#divMore');
+			const isClickInside = div.contains(event.target);
+			if (!isClickInside) {
+				div.style.display = 'none';
+			}
+		});
+		// 避免div內部的點擊觸發body的事件
+		document.querySelector('#divMore').addEventListener('click', function (event) {
+			event.stopPropagation();
+		});
+
+
+		function applyFilter() {
+    // 獲取表單數據
+    var formData = $('#filterForm').serialize();
+
+    // 構建 URL
+    var url = '@Url.Action("SearchPartial", "AirFlightsManagement")' + '?' + formData;
+
+    // 發送 AJAX 請求
+    fetch(url)
+        .then(response => response.text())
+        .then(data => {
+            // 更新表格內容或其他視圖操作，根據你的需求
+            $('#datas').html(data);
+        })
+        .catch(error => console.error('Error:', error));
+}
+</script>

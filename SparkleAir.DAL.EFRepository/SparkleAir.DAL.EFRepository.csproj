@@ -51,9 +51,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Campaigns\CampaignsCouponsEFRepository.cs" />
+    <Compile Include="Campaigns\CampaignsDiscountsEFRepository.cs" />
+    <Compile Include="Airports\AirportEFRepository.cs" />
+    <Compile Include="AirFlights\AirFlightEFRepository.cs" />
+    <Compile Include="AirFlights\AirFlightManagementEFRepository.cs" />
+    <Compile Include="CompanyAndPermission\CompanyDepartmentEFRepository.cs" />
+    <Compile Include="CompanyAndPermission\CompanyJobEFRepository.cs" />
+    <Compile Include="CompanyAndPermission\CompanyStaffEFRepository.cs" />
+    <Compile Include="CompanyAndPermission\CompanyStaffLoginLogEFRepository.cs" />
+    <Compile Include="CompanyAndPermission\CompanyStaffsChangePasswordLogEFRepository.cs" />
+    <Compile Include="CompanyAndPermission\PermissionGroupEFRepository.cs" />
+    <Compile Include="CompanyAndPermission\PermissionGroupsAddStaffEFRepository.cs" />
+    <Compile Include="CompanyAndPermission\PermissionPageInfoEFRepository.cs" />
+    <Compile Include="CompanyAndPermission\PermissionSettingEFRepository.cs" />
     <Compile Include="Airtype&amp;Owns\AirSeatRepository.cs" />
     <Compile Include="Airtype&amp;Owns\PlaneRepository.cs" />
     <Compile Include="Members\MemberEFRepository.cs" />
+    <Compile Include="Members\MemberLoginLogEFRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TaxFree\TFItemEFRepository.cs" />
   </ItemGroup>

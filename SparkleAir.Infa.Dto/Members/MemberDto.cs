@@ -12,9 +12,13 @@ namespace SparkleAir.Infa.Dto.Members
 
 		public int MemberClassId { get; set; }
 
-		public int CountryId { get; set; }
+        public string MemberClassName { get; set; }
 
-		public string Account { get; set; }
+        public int CountryId { get; set; }
+
+        public string CountryName { get; set; }
+
+        public string Account { get; set; }
 
 		public string Password { get; set; }
 
@@ -44,7 +48,7 @@ namespace SparkleAir.Infa.Dto.Members
 
 		public DateTime LastPasswordChangeTime { get; set; }
 
-		public bool IsAllow { get; set; }
+		public bool? IsAllow { get; set; }
 
 		public string ConfirmCode { get; set; }
 	}
