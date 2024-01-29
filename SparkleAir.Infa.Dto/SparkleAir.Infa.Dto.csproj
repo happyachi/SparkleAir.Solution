@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="AriFlights\AirFlightDto.cs" />
     <Compile Include="AriFlights\AirFlightManagementDto.cs" />
+    <Compile Include="Basics\CountryDto.cs" />
     <Compile Include="Campaigns\CampaignsCouponDto.cs" />
     <Compile Include="Campaigns\CampaignsDiscountDto.cs" />
     <Compile Include="Airport\AirportDto.cs" />
@@ -55,6 +56,7 @@
     <Compile Include="CompanyAndPermission\PermissionGroupsAddStaffDto.cs" />
     <Compile Include="CompanyAndPermission\PermissionPageInfoDto.cs" />
     <Compile Include="CompanyAndPermission\PermissionSettingDto.cs" />
+    <Compile Include="Members\MemberClassDto.cs" />
     <Compile Include="Members\MemberDto.cs" />
     <Compile Include="Members\MemberLoginLogDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -66,5 +68,6 @@
       <Name>SparkleAir.Infa.EFModel</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

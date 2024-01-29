@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Basics\CountryEFRepository.cs" />
     <Compile Include="Campaigns\CampaignsCouponsEFRepository.cs" />
     <Compile Include="Campaigns\CampaignsDiscountsEFRepository.cs" />
     <Compile Include="Airports\AirportEFRepository.cs" />
@@ -65,6 +66,7 @@
     <Compile Include="CompanyAndPermission\PermissionGroupsAddStaffEFRepository.cs" />
     <Compile Include="CompanyAndPermission\PermissionPageInfoEFRepository.cs" />
     <Compile Include="CompanyAndPermission\PermissionSettingEFRepository.cs" />
+    <Compile Include="Members\MemberClassEFRepository.cs" />
     <Compile Include="Members\MemberEFRepository.cs" />
     <Compile Include="Members\MemberLoginLogEFRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

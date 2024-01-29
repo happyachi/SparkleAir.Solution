@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="AirFlights\AirFlightManagementService.cs" />
     <Compile Include="AirFlights\AirFlightService.cs" />
+    <Compile Include="Basics\CountryService.cs" />
     <Compile Include="Campaigns\CampaignsCouponsService.cs" />
     <Compile Include="Campaigns\CampaignsDiscountsService.cs.cs" />
     <Compile Include="Airports\AirportService.cs" />
@@ -55,6 +56,7 @@
     <Compile Include="CompanyAndPermission\PermissionGroupService.cs" />
     <Compile Include="CompanyAndPermission\PermissionPageInfoService.cs" />
     <Compile Include="CompanyAndPermission\PermissionSettingService.cs" />
+    <Compile Include="Members\MemberClassService.cs" />
     <Compile Include="Members\MemberLoginLogService.cs" />
     <Compile Include="Members\MemberService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
