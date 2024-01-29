@@ -124,6 +124,12 @@ namespace SparkleAir.BLL.Service.Campaigns
 
         public void Update(CampaignsCouponDto dto)
         {
+            // 檢查 datastart 和 dataend 期間不能超過三個月
+            if (!CamapignsTimeHelper.IsDateRangeValid(dto.DateStart, dto.DateEnd))
+            {
+                throw new ArgumentException("活動期間不能超過三個月。");
+            }
+
             CampaignsCouponEntity entity = new CampaignsCouponEntity
             (
               dto.CampaignId,
