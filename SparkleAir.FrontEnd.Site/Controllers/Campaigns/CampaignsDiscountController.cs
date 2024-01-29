@@ -29,8 +29,8 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
 
             List<CampaignsDiscountIndexVm> vm = dto.Select(d => new CampaignsDiscountIndexVm
             {
-                //Id = d.Id,
-                //CampaignId=d.CampaignId,
+                Id = d.Id,
+                CampaignId=d.CampaignId,
                 Name = d.Name,
                 DateStart = d.DateStart,
                 DateEnd = d.DateEnd,
@@ -157,12 +157,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
         #endregion
 
         #region Delete
-        public ActionResult Delete()
-        {
-            return View();
-        }
-
-        [HttpPost]
+      
         public ActionResult Delete(int id)
         {
             if (!ModelState.IsValid) return View();

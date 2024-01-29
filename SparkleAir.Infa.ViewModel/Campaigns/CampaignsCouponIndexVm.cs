@@ -23,6 +23,7 @@ namespace SparkleAir.FrontEnd.Site.Models.ViewModels.Campaigns
         public string Status { get; set; }
 
         [Display(Name = "折扣碼")]
+        [MaxLength(12)]
         public string Code { get; set; }
 
     }

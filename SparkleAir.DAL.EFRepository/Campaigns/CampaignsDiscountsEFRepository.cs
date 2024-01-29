@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
+using System.Xml.Linq;
 
 namespace SparkleAir.DAL.EFRepository.Campaigns
 {
@@ -18,9 +20,9 @@ namespace SparkleAir.DAL.EFRepository.Campaigns
         {
             CampaignsDiscount discount = new CampaignsDiscount()
             {
-                //Id = entity.Id,
+                Id = entity.Id,
                 Name = entity.Name,
-                //CampaignId = entity.CampaignId,
+                CampaignId = entity.CampaignId,
                 DateStart = entity.DateStart,
                 DateEnd = entity.DateEnd,
                 DateCreated = DateTime.Now,
@@ -55,22 +57,9 @@ namespace SparkleAir.DAL.EFRepository.Campaigns
         public List<CampaignsDiscountEntity> GetAll()
         {
             var discount = db.CampaignsDiscounts.AsNoTracking()
-                             //.Include(d => d.Campaign)
-                             //.OrderBy(d => d.DateCreated)
-                             .Select(entity =>new CampaignsDiscountEntity(
-                                 //entity.Id,
-                                 //entity.CampaignId,
-                                 entity.Name, DateTime.Now,
-                                 entity.DateStart,
-                                 entity.DateEnd,
-                                 entity.Status,
-                                 entity.DiscountValue,
-                                 entity.Value,
-                                 entity.BundleSKUs,
-                                 entity.MemberCriteria,
-                                 entity.TFItemsCriteria
-                                 //entity.Campaign.CampaignType            
-                                )).ToList();
+                             .Include(d => d.Campaign)
+                             .OrderBy(d => d.DateCreated)
+                             .Select(func).ToList();
 
             return discount;
         }

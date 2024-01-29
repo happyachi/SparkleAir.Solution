@@ -20,10 +20,10 @@ namespace SparkleAir.BLL.Service.Campaigns
         public int Create(CampaignsDiscountDto dto)
         {
             CampaignsDiscountEntity entity = new CampaignsDiscountEntity(
-              //dto.Id,
-              //dto.CampaignId,
+              
+              dto.CampaignId,
               dto.Name,
-               dto.DateCreated,
+              dto.DateCreated,
               dto.DateStart,
               dto.DateEnd,
               dto.Status,
@@ -31,8 +31,9 @@ namespace SparkleAir.BLL.Service.Campaigns
               dto.Value,
               dto.BundleSKUs,
               dto.MemberCriteria,
-              dto.TFItemsCriteria
-              //dto.Campaign
+              dto.TFItemsCriteria,
+              dto.Campaign, 
+              dto.Id
                 );
 
             _repo.Create(entity);
@@ -92,8 +93,7 @@ namespace SparkleAir.BLL.Service.Campaigns
         {
             CampaignsDiscountEntity entity = new CampaignsDiscountEntity
             (
-              //dto.Id,
-              //dto.CampaignId,
+              dto.CampaignId,
               dto.Name,
               dto.DateCreated,
               dto.DateStart,
@@ -103,8 +103,9 @@ namespace SparkleAir.BLL.Service.Campaigns
               dto.Value,
               dto.BundleSKUs,
               dto.MemberCriteria,
-              dto.TFItemsCriteria
-              //dto.Campaign
+              dto.TFItemsCriteria,
+              dto.Campaign,
+              dto.Id
                 );
 
             _repo.Update(entity);

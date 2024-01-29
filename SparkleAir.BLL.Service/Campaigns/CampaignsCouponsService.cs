@@ -41,6 +41,18 @@ namespace SparkleAir.BLL.Service.Campaigns
               //dto.Id
                 );
 
+            // 檢查 datastart 和 dataend 期間不能超過三個月
+            if ((dto.DateEnd - dto.DateStart).TotalDays > 90)
+            {
+                throw new ArgumentException("活動期間不能超過三個月。");
+            }
+
+            // 檢查 datastart 必須是現在的時間半小時以後
+            if (dto.DateStart <= DateTime.Now.AddMinutes(30))
+            {
+                throw new ArgumentException("開始時間必須在目前時間的半小時後");
+            }
+
             _repo.Create(entity);
             return entity.Id;
         }

@@ -13,27 +13,31 @@ namespace SparkleAir.FrontEnd.Site.Models.ViewModels.Campaigns
         [Display(Name = "行銷活動")]
         public virtual string Campaign { get; set; }
 
-        [Required]
+        
         [Display(Name = "優惠券名稱")]
+        [Required(ErrorMessage = "{0}必填")]
         public string Name { get; set; }
 
-        [Required]
+        
         [Display(Name = "活動期間")]
+        [Required(ErrorMessage = "{0}必填")]
         public DateTime DateStart { get; set; }
 
+        [Display(Name = "活動結束日期")]
         public DateTime DateEnd { get; set; }
 
+        [Display(Name = "活動創建日")]
         public DateTime DateCreated { get; set; }
 
         [Display(Name = "狀態")]
         public string Status { get; set; }
 
-        [Required]
         [Display(Name = "折扣金額或百分比")]
+        [Required(ErrorMessage = "{0}必填")]
         public decimal DiscountValue { get; set; }
 
-        [Required]
         [Display(Name = "可使用數量")]
+        [Required(ErrorMessage = "{0}必填")]
         public int DiscountQuantity { get; set; }
 
         [Display(Name = "剩餘可使用數量")]
@@ -47,8 +51,8 @@ namespace SparkleAir.FrontEnd.Site.Models.ViewModels.Campaigns
 
         [Display(Name = "折扣碼")]
         public string Code { get; set; }
-
         [Display(Name = "優惠券顯示設定")]
+
         public bool DisplayDescription { get; set; }
 
         [Display(Name = "會員篩選")]

@@ -73,7 +73,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
             {
                 //Id = vm.Id,
                 Name = vm.Name,
-                CampaignId = 4,
+                CampaignId =vm.CampaignId,
                 DateStart = vm.DateStart,
                 DateEnd = vm.DateEnd,
                 DateCreated = vm.DateCreated,
@@ -91,6 +91,8 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
             };
             service.Create(dto);
         }
+
+
         #endregion
 
         #region Edit
@@ -198,5 +200,13 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
             service.Delete(id);
         }
         #endregion
+
+        public ActionResult GetData()
+        {
+            List<CampaignsCouponIndexVm> coupons = GetAll();
+            return Json(new {data= coupons},JsonRequestBehavior.AllowGet);
+        }
+       
+
     }
 }
