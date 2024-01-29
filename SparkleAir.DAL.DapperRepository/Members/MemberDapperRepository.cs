@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using SparkleAir.IDAL.IRepository.Members;
+using SparkleAir.Infa.Criteria.Members;
 using SparkleAir.Infa.Entity.Members;
 using SparkleAir.Infa.Utility.Helper;
 using System;
@@ -19,7 +20,12 @@ namespace SparkleAir.DAL.DapperRepository.Members
 			_connectionString = SqlDbHelper.GetConnectionString("AppDbContext");
 		}
 
-        public List<MemberEntity> GetAll()
+        public MemberEntity Get(MemberGetCriteria criteria)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<MemberEntity> Search(MemberSearchCriteria criteria)
 		{
 			string sql = @"SELECT * FROM Members";
 
@@ -29,5 +35,10 @@ namespace SparkleAir.DAL.DapperRepository.Members
 				return entity;
 			}
 		}
-	}
+
+        public void Update(MemberEntity entity)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
