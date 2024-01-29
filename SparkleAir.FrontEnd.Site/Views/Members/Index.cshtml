@@ -56,56 +56,57 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.MemberClassId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MemberClassName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CountryId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CountryName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ChineseLastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ChineseFirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EnglishLastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EnglishFirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Gender)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateOfBirth)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Phone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TotalMileage)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PassportNumber)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MemberClassId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MemberClassName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CountryId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CountryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChineseLastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChineseFirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EnglishLastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EnglishFirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfBirth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalMileage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PassportNumber)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
-</table>
+    </table>

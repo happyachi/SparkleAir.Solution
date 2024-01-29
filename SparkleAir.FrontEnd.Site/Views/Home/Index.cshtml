@@ -1,33 +1,75 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
+﻿
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"><!-- Primary Meta Tags -->
+    <title>Volt - Free Bootstrap 5 Dashboard</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+    <meta name="title" content="Volt - Free Bootstrap 5 Dashboard">
+    <meta name="author" content="Themesberg">
+    <meta name="description" content="Volt Pro is a Premium Bootstrap 5 Admin Dashboard featuring over 800 components, 10+ plugins and 20 example pages using Vanilla JS.">
+    <meta name="keywords" content="bootstrap 5, bootstrap, bootstrap 5 admin dashboard, bootstrap 5 dashboard, bootstrap 5 charts, bootstrap 5 calendar, bootstrap 5 datepicker, bootstrap 5 tables, bootstrap 5 datatable, vanilla js datatable, themesberg, themesberg dashboard, themesberg admin dashboard">
+    <link rel="canonical" href="https://themesberg.com/product/admin-dashboard/volt-premium-bootstrap-5-dashboard"><!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://demo.themesberg.com/volt-pro">
+    <meta property="og:title" content="Volt - Free Bootstrap 5 Dashboard">
+    <meta property="og:description" content="Volt Pro is a Premium Bootstrap 5 Admin Dashboard featuring over 800 components, 10+ plugins and 20 example pages using Vanilla JS.">
+    <meta property="og:image" content="https://themesberg.s3.us-east-2.amazonaws.com/public/products/volt-pro-bootstrap-5-dashboard/volt-pro-preview.jpg"><!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://demo.themesberg.com/volt-pro">
+    <meta property="twitter:title" content="Volt - Free Bootstrap 5 Dashboard">
+    <meta property="twitter:description" content="Volt Pro is a Premium Bootstrap 5 Admin Dashboard featuring over 800 components, 10+ plugins and 20 example pages using Vanilla JS.">
+    <meta property="twitter:image" content="https://themesberg.s3.us-east-2.amazonaws.com/public/products/volt-pro-bootstrap-5-dashboard/volt-pro-preview.jpg"><!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="120x120" href="~/img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="~/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="~/img/favicon/site.webmanifest">
+    <link rel="mask-icon" href="~/img/favicon/safari-pinned-tab.svg" color="#ffffff">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff"><!-- Sweet Alert -->
+    <link type="text/css" href="~/Scripts/vendor/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet"><!-- Notyf -->
+    <link type="text/css" href="~/Scripts/vendor/notyf/notyf.min.css" rel="stylesheet"><!-- Volt CSS -->
+    <link type="text/css" href="~/Content/css/volt.css" rel="stylesheet"><!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers --><!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141734189-6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-<main>
-    <section class="row" aria-labelledby="aspnetTitle">
-        <h1 id="title">ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-        <p><a href="https://asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
-    </section>
-
-    <div class="row">
-        <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-            <h2 id="gettingStartedTitle">Getting started</h2>
-            <p>
-                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and gives you full control over markup
-                for enjoyable, agile development.
-            </p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="librariesTitle">
-            <h2 id="librariesTitle">Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="hostingTitle">
-            <h2 id="hostingTitle">Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-        </section>
+        gtag('config', 'UA-141734189-6');</script><!-- Google Tag Manager -->
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-THQTXJ7');</script><!-- End Google Tag Manager -->
+</head>
+<body>
+    <div>
+        @*@RenderBody()*@
     </div>
-</main>
+
+
+    <!-- Core -->
+    <script src="@Url.Content("~/Scripts/vendor/@popperjs/core/dist/umd/popper.min.js")"></script>
+    <script src="~/Scripts/vendor/bootstrap/dist/js/bootstrap.min.js"></script><!-- Vendor JS -->
+    <script src="~/Scripts/vendor/onscreen/dist/on-screen.umd.min.js"></script><!-- Slider -->
+    <script src="~/Scripts/vendor/nouislider/distribute/nouislider.min.js"></script><!-- Smooth scroll -->
+    <script src="~/Scripts/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script><!-- Charts -->
+    <script src="~/Scripts/vendor/chartist/dist/chartist.min.js"></script>
+    <script src="~/Scripts/vendor/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script><!-- Datepicker -->
+    <script src="~/Scripts/vendor/vanillajs-datepicker/dist/js/datepicker.min.js"></script><!-- Sweet Alerts 2 -->
+    <script src="~/Scripts/vendor/sweetalert2/dist/sweetalert2.all.min.js"></script><!-- Moment JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script><!-- Vanilla JS Datepicker -->
+    <script src="~/Scripts/vendor/vanillajs-datepicker/dist/js/datepicker.min.js"></script><!-- Notyf -->
+    <script src="~/Scripts/vendor/notyf/notyf.min.js"></script><!-- Simplebar -->
+    <script src="~/Scripts/vendor/simplebar/dist/simplebar.min.js"></script><!-- Github buttons -->
+    <script async defer="defer" src="https://buttons.github.io/buttons.js"></script><!-- Volt JS -->
+    <script src="~/Scripts/js/volt.js"></script>
+
+    @*@RenderSection("Scripts", required: false)*@
+</body>
+</html>
