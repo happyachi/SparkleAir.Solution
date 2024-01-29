@@ -41,10 +41,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AriFlights\AirFlightDto.cs" />
+    <Compile Include="AriFlights\AirFlightManagementDto.cs" />
+    <Compile Include="Campaigns\CampaignsCouponDto.cs" />
+    <Compile Include="Campaigns\CampaignsDiscountDto.cs" />
     <Compile Include="Airport\AirportDto.cs" />
+    <Compile Include="CompanyAndPermission\CompanyDepartmentDto.cs" />
+    <Compile Include="CompanyAndPermission\CompanyJobDto.cs" />
+    <Compile Include="CompanyAndPermission\CompanyStaffDto.cs" />
+    <Compile Include="CompanyAndPermission\CompanyStaffLoginLogDto.cs" />
+    <Compile Include="CompanyAndPermission\CompanyStaffsChangePasswordLogDto.cs" />
+    <Compile Include="CompanyAndPermission\PermissionGroupDto.cs" />
+    <Compile Include="CompanyAndPermission\PermissionGroupsAddStaffDto.cs" />
+    <Compile Include="CompanyAndPermission\PermissionPageInfoDto.cs" />
+    <Compile Include="CompanyAndPermission\PermissionSettingDto.cs" />
+    <Compile Include="Airtype&amp;Owns\AirSeatDto.cs" />
+    <Compile Include="Airtype&amp;Owns\PlaneDto.cs" />
     <Compile Include="Luggage\LuggageDto.cs" />
     <Compile Include="Members\MemberDto.cs" />
+    <Compile Include="Members\MemberLoginLogDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TaxFree\TFItemDto.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SparkleAir.Infa.EFModel\SparkleAir.Infa.EFModel.csproj">
+      <Project>{a1ad6217-2a9d-4948-aa6f-bf0a12d66712}</Project>
+      <Name>SparkleAir.Infa.EFModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

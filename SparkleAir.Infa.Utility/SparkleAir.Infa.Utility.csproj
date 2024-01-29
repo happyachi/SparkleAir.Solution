@@ -31,6 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -43,8 +44,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Exts\Dtos\MemberDtoExts.cs" />
+    <Compile Include="Exts\Entities\AirFlightEntityExts.cs" />
     <Compile Include="Exts\Entities\MemberEntityExts.cs" />
+    <Compile Include="Exts\Models\AriFlightExts.cs" />
+    <Compile Include="Exts\Models\CampaignsCouponExts.cs" />
+    <Compile Include="Exts\Models\CampaignsDiscountExts.cs.cs" />
     <Compile Include="Exts\Models\MemberExts.cs" />
+    <Compile Include="Helper\CompanyAndPermission\CompanyFunc.cs" />
+    <Compile Include="Helper\Members\MemberFunc.cs" />
+    <Compile Include="Helper\DAHelper.cs" />
+    <Compile Include="Helper\SplitFlightDaysHelper.cs" />
+    <Compile Include="Helper\PartialView.cs" />
+    <Compile Include="Helper\TimeZoneHelper.cs" />
     <Compile Include="Helper\SqlDbHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

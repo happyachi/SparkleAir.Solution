@@ -35,6 +35,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SparkleAir.DAL.DapperReposi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SparkleAir.DAL.EFRepository", "SparkleAir.DAL.EFRepository\SparkleAir.DAL.EFRepository.csproj", "{0FC6AFBA-5585-43BE-84AC-22DE8BC3DC74}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "方案項目", "方案項目", "{D5C11BFF-CE46-4F27-88D3-B54A06E3CF99}"
+	ProjectSection(SolutionItems) = preProject
+		ReadMe.txt = ReadMe.txt
+	EndProjectSection
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SparkleAir.Infa.Criteria", "SparkleAir.Infa.Criteria\SparkleAir.Infa.Criteria.csproj", "{1887F4FA-D97F-432F-B936-B47ECC87A94E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SparkleAir.Infa.ViewModel", "SparkleAir.Infa.ViewModel\SparkleAir.Infa.ViewModel.csproj", "{4B7A6ECF-2F6D-449B-83D0-6E08D3E43A40}"
@@ -42,6 +47,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SparkleAir.Web.Api", "SparkleAir.Web.Api\SparkleAir.Web.Api.csproj", "{827D86DA-7B59-44FD-8C04-46D77FFF308A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SparkleAir.Web.Api.Tests", "01表現層\SparkleAir.Web.Api.Tests\SparkleAir.Web.Api.Tests.csproj", "{2B9C669E-5286-47DA-941E-E764FB96E830}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PatchLog", "PatchLog", "{53AE6362-A359-4262-B5F8-F4ADCD3BDF25}"
+	ProjectSection(SolutionItems) = preProject
+		ScaffoldPatchLog.txt = ScaffoldPatchLog.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

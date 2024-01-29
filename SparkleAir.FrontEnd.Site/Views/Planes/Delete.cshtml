@@ -1,0 +1,87 @@
+﻿@model SparkleAir.Infa.ViewModel.Airtype_Owns.PlaneVm
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<style>
+    .limited-width {
+        max-width: 50%; /* 设置最大宽度，可以根据需要调整百分比值 */
+        overflow: hidden; /* 防止内容溢出 */
+    }
+</style>
+
+<h2>你確定要刪除這筆資料嗎?</h2>
+
+@*<h3>你確定要刪除這筆資料嗎?</h3>*@
+<div>
+
+    <hr />
+    <dl class="dl-horizontal limited-width">
+        <dt>
+            @Html.DisplayNameFor(model => model.FlightModel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FlightModel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalSeat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalSeat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaxMile)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaxMile)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaxWeight)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaxWeight)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ManufactureCompany)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ManufactureCompany)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Introduction)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Introduction)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Img)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Img)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
