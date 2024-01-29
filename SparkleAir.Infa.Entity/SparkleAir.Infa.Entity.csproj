@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Airports\AirportEntity.cs" />
+    <Compile Include="Luggages\LuggageEntity.cs" />
     <Compile Include="Members\MemberEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

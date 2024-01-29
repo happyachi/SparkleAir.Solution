@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Airport\AirportDto.cs" />
+    <Compile Include="Luggage\LuggageDto.cs" />
     <Compile Include="Members\MemberDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

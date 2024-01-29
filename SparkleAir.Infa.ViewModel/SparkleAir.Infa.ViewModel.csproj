@@ -44,6 +44,8 @@
   <ItemGroup>
     <Compile Include="Airports\AirportCreateVm.cs" />
     <Compile Include="Airports\AirportIndexVm.cs" />
+    <Compile Include="Luggage\LuggageCreateVm.cs" />
+    <Compile Include="Luggage\LuggageIndexVm.cs" />
     <Compile Include="Members\MemberIndexVm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
