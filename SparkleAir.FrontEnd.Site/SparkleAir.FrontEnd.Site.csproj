@@ -149,8 +149,19 @@
     <Compile Include="Controllers\Campaigns\CampaignsCouponController.cs" />
     <Compile Include="Controllers\Campaigns\CampaignsDiscountController.cs" />
     <Compile Include="Controllers\Airports\AirportsController.cs" />
+    <Compile Include="Controllers\CompaniesAndPermissions\CompanyDepartmentsController.cs" />
+    <Compile Include="Controllers\CompaniesAndPermissions\CompanyJobsController.cs" />
+    <Compile Include="Controllers\CompaniesAndPermissions\CompanyStaffLoginLogsController.cs" />
+    <Compile Include="Controllers\CompaniesAndPermissions\CompanyStaffsChangePasswordLogsController.cs" />
+    <Compile Include="Controllers\CompaniesAndPermissions\CompanyStaffsController.cs" />
+    <Compile Include="Controllers\CompaniesAndPermissions\PermissionGroupsAddStaffsController.cs" />
+    <Compile Include="Controllers\CompaniesAndPermissions\PermissionGroupsController.cs" />
+    <Compile Include="Controllers\CompaniesAndPermissions\PermissionPageInfosController.cs" />
+    <Compile Include="Controllers\CompaniesAndPermissions\PermissionSettingsController.cs" />
+    <Compile Include="Controllers\Airtype&amp;Owns\PlanesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Members\MemberLoginLogsController.cs" />
+    <Compile Include="Controllers\Luggages\LuggageController.cs" />
     <Compile Include="Controllers\Members\MembersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -229,12 +240,48 @@
     <Content Include="Views\AirFlights\Create.cshtml" />
     <Content Include="Views\AirFlights\Index.cshtml" />
     <Content Include="Views\AirFlights\_CalendarPartial.cshtml" />
+    <Content Include="Views\CompanyDepartments\Index.cshtml" />
+    <Content Include="Views\CompanyDepartments\Create.cshtml" />
+    <Content Include="Views\CompanyDepartments\Edit.cshtml" />
+    <Content Include="Views\CompanyJobs\Index.cshtml" />
+    <Content Include="Views\CompanyJobs\Create.cshtml" />
+    <Content Include="Views\CompanyJobs\Edit.cshtml" />
+    <Content Include="Views\CompanyStaffs\Index.cshtml" />
+    <Content Include="Views\CompanyStaffs\Create.cshtml" />
+    <Content Include="Views\CompanyStaffs\Edit.cshtml" />
+    <Content Include="Views\CompanyStaffs\Details.cshtml" />
+    <Content Include="Views\CompanyStaffLoginLogs\Index.cshtml" />
+    <Content Include="Views\CompanyStaffsChangePasswordLogs\Index.cshtml" />
+    <Content Include="Views\PermissionPageInfos\Index.cshtml" />
+    <Content Include="Views\PermissionPageInfos\Create.cshtml" />
+    <Content Include="Views\PermissionPageInfos\Edit.cshtml" />
+    <Content Include="Views\PermissionGroups\Create.cshtml" />
+    <Content Include="Views\PermissionGroups\Edit.cshtml" />
+    <Content Include="Views\PermissionGroups\Index.cshtml" />
+    <Content Include="Views\PermissionGroupsAddStaffs\Index.cshtml" />
+    <Content Include="Views\PermissionGroupsAddStaffs\Create.cshtml" />
+    <Content Include="Views\PermissionGroupsAddStaffs\Edit.cshtml" />
+    <Content Include="Views\PermissionSettings\Index.cshtml" />
+    <Content Include="Views\PermissionSettings\Create.cshtml" />
+    <Content Include="Views\PermissionSettings\Edit.cshtml" />
+    <Content Include="Views\Planes\Index.cshtml" />
+    <Content Include="Views\Planes\Details.cshtml" />
+    <Content Include="Views\Planes\Create.cshtml" />
+    <Content Include="Views\Planes\Update.cshtml" />
+    <Content Include="Views\Planes\Delete.cshtml" />
+    <Content Include="Views\Luggage\Index.cshtml" />
+    <Content Include="Views\Luggage\Create.cshtml" />
+    <Content Include="Views\Luggage\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\ViewModels\Members\" />
     <Folder Include="Views\AirFlightSeats\" />
+    <Folder Include="Models\ViewModels\Members\" />
     <Folder Include="Views\Campaigns\" />
+    <Folder Include="Views\Companies\" />
+    <Folder Include="Models\ViewModels\Airtype&amp;Owns\" />
+    <Folder Include="Views\Airtype&amp;Owns\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

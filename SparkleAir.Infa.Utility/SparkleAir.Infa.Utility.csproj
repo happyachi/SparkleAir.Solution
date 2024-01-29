@@ -50,8 +50,8 @@
     <Compile Include="Exts\Models\CampaignsCouponExts.cs" />
     <Compile Include="Exts\Models\CampaignsDiscountExts.cs.cs" />
     <Compile Include="Exts\Models\MemberExts.cs" />
+    <Compile Include="Helper\CompanyAndPermission\CompanyFunc.cs" />
     <Compile Include="Helper\Members\MemberFunc.cs" />
-    <Compile Include="Helper\Members\MemberWhereFunc.cs" />
     <Compile Include="Helper\DAHelper.cs" />
     <Compile Include="Helper\SplitFlightDaysHelper.cs" />
     <Compile Include="Helper\PartialView.cs" />

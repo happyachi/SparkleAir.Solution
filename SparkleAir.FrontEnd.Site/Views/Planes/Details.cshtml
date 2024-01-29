@@ -1,0 +1,80 @@
+﻿@model SparkleAir.Infa.ViewModel.Airtype_Owns.PlaneVm
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<style>
+    .limited-width {
+        max-width: 50%; /* 设置最大宽度，可以根据需要调整百分比值 */
+        overflow: hidden; /* 防止内容溢出 */
+    }
+</style>
+
+<h2>詳細資料</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal limited-width">
+        <dt>
+            @Html.DisplayNameFor(model => model.FlightModel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FlightModel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalSeat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalSeat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaxMile)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaxMile)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaxWeight)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaxWeight)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ManufactureCompany)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ManufactureCompany)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Introduction)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Introduction)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Img)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Img)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
