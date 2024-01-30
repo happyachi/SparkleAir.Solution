@@ -62,9 +62,15 @@
     <Compile Include="CompanyAndPermission\PermissionGroupsAddStaffIndexVm.cs" />
     <Compile Include="CompanyAndPermission\PermissionPageInfoIndexVm.cs" />
     <Compile Include="CompanyAndPermission\PermissionSettingIndexVm.cs" />
+    <Compile Include="Airtype&amp;Owns\PlaneVm.cs" />
+    <Compile Include="Airtype&amp;Owns\PlaneVmIndex.cs" />
+    <Compile Include="Luggage\LuggageCreateVm.cs" />
+    <Compile Include="Luggage\LuggageIndexVm.cs" />
     <Compile Include="Members\MemberIndexVm.cs" />
     <Compile Include="Members\MemberLoginLogIndexVm.cs" />
     <Compile Include="Members\MemberUpdateVm.cs" />
+    <Compile Include="MileageDetails\MileageDetailCreateVm.cs" />
+    <Compile Include="MileageDetails\MileageDetailIndexVm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TaxFree\TFCategoryVm.cs" />
     <Compile Include="TaxFree\TFItemVm.cs" />
@@ -73,6 +79,12 @@
     <Compile Include="TaxFree\TFReservelistsVm.cs" />
     <Compile Include="TaxFree\TFReservesVm.cs" />
     <Compile Include="TaxFree\TFWishlistsVm.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SparkleAir.Infa.Utility\SparkleAir.Infa.Utility.csproj">
+      <Project>{3B17053D-B105-432E-A867-05A051C94158}</Project>
+      <Name>SparkleAir.Infa.Utility</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -20,6 +20,8 @@ namespace SparkleAir.Infa.EFModel.EFModels
         [StringLength(10)]
         public string Name { get; set; }
 
+        public int? OrderBy { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CompanyJob> CompanyJobs { get; set; }
     }

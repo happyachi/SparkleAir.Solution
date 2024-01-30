@@ -9,7 +9,7 @@ namespace SparkleAir.Infa.Entity.Campaigns
 {
     public class CampaignsDiscountEntity
     {
-        public CampaignsDiscountEntity(string name, DateTime datecreated, DateTime datestart, DateTime dateend, string status, decimal discountvalue, decimal value, decimal bundleskus, string membercriteria, string tfitemscriteria)
+        public CampaignsDiscountEntity(string name, DateTime datecreated, DateTime datestart, DateTime dateend, string status, decimal discountvalue, decimal value, decimal? bundleskus, string membercriteria, string tfitemscriteria)
         {
             //Id = id;
             //CampaignId = campaignid;
@@ -44,7 +44,7 @@ namespace SparkleAir.Infa.Entity.Campaigns
 
         public decimal Value { get; set; }
 
-        public decimal BundleSKUs { get; set; }
+        public decimal? BundleSKUs { get; set; }
 
         public string MemberCriteria { get; set; }
 
