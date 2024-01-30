@@ -22,9 +22,16 @@ namespace SparkleAir.FrontEnd.Site
 			bundles.Add(new Bundle("~/bundles/bootstrap").Include(
 					  "~/Scripts/bootstrap.js"));
 
-			bundles.Add(new StyleBundle("~/Content/css").Include(
-					  "~/Content/bootstrap.css",
-					  "~/Content/site.css"));
+            bundles.Add(new Bundle("~/bundles/volt").Include(
+                      "~/Scripts/volt.js",
+                      "~/Scripts/popper.min.js",
+                      "~/Scripts/simplebar.min.js"));
+
+            bundles.Add(new StyleBundle("~/Content/css").Include(
+					  "~/Content/site.css",
+                      "~/Content/volt.css",
+					  "~/Content/bootstrap.css"
+					  ));
 		}
 	}
 }
