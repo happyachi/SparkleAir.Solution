@@ -45,6 +45,7 @@
     <Compile Include="AirFlightsEntity\AirFlightManagementEntity.cs" />
     <Compile Include="AirFlightsEntity\AirFlightSeatsEntity.cs" />
     <Compile Include="AirFlightsEntity\AirTicketPriceEntity.cs" />
+    <Compile Include="AirFlightsEntity\EachSeatInfoEntity.cs" />
     <Compile Include="AirFlightsEntity\SeatGroupEntity.cs" />
     <Compile Include="Campaigns\CampaignsCouponEntity.cs" />
     <Compile Include="Campaigns\CampaignsDiscountEntity.cs" />

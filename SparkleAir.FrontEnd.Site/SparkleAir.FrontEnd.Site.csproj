@@ -273,7 +273,7 @@
     <Content Include="Views\Luggage\Create.cshtml" />
     <Content Include="Views\Luggage\Edit.cshtml" />
     <Content Include="Views\AirFlights\GetSeat.cshtml" />
-    <Content Include="Views\AirFlights\_SeatsPartial.cshtml" />
+    <Content Include="Views\AirFlights\_SeatsDetailPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

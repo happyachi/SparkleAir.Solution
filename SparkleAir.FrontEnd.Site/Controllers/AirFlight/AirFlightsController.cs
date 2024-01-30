@@ -222,19 +222,15 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
             return vms;
         }
 
-        public ActionResult SeatsPartial(int id)
+        public ActionResult SeatsDetailPartial(int id)
         {
-            var model = _airFlightService.GetById(id);
-            EachFlightSeatsVm vm = new EachFlightSeatsVm
-            {
-                DepartureAirport = model.DepartureAirport,
-                ArrivalAirport = model.ArrivalAirport,
-                ScheduledArrival = model.ScheduledArrival,
-                ScheduledDeparture = model.ScheduledDeparture,
-                Seats = GetSeatInfo(model.Id)
-            };
-            return PartialView("_SeatsPartial", vm);
+            var model = _flightSeatsService.GetEachSeatInfo(id);
+            model.Gender = (model.Gender == "0") ? "男" : "女";
+            model.CheckInstatus = (model.CheckInstatus == "1") ? "已報到" : "未報到";
+
+            return PartialView("_SeatsDetailPartial", model);
         }
+
         #endregion
     }
 }

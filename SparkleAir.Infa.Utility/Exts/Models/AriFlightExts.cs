@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 
 namespace SparkleAir.Infa.Utility.Exts.Models
 {
@@ -85,6 +86,27 @@ namespace SparkleAir.Infa.Utility.Exts.Models
                 ArrivalTimeZone = db.AirPorts.Find(afm.DepartureAirportId).TimeArea,
                 AirOwnId = afm.AirFlights.GetAirOwnId(),
                 FlightModel = db.GetFlightModelByAirOwnId(afm.AirFlights.GetAirOwnId()).Item1,
+            };
+            return entity;
+        }
+        public static EachSeatInfoEntity ToEachSeatInfoEntity(this AirBookSeat airBookSeat, int seatId)
+        {
+            EachSeatInfoEntity entity = new EachSeatInfoEntity
+            {
+
+                AirFlightSeatId = seatId,
+                TicketInvoicingDetailId = airBookSeat.TicketInvoicingDetailId,
+                ReservationTime = airBookSeat.ReservationTime,
+                TransferPaymentId = airBookSeat.TransferPaymentId,
+                HandlingFee = airBookSeat.HandlingFee,
+                SeatAssignmentNum = airBookSeat.SeatAssignmentNum,
+                SeatNum = airBookSeat.AirFlightSeat.SeatNum,
+                LastName = airBookSeat.TicketInvoicingDetail.LastName,
+                FirstName = airBookSeat.TicketInvoicingDetail.FirstName,
+                Country = airBookSeat.TicketInvoicingDetail.Country.ChineseName,
+                Gender = airBookSeat.TicketInvoicingDetail.Gender.ToString(),
+                TypeofPassenger = airBookSeat.TicketInvoicingDetail.TicketDetail.TypeofPassenger.PassengerType,
+                CheckInstatus = airBookSeat.TicketInvoicingDetail.CheckInStatus.ToString()
             };
             return entity;
         }

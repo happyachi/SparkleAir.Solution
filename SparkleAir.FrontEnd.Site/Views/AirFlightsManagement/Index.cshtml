@@ -81,7 +81,7 @@
 					</td>
 					<td>
 						@Html.ActionLink("編輯", "Edit", new { id = item.Id }, new { @class = "btn btn-sm btn-dark" }) |
-						@Html.ActionLink("詳細資訊", "Details", new { id = item.Id }, new { @class = "btn btn-sm btn-dark details-link", data_id = item.Id }) |
+						<button class="btn btn-sm btn-dark details-link" onclick="showModal('@item.Id')">詳細資訊</button> |
 						@Html.ActionLink("機型設定", "Create", "AirFlights", new { id = item.Id }, new { @class = "btn btn-sm btn-dark" })
 						@*@Html.ActionLink("刪除航班", "Delete", new { id = item.Id }, new { @class = "btn btn-sm btn-dark" })*@
 					</td>
@@ -96,7 +96,7 @@
 		document.querySelectorAll(".details-link").forEach(function (link) {
 			link.addEventListener('click', function (event) {
 				event.preventDefault();
-				showModal(link.dataset.id); // 通過 dataset 獲取 itemId
+				
 			});
 		});
 

@@ -2,43 +2,104 @@
 @{
 	ViewBag.Title = "GetSeat";
 }
-
+@section styles{
+	<style>
+		#divMore {
+			width: auto;
+			height: auto;
+			border: 1px solid gray;
+			position: absolute;
+			background-color: white;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+			/*四周隱影*/
+			border-radius: 10px;
+			padding: 10px;
+			font-size: 0.8em;
+			z-index: 999;
+		}
+	</style>
+}
 <p>
 	出發機場: @Model.DepartureAirport <br />
 	到達機場: @Model.ArrivalAirport <br />
 	預定出發時間: @Model.ScheduledDeparture <br />
 	預定到達時間: @Model.ScheduledArrival <br />
 </p>
+<div class="row" id="datas">
+	<div style="overflow:auto">
+		<table class="table text-center">
+			<tr>
+				<th>
+					艙等
+				</th>
+				<th>
+					座位號碼
+				</th>
+				<th>
+					定位狀態
+				</th>
+				<th></th>
+			</tr>
 
-<table class="table text-center">
-	<tr>
-		<th>
-			艙等
-		</th>
-		<th>
-			座位號碼
-		</th>
-		<th>
-			定位狀態
-		</th>
-		<th></th>
-	</tr>
+			@foreach (var seat in Model.Seats)
+			{
+				<tr>
+					<td>
+						@Html.DisplayFor(modelItem => seat.CabinName)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => seat.SeatNum)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => seat.IsSeated)
+					</td>
+					<td>
+						<button class="btn btn-sm btn-dark link" onclick="showModal('@seat.Id')">訂位資訊</button>
+					</td>
+				</tr>
+			}
+		</table>
+	</div>
+</div>
+<div id="divMore" style="display:none"></div>
 
-	@foreach (var seat in Model.Seats)
-	{
-		<tr>
-			<td>
-				@Html.DisplayFor(modelItem => seat.CabinName)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => seat.SeatNum)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => seat.IsSeated)
-			</td>
-			<td>
-				@Html.ActionLink("訂位資訊", "Details", new { id = seat.Id })
-			</td>
-		</tr>
-	}
-</table>
+<script>
+		document.querySelectorAll(".link").forEach(function (link) {
+			link.addEventListener('click', function (event) {
+				event.preventDefault();
+				/*showModal(button.dataset.id);// 通過 dataset 獲取 itemId*/
+			});
+		});
+
+		function showModal(itemId) {
+			fetch('@Url.Content("~/AirFlights/SeatsDetailPartial")' + `?id=${itemId}`)
+				.then(response => response.text())
+				.then(data => {
+					const div = document.querySelector('#divMore');
+					div.innerHTML = data;
+				})
+				.catch(error => console.error('Error:', error));
+
+			const x = event.clientX;
+			const y = event.clientY;
+			const div = document.querySelector('#divMore');
+			div.style.left = `${x}px`;
+			div.style.top = `${y}px`;
+			div.style.display = 'block';
+			event.stopPropagation();
+			return false;
+		}
+
+		// 添加此代码來隐藏div
+		document.body.addEventListener('click', function (event) {
+			const div = document.querySelector('#divMore');
+			const isClickInside = div.contains(event.target);
+			if (!isClickInside) {
+				div.style.display = 'none';
+			}
+		});
+		// 避免div內部的點擊觸發body的事件
+		document.querySelector('#divMore').addEventListener('click', function (event) {
+			event.stopPropagation();
+		});
+</script>

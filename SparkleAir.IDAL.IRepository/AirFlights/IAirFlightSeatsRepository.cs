@@ -11,5 +11,7 @@ namespace SparkleAir.IDAL.IRepository.AirFlights
     {
         void Create777300ER(int flightId);
         List<AirFlightSeatsEntity> GetByFlightId(int flightId);
+
+        EachSeatInfoEntity GetEachSeatInfo(int seatId);
     }
 }

@@ -37,5 +37,27 @@ namespace SparkleAir.BLL.Service.AirFlights
             }).ToList();
             return dto;
         }
+
+        public EachSeatInfoDto GetEachSeatInfo(int id)
+        {
+            var entity = _repo.GetEachSeatInfo(id);
+            var dto = new EachSeatInfoDto
+            {
+                AirFlightSeatId = id,
+                TicketInvoicingDetailId = entity.TicketInvoicingDetailId,
+                ReservationTime = entity.ReservationTime,
+                TransferPaymentId = entity.TransferPaymentId,
+                HandlingFee = entity.HandlingFee,
+                SeatAssignmentNum = entity.SeatAssignmentNum,
+                SeatNum = entity.SeatNum,
+                LastName = entity.LastName,
+                FirstName = entity.FirstName,
+                Country = entity.Country,
+                Gender = entity.Gender,
+                CheckInstatus = entity.CheckInstatus,
+                TypeofPassenger = entity.TypeofPassenger,
+            };
+            return dto;
+        }
     }
 }

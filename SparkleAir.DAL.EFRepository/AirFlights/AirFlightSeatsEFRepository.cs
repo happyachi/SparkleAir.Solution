@@ -161,16 +161,25 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
             Func<AirFlightSeat, AirFlightSeatsEntity> seatFunc = x => x.ToFlightSeatsEntity(flightId);
             var flightSeats = db.AirFlightSeats
                     .AsNoTracking()
-                    .Where(x=>x.AirFlightId == flightId)
-                    .Include(x=>x.AirCabin)
-                    .Include(x=>x.AirFlight)
-                    .Include(x=>x.AirFlight.AirOwn)
-                    .Include(x=>x.AirFlight.AirOwn.AirType)
+                    .Where(x => x.AirFlightId == flightId)
+                    .Include(x => x.AirCabin)
+                    .Include(x => x.AirFlight)
+                    .Include(x => x.AirFlight.AirOwn)
+                    .Include(x => x.AirFlight.AirOwn.AirType)
                     .ToList()
                     .Select(seatFunc)
                     .ToList();
 
             return flightSeats;
+        }
+
+        public EachSeatInfoEntity GetEachSeatInfo(int seatId)
+        {
+            var bookSeat = db.AirBookSeats.AsNoTracking().Where(x => x.AirFlightSeatId == seatId).FirstOrDefault();
+            Func<AirBookSeat, EachSeatInfoEntity> func = x => x.ToEachSeatInfoEntity(seatId);
+
+            var entity = bookSeat.ToEachSeatInfoEntity(seatId);
+            return entity;
         }
     }
 }
