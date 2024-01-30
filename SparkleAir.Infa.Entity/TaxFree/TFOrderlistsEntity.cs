@@ -17,9 +17,6 @@ namespace SparkleAir.Infa.Entity.TaxFree
         public int Quantity { get; set; }
 
         public int UnitPrice { get; set; }
-        //todo:TF
-        //public virtual Member Member { get; set; }
-
-        //public virtual TFItem TFItem { get; set; }
+        
     }
 }

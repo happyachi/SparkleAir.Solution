@@ -162,6 +162,9 @@
     <Compile Include="Controllers\Members\MembersController.cs" />
     <Compile Include="Controllers\TaxFree\TFItemController.cs" />
     <Compile Include="Controllers\TaxFree\TFOrderlistController.cs" />
+    <Compile Include="Controllers\TaxFree\TFReserveController.cs" />
+    <Compile Include="Controllers\TaxFree\TFReservelistController.cs" />
+    <Compile Include="Controllers\TaxFree\TFWishlistController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -398,6 +401,11 @@
     <Content Include="Views\TFOrderlist\Create.cshtml" />
     <Content Include="Views\TFOrderlist\Edit.cshtml" />
     <Content Include="Views\TFOrderlist\Details.cshtml" />
+    <Content Include="Views\TFWishlist\Index.cshtml" />
+    <Content Include="Views\TFWishlist\Create.cshtml" />
+    <Content Include="Views\TFWishlist\Edit.cshtml" />
+    <Content Include="Views\TFWishlist\Details.cshtml" />
+    <Content Include="Views\TFReservelist\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -405,6 +413,7 @@
     <Folder Include="obj\Debug\TempPE\" />
     <Folder Include="Views\Campaigns\" />
     <Folder Include="Views\Companies\" />
+    <Folder Include="Views\TFReserve\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

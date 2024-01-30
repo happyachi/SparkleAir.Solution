@@ -14,6 +14,5 @@ namespace SparkleAir.Infa.Dto.TaxFree
 
         public int TFItemsId { get; set; }
 
-        public virtual TFItemDto TFItem { get; set; }
     }
 }

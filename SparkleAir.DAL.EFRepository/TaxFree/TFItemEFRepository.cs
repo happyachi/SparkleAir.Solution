@@ -71,7 +71,7 @@ namespace SparkleAir.DAL.EFRepository.TaxFree
             List<TFItemEntity> itemList = db.TFItems.AsNoTracking()
                                         .Where(x => x.Name.Contains(name))
                                         .OrderBy(x => x.Id)
-                                        .Select(x => new TFItemEntity { Id = x.Id, Name = x.Name, SerialNumber = x.SerialNumber, Image = x.Image, Quantity = x.Quantity, UnitPrice = x.UnitPrice, Description = x.Description, IsPublished = x.IsPublished })
+                                        .Select(x => new TFItemEntity { Id = x.Id, Name = x.Name, SerialNumber = x.SerialNumber, Image = x.Image, Quantity = x.Quantity, UnitPrice = x.UnitPrice, Description = x.Description, IsPublished = x.IsPublished,TFCategoriesId=x.TFCategoriesId })
                                         .ToList();
 
             return itemList;

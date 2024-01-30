@@ -18,6 +18,7 @@ namespace SparkleAir.BLL.Service.TaxFree
             _repository = repository;
         }
 
+        
         public List<TFOrderlistsDto> Get()
         {
             List<TFOrderlistsEntity> result = _repository.Get();
@@ -37,7 +38,7 @@ namespace SparkleAir.BLL.Service.TaxFree
         {
             _repository.Delete(Id);
         }
-
+        
         public int Create(TFOrderlistsDto dto)
         {
             TFOrderlistsEntity entity = new TFOrderlistsEntity

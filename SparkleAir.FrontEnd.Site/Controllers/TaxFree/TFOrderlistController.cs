@@ -113,7 +113,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.TaxFree
 
             try
             {
-                CreateItem(vm);
+                UpdateItem(vm);
                 return RedirectToAction("Index");
             }
             catch (Exception ex)

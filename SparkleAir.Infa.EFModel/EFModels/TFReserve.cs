@@ -19,7 +19,7 @@ namespace SparkleAir.Infa.EFModel.EFModels
 
         public int MemberId { get; set; }
 
-        public int Discount { get; set; }
+        public int? Discount { get; set; }
 
         public int TotalPrice { get; set; }
 
