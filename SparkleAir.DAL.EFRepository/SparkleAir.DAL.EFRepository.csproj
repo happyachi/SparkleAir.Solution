@@ -71,6 +71,7 @@
     <Compile Include="MealMessages\AirMealEFRepository.cs" />
     <Compile Include="Members\MemberEFRepository.cs" />
     <Compile Include="Members\MemberLoginLogEFRepository.cs" />
+    <Compile Include="MileageDetails\MileageDetailEFRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TaxFree\TFItemEFRepository.cs" />
   </ItemGroup>

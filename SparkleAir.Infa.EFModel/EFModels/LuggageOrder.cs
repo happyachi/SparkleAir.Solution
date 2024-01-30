@@ -18,7 +18,7 @@ namespace SparkleAir.Infa.EFModel.EFModels
 
         public int Price { get; set; }
 
-        public int OrderTime { get; set; }
+        public DateTime OrderTime { get; set; }
 
         public int TransferPaymentsId { get; set; }
 
