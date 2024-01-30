@@ -37,8 +37,9 @@ namespace SparkleAir.DAL.EFRepository.TaxFree
         public void Update(TFItemEntity entity)
         {
             var db = new AppDbContext();
+            db.TFItems.Find(entity.Id);
 
-            var tfModel = new TFItem();
+            var tfModel = db.TFItems.Find(entity.Id);
             tfModel.Id = entity.Id;
             tfModel.Name = entity.Name;
             tfModel.SerialNumber = entity.SerialNumber;
@@ -48,6 +49,8 @@ namespace SparkleAir.DAL.EFRepository.TaxFree
             tfModel.Description = entity.Description;
             tfModel.IsPublished = entity.IsPublished;
             tfModel.TFCategoriesId = entity.TFCategoriesId;
+
+            
 
             db.SaveChanges();
 
@@ -79,7 +82,7 @@ namespace SparkleAir.DAL.EFRepository.TaxFree
             var db = new AppDbContext();
             var itemget = db.TFItems.AsNoTracking()
                                     .Include(x => x.TFCategoriesId)
-                                    .Select(x => new TFItemEntity { Id = x.Id, Name = x.Name, SerialNumber = x.SerialNumber, Image = x.Image, Quantity = x.Quantity, UnitPrice = x.UnitPrice, Description = x.Description, IsPublished = x.IsPublished })
+                                    .Select(x => new TFItemEntity { Id = x.Id, Name = x.Name, SerialNumber = x.SerialNumber, Image = x.Image, Quantity = x.Quantity, UnitPrice = x.UnitPrice, Description = x.Description, IsPublished = x.IsPublished,TFCategoriesId = x.TFCategoriesId })
                                     .ToList();
             return itemget;
         }

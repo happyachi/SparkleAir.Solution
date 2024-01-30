@@ -30,7 +30,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.TaxFree
             TFItemVm vm =Getid(id);
             return View(vm);
         }
-
+        [HttpPost]
         private List<TFItemVm> Get()
         {
 
@@ -110,11 +110,11 @@ namespace SparkleAir.FrontEnd.Site.Controllers.TaxFree
             };
             service.Create(dto);
         }
-
+        
         public ActionResult Edit(int id)
         {
             var TFItem = Getid(id);
-            return View();
+            return View(TFItem);
         }
 
         [HttpPost]
@@ -132,7 +132,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.TaxFree
             return View(vm);
 
         }
-
+        [HttpPost]
         private void UpdateItem(TFItemVm vm)
         {
             var service = new TaxFreeService(TFRepository);
