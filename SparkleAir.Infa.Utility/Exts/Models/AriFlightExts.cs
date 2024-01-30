@@ -159,7 +159,6 @@ namespace SparkleAir.Infa.Utility.Exts.Models
             return (data.DepartureAirportId, data.ArrivalAirportId);
         }
 
-
         public static AirFlightSeatsEntity ToFlightSeatsEntity(this AirFlightSeat seats, int airFlightId)
         {
             AirFlightSeatsEntity entity = new AirFlightSeatsEntity

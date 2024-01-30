@@ -155,7 +155,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
 
         private List<int> CreateFlight(AirFlightCreateVm vm)
         {
-            List<int> flightIds = new List<int>();
+            List<int> flightIds;
             AirFlightDto dto = new AirFlightDto
             {
                 AirOwnId = vm.AirOwnId,

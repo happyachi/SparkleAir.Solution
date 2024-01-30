@@ -3,11 +3,6 @@
 	ViewBag.Title = "GetSeat";
 }
 
-<h2>GetSeat</h2>
-
-
-
-<h3>航班資訊</h3>
 <p>
 	出發機場: @Model.DepartureAirport <br />
 	到達機場: @Model.ArrivalAirport <br />
@@ -15,8 +10,7 @@
 	預定到達時間: @Model.ScheduledArrival <br />
 </p>
 
-<h3>座位表</h3>
-<table class="table">
+<table class="table text-center">
 	<tr>
 		<th>
 			艙等
@@ -25,7 +19,7 @@
 			座位號碼
 		</th>
 		<th>
-			是否訂位
+			定位狀態
 		</th>
 		<th></th>
 	</tr>

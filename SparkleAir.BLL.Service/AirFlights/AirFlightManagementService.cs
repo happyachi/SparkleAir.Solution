@@ -36,7 +36,7 @@ namespace SparkleAir.BLL.Service.AirFlights
             _repo = repo;
         }
 
-        public virtual int Create(AirFlightManagementDto dto)
+        public int Create(AirFlightManagementDto dto)
         {
             string fullAirlineCode = AirlineCode + dto.FlightCode;
 
@@ -74,9 +74,9 @@ namespace SparkleAir.BLL.Service.AirFlights
                 ArrivalTimeZone = dto.ArrivalTimeZone,
             };
 
-            _repo.Create(entity);
+            var flightId = _repo.Create(entity);
 
-            return dto.Id;
+            return flightId;
         }
 
         public void Delete(int id)

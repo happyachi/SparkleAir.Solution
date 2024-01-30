@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AirFlights\AirFlightSeatsEFRepository.cs" />
+    <Compile Include="AirFlights\AirTicketPriceEFRepository.cs" />
     <Compile Include="AirFlights\SeatGroupEFRepository.cs" />
     <Compile Include="Campaigns\CampaignsCouponsEFRepository.cs" />
     <Compile Include="Campaigns\CampaignsDiscountsEFRepository.cs" />

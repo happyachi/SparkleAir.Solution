@@ -20,15 +20,15 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
 
         private IAirFlightManagementRepository _repo;
         private AirFlightManagementService _service;
-
+        private IAirTicketPriceRepository _priceRepository;
+        private AirTicketPriceService _priceService;
         public AirFlightsManagementController()
         {
-            //EF
             _repo = new AirFlightManagementEFRepository();
-
-            //DP
-            //_repo = new AirFlightDapperRepository();
             _service = new AirFlightManagementService(_repo);
+
+            _priceRepository = new AirTicketPriceEFRepository();
+            _priceService = new AirTicketPriceService(_priceRepository);
         }
 
         //for testing
@@ -66,7 +66,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
 
         #endregion
 
-        #region Create
+        #region Create With Price for each Cabin
 
         public ActionResult Create()
         {
@@ -76,11 +76,12 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
         [HttpPost]
         public ActionResult Create(AirFlightManagementCreateVm vm)
         {
-            if(!ModelState.IsValid) return View();
+            if (!ModelState.IsValid) return View();
 
             try
             {
-                CreateFlight(vm);
+                var flightId = CreateFlight(vm);
+                _priceService.CreateTicketPirce1500(flightId,vm.Mile);
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
@@ -90,7 +91,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
             }
         }
 
-        private void CreateFlight(AirFlightManagementCreateVm vm)
+        private int CreateFlight(AirFlightManagementCreateVm vm)
         {
             AirFlightManagementDto dto = new AirFlightManagementDto
             {
@@ -106,7 +107,8 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
                 ArrivalTimeZone = vm.ArrivalTimeZone
             };
 
-            _service.Create(dto);
+            var flightId = _service.Create(dto);
+            return flightId;
         }
         #endregion
 

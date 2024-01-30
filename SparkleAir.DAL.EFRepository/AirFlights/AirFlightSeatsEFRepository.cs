@@ -35,7 +35,6 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
                                 IsSeated = false
                             };
                             db.AirFlightSeats.Add(seats);
-                            db.SaveChanges();
                         }
                     }
                     else if (i != 4)
@@ -50,7 +49,6 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
                                 IsSeated = false
                             };
                             db.AirFlightSeats.Add(seats);
-                            db.SaveChanges();
                         }
                     }
                 }
@@ -72,7 +70,6 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
                         };
 
                         db.AirFlightSeats.Add(seats);
-                        db.SaveChanges();
                     }
 
                 }
@@ -95,7 +92,6 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
                                 IsSeated = false
                             };
                             db.AirFlightSeats.Add(seats);
-                            db.SaveChanges();
                         }
                     }
                     else if (i == 57)
@@ -110,7 +106,6 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
                                 IsSeated = false
                             };
                             db.AirFlightSeats.Add(seats);
-                            db.SaveChanges();
                         }
 
                     }
@@ -126,7 +121,6 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
                                 IsSeated = false
                             };
                             db.AirFlightSeats.Add(seats);
-                            db.SaveChanges();
                         }
                     }
                     else if (i >= 61 && i <= 71)
@@ -141,7 +135,6 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
                                 IsSeated = false
                             };
                             db.AirFlightSeats.Add(seats);
-                            db.SaveChanges();
                         }
                     }
                     else if (i == 72)
@@ -156,11 +149,11 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
                                 IsSeated = false
                             };
                             db.AirFlightSeats.Add(seats);
-                            db.SaveChanges();
                         }
                     }
                 }
             }
+            db.SaveChanges();
         }
 
         public List<AirFlightSeatsEntity> GetByFlightId(int flightId)

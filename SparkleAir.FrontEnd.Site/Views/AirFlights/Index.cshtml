@@ -61,10 +61,8 @@
 						@Html.DisplayFor(modelItem => item.ScheduledArrival)
 					</td>
 					<td>
-						@Html.ActionLink("編輯", "Edit", new { id = item.Id }, new { @class = "btn btn-sm btn-dark" }) |
 						@*@Html.ActionLink("詳細資訊", "Details", new { id = item.Id }, new { @class = "btn btn-sm btn-dark details-link", data_id = item.Id }) |*@
 						@Html.ActionLink("機位資訊", "GetSeat", new { id = item.Id }, new { @class = "btn btn-sm btn-dark", data_id = item.Id })
-						@*@Html.ActionLink("刪除班表", "Delete", new { id = item.Id }, new { @class = "btn btn-sm btn-dark" })*@
 					</td>
 				</tr>
 			}
