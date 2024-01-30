@@ -28,16 +28,10 @@ namespace SparkleAir.Infa.Entity.TaxFree
 
         public bool IsPublished { get; set; }
 
-        public int TFCategoryId { get; set; }
-        public virtual TFCategororyEntity TFCategory { get; set; }
+        //public int TFCategoryId { get; set; }
+        public virtual TFCategoryEntity TFCategory { get; set; }
 
     }
 
-    public class TFCategororyEntity
-    {
-        public int Id { get; set; }
-
-        public string Category { get; set; }
-
-    }
+    
 }

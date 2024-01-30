@@ -4,18 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SparkleAir.Infa.Dto.TaxFree
+namespace SparkleAir.Infa.ViewModel.TaxFree
 {
-    public class TFItemDto
+    public class TFItemVm
     {
-
         public int Id { get; set; }
 
         public int TFCategoriesId { get; set; }
 
-       public string Name { get; set; }
+        public string Name { get; set; }
 
-    
+
         public string SerialNumber { get; set; }
 
         public string Image { get; set; }
@@ -29,8 +28,8 @@ namespace SparkleAir.Infa.Dto.TaxFree
 
         public bool IsPublished { get; set; }
 
-        //public int TFCtegoryId { get; set; }
-        public virtual TFCategoryDto TFCategory { get; set; }
+        //public int TFCategoryId { get; set; }
+        public virtual TFCategoryVm TFCategory { get; set; }
 
     }
 

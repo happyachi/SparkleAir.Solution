@@ -72,9 +72,13 @@
     <Compile Include="MileageDetails\MileageDetailCreateVm.cs" />
     <Compile Include="MileageDetails\MileageDetailIndexVm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="TaxFree\" />
+    <Compile Include="TaxFree\TFCategoryVm.cs" />
+    <Compile Include="TaxFree\TFItemVm.cs" />
+    <Compile Include="TaxFree\TFOrderlistsVm.cs" />
+    <Compile Include="TaxFree\TFOrderStatusVm.cs" />
+    <Compile Include="TaxFree\TFReservelistsVm.cs" />
+    <Compile Include="TaxFree\TFReservesVm.cs" />
+    <Compile Include="TaxFree\TFWishlistsVm.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SparkleAir.Infa.Utility\SparkleAir.Infa.Utility.csproj">
@@ -82,5 +86,6 @@
       <Name>SparkleAir.Infa.Utility</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
