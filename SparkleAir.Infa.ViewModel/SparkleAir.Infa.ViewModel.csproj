@@ -74,6 +74,7 @@
     <Compile Include="Members\MemberLoginLogIndexVm.cs" />
     <Compile Include="Members\MemberUpdateVm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tickets\TicketsIndexVm.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="TaxFree\" />
