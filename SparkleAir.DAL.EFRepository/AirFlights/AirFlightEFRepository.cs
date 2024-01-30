@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace SparkleAir.DAL.EFRepository.AirFlights
 {
@@ -19,7 +20,7 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
         {
             AirFlight airFlight = new AirFlight
             {
-                Id= entity.Id,
+                Id = entity.Id,
                 AirOwnId = (int)entity.FlightModel.GetAirOwnIdByFlightModel(db),
                 AirFlightManagementId = entity.AirFlightManagementId,
                 ScheduledDeparture = entity.ScheduledDeparture,
@@ -36,6 +37,11 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
         {
             var flights = db.AirFlights
                 .AsNoTracking()
+                .Include(x => x.AirOwn)
+                .Include(x => x.AirFlightManagement)
+                .Include(x => x.AirFlightManagement.AirPort)
+                .Include(x => x.AirOwn.AirType)
+                .Include(x => x.AirFlightSaleStatus)
                 .ToList()
                 .Select(ToEntityFunc)
                 .ToList();
@@ -44,8 +50,10 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
 
         public AirFlightEntity GetById(int id)
         {
-            var flight = db.AirFlights.Find(id).ToAirFlightEntity();
-            
+            var flight = db.AirFlights
+                .Find(id)
+                .ToAirFlightEntity();
+
             return flight;
         }
     }

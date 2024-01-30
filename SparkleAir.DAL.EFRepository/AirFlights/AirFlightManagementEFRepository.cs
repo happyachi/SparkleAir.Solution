@@ -73,6 +73,7 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
         public void Update(AirFlightManagementEntity entity)
         {
             var flight = db.AirFlightManagements
+                .Include(f => f.AirPort)
                 .FirstOrDefault(f => f.Id == entity.Id);
 
             if (flight != null)

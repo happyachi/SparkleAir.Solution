@@ -36,6 +36,7 @@ namespace SparkleAir.Infa.Utility.Exts.Models
         //取得AirOwnId 給 EF 用的
         public static int? GetAirOwnIdByFlightModel(this string flightModel, AppDbContext db)
         {
+            var id = db.AirTypes.Select(t => t.FlightModel).FirstOrDefault();
             var airOwnId = db.AirOwns
                               .Join(db.AirTypes, ao => ao.AirTypeId, airtype => airtype.Id, (ao, airtype) => new { ao, airtype.FlightModel })
                               .Where(joined => joined.FlightModel == flightModel)
@@ -78,10 +79,10 @@ namespace SparkleAir.Infa.Utility.Exts.Models
                 ArrivalTime = afm.ArrivalTime,
                 DayofWeek = afm.DayofWeek,
                 Mile = afm.Mile,
-                DepartureAirport = afm.DepartureAirportId.GetAirport(db).Item1,
-                ArrivalAirport = afm.ArrivalAirportId.GetAirport(db).Item1,
-                DepartureTimeZone = afm.DepartureAirportId.GetAirport(db).Item2,
-                ArrivalTimeZone = afm.ArrivalAirportId.GetAirport(db).Item2,
+                DepartureAirport = db.AirPorts.Find(afm.DepartureAirportId).Lata,
+                ArrivalAirport = db.AirPorts.Find(afm.DepartureAirportId).Lata,
+                DepartureTimeZone = db.AirPorts.Find(afm.DepartureAirportId).TimeArea,
+                ArrivalTimeZone = db.AirPorts.Find(afm.DepartureAirportId).TimeArea,
                 AirOwnId = afm.AirFlights.GetAirOwnId(),
                 FlightModel = db.GetFlightModelByAirOwnId(afm.AirFlights.GetAirOwnId()).Item1,
             };
@@ -133,15 +134,15 @@ namespace SparkleAir.Infa.Utility.Exts.Models
                 AirFlightSaleStatusId = af.AirFlightSaleStatusId,
                 FlightModel = af.AirOwn.AirType.FlightModel,
                 FlightCode = af.AirFlightManagement.FlightCode,
-                DepartureAirport = db.GetFlightCode(af.AirFlightManagementId).Item6,
-                ArrivalAirport = db.GetFlightCode(af.AirFlightManagementId).Item7,
+                DepartureAirport = db.AirPorts.Find(af.AirFlightManagement.DepartureAirportId).Lata,
+                ArrivalAirport = db.AirPorts.Find(af.AirFlightManagement.ArrivalAirportId).Lata,
                 DepartureAirportId = db.GetFlightCode(af.AirFlightManagementId).Item1,
                 ArrivalAirportId = db.GetFlightCode(af.AirFlightManagementId).Item2,
-                DepartureTimeZone = db.GetFlightCode(af.AirFlightManagementId).Item4,
-                ArrivalTimeZone = db.GetFlightCode(af.AirFlightManagementId).Item5,
-                AirFlightSaleStatus = af.AirFlightSaleStatusId.GetSaleStatus(db),
-                DayofWeek = db.GetFlightCode(af.AirFlightManagementId).Item8,
-                RegistrationNum = db.GetFlightModelByAirOwnId(af.AirOwnId).Item2
+                DepartureTimeZone = db.AirPorts.Find(af.AirFlightManagement.DepartureAirportId).TimeArea,
+                ArrivalTimeZone = db.AirPorts.Find(af.AirFlightManagement.ArrivalAirportId).TimeArea,
+                AirFlightSaleStatus = af.AirFlightSaleStatus.Status,
+                DayofWeek = af.AirFlightManagement.DayofWeek,
+                RegistrationNum = af.AirOwn.RegistrationNum
             };
             return entity;
         }
@@ -151,19 +152,16 @@ namespace SparkleAir.Infa.Utility.Exts.Models
             return status.Status;
         }
         //取得ToAirFlightEntity所需相關訊息
-        //出發地ID 目的地ID 航班編號 出發地時區 目的地時區 出發地機場 目的地機場,執飛日
-        public static (int, int, string, int, int, string, string, string) GetFlightCode(this AppDbContext db, int id)
+        //出發地ID 目的地ID
+        public static (int, int) GetFlightCode(this AppDbContext db, int id)
         {
             var data = db.AirFlightManagements.Find(id);
-            var departureAirport = data.DepartureAirportId.GetAirport(db);
-            var arrivarAirport = data.ArrivalAirportId.GetAirport(db);
-            return (data.DepartureAirportId, data.ArrivalAirportId, data.FlightCode, departureAirport.Item2, arrivarAirport.Item2, departureAirport.Item1, arrivarAirport.Item1, data.DayofWeek);
+            return (data.DepartureAirportId, data.ArrivalAirportId);
         }
 
 
         public static AirFlightSeatsEntity ToFlightSeatsEntity(this AirFlightSeat seats, int airFlightId)
         {
-            AppDbContext db = new AppDbContext();
             AirFlightSeatsEntity entity = new AirFlightSeatsEntity
             {
                 Id = seats.Id,
@@ -176,30 +174,6 @@ namespace SparkleAir.Infa.Utility.Exts.Models
                 RegisterNum = seats.AirFlight.AirOwn.RegistrationNum
             };
             return entity;
-        }
-
-        //獲取註冊編號 機型 艙等名
-        public static (string, string, string) GetSeatDetail(this AppDbContext db, int airFlightId, string seatnum)
-        {
-            var airflight = db.AirFlights.Find(airFlightId);
-
-            var registerNum = db.AirOwns.Where(x => x.Id == airflight.AirOwnId).FirstOrDefault();
-
-            //var airOwnid = db.AirFlights.Find(airFlightId);
-            //var airtypeId = db.AirOwns.Find(airflight.AirOwnId);
-            //var flightmodel = db.AirTypes.Find(airtypeId.AirTypeId);
-
-            var flightmodel = db.AirTypes.Find(airflight.AirOwn.AirType.Id).FlightModel; // 機型
-
-
-            var airflightseats = db.AirFlightSeats.Where(x => x.AirFlightId == airFlightId);
-            var seat = db.AirFlightSeats.Where(x => x.SeatNum == seatnum).FirstOrDefault();
-
-            var cabinName = db.AirCabins.Find(seat.AirCabinId);
-
-
-
-            return (registerNum.RegistrationNum, flightmodel, cabinName.CabinClass);
         }
     }
 }
