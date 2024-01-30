@@ -162,6 +162,7 @@
     <Compile Include="Controllers\Members\MemberLoginLogsController.cs" />
     <Compile Include="Controllers\Luggages\LuggageController.cs" />
     <Compile Include="Controllers\Members\MembersController.cs" />
+    <Compile Include="Controllers\MileageDetails\MileageDetailController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -269,14 +270,16 @@
     <Content Include="Views\Luggage\Index.cshtml" />
     <Content Include="Views\Luggage\Create.cshtml" />
     <Content Include="Views\Luggage\Edit.cshtml" />
+    <Content Include="Views\MileageDetail\Index.cshtml" />
+    <Content Include="Views\MileageDetail\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\ViewModels\Airtype&amp;Owns\" />
     <Folder Include="Models\ViewModels\Members\" />
+    <Folder Include="Views\Airtype&amp;Owns\" />
     <Folder Include="Views\Campaigns\" />
     <Folder Include="Views\Companies\" />
-    <Folder Include="Models\ViewModels\Airtype&amp;Owns\" />
-    <Folder Include="Views\Airtype&amp;Owns\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

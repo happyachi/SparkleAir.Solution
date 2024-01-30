@@ -60,6 +60,7 @@
     <Compile Include="Airtype&amp;Owns\PlaneService.cs" />
     <Compile Include="Luggage\LuggageService.cs" />
     <Compile Include="Members\MemberService.cs" />
+    <Compile Include="MileageDetails\MileageDetailService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
