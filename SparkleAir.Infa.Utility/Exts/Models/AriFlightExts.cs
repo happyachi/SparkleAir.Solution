@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace SparkleAir.Infa.Utility.Exts.Models
 {
@@ -54,11 +55,11 @@ namespace SparkleAir.Infa.Utility.Exts.Models
             var num = db.AirOwns.Where(ao => ao.Id == airOwnId).FirstOrDefault();
             if (num == null)
             {
-                return (flightModel?? "", "");
+                return (flightModel ?? "", "");
             }
             else
             {
-            return (flightModel ?? "", num.RegistrationNum);
+                return (flightModel ?? "", num.RegistrationNum);
             }
         }
 
@@ -130,8 +131,8 @@ namespace SparkleAir.Infa.Utility.Exts.Models
                 ScheduledDeparture = af.ScheduledDeparture,
                 ScheduledArrival = af.ScheduledArrival,
                 AirFlightSaleStatusId = af.AirFlightSaleStatusId,
-                FlightModel = db.GetFlightModelByAirOwnId(af.AirOwnId).Item1,
-                FlightCode = db.GetFlightCode(af.AirFlightManagementId).Item3,
+                FlightModel = af.AirOwn.AirType.FlightModel,
+                FlightCode = af.AirFlightManagement.FlightCode,
                 DepartureAirport = db.GetFlightCode(af.AirFlightManagementId).Item6,
                 ArrivalAirport = db.GetFlightCode(af.AirFlightManagementId).Item7,
                 DepartureAirportId = db.GetFlightCode(af.AirFlightManagementId).Item1,
@@ -150,13 +151,55 @@ namespace SparkleAir.Infa.Utility.Exts.Models
             return status.Status;
         }
         //取得ToAirFlightEntity所需相關訊息
+        //出發地ID 目的地ID 航班編號 出發地時區 目的地時區 出發地機場 目的地機場,執飛日
         public static (int, int, string, int, int, string, string, string) GetFlightCode(this AppDbContext db, int id)
         {
-            //出發地ID 目的地ID 航班編號 出發地時區 目的地時區 出發地機場 目的地機場,執飛日
             var data = db.AirFlightManagements.Find(id);
             var departureAirport = data.DepartureAirportId.GetAirport(db);
             var arrivarAirport = data.ArrivalAirportId.GetAirport(db);
             return (data.DepartureAirportId, data.ArrivalAirportId, data.FlightCode, departureAirport.Item2, arrivarAirport.Item2, departureAirport.Item1, arrivarAirport.Item1, data.DayofWeek);
+        }
+
+
+        public static AirFlightSeatsEntity ToFlightSeatsEntity(this AirFlightSeat seats, int airFlightId)
+        {
+            AppDbContext db = new AppDbContext();
+            AirFlightSeatsEntity entity = new AirFlightSeatsEntity
+            {
+                Id = seats.Id,
+                AirFlightId = airFlightId,
+                AirCabinId = seats.AirCabinId,
+                IsSeated = seats.IsSeated,
+                SeatNum = seats.SeatNum,
+                CabinName = seats.AirCabin.CabinClass,
+                FlightModel = seats.AirFlight.AirOwn.AirType.FlightModel,
+                RegisterNum = seats.AirFlight.AirOwn.RegistrationNum
+            };
+            return entity;
+        }
+
+        //獲取註冊編號 機型 艙等名
+        public static (string, string, string) GetSeatDetail(this AppDbContext db, int airFlightId, string seatnum)
+        {
+            var airflight = db.AirFlights.Find(airFlightId);
+
+            var registerNum = db.AirOwns.Where(x => x.Id == airflight.AirOwnId).FirstOrDefault();
+
+            //var airOwnid = db.AirFlights.Find(airFlightId);
+            //var airtypeId = db.AirOwns.Find(airflight.AirOwnId);
+            //var flightmodel = db.AirTypes.Find(airtypeId.AirTypeId);
+
+            var flightmodel = db.AirTypes.Find(airflight.AirOwn.AirType.Id).FlightModel; // 機型
+
+
+            var airflightseats = db.AirFlightSeats.Where(x => x.AirFlightId == airFlightId);
+            var seat = db.AirFlightSeats.Where(x => x.SeatNum == seatnum).FirstOrDefault();
+
+            var cabinName = db.AirCabins.Find(seat.AirCabinId);
+
+
+
+            return (registerNum.RegistrationNum, flightmodel, cabinName.CabinClass);
         }
     }
 }

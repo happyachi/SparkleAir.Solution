@@ -48,7 +48,9 @@
     <Compile Include="AirFlights\AirFlightManagementIndexVm.cs" />
     <Compile Include="AirFlights\AirFlightManagementVm.cs" />
     <Compile Include="AirFlights\AirFlightSeatsCreateVm.cs" />
+    <Compile Include="AirFlights\AirFlightSeatsVm.cs" />
     <Compile Include="AirFlights\AirFlightVm.cs" />
+    <Compile Include="AirFlights\EachFlightSeatsVm.cs" />
     <Compile Include="AirFlights\SeatConfiguration.cs" />
     <Compile Include="Campaigns\CampaignsCouponIndexVm.cs" />
     <Compile Include="Campaigns\CampaignsCouponVm.cs" />

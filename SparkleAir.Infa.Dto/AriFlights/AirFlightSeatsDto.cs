@@ -13,5 +13,10 @@ namespace SparkleAir.Infa.Dto.AriFlights
         public int AirCabinId { get; set; }
         public string SeatNum { get; set; }
         public bool IsSeated { get; set; }
+
+        public string FlightModel { get; set; }
+        public string RegisterNum { get; set; }
+        public string CabinName {  get; set; }
+
     }
 }

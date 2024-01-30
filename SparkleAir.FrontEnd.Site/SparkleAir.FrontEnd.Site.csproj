@@ -272,16 +272,17 @@
     <Content Include="Views\Luggage\Index.cshtml" />
     <Content Include="Views\Luggage\Create.cshtml" />
     <Content Include="Views\Luggage\Edit.cshtml" />
+    <Content Include="Views\AirFlights\GetSeat.cshtml" />
+    <Content Include="Views\AirFlights\_SeatsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\ViewModels\Airtype&amp;Owns\" />
     <Folder Include="Models\ViewModels\Members\" />
     <Folder Include="Views\AirFlightSeats\" />
-    <Folder Include="Models\ViewModels\Members\" />
+    <Folder Include="Views\Airtype&amp;Owns\" />
     <Folder Include="Views\Campaigns\" />
     <Folder Include="Views\Companies\" />
-    <Folder Include="Models\ViewModels\Airtype&amp;Owns\" />
-    <Folder Include="Views\Airtype&amp;Owns\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

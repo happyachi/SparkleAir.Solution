@@ -88,12 +88,12 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
         //先 get AirFlightManagementVm 的資料 => 設定AirOwnID(FlightModel) => Create 一個月內的班表 
         public ActionResult Create(int id)
         {
-            AirFlightCreateVm data = Get(id);
+            AirFlightCreateVm data = GetFlight(id);
             return View(data);
         }
 
 
-        private AirFlightCreateVm Get(int id)
+        private AirFlightCreateVm GetFlight(int id)
         {
             var vm = _flightManagementService.GetById(id);
             FlightDate[] flightDays = vm.DayofWeek.FlightDays();
@@ -178,7 +178,63 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
         #endregion
 
         #region Create More Flights
+        //todo
+        #endregion
 
+        #region Get Seat Info
+        public ActionResult GetSeat(int id)
+        {
+            try
+            {
+                //List<AirFlightSeatsVm> vm = GetSeatInfo(id);
+                var model = _airFlightService.GetById(id);
+                EachFlightSeatsVm vm = new EachFlightSeatsVm
+                {
+                    DepartureAirport = model.DepartureAirport,
+                    ArrivalAirport = model.ArrivalAirport,
+                    ScheduledArrival = model.ScheduledArrival,
+                    ScheduledDeparture = model.ScheduledDeparture,
+                    Seats = GetSeatInfo(model.Id)
+                };
+                return View(vm);
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", ex.Message);
+                return View();
+            }
+
+        }
+
+        private List<AirFlightSeatsVm> GetSeatInfo(int FlightId)
+        {
+            List<AirFlightSeatsDto> dto = _flightSeatsService.GetById(FlightId);
+            List<AirFlightSeatsVm> vms = dto.Select(v => new AirFlightSeatsVm
+            {
+                Id = v.Id,
+                FlightId = FlightId,
+                FlightModel = v.FlightModel,
+                RegisterNum = v.RegisterNum,
+                CabinName = v.CabinName,
+                SeatNum = v.SeatNum,
+                IsSeated = v.IsSeated,
+            }).ToList();
+            return vms;
+        }
+
+        public ActionResult SeatsPartial(int id)
+        {
+            var model = _airFlightService.GetById(id);
+            EachFlightSeatsVm vm = new EachFlightSeatsVm
+            {
+                DepartureAirport = model.DepartureAirport,
+                ArrivalAirport = model.ArrivalAirport,
+                ScheduledArrival = model.ScheduledArrival,
+                ScheduledDeparture = model.ScheduledDeparture,
+                Seats = GetSeatInfo(model.Id)
+            };
+            return PartialView("_SeatsPartial", vm);
+        }
         #endregion
     }
 }

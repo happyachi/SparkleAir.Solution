@@ -44,18 +44,9 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
 
         public AirFlightEntity GetById(int id)
         {
-            var flight = db.AirFlights.Find(id);
-            var airplain = new AirFlightEntity
-            {
-                //todo
-                Id = id,
-                AirOwnId = flight.AirOwnId,
-                AirFlightManagementId = flight.AirFlightManagementId,
-                ScheduledArrival = flight.ScheduledArrival,
-                ScheduledDeparture = flight.ScheduledDeparture,
-                AirFlightSaleStatusId = flight.AirFlightSaleStatusId
-            };
-            return airplain;
+            var flight = db.AirFlights.Find(id).ToAirFlightEntity();
+            
+            return flight;
         }
     }
 }

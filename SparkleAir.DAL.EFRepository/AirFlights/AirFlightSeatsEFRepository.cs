@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
+using SparkleAir.Infa.Utility.Exts.Models;
 
 namespace SparkleAir.DAL.EFRepository.AirFlights
 {
@@ -159,6 +161,23 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
                     }
                 }
             }
+        }
+
+        public List<AirFlightSeatsEntity> GetByFlightId(int flightId)
+        {
+            Func<AirFlightSeat, AirFlightSeatsEntity> seatFunc = x => x.ToFlightSeatsEntity(flightId);
+            var flightSeats = db.AirFlightSeats
+                    .AsNoTracking()
+                    .Where(x=>x.AirFlightId == flightId)
+                    .Include(x=>x.AirCabin)
+                    .Include(x=>x.AirFlight)
+                    .Include(x=>x.AirFlight.AirOwn)
+                    .Include(x=>x.AirFlight.AirOwn.AirType)
+                    .ToList()
+                    .Select(seatFunc)
+                    .ToList();
+
+            return flightSeats;
         }
     }
 }
