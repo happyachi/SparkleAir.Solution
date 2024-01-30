@@ -41,7 +41,7 @@ namespace SparkleAir.FrontEnd.Site.Models.ViewModels.Campaigns
         public decimal Value { get; set; }
 
         [Display(Name = "商品件數")]
-        public decimal BundleSKUs { get; set; }
+        public decimal? BundleSKUs { get; set; }
 
         [Display(Name = "會員篩選")]
         public string MemberCriteria { get; set; }

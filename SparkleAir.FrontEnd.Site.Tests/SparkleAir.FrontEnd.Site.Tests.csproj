@@ -116,6 +116,10 @@
       <Project>{C3F49393-96C1-4B8C-B468-717A2F73EF89}</Project>
       <Name>SparkleAir.BLL.Service</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SparkleAir.IDAL.IRepository\SparkleAir.IDAL.IRepository.csproj">
+      <Project>{73007f85-f88e-4292-ab16-8a5798a9a6fb}</Project>
+      <Name>SparkleAir.IDAL.IRepository</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SparkleAir.Infa.Dto\SparkleAir.Infa.Dto.csproj">
       <Project>{2431CAF2-A681-4BB8-9973-3E568F7A7453}</Project>
       <Name>SparkleAir.Infa.Dto</Name>
@@ -123,6 +127,10 @@
     <ProjectReference Include="..\SparkleAir.Infa.Entity\SparkleAir.Infa.Entity.csproj">
       <Project>{88FB70A6-7D2C-40D0-A6A6-90CD80D5C422}</Project>
       <Name>SparkleAir.Infa.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SparkleAir.Infa.ViewModel\SparkleAir.Infa.ViewModel.csproj">
+      <Project>{4b7a6ecf-2f6d-449b-83d0-6e08d3e43a40}</Project>
+      <Name>SparkleAir.Infa.ViewModel</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
