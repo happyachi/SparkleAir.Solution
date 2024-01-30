@@ -69,7 +69,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
 
             CampaignsDiscountDto dto = new CampaignsDiscountDto
             {
-                Id = vm.Id,
+                //Id = vm.Id,
                 Name = vm.Name,
                 CampaignId = vm.CampaignId,
                 DateStart = vm.DateStart,
@@ -81,7 +81,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
                 BundleSKUs = vm.BundleSKUs,
                 MemberCriteria = vm.MemberCriteria,
                 TFItemsCriteria = vm.TFItemsCriteria,
-                Campaign = vm.Campaign
+                //Campaign = "促銷組合"
             };
 
             service.Create(dto);
@@ -112,7 +112,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
                 BundleSKUs= get.BundleSKUs,
                 MemberCriteria = get.MemberCriteria,
                 TFItemsCriteria = get.TFItemsCriteria,
-                Campaign = get.Campaign
+                //Campaign = get.Campaign
             };
         }
 
@@ -149,7 +149,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
                 BundleSKUs = vm.BundleSKUs,
                 MemberCriteria = vm.MemberCriteria,
                 TFItemsCriteria = vm.TFItemsCriteria,
-                Campaign = "促銷組合"
+                //Campaign = "促銷組合"
             };
             service.Update(dto);
         }
@@ -180,5 +180,11 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
         }
 
         #endregion
+
+        public ActionResult Details(int id)
+        {
+            var discount = Get(id);
+            return View(discount);
+        }
     }
 }

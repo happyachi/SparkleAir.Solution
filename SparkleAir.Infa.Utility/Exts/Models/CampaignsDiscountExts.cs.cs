@@ -27,7 +27,7 @@ namespace SparkleAir.Infa.Utility.Exts.Models
              discount.BundleSKUs,
              discount.MemberCriteria,
              discount.TFItemsCriteria,
-             discount.Campaign.CampaignType,
+             //discount.Campaign.CampaignType,
              discount.Id
             );
 

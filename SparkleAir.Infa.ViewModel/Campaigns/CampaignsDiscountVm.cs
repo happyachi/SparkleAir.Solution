@@ -13,7 +13,6 @@ namespace SparkleAir.FrontEnd.Site.Models.ViewModels.Campaigns
         public int CampaignId { get; set; }
 
         [Display(Name = "行銷活動")]
-        [Required(ErrorMessage = "{0}必填")]
         public string  Campaign { get; set; }
 
         [Display(Name = "促銷名稱")]

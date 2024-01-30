@@ -206,7 +206,12 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
             List<CampaignsCouponIndexVm> coupons = GetAll();
             return Json(new {data= coupons},JsonRequestBehavior.AllowGet);
         }
-       
+
+        public ActionResult Details(int id)
+        {
+            var discount = Get(id);
+            return View(discount);
+        }
 
     }
 }

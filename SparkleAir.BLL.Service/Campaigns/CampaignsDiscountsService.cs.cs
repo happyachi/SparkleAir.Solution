@@ -52,9 +52,9 @@ namespace SparkleAir.BLL.Service.Campaigns
               dto.Value,
               dto.BundleSKUs,
               dto.MemberCriteria,
-              dto.TFItemsCriteria,
-              dto.Campaign
-              //dto.Id
+              dto.TFItemsCriteria
+              //dto.Campaign
+                //dto.Id
                 );
 
             _repo.Create(entity);
@@ -84,7 +84,7 @@ namespace SparkleAir.BLL.Service.Campaigns
                 BundleSKUs = entity.BundleSKUs,
                 MemberCriteria = entity.MemberCriteria,
                 TFItemsCriteria = entity.TFItemsCriteria,
-                Campaign = entity.Campaign
+                //Campaign = entity.Campaign
             };
             return dto;
         }
@@ -107,7 +107,7 @@ namespace SparkleAir.BLL.Service.Campaigns
                 BundleSKUs = d.BundleSKUs,
                 MemberCriteria = d.MemberCriteria,
                 TFItemsCriteria = d.TFItemsCriteria,
-                Campaign = d.Campaign
+                //Campaign = d.Campaign
             }).ToList();
 
             return dto;
@@ -127,7 +127,7 @@ namespace SparkleAir.BLL.Service.Campaigns
               dto.BundleSKUs,
               dto.MemberCriteria,
               dto.TFItemsCriteria,
-              dto.Campaign,
+              //dto.Campaign,
               dto.Id
                 );
 

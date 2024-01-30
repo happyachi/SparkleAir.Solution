@@ -31,8 +31,7 @@ namespace SparkleAir.DAL.EFRepository.Campaigns
                 Value = entity.Value,
                 BundleSKUs = entity.BundleSKUs,
                 MemberCriteria = entity.MemberCriteria,
-                TFItemsCriteria = entity.TFItemsCriteria,
-                //Campaign = entity.Campaign
+                TFItemsCriteria = entity.TFItemsCriteria
             };
 
             db.CampaignsDiscounts.Add(discount);
