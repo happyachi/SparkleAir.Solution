@@ -29,7 +29,6 @@ namespace SparkleAir.Infa.Dto.TaxFree
 
         public bool IsPublished { get; set; }
 
-        //public int TFCtegoryId { get; set; }
         public virtual TFCategoryDto TFCategory { get; set; }
 
     }

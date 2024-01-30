@@ -161,6 +161,7 @@
     <Compile Include="Controllers\Members\MemberLoginLogsController.cs" />
     <Compile Include="Controllers\Members\MembersController.cs" />
     <Compile Include="Controllers\TaxFree\TFItemController.cs" />
+    <Compile Include="Controllers\TaxFree\TFOrderlistController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -393,6 +394,10 @@
     <Content Include="Views\TFItem\Create.cshtml" />
     <Content Include="Views\TFItem\Edit.cshtml" />
     <Content Include="Views\TFItem\Details.cshtml" />
+    <Content Include="Views\TFOrderlist\Index.cshtml" />
+    <Content Include="Views\TFOrderlist\Create.cshtml" />
+    <Content Include="Views\TFOrderlist\Edit.cshtml" />
+    <Content Include="Views\TFOrderlist\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
