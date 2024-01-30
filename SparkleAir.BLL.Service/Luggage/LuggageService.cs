@@ -51,9 +51,6 @@ namespace SparkleAir.BLL.Service.Luggage
                 throw new Exception("預定價不可比價格高");
             }
 
-            
-
-
 
             LuggageEntity entity = new LuggageEntity
             {
