@@ -105,6 +105,7 @@
 			fetch('@Url.Content("~/AirFlightsManagement/DetailsPartial")' + `?id=${itemId}`)
 				.then(response => response.text())
 				.then(data => {
+					console.log(data);
 					const div = document.querySelector('#divMore');
 					div.innerHTML = data;
 				})

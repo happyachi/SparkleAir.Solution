@@ -107,6 +107,7 @@
     </div>
 </div>
 <div id="divMore" style="display:none"></div>
+<button type="button" class="btn btn-sm btn-dark col-sm-1" onclick="addProducts()">新增商品</button>
 
 <script>
 		document.querySelectorAll(".details-link").forEach(function (link) {
@@ -116,23 +117,24 @@
 			});
 		});
 
-		function showModal(itemId) {
-			fetch('@Url.Content("~/CampaignsDiscount/DetailsPartial")' + `?id=${itemId}`)
-				.then(response => response.text())
-				.then(data => {
-					const div = document.querySelector('#divMore');
-					div.innerHTML = data;
-				})
-				.catch(error => console.error('Error:', error));
+        function addProducts() {
+			    fetch('@Url.Content("~/CampaignsDiscount/SelectProduct")')
+				    .then(response => response.text())
+                    .then(data => {
+                        console.log(date);
+					    //const div = document.querySelector('#divMore');
+					    //div.innerHTML = data;
+				    })
+				    .catch(error => console.error('Error:', error));
 
-			const x = event.clientX;
-			const y = event.clientY;
-			const div = document.querySelector('#divMore');
-			div.style.left = `${x}px`;
-			div.style.top = `${y}px`;
-			div.style.display = 'block';
-			event.stopPropagation();
-		}
+			    const x = event.clientX;
+			    const y = event.clientY;
+			    const div = document.querySelector('#divMore');
+			    div.style.left = `${x}px`;
+			    div.style.top = `${y}px`;
+			    div.style.display = 'block';
+			    event.stopPropagation();
+	    }
 
 		// 添加此代码來隐藏div
 		document.body.addEventListener('click', function (event) {

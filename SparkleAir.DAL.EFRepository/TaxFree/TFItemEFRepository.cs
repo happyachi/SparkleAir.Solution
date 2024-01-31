@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Data.Entity;
 using System.Data.Entity.Core.Metadata.Edm;
 using SparkleAir.Infa.Entity.Airports;
+using System.Xml.Linq;
 
 namespace SparkleAir.DAL.EFRepository.TaxFree
 {
@@ -41,6 +42,7 @@ namespace SparkleAir.DAL.EFRepository.TaxFree
 
             var tfModel = db.TFItems.Find(entity.Id);
             tfModel.Id = entity.Id;
+            
             tfModel.Name = entity.Name;
             tfModel.SerialNumber = entity.SerialNumber;
             tfModel.Image = entity.Image;
@@ -50,7 +52,7 @@ namespace SparkleAir.DAL.EFRepository.TaxFree
             tfModel.IsPublished = entity.IsPublished;
             tfModel.TFCategoriesId = entity.TFCategoriesId;
 
-            
+
 
             db.SaveChanges();
 
@@ -65,24 +67,25 @@ namespace SparkleAir.DAL.EFRepository.TaxFree
 
         }
 
-        public List<TFItemEntity> Search(string name)
-        {
-            var db = new AppDbContext();
-            List<TFItemEntity> itemList = db.TFItems.AsNoTracking()
-                                        .Where(x => x.Name.Contains(name))
-                                        .OrderBy(x => x.Id)
-                                        .Select(x => new TFItemEntity { Id = x.Id, Name = x.Name, SerialNumber = x.SerialNumber, Image = x.Image, Quantity = x.Quantity, UnitPrice = x.UnitPrice, Description = x.Description, IsPublished = x.IsPublished })
-                                        .ToList();
-
-            return itemList;
-        }
 
         public List<TFItemEntity> Get()
         {
             var db = new AppDbContext();
             var itemget = db.TFItems.AsNoTracking()
                                     .Include(x => x.TFCategoriesId)
-                                    .Select(x => new TFItemEntity { Id = x.Id, Name = x.Name, SerialNumber = x.SerialNumber, Image = x.Image, Quantity = x.Quantity, UnitPrice = x.UnitPrice, Description = x.Description, IsPublished = x.IsPublished,TFCategoriesId = x.TFCategoriesId })
+                                    .Select(x => new TFItemEntity
+                                    {
+                                        Id = x.Id,
+                                        TFCategoriesName = x.TFCategory.Category,
+                                        Name = x.Name,
+                                        SerialNumber = x.SerialNumber,
+                                        Image = x.Image,
+                                        Quantity = x.Quantity,
+                                        UnitPrice = x.UnitPrice,
+                                        Description = x.Description,
+                                        IsPublished = x.IsPublished,
+                                        TFCategoriesId = x.TFCategoriesId
+                                    })
                                     .ToList();
             return itemget;
         }
@@ -91,7 +94,27 @@ namespace SparkleAir.DAL.EFRepository.TaxFree
 
         public List<TFItemEntity> Search(TFItemEntity entity)
         {
-            throw new NotImplementedException();
+            var db = new AppDbContext();
+            List<TFItemEntity> itemList = db.TFItems.AsNoTracking()
+                                        //.Where(x => x.Name.Contains(name))
+                                        .Include(x => x.TFCategory)
+                                        .OrderBy(x => x.Id)
+                                        .Select(x => new TFItemEntity
+                                        {
+                                            Id = x.Id,
+                                            TFCategoriesName = x.TFCategory.Category,
+                                            Name = x.Name,
+                                            SerialNumber = x.SerialNumber,
+                                            Image = x.Image,
+                                            Quantity = x.Quantity,
+                                            UnitPrice = x.UnitPrice,
+                                            Description = x.Description,
+                                            IsPublished = x.IsPublished,
+                                            TFCategoriesId = x.TFCategoriesId
+                                        })
+                                        .ToList();
+
+            return itemList;
         }
 
         public TFItemEntity Getid(int id)
@@ -102,6 +125,7 @@ namespace SparkleAir.DAL.EFRepository.TaxFree
             TFItemEntity getitem = new TFItemEntity()
             {
                 Id = get.Id,
+                TFCategoriesName = get.TFCategory.Category,
                 Name = get.Name,
                 SerialNumber = get.SerialNumber,
                 Image = get.Image,

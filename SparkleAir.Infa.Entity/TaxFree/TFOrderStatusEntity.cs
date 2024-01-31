@@ -38,6 +38,5 @@ namespace SparkleAir.Infa.Entity.TaxFree
 
         public int? TFReserveId { get; set; }
 
-        public virtual TFReserve TFReserve { get; set; } //todo:TF
     }
 }

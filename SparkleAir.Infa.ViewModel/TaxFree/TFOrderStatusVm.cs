@@ -37,7 +37,6 @@ namespace SparkleAir.Infa.ViewModel.TaxFree
         public bool? Stocked { get; set; }
 
         public int? TFReserveId { get; set; }
-        //todo
-        //public virtual TFReserve TFReserve { get; set; }
+        
     }
 }

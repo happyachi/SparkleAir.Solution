@@ -22,12 +22,6 @@ namespace SparkleAir.Infa.Dto.TaxFree
 
         public int TFReserveId { get; set; }
 
-        //todo:TF
-        //    public virtual ICollection<CampaignsTFDiscountUsageHistory> CampaignsTFDiscountUsageHistories { get; set; }
-
-        public virtual TFItemDto TFItem { get; set; }
-
-        public virtual TFReservesDto TFReserve { get; set; }
         
     }
 }

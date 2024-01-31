@@ -1,19 +1,19 @@
 ﻿@model IEnumerable<SparkleAir.Infa.ViewModel.TaxFree.TFItemVm>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "SelectProduct";
 }
 
-<h2>Index</h2>
+<h2>SelectProduct</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
-        @*<th>
+        <th>
             @Html.DisplayNameFor(model => model.TFCategoriesId)
-        </th>*@
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.TFCategoriesName)
         </th>
@@ -43,9 +43,9 @@
 
 @foreach (var item in Model) {
     <tr>
-        @*<td>
+        <td>
             @Html.DisplayFor(modelItem => item.TFCategoriesId)
-        </td>*@
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.TFCategoriesName)
         </td>

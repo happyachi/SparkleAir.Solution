@@ -1,6 +1,8 @@
 ﻿using SparkleAir.BLL.Service.AirFlights;
 using SparkleAir.BLL.Service.Campaigns;
+using SparkleAir.BLL.Service.TaxFree;
 using SparkleAir.DAL.EFRepository.Campaigns;
+using SparkleAir.DAL.EFRepository.TaxFree;
 using SparkleAir.FrontEnd.Site.Models.ViewModels.Campaigns;
 using SparkleAir.Infa.Criteria.Campaigns;
 using SparkleAir.Infa.Dto.Campaigns;
@@ -12,6 +14,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Xml.Linq;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
 {
@@ -93,34 +96,41 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
             service.Create(dto);
         }
 
+ 
         public ActionResult SelectProduct()
         {
-            return View();
+            if (!ModelState.IsValid) return View();
+            try
+            {
+                List<TFItemVm> vms = CreateSelectProducts();
+                return PartialView("_SelectProduct",vms);
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, ex.Message);
+                return View();
+            }
         }
-        //public ActionResult SelectProduct()
-        //{
-        //    if (!ModelState.IsValid) return View();
-        //    try
-        //    {
-        //        List<TFItemVm> vms =  CreateSelectProducts();
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        ModelState.AddModelError(string.Empty, ex.Message);
-        //        return View();
-        //    }
-        //}
 
-        //private List<TFItemVm> CreateSelectProducts()
-        //{
-        //    var dtos = new TFItemSerive.Get();
-        //    var products = dtos.Select(x => new TFItemVm { 
-            
-            
-            
-        //    });
-        //}
+        private List<TFItemVm> CreateSelectProducts()
+        {
+            var dtos = new TaxFreeService(new TFItemEFRepository()).Get();
+            var products = dtos.Select(x => new TFItemVm
+            {
+                Id = x.Id,
+                TFCategoriesId = x.TFCategoriesId,
+                TFCategoriesName = x.TFCategoriesName,
+                Name = x.Name,
+                SerialNumber = x.SerialNumber,
+                Image = x.Image,
+                Quantity = x.Quantity,
+                UnitPrice = x.UnitPrice,
+                Description = x.Description,
+                IsPublished = x.IsPublished
+            }).ToList();
+
+            return products;
+        }
 
         #endregion
 

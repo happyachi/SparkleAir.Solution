@@ -18,18 +18,12 @@ namespace SparkleAir.Infa.ViewModel.TaxFree
 
         public int UnitPrice { get; set; }
 
-        public int Discount { get; set; }
+        public int? Discount { get; set; }
 
         public int TotalPrice { get; set; }
 
         public int TFReserveId { get; set; }
 
-        //todo:TF
-    //    public virtual ICollection<CampaignsTFDiscountUsageHistory> CampaignsTFDiscountUsageHistories { get; set; }
-
-    //    public virtual TFItem TFItem { get; set; }
-
-    //    public virtual TFReserve TFReserve { get; set; }
-    //}
-}
+       
+    }
 }

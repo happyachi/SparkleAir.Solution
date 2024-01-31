@@ -167,6 +167,10 @@
     <Compile Include="Controllers\Members\MembersController.cs" />
     <Compile Include="Controllers\MileageDetails\MileageDetailController.cs" />
     <Compile Include="Controllers\TaxFree\TFItemController.cs" />
+    <Compile Include="Controllers\TaxFree\TFOrderlistController.cs" />
+    <Compile Include="Controllers\TaxFree\TFReserveController.cs" />
+    <Compile Include="Controllers\TaxFree\TFReservelistController.cs" />
+    <Compile Include="Controllers\TaxFree\TFWishlistController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -529,6 +533,8 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\popper.min.js" />
     <Content Include="Scripts\simplebar.min.js" />
+    <Content Include="Scripts\vendor\sass\node_modules\immutable\dist\immutable.es.js" />
+    <Content Include="Scripts\vendor\sass\node_modules\immutable\dist\immutable.min.js" />
     <Content Include="Scripts\volt.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -596,7 +602,6 @@
     <Content Include="Views\Luggage\Edit.cshtml" />
     <Content Include="Views\MileageDetail\Index.cshtml" />
     <Content Include="Views\MileageDetail\Create.cshtml" />
-    <Content Include="Views\TFItem\Index.cshtml" />
     <Content Include="Views\TFItem\Create.cshtml" />
     <Content Include="Views\TFItem\Edit.cshtml" />
     <Content Include="Views\TFItem\Details.cshtml" />
@@ -627,6 +632,18 @@
     <Content Include="Views\CampaignsCoupon\Details.cshtml" />
     <Content Include="Views\CampaignsCoupon\_SearchPartialCamapign.cshtml" />
     <Content Include="Views\CampaignsDiscount\_SearchPartialCamapign.cshtml" />
+    <Content Include="Views\TFOrderlist\Index.cshtml" />
+    <Content Include="Views\TFOrderlist\Create.cshtml" />
+    <Content Include="Views\TFOrderlist\Edit.cshtml" />
+    <Content Include="Views\TFOrderlist\Details.cshtml" />
+    <Content Include="Views\TFWishlist\Index.cshtml" />
+    <Content Include="Views\TFWishlist\Create.cshtml" />
+    <Content Include="Views\TFWishlist\Edit.cshtml" />
+    <Content Include="Views\TFWishlist\Details.cshtml" />
+    <Content Include="Views\TFReservelist\Index.cshtml" />
+    <Content Include="Scripts\vendor\sass\node_modules\immutable\dist\immutable.js.flow" />
+    <Content Include="Views\TFItem\Index.cshtml" />
+    <Content Include="Views\CampaignsDiscount\SelectProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -637,6 +654,7 @@
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Campaigns\" />
     <Folder Include="Views\Companies\" />
+    <Folder Include="Views\TFReserve\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
