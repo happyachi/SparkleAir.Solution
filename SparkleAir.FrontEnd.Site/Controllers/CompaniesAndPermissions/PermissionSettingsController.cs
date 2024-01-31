@@ -14,7 +14,7 @@ using System.Web.Mvc;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.CompaniesAndPermissions
 {
-    public class PermissionSettingsController : Controller
+    public class PermissionSettingsController : BaseController
     {
         private readonly PermissionSettingService _service;
         private readonly IPermissionSettingRepository _repo;

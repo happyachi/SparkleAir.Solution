@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="AirFlightsEntity\AirFlightEntity.cs" />
     <Compile Include="AirFlightsEntity\AirFlightManagementEntity.cs" />
+    <Compile Include="Basics\CountryEntity.cs" />
     <Compile Include="Campaigns\CampaignsCouponEntity.cs" />
     <Compile Include="Campaigns\CampaignsDiscountEntity.cs" />
     <Compile Include="Airports\AirportEntity.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="Airtype&amp;Owns\AirSeatEntity.cs" />
     <Compile Include="Airtype&amp;Owns\PlaneEntity.cs" />
     <Compile Include="Luggages\LuggageEntity.cs" />
+    <Compile Include="Members\MemberClassEntity.cs" />
     <Compile Include="Members\MemberEntity.cs" />
     <Compile Include="Members\MemberLoginLogEntity.cs" />
     <Compile Include="MileageDetails\MileageDetailEntity.cs" />
@@ -76,5 +78,6 @@
       <Name>SparkleAir.Infa.EFModel</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.CompaniesAndPermissions
 {
-    public class CompanyStaffsChangePasswordLogsController : Controller
+    public class CompanyStaffsChangePasswordLogsController : BaseController
     {
         private readonly ICompanyStaffsChangePasswordLogRepository _repo;
         private readonly CompanyStaffsChangePasswordLogService _service;
