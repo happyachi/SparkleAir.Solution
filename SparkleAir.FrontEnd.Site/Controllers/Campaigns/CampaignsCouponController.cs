@@ -16,7 +16,7 @@ using static Dapper.SqlMapper;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
 {
-    public class CampaignsCouponController : Controller
+    public class CampaignsCouponController : BaseController
     {
         CampaignsCouponsEFRepository repo = new CampaignsCouponsEFRepository();
 

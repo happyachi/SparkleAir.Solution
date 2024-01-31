@@ -45,7 +45,7 @@ namespace SparkleAir.Infa.Entity.Campaigns
 
         public decimal Value { get; set; }
 
-        public decimal BundleSKUs { get; set; }
+        public decimal? BundleSKUs { get; set; }
 
         public string MemberCriteria { get; set; }
 

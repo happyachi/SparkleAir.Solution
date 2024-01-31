@@ -48,6 +48,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SparkleAir.Web.Api", "Spark
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SparkleAir.Web.Api.Tests", "01表現層\SparkleAir.Web.Api.Tests\SparkleAir.Web.Api.Tests.csproj", "{2B9C669E-5286-47DA-941E-E764FB96E830}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PatchLog", "PatchLog", "{53AE6362-A359-4262-B5F8-F4ADCD3BDF25}"
+	ProjectSection(SolutionItems) = preProject
+		ScaffoldPatchLog.txt = ScaffoldPatchLog.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

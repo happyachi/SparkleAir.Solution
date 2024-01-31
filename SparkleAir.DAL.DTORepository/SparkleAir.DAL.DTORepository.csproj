@@ -44,10 +44,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SparkleAir.IDAL.IRepository\SparkleAir.IDAL.IRepository.csproj">
-      <Project>{73007f85-f88e-4292-ab16-8a5798a9a6fb}</Project>
-      <Name>SparkleAir.IDAL.IRepository</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SparkleAir.Infa.Criteria\SparkleAir.Infa.Criteria.csproj">
       <Project>{1887f4fa-d97f-432f-b936-b47ecc87a94e}</Project>
       <Name>SparkleAir.Infa.Criteria</Name>
@@ -55,10 +51,6 @@
     <ProjectReference Include="..\SparkleAir.Infa.EFModel\SparkleAir.Infa.EFModel.csproj">
       <Project>{a1ad6217-2a9d-4948-aa6f-bf0a12d66712}</Project>
       <Name>SparkleAir.Infa.EFModel</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SparkleAir.Infa.Entity\SparkleAir.Infa.Entity.csproj">
-      <Project>{88fb70a6-7d2c-40d0-a6a6-90cd80d5c422}</Project>
-      <Name>SparkleAir.Infa.Entity</Name>
     </ProjectReference>
     <ProjectReference Include="..\SparkleAir.Infa.Utility\SparkleAir.Infa.Utility.csproj">
       <Project>{3b17053d-b105-432e-a867-05a051c94158}</Project>

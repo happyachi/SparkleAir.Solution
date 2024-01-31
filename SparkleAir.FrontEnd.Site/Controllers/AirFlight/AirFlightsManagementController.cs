@@ -14,7 +14,7 @@ using SparkleAir.Infa.ViewModel.AirFlights;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
 {
-    public class AirFlightsManagementController : Controller
+    public class AirFlightsManagementController : BaseController
     {
         #region CTOR
 
