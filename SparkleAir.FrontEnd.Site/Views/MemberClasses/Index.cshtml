@@ -9,9 +9,10 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
+<table class="table" id="table_jq">
+    <thead>
+        <tr>
+                    <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
@@ -24,10 +25,9 @@
             @Html.DisplayNameFor(model => model.MileageEnd)
         </th>
         <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
+        </tr>
+    </thead>
+    <tbody> @foreach (var item in Model) { <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
@@ -41,11 +41,12 @@
             @Html.DisplayFor(modelItem => item.MileageEnd)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            <a href='@Url.Content("~/MemberClasses/Edit")'><i class="fa-solid fa-pen-to-square"></i>編輯</a>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }, new { role = "button", @class= "btn btn-sm btn-primary" }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }, new { role = "button", @class = "btn btn-sm btn-info" }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id }, new { role = "button", @class = "btn btn-sm btn-danger" })
         </td>
     </tr>
 }
-
+    </tbody>
 </table>
