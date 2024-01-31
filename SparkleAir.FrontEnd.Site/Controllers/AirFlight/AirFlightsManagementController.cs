@@ -11,6 +11,9 @@ using SparkleAir.Infa.Dto.AriFlights;
 using SparkleAir.Infa.Utility.Helper;
 using SparkleAir.Infa.Criteria.AirFlights;
 using SparkleAir.Infa.ViewModel.AirFlights;
+using SparkleAir.IDAL.IRepository.Airport;
+using SparkleAir.BLL.Service.Airports;
+using SparkleAir.DAL.EFRepository.Airports;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
 {
@@ -22,6 +25,9 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
         private AirFlightManagementService _service;
         private IAirTicketPriceRepository _priceRepository;
         private AirTicketPriceService _priceService;
+
+        private IAirportRepository _airportRepo;
+        private AirportService _airportService;
         public AirFlightsManagementController()
         {
             _repo = new AirFlightManagementEFRepository();
@@ -29,6 +35,9 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
 
             _priceRepository = new AirTicketPriceEFRepository();
             _priceService = new AirTicketPriceService(_priceRepository);
+
+            _airportRepo = new AirportEFRepository();
+            _airportService = new AirportService(_airportRepo);
         }
 
         //for testing
@@ -81,7 +90,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
             try
             {
                 var flightId = CreateFlight(vm);
-                _priceService.CreateTicketPirce1500(flightId,vm.Mile);
+                _priceService.CreateTicketPirce1500(flightId, vm.Mile);
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
@@ -118,6 +127,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
             try
             {
                 AirFlightManagementVm vm = Get(id);
+                ViewBag.Airports = _airportService.GetAll();
                 return View(vm);
             }
             catch (Exception ex)
@@ -160,6 +170,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
 
             try
             {
+                //ViewBag.Airports = _airportService.GetAll();
                 Update(vm);
                 return RedirectToAction("Index");
             }

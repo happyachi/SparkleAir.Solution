@@ -132,20 +132,17 @@
 		});
 
 
-		function applyFilter() {
+	async function applyFilter() {
     // 獲取表單數據
     var formData = $('#filterForm').serialize();
 
     // 構建 URL
     var url = '@Url.Action("SearchPartial", "AirFlightsManagement")' + '?' + formData;
 
-    // 發送 AJAX 請求
-    fetch(url)
-        .then(response => response.text())
-        .then(data => {
-            // 更新表格內容或其他視圖操作，根據你的需求
-            $('#datas').html(data);
-        })
-        .catch(error => console.error('Error:', error));
+		// 發送 AJAX 請求
+		const response = await fetch(url);
+		const data = await response.text();
+		$('#datas').html(data);
+           
 }
 </script>

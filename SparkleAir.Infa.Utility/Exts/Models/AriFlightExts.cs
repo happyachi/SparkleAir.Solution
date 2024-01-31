@@ -81,9 +81,9 @@ namespace SparkleAir.Infa.Utility.Exts.Models
                 DayofWeek = afm.DayofWeek,
                 Mile = afm.Mile,
                 DepartureAirport = db.AirPorts.Find(afm.DepartureAirportId).Lata,
-                ArrivalAirport = db.AirPorts.Find(afm.DepartureAirportId).Lata,
+                ArrivalAirport = db.AirPorts.Find(afm.ArrivalAirportId).Lata,
                 DepartureTimeZone = db.AirPorts.Find(afm.DepartureAirportId).TimeArea,
-                ArrivalTimeZone = db.AirPorts.Find(afm.DepartureAirportId).TimeArea,
+                ArrivalTimeZone = db.AirPorts.Find(afm.ArrivalAirportId).TimeArea,
                 AirOwnId = afm.AirFlights.GetAirOwnId(),
                 FlightModel = db.GetFlightModelByAirOwnId(afm.AirFlights.GetAirOwnId()).Item1,
             };
