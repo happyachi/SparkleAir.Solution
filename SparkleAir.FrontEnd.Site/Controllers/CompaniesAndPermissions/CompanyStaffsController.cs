@@ -12,7 +12,7 @@ using System.Web.Mvc;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.CompaniesAndPermissions
 {
-    public class CompanyStaffsController : Controller
+    public class CompanyStaffsController : BaseController
     {
         private readonly CompanyStaffService _service;
         private readonly ICompanyStaffRepository _repo;

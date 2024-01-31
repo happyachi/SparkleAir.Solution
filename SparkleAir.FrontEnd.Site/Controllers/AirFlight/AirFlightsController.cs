@@ -15,7 +15,7 @@ using System.Web.Mvc;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
 {
-    public class AirFlightsController : Controller
+    public class AirFlightsController : BaseController
     {
         #region CTOR
 

@@ -11,7 +11,7 @@ using System.Web.Mvc;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.CompaniesAndPermissions
 {
-    public class CompanyStaffLoginLogsController : Controller
+    public class CompanyStaffLoginLogsController : BaseController
     {
         private readonly CompanyStaffLoginLogService _service;
         private readonly ICompanyStaffLoginLogRepository _repo;

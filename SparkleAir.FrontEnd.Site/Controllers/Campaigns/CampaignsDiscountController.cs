@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
 {
-    public class CampaignsDiscountController : Controller
+    public class CampaignsDiscountController : BaseController
     {
         CampaignsDiscountsEFRepository repo = new CampaignsDiscountsEFRepository();
 

@@ -11,7 +11,7 @@ using System.Web.Mvc;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.CompaniesAndPermissions
 {
-    public class CompanyJobsController : Controller
+    public class CompanyJobsController : BaseController
     {
         private readonly CompanyJobService _service;
         private readonly ICompanyJobRepository _repo;

@@ -6,8 +6,8 @@ using System.Web.Mvc;
 
 namespace SparkleAir.FrontEnd.Site.Controllers
 {
-	public class HomeController : Controller
-	{
+	public class HomeController : BaseController
+    {
 		public ActionResult Index()
 		{
 			return View();
