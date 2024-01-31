@@ -17,7 +17,7 @@ using SparkleAir.DAL.EFRepository.Airports;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
 {
-    public class AirFlightsManagementController : Controller
+    public class AirFlightsManagementController : BaseController
     {
         #region CTOR
 

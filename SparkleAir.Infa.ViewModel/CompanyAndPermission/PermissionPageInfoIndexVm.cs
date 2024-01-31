@@ -9,12 +9,23 @@ namespace SparkleAir.Infa.ViewModel.CompanyAndPermission
 {
     public class PermissionPageInfoIndexVm
     {
+        [Display(Name = "ID")]
+        [Required(ErrorMessage = "{0}必填")]
         public int Id { get; set; }
 
+        [Display(Name = "頁面編號")]
+        [Required(ErrorMessage = "{0}必填")]
+        [MaxLength(10)]
         public string PageNumber { get; set; }
 
+        [Display(Name = "頁面名稱")]
+        [Required(ErrorMessage = "{0}必填")]
+        [MaxLength(10)]
         public string PageName { get; set; }
 
+        [Display(Name = "頁面描述")]
+        [Required(ErrorMessage = "{0}必填")]
+        [MaxLength(100)]
         public string PageDescription { get; set; }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using SparkleAir.Infa.Criteria.Members;
-using SparkleAir.Infa.Dto.Members;
 using SparkleAir.Infa.Entity.Members;
 using System;
 using System.Collections.Generic;

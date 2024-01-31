@@ -46,6 +46,7 @@
     <Compile Include="AirFlights\AirFlightService.cs" />
     <Compile Include="AirFlights\AirTicketPriceService.cs" />
     <Compile Include="AirFlights\SeatGroupService.cs" />
+    <Compile Include="Basics\CountryService.cs" />
     <Compile Include="Campaigns\CampaignsCouponsService.cs" />
     <Compile Include="Campaigns\CampaignsDiscountsService.cs.cs" />
     <Compile Include="Airports\AirportService.cs" />
@@ -58,16 +59,27 @@
     <Compile Include="CompanyAndPermission\PermissionGroupService.cs" />
     <Compile Include="CompanyAndPermission\PermissionPageInfoService.cs" />
     <Compile Include="CompanyAndPermission\PermissionSettingService.cs" />
+    <Compile Include="Members\MemberClassService.cs" />
     <Compile Include="Members\MemberLoginLogService.cs" />
     <Compile Include="Airtype&amp;Owns\AirSeatService.cs" />
     <Compile Include="Airtype&amp;Owns\PlaneService.cs" />
     <Compile Include="Luggage\LuggageService.cs" />
     <Compile Include="Members\MemberService.cs" />
+    <Compile Include="MileageDetails\MileageDetailService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TaxFree\TaxFreeService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SparkleAir.DAL.DapperRepository\SparkleAir.DAL.DapperRepository.csproj">
+      <Project>{217749e9-e16e-4906-bac3-32c1214f451c}</Project>
+      <Name>SparkleAir.DAL.DapperRepository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SparkleAir.DAL.DTORepository\SparkleAir.DAL.DTORepository.csproj">
+      <Project>{559447d2-15a2-4cc2-9155-fd159037ace8}</Project>
+      <Name>SparkleAir.DAL.DTORepository</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SparkleAir.DAL.EFRepository\SparkleAir.DAL.EFRepository.csproj">
-      <Project>{0FC6AFBA-5585-43BE-84AC-22DE8BC3DC74}</Project>
+      <Project>{0fc6afba-5585-43be-84ac-22de8bc3dc74}</Project>
       <Name>SparkleAir.DAL.EFRepository</Name>
     </ProjectReference>
     <ProjectReference Include="..\SparkleAir.IDAL.IRepository\SparkleAir.IDAL.IRepository.csproj">
@@ -82,10 +94,6 @@
       <Project>{2431caf2-a681-4bb8-9973-3e568f7a7453}</Project>
       <Name>SparkleAir.Infa.Dto</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SparkleAir.Infa.EFModel\SparkleAir.Infa.EFModel.csproj">
-      <Project>{A1AD6217-2A9D-4948-AA6F-BF0A12D66712}</Project>
-      <Name>SparkleAir.Infa.EFModel</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SparkleAir.Infa.Entity\SparkleAir.Infa.Entity.csproj">
       <Project>{88fb70a6-7d2c-40d0-a6a6-90cd80d5c422}</Project>
       <Name>SparkleAir.Infa.Entity</Name>
@@ -95,7 +103,7 @@
       <Name>SparkleAir.Infa.Utility</Name>
     </ProjectReference>
     <ProjectReference Include="..\SparkleAir.Infa.ViewModel\SparkleAir.Infa.ViewModel.csproj">
-      <Project>{4B7A6ECF-2F6D-449B-83D0-6E08D3E43A40}</Project>
+      <Project>{4b7a6ecf-2f6d-449b-83d0-6e08d3e43a40}</Project>
       <Name>SparkleAir.Infa.ViewModel</Name>
     </ProjectReference>
   </ItemGroup>

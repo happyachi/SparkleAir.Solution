@@ -64,17 +64,9 @@
       <Project>{1887f4fa-d97f-432f-b936-b47ecc87a94e}</Project>
       <Name>SparkleAir.Infa.Criteria</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SparkleAir.Infa.Dto\SparkleAir.Infa.Dto.csproj">
-      <Project>{2431caf2-a681-4bb8-9973-3e568f7a7453}</Project>
-      <Name>SparkleAir.Infa.Dto</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SparkleAir.Infa.EFModel\SparkleAir.Infa.EFModel.csproj">
       <Project>{a1ad6217-2a9d-4948-aa6f-bf0a12d66712}</Project>
       <Name>SparkleAir.Infa.EFModel</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SparkleAir.Infa.Entity\SparkleAir.Infa.Entity.csproj">
-      <Project>{88fb70a6-7d2c-40d0-a6a6-90cd80d5c422}</Project>
-      <Name>SparkleAir.Infa.Entity</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

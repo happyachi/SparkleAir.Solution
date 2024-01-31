@@ -13,7 +13,7 @@ using System.Web.UI.WebControls;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.Members
 {
-    public class MemberLoginLogsController : Controller
+    public class MemberLoginLogsController : BaseController
     {
         private readonly IMemberLoginLogRepository _repo;
 
