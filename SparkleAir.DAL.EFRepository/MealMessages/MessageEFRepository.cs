@@ -1,4 +1,5 @@
 ﻿using SparkleAir.IDAL.IRepository.MealMessages;
+using SparkleAir.Infa.EFModel.EFModels;
 using SparkleAir.Infa.Entity.MealMessageEntity;
 using System;
 using System.Collections.Generic;
@@ -10,21 +11,62 @@ namespace SparkleAir.DAL.EFRepository.MealMessages
 {
     public class MessageEFRepository : IMessageRepository
     {
-        public int Create(MessageEntity message)
+        private AppDbContext db=new AppDbContext();
+        public int Create(MessageEntity entity)
         {
-            throw new NotImplementedException();
+            Message message = new Message
+            {
+                Id = entity.Id,
+                MessageBoxId = entity.MessageBoxId,
+                SendTime = entity.SendTime,
+                MessageContent = entity.MessageContent,
+                MemberId = entity.MemberId,
+                CompanyStaffId = entity.CompanyStaffId,
+                IsReaded = entity.IsReaded,
+                ReadedTime = entity.ReadedTime
+
+            };
+            db.Messages.Add(message);
+            db.SaveChanges();
+            return message.Id;
         }
 
-        public List<MessageEntity> GetByBoxId(int messageBodId)
+        //todo 一次顯示幾筆/升冪or降冪
+        public List<MessageEntity> GetByBoxId(int messageBoxId)
         {
-            throw new NotImplementedException();
+            List<MessageEntity> data=db.Messages.AsNoTracking()
+                .Where(x=>x.MessageBoxId==messageBoxId).OrderBy(x=>x.SendTime).Select(x=>new MessageEntity
+                {
+                    Id = x.Id,
+                    MessageBoxId = x.MessageBoxId,
+                    SendTime = x.SendTime,
+                    MessageContent = x.MessageContent,
+                    MemberId = x.MemberId,
+                    CompanyStaffId = x.CompanyStaffId,
+                    IsReaded = x.IsReaded,
+                    ReadedTime = x.ReadedTime
+                }).ToList();
+            return data;
         }
-
+        //todo 在對話框中搜尋對話內容
         public List<MessageEntity> SearchByContent(string content)
         {
-            throw new NotImplementedException();
+            List<MessageEntity> data=db.Messages.AsNoTracking()
+                .Where(x=>x.MessageContent.Contains(content))
+                .OrderBy(x=>x.Id).Select(x => new MessageEntity
+                {
+                    Id = x.Id,
+                    MessageBoxId = x.MessageBoxId,
+                    SendTime = x.SendTime,
+                    MessageContent = x.MessageContent,
+                    MemberId = x.MemberId,
+                    CompanyStaffId = x.CompanyStaffId,
+                    IsReaded = x.IsReaded,
+                    ReadedTime = x.ReadedTime
+                }).ToList();
+            return data;
         }
-
+        //todo 時間range(精確到年/月/日/時)
         public List<MessageEntity> SearchByTime(string time)
         {
             throw new NotImplementedException();
