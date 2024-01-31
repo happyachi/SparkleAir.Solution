@@ -4,6 +4,7 @@ using SparkleAir.FrontEnd.Site.Models.ViewModels.Campaigns;
 using SparkleAir.Infa.Criteria.Campaigns;
 using SparkleAir.Infa.Dto.Campaigns;
 using SparkleAir.Infa.Dto.TaxFree;
+using SparkleAir.Infa.ViewModel.Campaigns;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -89,6 +90,19 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
 
             service.Create(dto);
         }
+
+        //private void CreateBundle(CamapignsDiscountSelectProductsVm vm)
+        //{
+        //    var service = new CampaignsDiscountsService(repo);
+
+        //    CampaignsDiscountDto dto = new CampaignsDiscountDto
+        //    {
+        //        //Id = vm.Id,
+        //        //Campaign = "促銷組合"
+        //    };
+
+        //    service.Create(dto);
+        //}
         #endregion
 
         #region Edit
@@ -217,40 +231,6 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
         }
         #endregion
 
-        //#region Product
-        //public ActionResult Product()
-        //{
-        //    return View();
-        //}
-        //[HttpPost]
-        //public ActionResult Product(TFItemDto item)
-        //{
-        //    if (!ModelState.IsValid) return View();
-        //    try
-        //    {
-        //        CreateBundle(item);
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        ModelState.AddModelError(string.Empty, ex.Message);
-        //        return View(item);
-        //    }
-        //}
-
-        //private void CreateBundle(TFItemDto dto)
-        //{
-        //    var service = new CampaignsDiscountsService(repo);
-
-        //    CampaignsDiscountDto dto = new CampaignsDiscountDto
-        //    {
-        //        //Id = vm.Id,
-        //        //Campaign = "促銷組合"
-        //    };
-
-        //    service.Create(dto);
-        //}
-
-        //#endregion
+       
     }
 }
