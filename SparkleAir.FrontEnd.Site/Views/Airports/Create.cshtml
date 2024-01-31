@@ -18,7 +18,19 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Lata, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Lata, new { htmlAttributes = new { @class = "form-control" } })
+
+                <select class="form-select" aria-label="Default select example" name="Lata">
+                    @*name="Lata" 要放要得欄位才抓地到值*@
+
+                    <option selected></option>
+                    @foreach (var item in ViewBag.editAirport)
+                    {
+                        <option value="@item.Lata">@item.Lata</option>
+                    }
+
+                </select>
+
+                @*@Html.EditorFor(model => model.Lata, new { htmlAttributes = new { @class = "form-control" } })*@
                 @Html.ValidationMessageFor(model => model.Lata, "", new { @class = "text-danger" })
             </div>
         </div>
