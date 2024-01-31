@@ -70,6 +70,9 @@ namespace SparkleAir.FrontEnd.Site.Models.ViewModels.Campaigns
         [Display(Name = "航班篩選")]
         public string AirFlightsCriteria { get; set; }
 
+        [Display(Name = "折扣類型")]
+        public string Type { get; set; }
+
         //public virtual ICollection<CampaignsCouponAirFlight> CampaignsCouponAirFlights { get; set; }
 
         //public virtual ICollection<CampaignsCouponMember> CampaignsCouponMembers { get; set; }

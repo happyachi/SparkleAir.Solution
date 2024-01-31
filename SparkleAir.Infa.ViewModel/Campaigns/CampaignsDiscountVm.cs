@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SparkleAir.Infa.EFModel.EFModels;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -38,7 +39,7 @@ namespace SparkleAir.FrontEnd.Site.Models.ViewModels.Campaigns
         [Required(ErrorMessage = "{0}必填")]
         public decimal DiscountValue { get; set; }
 
-        [Display(Name = "折扣門檻")]
+        [Display(Name = "最低消費金額")]
         [Required(ErrorMessage = "{0}必填")]
         public decimal Value { get; set; }
 
@@ -50,6 +51,9 @@ namespace SparkleAir.FrontEnd.Site.Models.ViewModels.Campaigns
 
         [Display(Name = "商品篩選")]
         public string TFItemsCriteria { get; set; }
+
+        [Display(Name = "折扣類型")]
+        public string Type { get; set; }
 
         //public virtual ICollection<CampaignsDiscountMember> CampaignsDiscountMembers { get; set; }
 

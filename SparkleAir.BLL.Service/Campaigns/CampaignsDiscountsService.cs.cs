@@ -52,8 +52,8 @@ namespace SparkleAir.BLL.Service.Campaigns
               dto.Value,
               dto.BundleSKUs,
               dto.MemberCriteria,
-              dto.TFItemsCriteria
-              //dto.Campaign
+              dto.TFItemsCriteria,
+              dto.Type
                 //dto.Id
                 );
 
@@ -107,6 +107,7 @@ namespace SparkleAir.BLL.Service.Campaigns
                 BundleSKUs = d.BundleSKUs,
                 MemberCriteria = d.MemberCriteria,
                 TFItemsCriteria = d.TFItemsCriteria,
+                Type = d.Type
                 //Campaign = d.Campaign
             }).ToList();
 
@@ -127,7 +128,7 @@ namespace SparkleAir.BLL.Service.Campaigns
               dto.BundleSKUs,
               dto.MemberCriteria,
               dto.TFItemsCriteria,
-              //dto.Campaign,
+              dto.Type,
               dto.Id
                 );
 

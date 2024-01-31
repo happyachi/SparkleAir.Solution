@@ -2,12 +2,16 @@
 using SparkleAir.DAL.EFRepository.Campaigns;
 using SparkleAir.FrontEnd.Site.Models.ViewModels.Campaigns;
 using SparkleAir.IDAL.IRepository.Campaigns;
+using SparkleAir.Infa.Criteria.AirFlights;
+using SparkleAir.Infa.Criteria.Campaigns;
 using SparkleAir.Infa.Dto.Campaigns;
+using SparkleAir.Infa.ViewModel.AirFlights;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Services.Description;
 using static Dapper.SqlMapper;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
@@ -38,6 +42,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
                 DateCreated = c.DateCreated,
                 Status = c.Status,
                 Code = c.Code,
+                Type = c.Type
             }).ToList();
 
             return vm;
@@ -207,11 +212,37 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
             return Json(new {data= coupons},JsonRequestBehavior.AllowGet);
         }
 
+        #region Details
         public ActionResult Details(int id)
         {
             var discount = Get(id);
             return View(discount);
         }
+        #endregion
 
+        #region Search
+        public ActionResult SearchPartialCamapign(CampaignsCouponSearchCriteria vm)
+        {
+            var viewModel = SearchCoupons(vm);
+            return PartialView("_SearchPartialCamapign", viewModel);
+        }
+        private List<CampaignsCouponIndexVm> SearchCoupons(CampaignsCouponSearchCriteria vm)
+        {
+            var service = new CampaignsCouponsService(repo);
+            var list = service.Search(vm);
+
+            return list.Select(data => new CampaignsCouponIndexVm
+            {
+                Id = data.Id,
+                Name = data.Name,
+                DateCreated = data.DateCreated,
+                DateStart = data.DateStart,
+                DateEnd = data.DateEnd,
+                Status = data.Status,
+                Code = data.Code,
+                Type = data.Type                
+            }).ToList();
+        }
+        #endregion
     }
 }

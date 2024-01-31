@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SparkleAir.Infa.EFModel.EFModels;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace SparkleAir.FrontEnd.Site.Models.ViewModels.Campaigns
@@ -24,6 +25,9 @@ namespace SparkleAir.FrontEnd.Site.Models.ViewModels.Campaigns
 
         [Display(Name = "狀態")]
         public string Status { get; set; }
+
+        [Display(Name = "折扣類型")]
+        public string Type { get; set; }
 
     }
 }

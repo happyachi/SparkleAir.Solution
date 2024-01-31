@@ -1,6 +1,10 @@
 ﻿using SparkleAir.IDAL.IRepository.Campaigns;
+using SparkleAir.Infa.Criteria.AirFlights;
+using SparkleAir.Infa.Criteria.Campaigns;
+using SparkleAir.Infa.Dto.AriFlights;
 using SparkleAir.Infa.Dto.Campaigns;
 using SparkleAir.Infa.Entity.Campaigns;
+using SparkleAir.Infa.Utility.Helper;
 using SparkleAir.Infa.Utility.Helper.Campaigns;
 using System;
 using System.Collections.Generic;
@@ -39,7 +43,7 @@ namespace SparkleAir.BLL.Service.Campaigns
             string status = CamapignsTimeHelper.DetermineStatus(dto.DateStart, dto.DateEnd);
 
             CampaignsCouponEntity entity = new CampaignsCouponEntity(
-             
+
               dto.CampaignId,
               dto.Name,
               dto.DateStart,
@@ -55,8 +59,8 @@ namespace SparkleAir.BLL.Service.Campaigns
               dto.DisplayDescription,
               dto.MemberCriteria,
               dto.AirFlightsCriteria,
-              dto.Campaign
-              //dto.Id
+              dto.Type
+                //dto.Id
                 );
 
             _repo.Create(entity);
@@ -116,7 +120,7 @@ namespace SparkleAir.BLL.Service.Campaigns
                 DisplayDescription = c.DisplayDescription,
                 MemberCriteria = c.MemberCriteria,
                 AirFlightsCriteria = c.AirFlightsCriteria,
-                Campaign = c.Campaign
+                Type = c.Type
             }).ToList();
 
             return dto;
@@ -147,11 +151,39 @@ namespace SparkleAir.BLL.Service.Campaigns
               dto.DisplayDescription,
               dto.MemberCriteria,
               dto.AirFlightsCriteria,
-              dto.Campaign,
+              dto.Type,
               dto.Id
             );
 
             _repo.Update(entity);
+        }
+
+        public List<CampaignsCouponDto> Search(CampaignsCouponSearchCriteria dto)
+        {
+
+            var list = _repo.Search(dto);
+
+            return list.Select(c => new CampaignsCouponDto
+            {
+                Id = c.Id,
+                Name = c.Name,
+                CampaignId = c.CampaignId,
+                DateStart = c.DateStart,
+                DateEnd = c.DateEnd,
+                DateCreated = c.DateCreated,
+                Status = c.Status,
+                DiscountQuantity = c.DiscountQuantity,
+                DiscountValue = c.DiscountValue,
+                AvailableQuantity = c.AvailableQuantity,
+                MinimumOrderValue = c.MinimumOrderValue,
+                MaximumDiscountAmount = c.MaximumDiscountAmount,
+                Code = c.Code,
+                DisplayDescription = c.DisplayDescription,
+                MemberCriteria = c.MemberCriteria,
+                AirFlightsCriteria = c.AirFlightsCriteria,
+                Type = c.Type
+            }).ToList();
+
         }
     }
 }

@@ -35,6 +35,8 @@ namespace SparkleAir.Infa.Dto.Campaigns
 
         public virtual string Campaign { get; set; }
 
+        public string Type { get; set; }
+
         public virtual ICollection<CampaignsDiscountMember> CampaignsDiscountMembers { get; set; }
 
         public virtual ICollection<CampaignsDiscountTFItem> CampaignsDiscountTFItems { get; set; }

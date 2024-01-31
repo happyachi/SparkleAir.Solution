@@ -1,13 +1,12 @@
-﻿using SparkleAir.Infa.EFModel.EFModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SparkleAir.Infa.Dto.Campaigns
+namespace SparkleAir.Infa.Criteria.Campaigns
 {
-    public class CampaignsCouponDto
+    public class CampaignsCouponSearchCriteria
     {
         public int Id { get; set; }
 
@@ -41,14 +40,9 @@ namespace SparkleAir.Infa.Dto.Campaigns
 
         public string AirFlightsCriteria { get; set; }
 
-        public  string Campaign { get; set; }
+        public string Campaign { get; set; }
 
         public string Type { get; set; }
 
-        public virtual ICollection<CampaignsCouponAirFlight> CampaignsCouponAirFlights { get; set; }
-
-        public virtual ICollection<CampaignsCouponMember> CampaignsCouponMembers { get; set; }
-
-        public virtual ICollection<CampaignsFlightCouponsUsageHistory> CampaignsFlightCouponsUsageHistories { get; set; }
     }
 }

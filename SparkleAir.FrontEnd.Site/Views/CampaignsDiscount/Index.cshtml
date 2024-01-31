@@ -29,6 +29,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Status)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
         <th></th>
     </tr>
 
@@ -53,6 +56,9 @@
             @Html.DisplayFor(modelItem => item.Status)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Details", "Details", new { id=item.Id }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.Id })
@@ -61,3 +67,5 @@
 }
 
 </table>
+
+<a href="@Url.Action("ExportToExcel","Home")">Export Excel</a>

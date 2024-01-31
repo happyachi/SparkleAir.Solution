@@ -57,7 +57,7 @@ namespace SparkleAir.DAL.EFRepository.Campaigns
         {
             var discount = db.CampaignsDiscounts.AsNoTracking()
                              .Include(d => d.Campaign)
-                             .OrderBy(d => d.DateCreated)
+                             .OrderBy(d => d.DateStart)
                              .Select(func).ToList();
 
             return discount;

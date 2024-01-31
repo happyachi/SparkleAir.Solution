@@ -35,7 +35,8 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
                 DateStart = d.DateStart,
                 DateEnd = d.DateEnd,
                 DateCreated = d.DateCreated,
-                Status = d.Status
+                Status = d.Status,
+                Type = d.Type
             }).ToList();
 
             return vm;
@@ -183,8 +184,17 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
 
         public ActionResult Details(int id)
         {
+            try { 
             var discount = Get(id);
             return View(discount);
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, "活動已結束，不能删除。");
+                return RedirectToAction("Index");
+            }
         }
+
+        
     }
 }

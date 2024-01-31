@@ -7,28 +7,24 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
 <div class="form-horizontal">
     <hr />
 
-    <select name="CampaignId" id="CampaignId" class="form-select" aria-label="Default select example">
-        <option selected>請下拉選擇</option>
-        <option value="1">折扣金額</option>
-        <option value="4">折扣折數</option>
-    </select>
-   
-    @*<div class="form-group">
-        @Html.LabelFor(model => model.Campaign, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Campaign, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Campaign, "", new { @class = "text-danger" })
-        </div>
-    </div>*@
 
-    <div class="form-group">
+
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.Campaign, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Campaign, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Campaign, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+    <div class="form-group mt-3">
         @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
@@ -36,7 +32,8 @@
         </div>
     </div>
 
-    <div class="form-group">
+
+    <div class="form-group mt-3">
         @Html.LabelFor(model => model.DateStart, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.DateStart, new { htmlAttributes = new { @class = "form-control" } })
@@ -76,8 +73,20 @@
             </div>
         </div>*@
 
+
+    <div class="form-group mt-3">
+        <p>折扣類型</p>
+        <select name="CampaignId" id="CampaignId" class="form-select CampaignId" aria-label="Default select example">
+            <option selected>請下拉選擇</option>
+            <option value="1">折扣金額</option>
+            <option value="4">折扣折數</option>
+        </select>
+    </div>
+
     <div class="form-group">
-        @Html.LabelFor(model => model.DiscountValue, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="discountLabel">
+            折扣金額或百分比
+        </div>
         <div class="col-md-10">
             @Html.EditorFor(model => model.DiscountValue, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.DiscountValue, "", new { @class = "text-danger" })
@@ -93,12 +102,12 @@
     </div>
 
     @*<div class="form-group">
-        @Html.LabelFor(model => model.AvailableQuantity, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.AvailableQuantity, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.AvailableQuantity, "", new { @class = "text-danger" })
-        </div>
-    </div>*@
+            @Html.LabelFor(model => model.AvailableQuantity, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.AvailableQuantity, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.AvailableQuantity, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
 
     <div class="form-group">
         @Html.LabelFor(model => model.MinimumOrderValue, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -155,5 +164,24 @@
 </div>
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+            var selectElement = document.querySelector(".CampaignId");
+            var discountLabel = document.querySelector(".discountLabel");
+
+            selectElement.addEventListener("change", function () {
+                if (selectElement.value === "1") {
+                    discountLabel.innerHTML = "折扣金額";
+                } else if (selectElement.value === "4") {
+                    discountLabel.innerHTML = "折扣百分比";
+                } else {
+                    discountLabel.innerHTML = "折扣金額或百分比";
+                }
+            });
+        });
+
+
+    </script>
 }

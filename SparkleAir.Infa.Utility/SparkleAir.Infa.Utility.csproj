@@ -50,6 +50,7 @@
     <Compile Include="Exts\Models\CampaignsCouponExts.cs" />
     <Compile Include="Exts\Models\CampaignsDiscountExts.cs.cs" />
     <Compile Include="Exts\Models\MemberExts.cs" />
+    <Compile Include="Helper\CampaignsPartialView.cs" />
     <Compile Include="Helper\Campaigns\CamapignsTimeHelper.cs" />
     <Compile Include="Helper\Campaigns\PriceHelper.cs" />
     <Compile Include="Helper\CompanyAndPermission\CompanyFunc.cs" />
