@@ -28,6 +28,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
 
         private IAirportRepository _airportRepo;
         private AirportService _airportService;
+      
         public AirFlightsManagementController()
         {
             _repo = new AirFlightManagementEFRepository();
@@ -79,6 +80,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
 
         public ActionResult Create()
         {
+            ViewBag.Airports = _airportService.GetAll();
             return View();
         }
 
@@ -86,7 +88,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
         public ActionResult Create(AirFlightManagementCreateVm vm)
         {
             if (!ModelState.IsValid) return View();
-
+            ViewBag.Airports = _airportService.GetAll();
             try
             {
                 var flightId = CreateFlight(vm);
@@ -168,9 +170,9 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
 
             if (!ModelState.IsValid) return View(vm);
 
+                ViewBag.Airports = _airportService.GetAll();
             try
             {
-                //ViewBag.Airports = _airportService.GetAll();
                 Update(vm);
                 return RedirectToAction("Index");
             }

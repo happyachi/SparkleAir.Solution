@@ -13,7 +13,6 @@ namespace SparkleAir.Infa.ViewModel.AirFlights
         public int Id { get; set; }
 
         [Display(Name = "班次代碼")]
-        [Required(ErrorMessage = "{0} 必填")]
         [StringLength(15)]
         public string FlightCode { get; set; }
 
@@ -59,6 +58,6 @@ namespace SparkleAir.Infa.ViewModel.AirFlights
         [Display(Name = "目的地時區")]
         public int ArrivalTimeZone { get; set; }
 
-        public int AirOwnId { get; set; }
+        public int? AirOwnId { get; set; }
     }
 }

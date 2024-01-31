@@ -25,30 +25,40 @@
 
 		<div class="mb-3">
 			@Html.LabelFor(model => model.DepartureAirport, htmlAttributes: new { @class = "control-label col-md-2" })
+			<select class="form-select" aria-label="Default select example" name="DepartureAirport" id="departureAir">
+				<option selected></option>
 
-			@Html.EditorFor(model => model.DepartureAirport, new { htmlAttributes = new { @class = "form-control" } })
-			@Html.ValidationMessageFor(model => model.DepartureAirport, "", new { @class = "text-danger" })
+				@foreach (var airport in ViewBag.Airports)
+				{
+					<option value="@airport.Lata" data-yu-dept="@(airport.TimeArea)">@airport.Lata</option>
+				}
+			</select>
 		</div>
 
 		<div class="mb-3">
 			@Html.LabelFor(model => model.DepartureTimeZone, htmlAttributes: new { @class = "control-label col-md-2" })
 
-			@Html.EditorFor(model => model.DepartureTimeZone, new { htmlAttributes = new { @class = "form-control" } })
+			@Html.EditorFor(model => model.DepartureTimeZone, new { htmlAttributes = new { @class = "form-control deptTimeZone" } })
 			@Html.ValidationMessageFor(model => model.DepartureTimeZone, "", new { @class = "text-danger" })
 		</div>
 
 		<div class="mb-3">
 			@Html.LabelFor(model => model.ArrivalAirport, htmlAttributes: new { @class = "control-label col-md-2" })
+			<select class="form-select" aria-label="Default select example" name="ArrivalAirport" id="arrivalAir">
+				<option selected></option>
 
-			@Html.EditorFor(model => model.ArrivalAirport, new { htmlAttributes = new { @class = "form-control" } })
-			@Html.ValidationMessageFor(model => model.ArrivalAirport, "", new { @class = "text-danger" })
+				@foreach (var airport in ViewBag.Airports)
+				{
+					<option value="@airport.Lata" data-yu-arri="@(airport.TimeArea)">@airport.Lata</option>
+				}
+			</select>
 
 		</div>
 
 		<div class="mb-3">
 			@Html.LabelFor(model => model.ArrivalTimeZone, htmlAttributes: new { @class = "control-label col-md-2" })
 
-			@Html.EditorFor(model => model.ArrivalTimeZone, new { htmlAttributes = new { @class = "form-control" } })
+			@Html.EditorFor(model => model.ArrivalTimeZone, new { htmlAttributes = new { @class = "form-control arriTimeZone" } })
 			@Html.ValidationMessageFor(model => model.ArrivalTimeZone, "", new { @class = "text-danger" })
 		</div>
 
@@ -70,14 +80,16 @@
 		<div class="mb-3">
 			@Html.LabelFor(model => model.DepartureTime, htmlAttributes: new { @class = "control-label col-md-2" })
 
-			@Html.EditorFor(model => model.DepartureTime, new { htmlAttributes = new { @class = "form-control" } })
+			<input type="time" id="DepartureTime" name="DepartureTime" class="form-control" />
+
 			@Html.ValidationMessageFor(model => model.DepartureTime, "", new { @class = "text-danger" })
 		</div>
 
 		<div class="mb-3">
 			@Html.LabelFor(model => model.ArrivalTime, htmlAttributes: new { @class = "control-label col-md-2" })
 
-			@Html.EditorFor(model => model.ArrivalTime, new { htmlAttributes = new { @class = "form-control" } })
+			<input type="time" id="ArrivalTime" name="ArrivalTime" class="form-control" />
+
 			@Html.ValidationMessageFor(model => model.ArrivalTime, "", new { @class = "text-danger" })
 		</div>
 
@@ -106,6 +118,22 @@
 	</div>
 }
 
+
 @section Scripts {
 	@Scripts.Render("~/bundles/jqueryval")
+	<script>
+		const deptAir = document.querySelector('#departureAir');
+		const detpTime = document.querySelector('.deptTimeZone')
+		deptAir.addEventListener('change', () => {
+			const dept = deptAir.querySelector(`[value=${deptAir.value}]`);
+			detpTime.value = dept.getAttribute('data-yu-dept');
+		})
+
+		const arriAir = document.querySelector('#arrivalAir');
+		const arriTime = document.querySelector('.arriTimeZone')
+		arriAir.addEventListener('change', () => {
+			const arri = arriAir.querySelector(`[value=${arriAir.value}]`);
+			arriTime.value = arri.getAttribute('data-yu-arri');
+		})
+	</script>
 }

@@ -81,7 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SparkleAir.IDAL.IRepository\SparkleAir.IDAL.IRepository.csproj">
-      <Project>{73007f85-f88e-4292-ab16-8a5798a9a6fb}</Project>
+      <Project>{73007F85-F88E-4292-AB16-8A5798A9A6FB}</Project>
       <Name>SparkleAir.IDAL.IRepository</Name>
     </ProjectReference>
     <ProjectReference Include="..\SparkleAir.Infa.Criteria\SparkleAir.Infa.Criteria.csproj">
@@ -93,7 +93,7 @@
       <Name>SparkleAir.Infa.EFModel</Name>
     </ProjectReference>
     <ProjectReference Include="..\SparkleAir.Infa.Entity\SparkleAir.Infa.Entity.csproj">
-      <Project>{88fb70a6-7d2c-40d0-a6a6-90cd80d5c422}</Project>
+      <Project>{88FB70A6-7D2C-40D0-A6A6-90CD80D5C422}</Project>
       <Name>SparkleAir.Infa.Entity</Name>
     </ProjectReference>
     <ProjectReference Include="..\SparkleAir.Infa.Utility\SparkleAir.Infa.Utility.csproj">
