@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
 using System.Xml.Linq;
+using SparkleAir.Infa.Criteria.Campaigns;
 
 namespace SparkleAir.DAL.EFRepository.Campaigns
 {
@@ -61,6 +62,21 @@ namespace SparkleAir.DAL.EFRepository.Campaigns
                              .Select(func).ToList();
 
             return discount;
+        }
+
+        public List<CampaignsDiscountEntity> Search(CampaignsDiscountSearchCriteria entity)
+        {
+            var query = db.CampaignsDiscounts.AsNoTracking()
+                             .Include(c => c.Campaign)
+                             .OrderBy(c => c.DateCreated)
+                             .ToList()
+                             .Select(func);
+
+            if (!string.IsNullOrEmpty(entity.Name))
+            {
+                query = query.Where(e => e.Name.Contains(entity.Name));
+            }
+            return query.ToList();
         }
 
         public void Update(CampaignsDiscountEntity entity)

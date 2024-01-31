@@ -1,9 +1,5 @@
 ﻿@model IEnumerable<SparkleAir.FrontEnd.Site.Models.ViewModels.Campaigns.CampaignsDiscountIndexVm>
 
-@{
-    ViewBag.Title = "Index";
-}
-
 @section styles{
     <style>
         #divMore {
@@ -22,20 +18,18 @@
     </style>
 }
 
-<h2>Index</h2>
+<h2>_SearchPartialCamapign</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <div class="row" id="datas">
     <div style="overflow:auto">
         <form id="filterForm" class="text-center align-items-center">
             <div class="form-group row">
                 <label class="col-form-label col-1">活動名稱:</label>
                 <div class="col-sm-2">
+                    @*@Html.TextBox("Name")*@
                     <input type="text" class="form-control" id="Discount" name="Name">
                 </div>
-                <button type="button" class="btn btn-sm btn-dark col-sm-1" onclick="applyFilter()">搜尋</button>
+                <button type="button" class="btn btn-sm btn-dark col-sm-1" onclick="applyFilter()" value="Search">搜尋</button>
             </div>
             <!-- 其他篩選條件... -->
         </form>
@@ -100,18 +94,19 @@
         </table>
     </div>
 </div>
+
 <div id="divMore" style="display:none"></div>
 
 <script>
 		document.querySelectorAll(".details-link").forEach(function (link) {
 			link.addEventListener('click', function (event) {
 				event.preventDefault();
-				showModal(link.dataset.id); // 通過 dataset 獲取 itemId
+				//showModal(link.dataset.id); // 通過 dataset 獲取 itemId
 			});
 		});
 
 		function showModal(itemId) {
-			fetch('@Url.Content("~/CampaignsDiscount/DetailsPartial")' + `?id=${itemId}`)
+			fetch('@Url.Content("~/CampaignDiscounts/DetailsPartial")' + `?id=${itemId}`)
 				.then(response => response.text())
 				.then(data => {
 					const div = document.querySelector('#divMore');

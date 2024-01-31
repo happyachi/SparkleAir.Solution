@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="AirFlights\AirFlightManagementSearchCriteria.cs" />
     <Compile Include="Campaigns\CampaignsCouponSearchCriteria.cs" />
+    <Compile Include="Campaigns\CampaignsDiscountSearchCriteria.cs" />
     <Compile Include="CompanyAndPermission\CompanyStaffGetCriteria.cs" />
     <Compile Include="Members\MemberGetCriteria.cs" />
     <Compile Include="Members\MemberLoginLogSearchCriteria.cs" />

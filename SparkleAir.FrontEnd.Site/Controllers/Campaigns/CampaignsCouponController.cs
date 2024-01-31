@@ -215,8 +215,8 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
         #region Details
         public ActionResult Details(int id)
         {
-            var discount = Get(id);
-            return View(discount);
+            var coupon = Get(id);
+            return View(coupon);
         }
         #endregion
 

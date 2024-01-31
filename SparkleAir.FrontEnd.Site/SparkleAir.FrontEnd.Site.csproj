@@ -460,11 +460,11 @@
     <Content Include="Views\CampaignsDiscount\Details.cshtml" />
     <Content Include="Views\CampaignsCoupon\Details.cshtml" />
     <Content Include="Views\CampaignsCoupon\_SearchPartialCamapign.cshtml" />
+    <Content Include="Views\CampaignsDiscount\_SearchPartialCamapign.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\ViewModels\Members\" />
-    <Folder Include="Views\Campaigns\" />
     <Folder Include="Views\Companies\" />
   </ItemGroup>
   <ItemGroup>

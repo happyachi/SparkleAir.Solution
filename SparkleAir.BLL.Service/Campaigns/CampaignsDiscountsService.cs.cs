@@ -1,4 +1,5 @@
 ﻿using SparkleAir.IDAL.IRepository.Campaigns;
+using SparkleAir.Infa.Criteria.Campaigns;
 using SparkleAir.Infa.Dto.Campaigns;
 using SparkleAir.Infa.Entity.Campaigns;
 using SparkleAir.Infa.Utility.Helper.Campaigns;
@@ -133,6 +134,30 @@ namespace SparkleAir.BLL.Service.Campaigns
                 );
 
             _repo.Update(entity);
+        }
+
+        public List<CampaignsDiscountDto> Search(CampaignsDiscountSearchCriteria dto)
+        {
+
+            var list = _repo.Search(dto);
+
+            return list.Select(d => new CampaignsDiscountDto
+            {
+                Id = d.Id,
+                CampaignId = d.CampaignId,
+                Name = d.Name,
+                DateCreated = d.DateCreated,
+                DateStart = d.DateStart,
+                DateEnd = d.DateEnd,
+                Status = d.Status,
+                DiscountValue = d.DiscountValue,
+                Value = d.Value,
+                BundleSKUs = d.BundleSKUs,
+                MemberCriteria = d.MemberCriteria,
+                TFItemsCriteria = d.TFItemsCriteria,
+                Type = d.Type
+            }).ToList();
+
         }
     }
 }

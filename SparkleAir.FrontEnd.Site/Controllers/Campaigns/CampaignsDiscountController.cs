@@ -1,6 +1,7 @@
 ﻿using SparkleAir.BLL.Service.Campaigns;
 using SparkleAir.DAL.EFRepository.Campaigns;
 using SparkleAir.FrontEnd.Site.Models.ViewModels.Campaigns;
+using SparkleAir.Infa.Criteria.Campaigns;
 using SparkleAir.Infa.Dto.Campaigns;
 using System;
 using System.Collections.Generic;
@@ -182,19 +183,37 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
 
         #endregion
 
+        #region Details
         public ActionResult Details(int id)
         {
-            try { 
             var discount = Get(id);
             return View(discount);
-            }
-            catch (Exception ex)
-            {
-                ModelState.AddModelError(string.Empty, "活動已結束，不能删除。");
-                return RedirectToAction("Index");
-            }
         }
+        #endregion
 
-        
+        #region Search
+        public ActionResult SearchPartialCamapign(CampaignsDiscountSearchCriteria vm)
+        {
+            var viewModel = SearchDiscounts(vm);
+            return PartialView("_SearchPartialCamapign", viewModel);
+        }
+        private List<CampaignsDiscountIndexVm> SearchDiscounts(CampaignsDiscountSearchCriteria vm)
+        {
+            var service = new CampaignsDiscountsService(repo);
+            var list = service.Search(vm);
+
+            return list.Select(data => new CampaignsDiscountIndexVm
+            {
+                Id = data.Id,
+                CampaignId = data.CampaignId,
+                Name = data.Name,
+                DateCreated = data.DateCreated,
+                DateStart = data.DateStart,
+                DateEnd = data.DateEnd,
+                Status = data.Status,
+                Type = data.Type
+            }).ToList();
+        }
+        #endregion
     }
 }
