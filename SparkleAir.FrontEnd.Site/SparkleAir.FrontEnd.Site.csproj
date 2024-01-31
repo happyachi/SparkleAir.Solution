@@ -145,6 +145,8 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AirFlight\AirFlightsController.cs" />
     <Compile Include="Controllers\AirFlight\AirFlightsManagementController.cs" />
+    <Compile Include="Controllers\Basics\CountriesController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\Campaigns\CampaignsCouponController.cs" />
     <Compile Include="Controllers\Campaigns\CampaignsDiscountController.cs" />
     <Compile Include="Controllers\Airports\AirportsController.cs" />
@@ -160,6 +162,7 @@
     <Compile Include="Controllers\Airtype&amp;Owns\PlanesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LuggageOrders\LuggageOrdersController.cs" />
+    <Compile Include="Controllers\Members\MemberClassesController.cs" />
     <Compile Include="Controllers\Members\MemberLoginLogsController.cs" />
     <Compile Include="Controllers\Luggages\LuggageController.cs" />
     <Compile Include="Controllers\Members\MembersController.cs" />
@@ -168,6 +171,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\MenuItems\IMenuItem.cs" />
+    <Compile Include="Models\MenuItems\IMenuItemVisitor.cs" />
+    <Compile Include="Models\MenuItems\MenuItem.cs" />
+    <Compile Include="Models\MenuItems\StandarMenuItemVisitor.cs" />
+    <Compile Include="Models\MenuItems\TopLevelMenuComponent.cs" />
     <Compile Include="obj\Debug\.NETFramework,Version=v4.8.AssemblyAttributes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -295,7 +303,9 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\volt.css" />
     <Content Include="favicon.ico" />
+    <Content Include="Files\Images\airplane.png" />
     <Content Include="Files\Images\empty.jpg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -337,6 +347,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\simplebar.min.js" />
+    <Content Include="Scripts\volt.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -409,6 +422,12 @@
     <Content Include="Views\TFItem\Details.cshtml" />
     <Content Include="Views\LuggageOrders\Index.cshtml" />
     <Content Include="Views\LuggageOrders\Create.cshtml" />
+    <Content Include="Views\MemberClasses\Index.cshtml" />
+    <Content Include="Views\MemberClasses\Create.cshtml" />
+    <Content Include="Views\MemberClasses\Edit.cshtml" />
+    <Content Include="Views\Countries\Index.cshtml" />
+    <Content Include="Views\Countries\Create.cshtml" />
+    <Content Include="Views\Countries\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -416,6 +435,7 @@
     <Folder Include="Models\ViewModels\Members\" />
     <Folder Include="obj\Debug\TempPE\" />
     <Folder Include="Views\Airtype&amp;Owns\" />
+    <Folder Include="Views\Base\" />
     <Folder Include="Views\Campaigns\" />
     <Folder Include="Views\Companies\" />
   </ItemGroup>

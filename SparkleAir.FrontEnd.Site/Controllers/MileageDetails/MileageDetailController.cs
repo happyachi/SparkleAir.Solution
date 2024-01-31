@@ -18,7 +18,7 @@ using System.Web.Mvc;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.MileageDetails
 {
-    public class MileageDetailController : Controller
+    public class MileageDetailController : BaseController
     {
 
         IMileageDetailRepository efRMileage = new MileageDetailEFRepository();

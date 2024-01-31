@@ -17,7 +17,7 @@ using System.Web.Mvc;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.Luggages
 {
-    public class LuggageController : Controller
+    public class LuggageController : BaseController
     {
 
         ILuggageRepository efRLuggage = new LuggageEFRepository();

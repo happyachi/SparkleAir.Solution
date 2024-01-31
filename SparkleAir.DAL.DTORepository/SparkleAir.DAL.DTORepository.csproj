@@ -52,10 +52,6 @@
       <Project>{a1ad6217-2a9d-4948-aa6f-bf0a12d66712}</Project>
       <Name>SparkleAir.Infa.EFModel</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SparkleAir.Infa.Entity\SparkleAir.Infa.Entity.csproj">
-      <Project>{88fb70a6-7d2c-40d0-a6a6-90cd80d5c422}</Project>
-      <Name>SparkleAir.Infa.Entity</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SparkleAir.Infa.Utility\SparkleAir.Infa.Utility.csproj">
       <Project>{3b17053d-b105-432e-a867-05a051c94158}</Project>
       <Name>SparkleAir.Infa.Utility</Name>

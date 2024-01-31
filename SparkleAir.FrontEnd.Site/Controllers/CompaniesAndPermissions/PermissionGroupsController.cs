@@ -12,7 +12,7 @@ using System.Web.Mvc;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.CompaniesAndPermissions
 {
-    public class PermissionGroupsController : Controller
+    public class PermissionGroupsController : BaseController
     {
         private readonly PermissionGroupService _service;
         private readonly IPermissionGroupRepository _repo;
