@@ -16,7 +16,7 @@ namespace SparkleAir.IDAL.IRepository.Airport
         int Create(AirportEntity model);
 
         //取得一筆
-        AirportEntity Get(int id);
+        AirportEntity Getid(int id);
 
         //更新
         void Update(AirportEntity model);

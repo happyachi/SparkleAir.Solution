@@ -1,4 +1,4 @@
-﻿using SparkleAir.IDAL.IRepository.Airport;
+﻿  using SparkleAir.IDAL.IRepository.Airport;
 using SparkleAir.Infa.EFModel.EFModels;
 using SparkleAir.Infa.Entity.Airports;
 using System;
@@ -66,7 +66,7 @@ namespace SparkleAir.DAL.EFRepository.Airports
             db.SaveChanges();
         }
 
-        public AirportEntity Get(int id)
+        public AirportEntity Getid(int id)
         {
             var get = db.AirPorts.Find(id);
 

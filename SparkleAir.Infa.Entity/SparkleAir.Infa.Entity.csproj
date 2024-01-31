@@ -56,11 +56,21 @@
     <Compile Include="CompanyAndPermission\PermissionGroupsAddStaffEntity.cs" />
     <Compile Include="CompanyAndPermission\PermissionPageInfoEntity.cs" />
     <Compile Include="CompanyAndPermission\PermissionSettingEntity.cs" />
+    <Compile Include="Airtype&amp;Owns\AirSeatEntity.cs" />
+    <Compile Include="Airtype&amp;Owns\PlaneEntity.cs" />
+    <Compile Include="Luggages\LuggageEntity.cs" />
     <Compile Include="Members\MemberClassEntity.cs" />
     <Compile Include="Members\MemberEntity.cs" />
     <Compile Include="Members\MemberLoginLogEntity.cs" />
+    <Compile Include="MileageDetails\MileageDetailEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TaxFree\TFCategoryEntity.cs" />
     <Compile Include="TaxFree\TFItemEntity.cs" />
+    <Compile Include="TaxFree\TFOrderlistsEntity.cs" />
+    <Compile Include="TaxFree\TFOrderStatusEntity.cs" />
+    <Compile Include="TaxFree\TFReservelistsEntity.cs" />
+    <Compile Include="TaxFree\TFReservesEntity.cs" />
+    <Compile Include="TaxFree\TFWishlistsEntity.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SparkleAir.Infa.EFModel\SparkleAir.Infa.EFModel.csproj">

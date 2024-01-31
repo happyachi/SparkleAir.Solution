@@ -1,6 +1,5 @@
 ﻿using SparkleAir.IDAL.IRepository.CompanyAndPermission;
 using SparkleAir.Infa.Dto.CompanyAndPermission;
-using SparkleAir.Infa.EFModel.EFModels;
 using SparkleAir.Infa.Entity.CompanyAndPermission;
 using System;
 using System.Collections.Generic;

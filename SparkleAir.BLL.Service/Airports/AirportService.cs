@@ -30,7 +30,7 @@ namespace SparkleAir.BLL.Service.Airports
                 Id = p.Id,
                 Lata= p.Lata,
                 Gps=p.Gps,
-                Country=p.Country,
+                Country=p.Country,  
                 City= p.City,
                 AirPortName = p.AirPortName,
                 TimeArea = p.TimeArea,
@@ -76,7 +76,7 @@ namespace SparkleAir.BLL.Service.Airports
         //取得一筆
         public AirportDto Get(int id)
         {
-            AirportEntity entity = _repo.Get(id);
+            AirportEntity entity = _repo.Getid(id);
 
             AirportDto dto = new AirportDto
             {

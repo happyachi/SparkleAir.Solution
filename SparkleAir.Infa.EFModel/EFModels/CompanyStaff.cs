@@ -24,7 +24,7 @@ namespace SparkleAir.Infa.EFModel.EFModels
         public string Account { get; set; }
 
         [Required]
-        [StringLength(16)]
+        [StringLength(100)]
         public string Password { get; set; }
 
         [Required]
