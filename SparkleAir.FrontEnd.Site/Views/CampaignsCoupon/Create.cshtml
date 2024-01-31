@@ -36,7 +36,7 @@
     <div class="form-group mt-3">
         @Html.LabelFor(model => model.DateStart, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.DateStart, new { htmlAttributes = new { @class = "form-control" } })
+            <input type="datetime-local" id="DateStart" name="DateStart" class="control-label" />
             @Html.ValidationMessageFor(model => model.DateStart, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -44,7 +44,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.DateEnd, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.DateEnd, new { htmlAttributes = new { @class = "form-control" } })
+            <input type="datetime-local" id="DateStart" name="DateStart" class="control-label" />
             @Html.ValidationMessageFor(model => model.DateEnd, "", new { @class = "text-danger" })
         </div>
     </div>

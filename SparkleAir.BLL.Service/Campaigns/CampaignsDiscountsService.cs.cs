@@ -70,6 +70,7 @@ namespace SparkleAir.BLL.Service.Campaigns
 
         public CampaignsDiscountDto Get(int id)
         {
+
             CampaignsDiscountEntity entity = _repo.Get(id);
             CampaignsDiscountDto dto = new CampaignsDiscountDto
             {
@@ -102,7 +103,7 @@ namespace SparkleAir.BLL.Service.Campaigns
                 DateCreated = d.DateCreated,
                 DateStart = d.DateStart,
                 DateEnd = d.DateEnd,
-                Status = d.Status,
+                Status = CamapignsTimeHelper.DetermineStatus(d.DateStart, d.DateEnd),
                 DiscountValue = d.DiscountValue,
                 Value = d.Value,
                 BundleSKUs = d.BundleSKUs,
@@ -113,9 +114,12 @@ namespace SparkleAir.BLL.Service.Campaigns
             }).ToList();
 
             return dto;
+
         }
         public void Update(CampaignsDiscountDto dto)
         {
+            string status = CamapignsTimeHelper.DetermineStatus(dto.DateStart, dto.DateEnd);
+
             CampaignsDiscountEntity entity = new CampaignsDiscountEntity
             (
               dto.CampaignId,
@@ -123,7 +127,7 @@ namespace SparkleAir.BLL.Service.Campaigns
               dto.DateCreated,
               dto.DateStart,
               dto.DateEnd,
-              dto.Status,
+              status,
               dto.DiscountValue,
               dto.Value,
               dto.BundleSKUs,

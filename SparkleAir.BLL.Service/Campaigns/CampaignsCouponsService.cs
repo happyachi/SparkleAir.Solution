@@ -102,6 +102,7 @@ namespace SparkleAir.BLL.Service.Campaigns
         {
             List<CampaignsCouponEntity> entity = _repo.GetAll();
 
+
             List<CampaignsCouponDto> dto = entity.Select(c => new CampaignsCouponDto
             {
                 Id = c.Id,
@@ -110,7 +111,7 @@ namespace SparkleAir.BLL.Service.Campaigns
                 DateStart = c.DateStart,
                 DateEnd = c.DateEnd,
                 DateCreated = c.DateCreated,
-                Status = c.Status,
+                Status = CamapignsTimeHelper.DetermineStatus(c.DateStart,c.DateEnd),
                 DiscountQuantity = c.DiscountQuantity,
                 DiscountValue = c.DiscountValue,
                 AvailableQuantity = c.AvailableQuantity,
@@ -133,7 +134,7 @@ namespace SparkleAir.BLL.Service.Campaigns
             {
                 throw new ArgumentException("活動期間不能超過三個月。");
             }
-
+            string status = CamapignsTimeHelper.DetermineStatus(dto.DateStart, dto.DateEnd);
             CampaignsCouponEntity entity = new CampaignsCouponEntity
             (
               dto.CampaignId,
@@ -141,7 +142,7 @@ namespace SparkleAir.BLL.Service.Campaigns
               dto.DateStart,
               dto.DateEnd,
               dto.DateCreated,
-              dto.Status,
+              status,
               dto.DiscountQuantity,
               dto.DiscountValue,
               dto.AvailableQuantity,
@@ -185,5 +186,6 @@ namespace SparkleAir.BLL.Service.Campaigns
             }).ToList();
 
         }
+
     }
 }
