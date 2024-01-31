@@ -11,6 +11,7 @@ namespace SparkleAir.Infa.ViewModel.TaxFree
         public int Id { get; set; }
 
         public int TFCategoriesId { get; set; }
+        public string TFCategoriesName { get; set; }
 
         public string Name { get; set; }
 

@@ -41,6 +41,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.TaxFree
             List<TFItemVm> vm = dto.Select(p => new TFItemVm
             {
                 Id = p.Id,
+                TFCategoriesName = p.TFCategoriesName,
                 TFCategoriesId = p.TFCategoriesId,
                 Name = p.Name,
                 SerialNumber = p.SerialNumber,

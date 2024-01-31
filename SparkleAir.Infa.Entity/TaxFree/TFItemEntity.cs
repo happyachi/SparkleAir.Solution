@@ -10,7 +10,11 @@ namespace SparkleAir.Infa.Entity.TaxFree
     {
         public int Id { get; set; }
 
+
         public int TFCategoriesId { get; set; }
+
+        public string TFCategoriesName { get; set; }
+
 
         public string Name { get; set; }
 
