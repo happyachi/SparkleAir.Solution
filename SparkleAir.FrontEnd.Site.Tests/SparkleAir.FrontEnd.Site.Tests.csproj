@@ -113,7 +113,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SparkleAir.BLL.Service\SparkleAir.BLL.Service.csproj">
-      <Project>{C3F49393-96C1-4B8C-B468-717A2F73EF89}</Project>
+      <Project>{c3f49393-96c1-4b8c-b468-717a2f73ef89}</Project>
       <Name>SparkleAir.BLL.Service</Name>
     </ProjectReference>
     <ProjectReference Include="..\SparkleAir.FrontEnd.Site\SparkleAir.FrontEnd.Site.csproj">

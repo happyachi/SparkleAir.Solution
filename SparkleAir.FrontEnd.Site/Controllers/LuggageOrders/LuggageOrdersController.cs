@@ -26,6 +26,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.LuggageOrders
         public ActionResult Index()
         {
             List<LuggageOrderIndexVm> data = GetAll();
+
             return View(data);
         }
         //[HttpPost]
@@ -67,7 +68,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.LuggageOrders
 
         #region Create
         public ActionResult Create()
-        {
+        {         
             return View();
         }
 

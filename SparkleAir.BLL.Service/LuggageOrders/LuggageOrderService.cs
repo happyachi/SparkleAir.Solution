@@ -2,7 +2,6 @@
 using SparkleAir.IDAL.IRepository.LuggageOrders;
 using SparkleAir.Infa.Dto.Luggage;
 using SparkleAir.Infa.Dto.LuggageOrders;
-using SparkleAir.Infa.EFModel.EFModels;
 using SparkleAir.Infa.Entity.Luggage;
 using SparkleAir.Infa.Entity.LuggageOrders;
 using System;
