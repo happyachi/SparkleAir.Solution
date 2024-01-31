@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace SparkleAir.DAL.EFRepository.TaxFree
 {
@@ -34,7 +35,27 @@ namespace SparkleAir.DAL.EFRepository.TaxFree
         {
             var db = new AppDbContext();
             var getlist = db.TFWishlists.AsNoTracking()
-                                        .Select(x => new TFWishlistsEntity { Id = x.Id, MemberId = x.MemberId, TFItemsId = x.TFItemsId })   
+                                        .Include(x => x.TFItem)
+                                        .Include(x => x.Member)
+                                        .OrderBy(x => x.Id)
+                                        .Select(x => new TFWishlistsEntity
+                                        {
+                                            Id = x.Id,
+                                            MemberId = x.MemberId,
+                                            MemberChineseFirstName = x.Member.ChineseFirstName,
+                                            MemberChineseLastName = x.Member.ChineseLastName,
+                                            MemberEnglishFirstName = x.Member.EnglishFirstName,
+                                            MemberEnglishLastName = x.Member.EnglishLastName,
+                                            MemberPhone = x.Member.Phone,
+                                            MemberEmail = x.Member.Email,
+                                            MemberPassportNumber = x.Member.PassportNumber,
+                                            TFItemsName = x.TFItem.Name,
+                                            TFItemsSerialNumber = x.TFItem.SerialNumber,
+                                            TFItemsImage = x.TFItem.Image,
+                                            TFItemsQuantity = x.TFItem.Quantity,
+                                            TFItemsUnitPrice = x.TFItem.UnitPrice,
+                                            TFItemsId = x.TFItemsId
+                                        })
                                         .ToList();
 
             return getlist;
@@ -48,6 +69,18 @@ namespace SparkleAir.DAL.EFRepository.TaxFree
             {
                 Id = get.Id,
                 MemberId = get.MemberId,
+                MemberChineseFirstName = get.Member.ChineseFirstName,
+                MemberChineseLastName = get.Member.ChineseLastName,
+                MemberEnglishFirstName = get.Member.EnglishFirstName,
+                MemberEnglishLastName = get.Member.EnglishLastName,
+                MemberPhone = get.Member.Phone,
+                MemberEmail = get.Member.Email,
+                MemberPassportNumber = get.Member.PassportNumber,
+                TFItemsName = get.TFItem.Name,
+                TFItemsSerialNumber = get.TFItem.SerialNumber,
+                TFItemsImage = get.TFItem.Image,
+                TFItemsQuantity = get.TFItem.Quantity,
+                TFItemsUnitPrice = get.TFItem.UnitPrice,
                 TFItemsId = get.TFItemsId
             };
             return getlist;
@@ -58,8 +91,27 @@ namespace SparkleAir.DAL.EFRepository.TaxFree
         {
             var db = new AppDbContext();
             List<TFWishlistsEntity> getlist = db.TFWishlists.AsNoTracking()
+                                                            .Include(x => x.TFItem)
+                                                            .Include(x => x.Member)
                                                             .Where(x => x.MemberId == entity.MemberId)
-                                                            .Select(x => new TFWishlistsEntity { Id = x.Id, MemberId = x.MemberId, TFItemsId = x.TFItemsId })
+                                                            .Select(x => new TFWishlistsEntity
+                                                            {
+                                                                Id = x.Id,
+                                                                MemberId = x.MemberId,
+                                                                MemberChineseFirstName = x.Member.ChineseFirstName,
+                                                                MemberChineseLastName = x.Member.ChineseLastName,
+                                                                MemberEnglishFirstName = x.Member.EnglishFirstName,
+                                                                MemberEnglishLastName = x.Member.EnglishLastName,
+                                                                MemberPhone = x.Member.Phone,
+                                                                MemberEmail = x.Member.Email,
+                                                                MemberPassportNumber = x.Member.PassportNumber,
+                                                                TFItemsName = x.TFItem.Name,
+                                                                TFItemsSerialNumber = x.TFItem.SerialNumber,
+                                                                TFItemsImage = x.TFItem.Image,
+                                                                TFItemsQuantity = x.TFItem.Quantity,
+                                                                TFItemsUnitPrice = x.TFItem.UnitPrice,
+                                                                TFItemsId = x.TFItemsId
+                                                            })
                                                             .ToList();
 
             return getlist;
@@ -74,6 +126,7 @@ namespace SparkleAir.DAL.EFRepository.TaxFree
             tfModel.Id = entity.Id;
             tfModel.MemberId = entity.MemberId;
             tfModel.TFItemsId = entity.TFItemsId;
+
 
             db.SaveChanges();
         }

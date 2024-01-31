@@ -142,6 +142,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.TaxFree
                 Id = vm.Id,
                 Name = vm.Name,
                 TFCategoriesId = vm.TFCategoriesId,
+                TFCategoriesName = vm.TFCategoriesName,
                 SerialNumber = vm.SerialNumber,
                 Image = vm.Image,
                 Quantity = vm.Quantity,
@@ -161,6 +162,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.TaxFree
             {
                 Id = dto.Id,
                 TFCategoriesId = dto.TFCategoriesId,
+                TFCategoriesName = dto.TFCategoriesName,
                 Name = dto.Name,
                 SerialNumber = dto.SerialNumber,
                 Image = dto.Image,

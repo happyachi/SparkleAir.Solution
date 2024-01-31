@@ -42,7 +42,6 @@ namespace SparkleAir.DAL.EFRepository.TaxFree
 
             var tfModel = db.TFItems.Find(entity.Id);
             tfModel.Id = entity.Id;
-            
             tfModel.Name = entity.Name;
             tfModel.SerialNumber = entity.SerialNumber;
             tfModel.Image = entity.Image;

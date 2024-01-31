@@ -421,24 +421,12 @@
     <Content Include="Views\Luggage\Edit.cshtml" />
     <Content Include="Views\MileageDetail\Index.cshtml" />
     <Content Include="Views\MileageDetail\Create.cshtml" />
-    <Content Include="Views\TFItem\Create.cshtml" />
-    <Content Include="Views\TFItem\Edit.cshtml" />
-    <Content Include="Views\TFItem\Details.cshtml" />
     <Content Include="Views\MemberClasses\Index.cshtml" />
     <Content Include="Views\MemberClasses\Create.cshtml" />
     <Content Include="Views\MemberClasses\Edit.cshtml" />
     <Content Include="Views\Countries\Index.cshtml" />
     <Content Include="Views\Countries\Create.cshtml" />
     <Content Include="Views\Countries\Edit.cshtml" />
-    <Content Include="Views\TFOrderlist\Index.cshtml" />
-    <Content Include="Views\TFOrderlist\Create.cshtml" />
-    <Content Include="Views\TFOrderlist\Edit.cshtml" />
-    <Content Include="Views\TFOrderlist\Details.cshtml" />
-    <Content Include="Views\TFWishlist\Index.cshtml" />
-    <Content Include="Views\TFWishlist\Create.cshtml" />
-    <Content Include="Views\TFWishlist\Edit.cshtml" />
-    <Content Include="Views\TFWishlist\Details.cshtml" />
-    <Content Include="Views\TFReservelist\Index.cshtml" />
     <Content Include="Scripts\vendor\sass\node_modules\immutable\dist\immutable.js.flow" />
     <Content Include="Views\TFItem\Index.cshtml" />
   </ItemGroup>
@@ -451,7 +439,10 @@
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Campaigns\" />
     <Folder Include="Views\Companies\" />
+    <Folder Include="Views\TFOrderlist\" />
+    <Folder Include="Views\TFReservelist\" />
     <Folder Include="Views\TFReserve\" />
+    <Folder Include="Views\TFWishlist\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
