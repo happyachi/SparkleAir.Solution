@@ -3,6 +3,7 @@ using SparkleAir.DAL.EFRepository.Campaigns;
 using SparkleAir.FrontEnd.Site.Models.ViewModels.Campaigns;
 using SparkleAir.Infa.Criteria.Campaigns;
 using SparkleAir.Infa.Dto.Campaigns;
+using SparkleAir.Infa.Dto.TaxFree;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -214,6 +215,53 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
                 Type = data.Type
             }).ToList();
         }
+        #endregion
+
+        #region Product
+        public ActionResult Product()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Product(TFItemDto item)
+        {
+            if (!ModelState.IsValid) return View();
+            try
+            {
+                CreateBundle(item);
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, ex.Message);
+                return View(item);
+            }
+        }
+
+        private void CreateBundle(TFItemDto dto)
+        {
+            var service = new CampaignsDiscountsService(repo);
+
+            CampaignsDiscountDto dto = new CampaignsDiscountDto
+            {
+                //Id = vm.Id,
+                Name = vm.Name,
+                CampaignId = vm.CampaignId,
+                DateStart = vm.DateStart,
+                DateEnd = vm.DateEnd,
+                DateCreated = vm.DateCreated,
+                Status = vm.Status,
+                DiscountValue = vm.DiscountValue,
+                Value = vm.Value,
+                BundleSKUs = vm.BundleSKUs,
+                MemberCriteria = vm.MemberCriteria,
+                TFItemsCriteria = vm.TFItemsCriteria,
+                //Campaign = "促銷組合"
+            };
+
+            service.Create(dto);
+        }
+
         #endregion
     }
 }
