@@ -3,6 +3,7 @@ using SparkleAir.Infa.EFModel.EFModels;
 using SparkleAir.Infa.Entity.AirFlightsEntity;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,9 +13,9 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
     public class AirTicketPriceEFRepository : IAirTicketPriceRepository
     {
         private AppDbContext db = new AppDbContext();
-        public void CreateTicketPirce1500(int id)
+        public async Task CreateTicketPirce1500(int id)
         {
-            var cabinRules = db.AirCabinRules;
+            var cabinRules = await db.AirCabinRules.ToListAsync();
             decimal firstClassPrice = 35000;
             decimal secondClass = 30000;
             decimal primaryClass = 25000;

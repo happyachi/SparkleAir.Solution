@@ -59,5 +59,8 @@ namespace SparkleAir.Infa.ViewModel.AirFlights
         public int ArrivalTimeZone { get; set; }
 
         public int? AirOwnId { get; set; }
+
+        [Display(Name = "跨日")]
+        public int CrossDay { get; set; }
     }
 }

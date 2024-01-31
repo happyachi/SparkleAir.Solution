@@ -16,7 +16,7 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
         private AppDbContext db = new AppDbContext();
         private Func<AirFlight, AirFlightEntity> ToEntityFunc = (f) => f.ToAirFlightEntity();
 
-        public int Create(AirFlightEntity entity)
+        public async Task<int> Create(AirFlightEntity entity)
         {
             AirFlight airFlight = new AirFlight
             {
@@ -28,7 +28,7 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
                 AirFlightSaleStatusId = entity.AirFlightSaleStatusId
             };
             db.AirFlights.Add(airFlight);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
             var id = airFlight.Id;
             return id;
         }

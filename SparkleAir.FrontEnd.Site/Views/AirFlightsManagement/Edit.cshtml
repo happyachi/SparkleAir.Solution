@@ -2,9 +2,9 @@
 @{
 	ViewBag.Title = "Edit";
 }
-
-
-@*<h2>@Model.FlightCode</h2>*@
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css" rel="stylesheet">
+<h2>@Model.FlightCode</h2>
 
 @using (Html.BeginForm())
 {
@@ -31,6 +31,7 @@
 					<option value="@airport.Lata">@airport.Lata</option>
 				}
 			</select>
+			@Html.ValidationMessageFor(model => model.DepartureAirport, "", new { @class = "text-danger" })
 		</div>
 
 		<div class="mb-3">
@@ -51,6 +52,7 @@
 					<option value="@airport.Lata">@airport.Lata</option>
 				}
 			</select>
+			@Html.ValidationMessageFor(model => model.ArrivalAirport, "", new { @class = "text-danger" })
 		</div>
 
 		<div class="mb-3">
@@ -93,6 +95,12 @@
 			@Html.ValidationMessageFor(model => model.ArrivalTime, "", new { @class = "text-danger" })
 
 		</div>
+		<div class="mb-3">
+			@Html.LabelFor(model => model.CrossDay, htmlAttributes: new { @class = "control-label col-md-2" })
+
+			@Html.EditorFor(model => model.CrossDay, new { htmlAttributes = new { @class = "form-control" } })
+			@Html.ValidationMessageFor(model => model.CrossDay, "", new { @class = "text-danger" })
+		</div>
 
 		<div class="mb-3">
 			@Html.LabelFor(model => model.DayofWeek, htmlAttributes: new { @class = "control-label col-md-2" })<br />
@@ -116,12 +124,12 @@
 
 			@Html.EditorFor(model => model.Mile, new { htmlAttributes = new { @class = "form-control" } })
 			@Html.ValidationMessageFor(model => model.Mile, "", new { @class = "text-danger" })
-
 		</div>
 
 		<div class="mb-3">
 			<div class="col-md-offset-2 col-md-10">
-				<input type="submit" value="更新" class="btn btn-dark" />
+				<button class="btn btn-dark" onclick="update()">更新</button>
+				@*<input type="submit" value="更新" class="btn btn-dark"/>*@
 				@Html.ActionLink("返回", "Index", null, new { @class = "btn btn-dark" })
 			</div>
 		</div>
@@ -166,5 +174,14 @@
 			document.getElementById('DayofWeek').value = selectedDays.join(',');
 		}
 
+		const update = () => {
+			Swal.fire({
+				icon: "success",
+				title: "資料已更新",
+				showConfirmButton: false,
+				timer: 2000
+			});
+		}
+		
 	</script>
 }

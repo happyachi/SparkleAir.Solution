@@ -9,7 +9,7 @@ namespace SparkleAir.IDAL.IRepository.AirFlights
 {
     public interface IAirFlightSeatsRepository
     {
-        void Create777300ER(int flightId);
+        Task Create777300ER(int flightId);
         List<AirFlightSeatsEntity> GetByFlightId(int flightId);
 
         EachSeatInfoEntity GetEachSeatInfo(int seatId);

@@ -4,6 +4,7 @@ using SparkleAir.IDAL.IRepository.AirFlights;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -36,9 +37,9 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
             return View();
         }
 
-        public ActionResult CreateFlightSeats(int FlightId)
+        public async Task<ActionResult> CreateFlightSeats(int FlightId)
         {
-            _airFlightSeatsService.Create777300ER(FlightId);
+            await _airFlightSeatsService.Create777300ER(FlightId);
             return View();
         }
     }

@@ -16,9 +16,9 @@ namespace SparkleAir.BLL.Service.AirFlights
         {
             _repo = repo;
         }
-        public void Create777300ER(int flightId)
+        public async Task Create777300ER(int flightId)
         {
-            _repo.Create777300ER(flightId);
+           await _repo.Create777300ER(flightId);
         }
 
         public List<AirFlightSeatsDto> GetById(int flightId)

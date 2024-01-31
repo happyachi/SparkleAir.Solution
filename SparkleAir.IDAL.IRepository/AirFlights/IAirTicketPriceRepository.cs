@@ -9,6 +9,6 @@ namespace SparkleAir.IDAL.IRepository.AirFlights
 {
     public interface IAirTicketPriceRepository
     {
-       void CreateTicketPirce1500(int id);
+        Task CreateTicketPirce1500(int id);
     }
 }

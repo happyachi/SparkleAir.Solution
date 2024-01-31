@@ -92,14 +92,35 @@
 
 			@Html.ValidationMessageFor(model => model.ArrivalTime, "", new { @class = "text-danger" })
 		</div>
-
 		<div class="mb-3">
+			@Html.LabelFor(model => model.CrossDay, htmlAttributes: new { @class = "control-label col-md-2" })
+
+			@Html.EditorFor(model => model.CrossDay, new { htmlAttributes = new { @class = "form-control" } })
+			@Html.ValidationMessageFor(model => model.CrossDay, "", new { @class = "text-danger" })
+		</div>
+		<div class="mb-3">
+			@Html.LabelFor(model => model.DayofWeek, htmlAttributes: new { @class = "control-label col-md-2" })<br />
+
+
+			@foreach (var day in Enumerable.Range(0, 7))
+			{
+				<label class="checkbox-inline">
+					<input type="checkbox" class="day-checkbox" name="selectedDays" value="@day" /> @Enum.GetName(typeof(DayOfWeek), day)
+				</label>
+			}
+
+			<input type="hidden" id="DayofWeek" name="DayofWeek" value="" /> <!-- 设置一个空的隐藏字段 -->
+			@Html.ValidationMessageFor(model => model.DayofWeek, "", new { @class = "text-danger" })
+
+		</div>
+
+		@*<div class="mb-3">
 			@Html.LabelFor(model => model.DayofWeek, htmlAttributes: new { @class = "control-label col-md-2" })
 
 			@Html.EditorFor(model => model.DayofWeek, new { htmlAttributes = new { @class = "form-control" } })
 			@Html.ValidationMessageFor(model => model.DayofWeek, "", new { @class = "text-danger" })
 
-		</div>
+		</div>*@
 
 		<div class="mb-3">
 			@Html.LabelFor(model => model.Mile, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -135,5 +156,21 @@
 			const arri = arriAir.querySelector(`[value=${arriAir.value}]`);
 			arriTime.value = arri.getAttribute('data-yu-arri');
 		})
+
+		const checkboxes = document.querySelectorAll('.day-checkbox');
+		checkboxes.forEach(function (checkbox) {
+			checkbox.addEventListener('change', function () {
+				updateDayOfWeekSelection();
+			});
+		});
+
+		function updateDayOfWeekSelection() {
+			const selectedDays = Array.from(checkboxes)
+				.filter(checkbox => checkbox.checked)
+				.map(checkbox => checkbox.value.toString()); // 將數字轉換為字符串
+
+			// 將選中的星期以逗號分隔的字串形式存儲到 DayOfWeekSelection 屬性
+			document.getElementById('DayofWeek').value = selectedDays.join(',');
+		}
 	</script>
 }

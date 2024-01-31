@@ -72,6 +72,7 @@ namespace SparkleAir.BLL.Service.AirFlights
                 ArrivalAirport = dto.ArrivalAirport,
                 DepartureTimeZone = dto.DepartureTimeZone,
                 ArrivalTimeZone = dto.ArrivalTimeZone,
+                CrossDay = dto.CrossDay,
             };
 
             var flightId = _repo.Create(entity);
@@ -104,7 +105,8 @@ namespace SparkleAir.BLL.Service.AirFlights
                 DepartureTimeZone = x.DepartureTimeZone,
                 ArrivalTimeZone = x.ArrivalTimeZone,
                 AirOwnId =x.AirOwnId,
-                FlightModel = x.FlightModel
+                FlightModel = x.FlightModel,
+                CrossDay = x.CrossDay
             }).ToList();
 
             return dto;
@@ -130,7 +132,8 @@ namespace SparkleAir.BLL.Service.AirFlights
                 DepartureTimeZone = entity.DepartureTimeZone,
                 ArrivalTimeZone = entity.ArrivalTimeZone,
                 AirOwnId = entity.AirOwnId,
-                FlightModel = entity.FlightModel
+                FlightModel = entity.FlightModel,
+                CrossDay = entity.CrossDay
             };
             return dto;
         }
@@ -155,37 +158,12 @@ namespace SparkleAir.BLL.Service.AirFlights
                 ArrivalAirport = dto.ArrivalAirport,
                 DepartureTimeZone = dto.DepartureTimeZone,
                 ArrivalTimeZone = dto.ArrivalTimeZone,
+                CrossDay = dto.CrossDay
             };
 
             _repo.Update(entity);
         }
 
-        //public List<AirFlightManagementDto> Search(AirFlightManagementDto dto)
-        //{
-        //    AirFlightManagementEntity entity = new AirFlightManagementEntity
-        //    {
-        //        FlightCode = dto.FlightCode,
-        //        DepartureAirport = dto.DepartureAirport,
-        //        ArrivalAirport = dto.ArrivalAirport,
-        //        DepartureTime = dto.DepartureTime,
-        //        ArrivalTime = dto.ArrivalTime,
-        //        DayofWeek = dto.DayofWeek
-        //    };
-        //    var list = _repo.Search(entity);
-
-        //    return list.Select(x => new AirFlightManagementDto
-        //    {
-        //        FlightCode = x.FlightCode,
-        //        DepartureAirport = x.DepartureAirport,
-        //        ArrivalAirport = x.ArrivalAirport,
-        //        DepartureTime = x.DepartureTime,
-        //        ArrivalTime = x.ArrivalTime,
-        //        DayofWeek = x.DayofWeek
-        //    }).ToList();
-
-        //    // todo 根據 出發地(DropDown) 目的地(DropDown) 時間段(Range) 執飛時段(checkbox)去做篩選
-        //    // 是要傳整個 dto 還是 根據要的資料去寫參數(?
-        //}
         public List<AirFlightManagementDto> Search(AirFlightManagementSearchCriteria dto)
         {
            
@@ -207,7 +185,8 @@ namespace SparkleAir.BLL.Service.AirFlights
                 ArrivalAirport = x.ArrivalAirport,
                 DepartureTimeZone = x.DepartureTimeZone,
                 ArrivalTimeZone = x.ArrivalTimeZone,
-                AirOwnId = x.AirOwnId
+                AirOwnId = x.AirOwnId,
+                CrossDay = x.CrossDay
             }).ToList();
 
             // todo 根據 出發地(DropDown) 目的地(DropDown) 時間段(Range) 執飛時段(checkbox)去做篩選

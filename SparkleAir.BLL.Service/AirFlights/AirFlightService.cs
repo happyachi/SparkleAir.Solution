@@ -21,7 +21,7 @@ namespace SparkleAir.BLL.Service.AirFlights
             _repo = repo;
         }
 
-        public List<int> Create(AirFlightDto dto)
+        public async Task<List<int>> Create(AirFlightDto dto)
         {
             FlightDate[] days = dto.DayofWeek.FlightDays();
             var today = DateTime.Today;
@@ -50,7 +50,7 @@ namespace SparkleAir.BLL.Service.AirFlights
                     ScheduledDeparture = scheduledDeparture,
                     ScheduledArrival = scheduledArrival
                 };                
-                var flight = _repo.Create(entity);
+                var flight =await _repo.Create(entity);
                 ids.Add(flight);
             }
             return ids;

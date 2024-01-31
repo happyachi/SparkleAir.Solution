@@ -3,6 +3,7 @@
 @{
 	ViewBag.Title = "Index";
 }
+
 @section styles{
 	<style>
 		#divMore {
@@ -90,17 +91,30 @@
 		</table>
 	</div>
 </div>
-<div id="divMore" style="display:none"></div>
+<div class="modal" tabindex="-1" style="display:none" id="model">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3 id="title" class="flex-grow-1 d-flex align-items-center justify-content-center"></h3>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<div id="detail"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+@*<div id="divMore" style="display:none"></div>*@
 
 <script>
 		document.querySelectorAll(".details-link").forEach(function (link) {
 			link.addEventListener('click', function (event) {
 				event.preventDefault();
-				
 			});
 		});
 
-		function showModal(itemId) {
+		@*function showModal(itemId) {
 			fetch('@Url.Content("~/AirFlightsManagement/DetailsPartial")' + `?id=${itemId}`)
 				.then(response => response.text())
 				.then(data => {
@@ -116,20 +130,65 @@
 			div.style.top = `${y}px`;
 			div.style.display = 'block';
 			event.stopPropagation();
-		}
+		}*@
 
-		// 添加此代码來隐藏div
-		document.body.addEventListener('click', function (event) {
-			const div = document.querySelector('#divMore');
-			const isClickInside = div.contains(event.target);
-			if (!isClickInside) {
-				div.style.display = 'none';
-			}
-		});
-		// 避免div內部的點擊觸發body的事件
-		document.querySelector('#divMore').addEventListener('click', function (event) {
-			event.stopPropagation();
-		});
+		async function showModal(itemId) {
+    try {
+        const response = await fetch('@Url.Content("~/AirFlightsManagement/GetFlightDetails")' + `?id=${itemId}`);
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+		const data = await response.json();
+		console.log(data);
+		const formattedDepartureTime = formatTime(data.DepartureTime);
+		const formattedArrivalTime = formatTime(data.ArrivalTime);
+		if (data.DepartureTerminal == null)  {
+			data.DepartureTerminal = '';
+		}
+		if (data.ArrivalTerminal == null) {
+			data.ArrivalTerminal = '';
+		}
+		const div = document.querySelector('#detail');
+		const title = document.querySelector('#title');
+		title.innerHTML = `${data.FlightCode}`
+		div.innerHTML = `
+		
+<p>機型: ${data.FlightModel} </p>
+<p>出發地: ${data.DepartureAirport} </p>
+<p>目的地: ${data.ArrivalAirport} </p>
+<p>出發航廈: ${data.DepartureTerminal} </p>
+<p>抵達航廈: ${data.ArrivalTerminal} </p>
+<p>出發時間: <span id="formattedDepartureTime">${formattedDepartureTime}</span> UTC ${data.DepartureTimeZone}</p>
+<p>抵達時間: <span id="formattedArrivalTime">${formattedArrivalTime}</span> UTC ${data.ArrivalTimeZone}</p>
+
+<p>執飛時間: ${data.DayofWeek} </p>
+<p>飛行里程: ${data.Mile}</p>
+		`;
+		$('#model').modal('show');
+    } catch (error) {
+        console.error('Error:', error);
+    }
+	}
+	function formatTime(time) {
+		const date = new Date(0);
+		date.setUTCHours(time.Hours);
+		date.setUTCMinutes(time.Minutes);
+		return `${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
+	}
+
+		//// 添加此代码來隐藏div
+		//document.body.addEventListener('click', function (event) {
+		//	const div = document.querySelector('#divMore');
+		//	const isClickInside = div.contains(event.target);
+		//	if (!isClickInside) {
+		//		div.style.display = 'none';
+		//	}
+		//});
+		//// 避免div內部的點擊觸發body的事件
+		//document.querySelector('#divMore').addEventListener('click', function (event) {
+		//	event.stopPropagation();
+		//});
 
 
 	async function applyFilter() {
@@ -143,6 +202,6 @@
 		const response = await fetch(url);
 		const data = await response.text();
 		$('#datas').html(data);
-           
-}
+
+	}
 </script>

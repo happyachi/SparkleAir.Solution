@@ -17,11 +17,11 @@ namespace SparkleAir.BLL.Service.AirFlights
             _repo = repo;
         }
 
-        public void CreateTicketPirce1500(int flightId, int mile)
+        public async Task CreateTicketPirce1500(int flightId, int mile)
         {
             if (mile < 1500)
             {
-                _repo.CreateTicketPirce1500(flightId);
+                await _repo.CreateTicketPirce1500(flightId);
             }
             if (mile < 2500)
             {

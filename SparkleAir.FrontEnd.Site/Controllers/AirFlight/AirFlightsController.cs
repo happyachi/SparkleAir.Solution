@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -24,15 +25,20 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
 
         private IAirFlightRepository _airFlightRepo;
         private AirFlightService _airFlightService;
+
         private IAirFlightManagementRepository _flightManagementRepo;
         private AirFlightManagementService _flightManagementService;
+
         private IAirFlightSeatsRepository _flightSeatsRepo;
         private AirFlightSeatsService _flightSeatsService;
+
         private IAirSeatRepository _airSeatRepo;
         private AirSeatService _airSeatService;
 
         private IPlaneRepository _planeRepo;
         private PlaneService _planeService;
+
+
         public AirFlightsController()
         {
             _airFlightRepo = new AirFlightEFRepository();
@@ -88,6 +94,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
         //先 get AirFlightManagementVm 的資料 => 設定AirOwnID(FlightModel) => Create 一個月內的班表 
         public ActionResult Create(int id)
         {
+            ViewBag.AirOwn = _planeService.GetAll();
             AirFlightCreateVm data = GetFlight(id);
             return View(data);
         }
@@ -134,15 +141,15 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
         }
 
         [HttpPost]
-        public ActionResult Create(AirFlightCreateVm vm)
+        public async Task<ActionResult> Create(AirFlightCreateVm vm)
         {
             if (!ModelState.IsValid) return View();
             try
             {
-                List<int> flightIds = CreateFlight(vm);
+                List<int> flightIds = await CreateFlight(vm);
                 foreach (var flightId in flightIds)
                 {
-                    _flightSeatsService.Create777300ER(flightId);
+                   await _flightSeatsService.Create777300ER(flightId);
                 }
                 return RedirectToAction("Index", "AirFlightsManagement");
             }
@@ -153,7 +160,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
             }
         }
 
-        private List<int> CreateFlight(AirFlightCreateVm vm)
+        private async Task<List<int>> CreateFlight(AirFlightCreateVm vm)
         {
             List<int> flightIds;
             AirFlightDto dto = new AirFlightDto
@@ -171,7 +178,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
                 DepartureTimeZone = vm.DepartureTimeZone,
                 ArrivalTimeZone = vm.ArrivalTimeZone
             };
-            flightIds = _airFlightService.Create(dto);
+            flightIds = await _airFlightService.Create(dto);
             return flightIds;
         }
 

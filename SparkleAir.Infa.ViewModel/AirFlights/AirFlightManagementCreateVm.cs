@@ -56,5 +56,9 @@ namespace SparkleAir.Infa.ViewModel.AirFlights
         [Display(Name = "班次里程")]
         [Required(ErrorMessage = "{0} 必填")]
         public int Mile { get; set; }
+        
+        [Display(Name = "跨日")]
+        [Required(ErrorMessage = "{0} 必填")]
+        public int CrossDay { get; set; }
     }
 }

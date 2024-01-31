@@ -10,7 +10,7 @@
 @*@Html.ActionLink("日曆形式", "CalendarPartial", null, new { @class = "btn btn-sm btn-dark mt-2 mb-2", id = "btn",style="display:none" })*@
 <div class="row" id="datas">
 	<div style="overflow:auto">
-		<table class="table text-center">
+		<table class="table text-center" id="flightTable">
 			<tr>
 				<th>
 					@Html.DisplayNameFor(model => model.FlightCode)
@@ -69,3 +69,5 @@
 		</table>
 	</div>
 </div>
+
+

@@ -86,6 +86,7 @@ namespace SparkleAir.Infa.Utility.Exts.Models
                 ArrivalTimeZone = db.AirPorts.Find(afm.ArrivalAirportId).TimeArea,
                 AirOwnId = afm.AirFlights.GetAirOwnId(),
                 FlightModel = db.GetFlightModelByAirOwnId(afm.AirFlights.GetAirOwnId()).Item1,
+                CrossDay = afm.CrossDay
             };
             return entity;
         }
@@ -119,7 +120,7 @@ namespace SparkleAir.Infa.Utility.Exts.Models
             var currentMonth = currentDate.Month;
             //var startDate = new DateTime(currentDate.Year, currentDate.Month, 1);
             //var daysInMonth = DateTime.DaysInMonth(currentDate.Year, currentDate.Month);
-            for (int month = currentMonth; month <= (currentMonth); month++)
+            for (int month = currentMonth; month <= (currentMonth)+1; month++)
             {
                 var daysInMonth = DateTime.DaysInMonth(currentDate.Year, month);
                 for (int day = 1; day <= daysInMonth; day++)
