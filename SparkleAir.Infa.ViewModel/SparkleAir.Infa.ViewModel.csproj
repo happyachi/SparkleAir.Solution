@@ -47,6 +47,7 @@
     <Compile Include="AirFlights\AirFlightManagementIndexVm.cs" />
     <Compile Include="AirFlights\AirFlightManagementVm.cs" />
     <Compile Include="AirFlights\AirFlightVm.cs" />
+    <Compile Include="Basics\CountryIndexVm.cs" />
     <Compile Include="Campaigns\CampaignsCouponIndexVm.cs" />
     <Compile Include="Campaigns\CampaignsCouponVm.cs" />
     <Compile Include="Campaigns\CampaignsDiscountIndexVm.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="Airtype&amp;Owns\PlaneVmIndex.cs" />
     <Compile Include="Luggage\LuggageCreateVm.cs" />
     <Compile Include="Luggage\LuggageIndexVm.cs" />
+    <Compile Include="Members\MemberClassIndexVm.cs" />
     <Compile Include="Members\MemberIndexVm.cs" />
     <Compile Include="Members\MemberLoginLogIndexVm.cs" />
     <Compile Include="Members\MemberUpdateVm.cs" />

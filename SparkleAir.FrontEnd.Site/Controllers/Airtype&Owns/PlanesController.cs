@@ -11,7 +11,7 @@ using System.Web.Mvc;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.Airtype_Owns
 {
-    public class PlanesController : Controller
+    public class PlanesController : BaseController
     {
         // GET: Planes
         public ActionResult Index()

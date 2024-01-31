@@ -14,7 +14,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Airports
 {
    
     
-    public  class AirportsController : Controller
+    public  class AirportsController : BaseController
     {
         ////以下是server統一都可以直接叫用的方法
         //public AirportsController()

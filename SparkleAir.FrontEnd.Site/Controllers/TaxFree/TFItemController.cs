@@ -14,7 +14,7 @@ using System.Web.Mvc;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.TaxFree
 {
-    public class TFItemController : Controller
+    public class TFItemController : BaseController
     {
 
         ITFRepository TFRepository = new TFItemEFRepository();
