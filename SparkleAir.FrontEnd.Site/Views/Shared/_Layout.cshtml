@@ -42,7 +42,7 @@
     <nav class="navbar navbar-dark navbar-theme-primary px-4 col-12 d-lg-none">
         <a class="navbar-brand me-lg-5" href="../../index.html">
             <img class="navbar-brand-light"
-                 src=""
+                 src="'@Url.Content("~/Files/Images/airplane.png")'"
                  alt="Logo" />
         </a>
         <div class="d-flex align-items-center">
@@ -87,7 +87,7 @@
                     <a href="@Url.Action("Index", "Home")"
                        class="nav-link d-flex align-items-center">
                         <span class="sidebar-icon">
-                            <img src=""
+                            <img src='@Url.Content("~/Files/Images/airplane.png")';
                                  height="20"
                                  width="20"
                                  alt="Logo" />
@@ -112,7 +112,7 @@
         @RenderBody()
     </main>
     <footer>
-        <p>&copy; @DateTime.Now.Year - 我的 ASP.NET 應用程式</p>
+        <p>&copy; @DateTime.Now.Year - Sparkle Airline</p>
     </footer>
 
 

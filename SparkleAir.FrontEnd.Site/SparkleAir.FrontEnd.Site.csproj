@@ -145,6 +145,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AirFlight\AirFlightsController.cs" />
     <Compile Include="Controllers\AirFlight\AirFlightsManagementController.cs" />
+    <Compile Include="Controllers\Basics\CountriesController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\Campaigns\CampaignsCouponController.cs" />
     <Compile Include="Controllers\Campaigns\CampaignsDiscountController.cs" />
@@ -160,6 +161,7 @@
     <Compile Include="Controllers\CompaniesAndPermissions\PermissionSettingsController.cs" />
     <Compile Include="Controllers\Airtype&amp;Owns\PlanesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Members\MemberClassesController.cs" />
     <Compile Include="Controllers\Members\MemberLoginLogsController.cs" />
     <Compile Include="Controllers\Luggages\LuggageController.cs" />
     <Compile Include="Controllers\Members\MembersController.cs" />
@@ -302,6 +304,7 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\volt.css" />
     <Content Include="favicon.ico" />
+    <Content Include="Files\Images\airplane.png" />
     <Content Include="Files\Images\empty.jpg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -416,9 +419,17 @@
     <Content Include="Views\TFItem\Create.cshtml" />
     <Content Include="Views\TFItem\Edit.cshtml" />
     <Content Include="Views\TFItem\Details.cshtml" />
+    <Content Include="Views\MemberClasses\Index.cshtml" />
+    <Content Include="Views\MemberClasses\Create.cshtml" />
+    <Content Include="Views\MemberClasses\Edit.cshtml" />
+    <Content Include="Views\Countries\Index.cshtml" />
+    <Content Include="Views\Countries\Create.cshtml" />
+    <Content Include="Views\Countries\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\ViewModels\Airtype&amp;Owns\" />
+    <Folder Include="Models\ViewModels\Members\" />
     <Folder Include="obj\Debug\TempPE\" />
     <Folder Include="Views\Airtype&amp;Owns\" />
     <Folder Include="Views\Base\" />

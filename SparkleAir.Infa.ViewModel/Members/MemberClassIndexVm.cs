@@ -5,30 +5,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SparkleAir.Infa.ViewModel.CompanyAndPermission
+namespace SparkleAir.Infa.ViewModel.Members
 {
-    public class PermissionGroupsAddStaffIndexVm
+    public class MemberClassIndexVm
     {
         [Display(Name = "ID")]
         [Required(ErrorMessage = "{0}必填")]
         public int Id { get; set; }
 
-        [Display(Name = "群組ID")]
-        [Required(ErrorMessage = "{0}必填")]
-        public int PermissionGroupsId { get; set; }
-
-        [Display(Name = "群組名稱")]
+        [Display(Name = "等級名稱")]
         [Required(ErrorMessage = "{0}必填")]
         [MaxLength(10)]
-        public string PermissionGroupsName { get; set; }
+        public string Name { get; set; }
 
-        [Display(Name = "職員ID")]
-        [Required(ErrorMessage = "{0}必填")]
-        public int CompanyStaffsId { get; set; }
-
-        [Display(Name = "職員名稱")]
+        [Display(Name = "等級排序")]
         [Required(ErrorMessage = "{0}必填")]
         [MaxLength(10)]
-        public string CompanyStaffsName { get; set; }
+        public int ClassOrder { get; set; }
+
+        [Display(Name = "里程區間開始")]
+        [Required(ErrorMessage = "{0}必填")]
+        public int MileageStart { get; set; }
+
+        [Display(Name = "里程區間結束")]
+        [Required(ErrorMessage = "{0}必填")]
+        public int MileageEnd { get; set; }
     }
 }
