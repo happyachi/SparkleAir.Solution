@@ -1,10 +1,12 @@
-﻿using SparkleAir.BLL.Service.Campaigns;
+﻿using SparkleAir.BLL.Service.AirFlights;
+using SparkleAir.BLL.Service.Campaigns;
 using SparkleAir.DAL.EFRepository.Campaigns;
 using SparkleAir.FrontEnd.Site.Models.ViewModels.Campaigns;
 using SparkleAir.Infa.Criteria.Campaigns;
 using SparkleAir.Infa.Dto.Campaigns;
 using SparkleAir.Infa.Dto.TaxFree;
 using SparkleAir.Infa.ViewModel.Campaigns;
+using SparkleAir.Infa.ViewModel.TaxFree;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -91,18 +93,35 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
             service.Create(dto);
         }
 
-        //private void CreateBundle(CamapignsDiscountSelectProductsVm vm)
+        public ActionResult SelectProduct()
+        {
+            return View();
+        }
+        //public ActionResult SelectProduct()
         //{
-        //    var service = new CampaignsDiscountsService(repo);
-
-        //    CampaignsDiscountDto dto = new CampaignsDiscountDto
+        //    if (!ModelState.IsValid) return View();
+        //    try
         //    {
-        //        //Id = vm.Id,
-        //        //Campaign = "促銷組合"
-        //    };
-
-        //    service.Create(dto);
+        //        List<TFItemVm> vms =  CreateSelectProducts();
+        //        return RedirectToAction("Index");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        ModelState.AddModelError(string.Empty, ex.Message);
+        //        return View();
+        //    }
         //}
+
+        //private List<TFItemVm> CreateSelectProducts()
+        //{
+        //    var dtos = new TFItemSerive.Get();
+        //    var products = dtos.Select(x => new TFItemVm { 
+            
+            
+            
+        //    });
+        //}
+
         #endregion
 
         #region Edit
