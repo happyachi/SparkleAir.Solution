@@ -108,6 +108,9 @@
 </div>
 <div id="divMore" style="display:none"></div>
 <button type="button" class="btn btn-sm btn-dark col-sm-1" onclick="addProducts()">新增商品</button>
+<div class="select">
+    <div id="selectProducts"></div>
+</div>
 
 <script>
 		document.querySelectorAll(".details-link").forEach(function (link) {
@@ -121,15 +124,15 @@
 			    fetch('@Url.Content("~/CampaignsDiscount/SelectProduct")')
 				    .then(response => response.text())
                     .then(data => {
-                        console.log(date);
-					    //const div = document.querySelector('#divMore');
-					    //div.innerHTML = data;
+                        //console.log(data);
+                        const div = document.querySelector('#selectProducts');
+					   div.innerHTML = data;
 				    })
 				    .catch(error => console.error('Error:', error));
 
-			    const x = event.clientX;
-			    const y = event.clientY;
-			    const div = document.querySelector('#divMore');
+			    const x = 0;
+			    const y = 0;
+            const div = document.querySelector('#selectProducts');
 			    div.style.left = `${x}px`;
 			    div.style.top = `${y}px`;
 			    div.style.display = 'block';
