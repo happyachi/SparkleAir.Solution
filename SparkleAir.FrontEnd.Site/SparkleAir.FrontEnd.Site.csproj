@@ -159,6 +159,7 @@
     <Compile Include="Controllers\CompaniesAndPermissions\PermissionSettingsController.cs" />
     <Compile Include="Controllers\Airtype&amp;Owns\PlanesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LuggageOrders\LuggageOrdersController.cs" />
     <Compile Include="Controllers\Members\MemberLoginLogsController.cs" />
     <Compile Include="Controllers\Luggages\LuggageController.cs" />
     <Compile Include="Controllers\Members\MembersController.cs" />
@@ -406,13 +407,15 @@
     <Content Include="Views\TFItem\Create.cshtml" />
     <Content Include="Views\TFItem\Edit.cshtml" />
     <Content Include="Views\TFItem\Details.cshtml" />
+    <Content Include="Views\LuggageOrders\Index.cshtml" />
+    <Content Include="Views\LuggageOrders\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\ViewModels\Airtype&amp;Owns\" />
     <Folder Include="Models\ViewModels\Members\" />
-    <Folder Include="Views\Airtype&amp;Owns\" />
     <Folder Include="obj\Debug\TempPE\" />
+    <Folder Include="Views\Airtype&amp;Owns\" />
     <Folder Include="Views\Campaigns\" />
     <Folder Include="Views\Companies\" />
   </ItemGroup>

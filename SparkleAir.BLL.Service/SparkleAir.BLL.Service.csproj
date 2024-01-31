@@ -55,6 +55,7 @@
     <Compile Include="CompanyAndPermission\PermissionGroupService.cs" />
     <Compile Include="CompanyAndPermission\PermissionPageInfoService.cs" />
     <Compile Include="CompanyAndPermission\PermissionSettingService.cs" />
+    <Compile Include="LuggageOrders\LuggageOrderService.cs" />
     <Compile Include="Members\MemberLoginLogService.cs" />
     <Compile Include="Airtype&amp;Owns\AirSeatService.cs" />
     <Compile Include="Airtype&amp;Owns\PlaneService.cs" />
