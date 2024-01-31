@@ -3,7 +3,8 @@
 @{
 	ViewBag.Title = "Create";
 }
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css" rel="stylesheet">
 <h2>新增航班</h2>
 
 
@@ -115,12 +116,12 @@
 		</div>
 
 		@*<div class="mb-3">
-			@Html.LabelFor(model => model.DayofWeek, htmlAttributes: new { @class = "control-label col-md-2" })
+				@Html.LabelFor(model => model.DayofWeek, htmlAttributes: new { @class = "control-label col-md-2" })
 
-			@Html.EditorFor(model => model.DayofWeek, new { htmlAttributes = new { @class = "form-control" } })
-			@Html.ValidationMessageFor(model => model.DayofWeek, "", new { @class = "text-danger" })
+				@Html.EditorFor(model => model.DayofWeek, new { htmlAttributes = new { @class = "form-control" } })
+				@Html.ValidationMessageFor(model => model.DayofWeek, "", new { @class = "text-danger" })
 
-		</div>*@
+			</div>*@
 
 		<div class="mb-3">
 			@Html.LabelFor(model => model.Mile, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -132,7 +133,7 @@
 
 		<div class="mb-3">
 			<div class="col-md-offset-2 col-md-10">
-				<input type="submit" value="新增" class="btn btn-dark" />
+				<button class="btn btn-dark create" onclick="create()">新增</button>
 				@Html.ActionLink("返回", "Index", null, new { @class = "btn btn-dark" })
 			</div>
 		</div>
@@ -171,6 +172,17 @@
 
 			// 將選中的星期以逗號分隔的字串形式存儲到 DayOfWeekSelection 屬性
 			document.getElementById('DayofWeek').value = selectedDays.join(',');
+		}
+
+		const create = () => {
+			Swal.fire({
+				icon: "success",
+				title: "航班已新增",
+				showConfirmButton: false,
+				timer: 1700
+			}).then(() => {
+				window.location.href = "/AirFlightsManagement/Index";
+			})
 		}
 	</script>
 }

@@ -28,9 +28,14 @@
 	<div style="overflow:auto">
 		<form id="filterForm" class="text-center align-items-center">
 			<div class="form-group row">
-				<label class="col-form-label col-1">航班:</label>
-				<div class="col-sm-2">
-					<input type="text" class="form-control" id="FlightCode" name="FlightCode">
+				<div class="d-flex">
+					<input type="text" class="form-control me-1" id="FlightCode" name="FlightCode">
+					<input type="text" class="form-control me-1" id="DepartureAirport" name="DepartureAirport">
+					<input type="text" class="form-control me-1" id="ArrivalAirport" name="ArrivalAirport">
+					<input type="time" id="DepartureStartTime" name="DepartureStartTime" class="form-control me-1" />
+					<input type="time" id="DepartureEndTime" name="DepartureEndTime" class="form-control me-1" />
+					<input type="time" id="ArrivalStartTime" name="ArrivalStartTime" class="form-control me-1" />
+					<input type="time" id="ArrivalEndTime" name="ArrivalEndTime" class="form-control" />
 				</div>
 				<button type="button" class="btn btn-sm btn-dark col-sm-1" onclick="applyFilter()">搜尋</button>
 			</div>
@@ -61,7 +66,7 @@
 
 			@foreach (var item in Model)
 			{
-				<tr class="text-center">
+				<tr class="text-center" id="content">
 					<td>
 						@Html.DisplayFor(modelItem => item.FlightCode)
 					</td>
@@ -82,17 +87,19 @@
 					</td>
 					<td>
 						@Html.ActionLink("編輯", "Edit", new { id = item.Id }, new { @class = "btn btn-sm btn-dark" }) |
-						<button class="btn btn-sm btn-dark details-link" onclick="showModal('@item.Id')">詳細資訊</button> |
+						<button type="button" class="btn btn-sm btn-dark details-link" data-bs-toggle="modal" data-bs-target="#model" onclick="showModal('@item.Id')">詳細資訊</button> |
 						@Html.ActionLink("機型設定", "Create", "AirFlights", new { id = item.Id }, new { @class = "btn btn-sm btn-dark" })
 						@*@Html.ActionLink("刪除航班", "Delete", new { id = item.Id }, new { @class = "btn btn-sm btn-dark" })*@
+
+
 					</td>
 				</tr>
 			}
 		</table>
 	</div>
 </div>
-<div class="modal" tabindex="-1" style="display:none" id="model">
-	<div class="modal-dialog">
+<div class="modal fade" tabindex="-1" style="display:none" id="model" aria-labelledby="title" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h3 id="title" class="flex-grow-1 d-flex align-items-center justify-content-center"></h3>
@@ -107,7 +114,10 @@
 
 @*<div id="divMore" style="display:none"></div>*@
 
-<script>
+
+@section Scripts
+{
+	<script>
 		document.querySelectorAll(".details-link").forEach(function (link) {
 			link.addEventListener('click', function (event) {
 				event.preventDefault();
@@ -153,7 +163,7 @@
 		const title = document.querySelector('#title');
 		title.innerHTML = `${data.FlightCode}`
 		div.innerHTML = `
-		
+
 <p>機型: ${data.FlightModel} </p>
 <p>出發地: ${data.DepartureAirport} </p>
 <p>目的地: ${data.ArrivalAirport} </p>
@@ -170,12 +180,6 @@
         console.error('Error:', error);
     }
 	}
-	function formatTime(time) {
-		const date = new Date(0);
-		date.setUTCHours(time.Hours);
-		date.setUTCMinutes(time.Minutes);
-		return `${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
-	}
 
 		//// 添加此代码來隐藏div
 		//document.body.addEventListener('click', function (event) {
@@ -190,18 +194,57 @@
 		//	event.stopPropagation();
 		//});
 
-
 	async function applyFilter() {
     // 獲取表單數據
     var formData = $('#filterForm').serialize();
 
     // 構建 URL
-    var url = '@Url.Action("SearchPartial", "AirFlightsManagement")' + '?' + formData;
+    @*var url = '@Url.Action("SearchPartial", "AirFlightsManagement")' + '?' + formData;*@
 
+
+		const content = document.querySelector('#content');
+		const response = await fetch('@Url.Content("~/AirFlightsManagement/Search")' + `?${formData}`);
+		const data = await response.json();
+		console.log(data);
 		// 發送 AJAX 請求
-		const response = await fetch(url);
-		const data = await response.text();
-		$('#datas').html(data);
+		//const response = await fetch(url);
+		//const data = await response.text();
+		/*$('#datas').html(data);*/
+		content.innerHTML = '';
+		data.forEach(item => {
 
-	}
-</script>
+			const formattedDepartureTime = formatTime(data.DepartureTime);
+			const formattedArrivalTime = formatTime(data.ArrivalTime);
+
+			// 以類似的方式建立其他單元格...
+
+			// 在每個單元格中加入資料
+			content.innerHTML = `
+        <td>${item.FlightCode}</td>
+        <td>${item.DepartureAirport}</td>
+        <td>${item.ArrivalAirport}</td>
+        <td>${formattedDepartureTime}</td>
+        <td>${formattedArrivalTime}</td>
+        <td>${item.DayofWeek}</td>
+        <td>
+
+
+        </td>
+    `;
+
+			// 將整行加入表格
+			content.appendChild(row);
+		});
+		}
+
+
+		function formatTime(time) {
+			const date = new Date(0);
+			date.setUTCHours(time.Hours);
+			date.setUTCMinutes(time.Minutes);
+			return `${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
+		}
+
+	</script>
+}
+

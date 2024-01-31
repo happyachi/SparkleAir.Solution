@@ -237,6 +237,11 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
             var viewModel = SearchAirFlights(vm);
             return PartialView("_SearchPartial", viewModel);
         }
+        public ActionResult Search(AirFlightManagementSearchCriteria vm)
+        {
+            var datas = SearchAirFlights(vm);
+            return Json(datas, JsonRequestBehavior.AllowGet);
+        }
         private List<AirFlightManagementIndexVm> SearchAirFlights(AirFlightManagementSearchCriteria vm)
         {
             var list = _service.Search(vm);
