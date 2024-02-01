@@ -18,7 +18,20 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Lata, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-               
+
+
+                <!--<select class="form-select" aria-label="Default select example" name="Lata">--> @* 下拉式選單  ,name="Lata" 要放要得欄位才抓地到值*@
+
+                    <!--<option selected></option>
+                    @foreach (var item in ViewBag.editAirport)
+                    {
+                        <option value="@item.Lata">@item.Lata</option>
+                    }
+
+                </select>-->
+
+
+
                 @Html.EditorFor(model => model.Lata, new { htmlAttributes = new { @class = "form-control" } })
 
                 @Html.ValidationMessageFor(model => model.Lata, "", new { @class = "text-danger" })
@@ -36,6 +49,16 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Country, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
+
+                <!--<select class="form-select" aria-label="Default select example" name="Country">-->  @*name="Country" 要放要得欄位才抓地到值*@
+
+                    <!--<option selected></option>
+                    @foreach (var item in ViewBag.editAirport)
+                    {
+                        <option value="@item.Country">@item.Country</option>
+                    }
+
+                </select>-->
                 @Html.EditorFor(model => model.Country, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger" })
             </div>
@@ -60,6 +83,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.TimeArea, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
+
                 @Html.EditorFor(model => model.TimeArea, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.TimeArea, "", new { @class = "text-danger" })
             </div>

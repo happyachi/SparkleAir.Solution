@@ -1,0 +1,107 @@
+﻿@model IEnumerable<SparkleAir.Infa.ViewModel.LuggageOrders.LuggageOrderIndexVm>
+<hr>
+
+
+
+<table class="table">
+
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FlightCode)
+        </th>
+        <!--<th>-->
+        @*@Html.DisplayNameFor(model => model.TicketInvoicingDetailId)*@
+        <!--</th>-->
+        <th>
+            @Html.DisplayNameFor(model => model.TicketInvoicingDetailName)
+        </th>
+        <!--<th>-->
+        @*@Html.DisplayNameFor(model => model.LuggageId)*@
+        <!--</th>-->
+        @*<th>
+            @Html.DisplayNameFor(model => model.LuggagePrice)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Amount)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.OrderTime)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.TransferPaymentsId)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.OrderStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LuggageNum)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FlightCode)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.TicketInvoicingDetailId)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.TicketInvoicingDetailName)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.LuggageId)
+                </td>*@
+            @*<td>
+                @Html.DisplayFor(modelItem => item.LuggagePrice)
+            </td>*@
+            <td class="amount">
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderTime)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.TransferPaymentsId)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LuggageNum)
+            </td>
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { id=item.Id }) |*@
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) 
+                @*@Html.ActionLink("Delete", "Delete", new { id=item.Id })*@
+            </td>
+
+
+        </tr>
+    }
+
+</table>
+
+
+
+
+<script>
+    var p = document.querySelectorAll(".amount");
+    var total = 0;
+    p.forEach((item) => {
+        total += parseInt(item.innerHTML);
+
+
+    });
+    var icon = document.querySelector("#icon2");
+    icon.innerHTML = "託運總數量: " + total;
+    console.log(total);
+</script>

@@ -4,152 +4,235 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <title>Document</title>
+@section styles
+    {
+
     <style>
-        #formSearch input[type="text"] {
-            width: 50px;
+/* 定义动画 */
+@*@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}*@
+
+/* 应用动画 */
+        .popup {
+           /* transition: opacity 0.3s ease;
+            opacity: 0.7;
+            animation: fadein 0.5s ease forwards;*/
+            /* 这里的 0.5s 是动画的持续时间，可以根据需要调整 */
         }
+
+
     </style>
-</head>
-<body>
-    <div class="container">
-        <h3 class="text-center fw-bolder">託運明細清單</h3>
-        <form method="get">
-            @Html.TextBox("price", null, new { @class = "form-control-inline" })
-            <input type="submit" value="搜尋" class="btn btn-danger btnsearch" />
-        </form>
+}
 
-        @*@using (Html.BeginForm("SerachByUserName ", "LuggageOrders"))
-            {
-                    @Html.TextBox("price", null, new {@class="btn-info"})
-                <input type="submit" value="搜尋" class="btn btn-danger" />
+<h3>託運明細清單</h3>
 
-            }*@
+@*<div aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+            <symbol id="check-circle-fill" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+            </symbol>
+            <symbol id="info-fill" viewBox="0 0 16 16">
+                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+            </symbol>
 
-        <p>製作表頭</p>
+        </svg>
 
-
-        <div class="row">
-            <div class="col text-center">
-                <form method="get" action="LuggageOrders/Index" id="formSearch">
-                    <input type="text" class="text-end" name="year" id="year" value="2023"> / <input type="text" class="text-end" name="month" id="month" value="1">
-                    <input type="submit" value="查詢" class="btn btn-sm btn-primary">
-                </form>
+        <div id="icon" class="alert alert-success d-flex align-items-center " aria-hidden="true" role="alert">
+            <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Info:"><use xlink:href="#info-fill" /></svg>
+            <div>
+                An example alert with an icon
             </div>
         </div>
-        <div class="row" id="calendarConatiner">
-            行事曆內容
-        </div>
-    </div>
-    <script>
+    </div>*@
 
 
-</script>
-</body>
+
+
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @*@Html.DisplayNameFor(model => model.TicketInvoicingDetailId)*@
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TicketInvoicingDetailName)
-        </th>
-        <th>
-            @*@Html.DisplayNameFor(model => model.LuggageId)*@
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LuggagePrice)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Amount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OrderTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TransferPaymentsId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OrderStatus)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LuggageNum)
-        </th>
-        <th></th>
-    </tr>
 
-    @foreach (var item in Model)
+
+<select id="selecttotal" class="form-select" aria-label="Default select example" name="FlightCode">
+    @*name="Lata" 要放要得欄位才抓地到值*@
+
+    <option value=""></option>
+    @foreach (var item in ViewBag.luggageorder)
     {
-        <tr>
-            <td>
-                @*@Html.DisplayFor(modelItem => item.TicketInvoicingDetailId)*@
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TicketInvoicingDetailName)
-            </td>
-            <td>
-                @*@Html.DisplayFor(modelItem => item.LuggageId)*@
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LuggagePrice)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Amount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OrderTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TransferPaymentsId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OrderStatus)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LuggageNum)
-            </td>
-            <td>
-                @*@Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id=item.Id })*@
-            </td>
-        </tr>
+        <option value="@item.FlightCode">@item.FlightCode</option>
     }
 
+
+</select>
+
+
+<div id="icon" class="alert alert-purple alert-dismissible fade show  popup mt-3" aria-hidden="true" style="display:none"
+     role="alert">
+    <div id="icon2"></div>
+    <button id="btn" type="button" class="btn-close" readonly data-bs-dismiss="alert" aria-label="Close" disabled="true"> </button>
+</div>
+
+
+<table id="table" class="table">
+    <tbody id="tbody">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FlightCode)
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.TicketInvoicingDetailId)*@
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TicketInvoicingDetailName)
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.LuggageId)*@
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.LuggagePrice)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.OrderTime)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.TransferPaymentsId)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.OrderStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LuggageNum)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FlightCode)
+                </td>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.TicketInvoicingDetailId)*@
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TicketInvoicingDetailName)
+                </td>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.LuggageId)*@
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.LuggagePrice)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                @*<td >
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderTime)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.TransferPaymentsId)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderStatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LuggageNum)
+                </td>
+                <td>
+                    @*@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |*@
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = " open-modal", data_target = "#myModal" }) 
+                    @*@Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+                </td>
+            </tr>
+        }
+    </tbody>
+
 </table>
-
-@section Scripts
-{
+@section Scripts{
     <script>
-        //const price = document.querySelector('.search');
-        //const value = price.value;
-        //$(document).ready(function () {
-        //    $('.btnsearch').on('click', function () {
-        //        var price = value;                            
-        //        });
-        //    });
-        //});
+        $(document).ready(function () {
+            $(".open-modal").click(function () {
+                $("#myModal").modal('show');
+            });
+        });
 
-        //price.addEventListener('keyup', function (event) {
-           
-        //    }
-        //});
-        
+
+
+       $(document).ready(function () {
+    // 下拉列表值变化时触发
+           $('#selecttotal').change(function () {
+        // 获取选择的值
+        var selectedStatus = $(this).val();
+               console.log(selectedStatus);
+
+               if (selectedStatus == "") {
+                   // 发起 Ajax 请求获取所有列表的数据
+                   $.ajax({
+                       type: 'GET',
+                       url: `@Url.Action("PartialIndex", "LuggageOrders")`,
+                       success: function (result) {
+                           // 更新表格数据
+                           $('#tbody').html(result);
+
+                           var hidden = document.querySelector("#icon");
+                           var icon = document.querySelector("#icon2");
+                           hidden.style.display = "none";
+                           icon.innerHTML ="";
+                       },
+                       error: function (error) {
+                           console.log(error);
+                       }
+                   });
+
+               }
+               else
+               {
+                    // 发起 Ajax 请求获取所有列表的数据
+                $.ajax({
+                    type: 'GET',
+                    url: `@Url.Action("PartialIndex", "LuggageOrders")?flightcode=${selectedStatus}`,
+                    /*data: selectedStatus,*/
+                    success: function (result) {
+                        // 更新表格数据
+                        $('#tbody').html(result);
+
+                        var hidden = document.querySelector("#icon");
+                        var icon = document.querySelector("#icon2");
+                        hidden.style.display = "block";
+                        /*icon.removeattribute(hidden);*/
+
+                   },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+
+
+
+               }
+
+
+    });
+});
+
+        const popover = new bootstrap.Popover('.popover-dismiss', {
+            trigger: 'focus'
+        })
     </script>
 }

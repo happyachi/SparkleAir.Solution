@@ -1,7 +1,9 @@
 ﻿using SparkleAir.IDAL.IRepository.Luggage;
 using SparkleAir.IDAL.IRepository.LuggageOrders;
+using SparkleAir.Infa.Dto.Airport;
 using SparkleAir.Infa.Dto.Luggage;
 using SparkleAir.Infa.Dto.LuggageOrders;
+using SparkleAir.Infa.Entity.Airports;
 using SparkleAir.Infa.Entity.Luggage;
 using SparkleAir.Infa.Entity.LuggageOrders;
 using System;
@@ -30,6 +32,7 @@ namespace SparkleAir.BLL.Service.LuggageOrderService
             List<LuggageOrderDto> dto = entity.Select(p => new LuggageOrderDto
             {
                 Id = p.Id,
+                FlightCode = p.FlightCode,
                 TicketInvoicingDetailId = p.TicketInvoicingDetailId,
                 TicketInvoicingDetailName = p.TicketInvoicingDetailName,
                 LuggageId = p.LuggageId,
@@ -68,6 +71,30 @@ namespace SparkleAir.BLL.Service.LuggageOrderService
             return entity.Id;
         }
 
+
+        //取得一筆
+        public LuggageOrderDto Get(int id)
+        {
+            LuggageOrderEntity entity = _repo.Get(id);
+
+            LuggageOrderDto dto = new LuggageOrderDto
+            {
+                Id = entity.Id,
+                FlightCode = entity.FlightCode,
+                TicketInvoicingDetailId = entity.TicketInvoicingDetailId,
+                TicketInvoicingDetailName = entity.TicketInvoicingDetailName,
+                LuggageId = entity.LuggageId,
+                LuggagePrice = entity.LuggagePrice,
+                Amount = entity.Amount,
+                Price = entity.Price,
+                OrderTime = entity.OrderTime,
+                TransferPaymentsId = entity.TransferPaymentsId,
+                OrderStatus = entity.OrderStatus,
+                LuggageNum = entity.LuggageNum,
+            };
+
+            return dto;
+        }
 
 
     }

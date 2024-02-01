@@ -10,8 +10,10 @@ namespace SparkleAir.Infa.ViewModel.LuggageOrders
     public class LuggageOrderIndexVm
     {
         public int Id { get; set; }
+        [Display(Name = "航班代碼")]
+        public string FlightCode { get; set; }
 
-        [Display(Name ="開票Id")]
+        [Display(Name = "開票Id")]
         public int TicketInvoicingDetailId { get; set; }
 
         [Display(Name = "姓名")]

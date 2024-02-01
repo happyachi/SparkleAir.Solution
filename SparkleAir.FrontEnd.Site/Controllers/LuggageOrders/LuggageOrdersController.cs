@@ -16,25 +16,61 @@ using System.Web.Http.Results;
 using System.Web.Mvc;
 using System.Data.Entity;
 using Microsoft.Ajax.Utilities;
+using SparkleAir.BLL.Service.Airports;
+using SparkleAir.IDAL.IRepository.TaxFree;
+using SparkleAir.IDAL.IRepository.AirFlights;
+using SparkleAir.DAL.EFRepository.AirFlights;
+using SparkleAir.BLL.Service.AirFlights;
+using SparkleAir.Infa.ViewModel.Airports;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.LuggageOrders
 {
     public class LuggageOrdersController : Controller
     {
         ILuggageOrderRepository efRLuggageorder = new LuggageOrderEFRepository();
+        IAirFlightManagementRepository efAirFlightManagement = new AirFlightManagementEFRepository();
         // GET: LuggageOrders
         public ActionResult Index()
         {
+            var service = new LuggageOrderService(efRLuggageorder);
+            
+            var flightService = new AirFlightManagementService(efAirFlightManagement);
             List<LuggageOrderIndexVm> data = GetAll();
+
+            ViewBag.luggageorder = flightService.GetAll(); //回傳所有的資料
+
 
             return View(data);
         }
-        //[HttpPost]
-        //public ActionResult Index(int price)
-        //{
-        //    List<LuggageOrderIndexVm> data = Search(price);
-        //    return View(data);
-        //}
+
+
+        
+        public ActionResult PartialIndex(string flightcode)
+        {
+            //var service = new LuggageOrderService(efRLuggageorder);
+            //var flightService = new AirFlightManagementService(efAirFlightManagement);
+
+            List<LuggageOrderIndexVm> data = GetAll();
+
+
+            List<LuggageOrderIndexVm> select;
+
+            if (flightcode ==null)
+            {
+                return PartialView("PartialIndex", data) ;
+            }
+            else
+            {
+                select = data.Where(p => p.FlightCode==flightcode ).ToList();
+               
+                return PartialView("PartialIndex", select);
+
+            }
+
+            
+
+        }
+
 
         private List<LuggageOrderIndexVm> GetAll()
         {
@@ -46,6 +82,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.LuggageOrders
             {
 
                 Id = p.Id,
+                FlightCode= p.FlightCode,
                 TicketInvoicingDetailId = p.TicketInvoicingDetailId,
                 TicketInvoicingDetailName = p.TicketInvoicingDetailName,
                 LuggageId = p.LuggageId,
@@ -146,27 +183,45 @@ namespace SparkleAir.FrontEnd.Site.Controllers.LuggageOrders
         }
 
 
+        public ActionResult Details(int id)
+        {
+            LuggageOrderIndexVm vm = Get(id);
+            return View(vm);
+        }
+
+        private LuggageOrderIndexVm Get(int id)
+        {
+            var service = new LuggageOrderService(efRLuggageorder);
+            var get = service.Get(id);
+
+            return new LuggageOrderIndexVm
+            {
+
+                Id = get.Id,
+                FlightCode = get.FlightCode,
+                TicketInvoicingDetailId = get.TicketInvoicingDetailId,
+                TicketInvoicingDetailName = get.TicketInvoicingDetailName,
+                LuggageId = get.LuggageId,
+                LuggagePrice = get.LuggagePrice,
+                Amount = get.Amount,
+                Price = get.Price,
+                OrderTime = get.OrderTime,
+                TransferPaymentsId = get.TransferPaymentsId,
+                OrderStatus = get.OrderStatus,
+                LuggageNum = get.LuggageNum,
+            };
+        }
 
 
-
-        //                where s.UserName == UserName
-        //            select s.Id); ; ; ;. FirstOrDefault();
-        //                if (!string.IsNullOrEmpty(searchUserId)) //則將此UserId的所有訂單找出
-        //                    using (Models.Carts Entities db = new Models.Carts Entities())
-
-        //var result = (from s in db.Orders
-        //              where s.UserId == searchUserId
-        //              select s).ToList();
-        //else
-        //}
-        //            //回傳 結果 至Index()的View
-        //            return View("Index", result);
-        //            { //回傳 空結果 至Index()的View
-        //            }
-        //            return View("Index", new List<Models.Order>());
 
 
     }
+    public class ttt
+    {
+        public string flightcode { get; set; }
+    }
+
+
 }
 
 

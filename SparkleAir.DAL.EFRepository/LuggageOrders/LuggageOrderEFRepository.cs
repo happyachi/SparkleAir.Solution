@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
+using SparkleAir.Infa.Entity.Airports;
 
 namespace SparkleAir.DAL.EFRepository.LuggageOrders
 {
@@ -42,7 +43,30 @@ namespace SparkleAir.DAL.EFRepository.LuggageOrders
 
         public LuggageOrderEntity Get(int id)
         {
-            throw new NotImplementedException();
+            var get = db.LuggageOrders.Find(id);
+            if (get == null)
+            {
+                 throw new Exception();
+            }
+            else
+            {
+                return new LuggageOrderEntity
+                {
+                    Id = get.Id,
+                    FlightCode = get.TicketInvoicingDetail.TicketDetail.Ticket.AirFlight.AirFlightManagement.FlightCode,
+                    TicketInvoicingDetailId = get.TicketInvoicingDetailId,
+                    TicketInvoicingDetailName = get.TicketInvoicingDetail.FirstName + get.TicketInvoicingDetail.LastName,
+                    LuggageId = get.LuggageId,
+                    LuggagePrice = get.Luggage.BookPrice,
+                    Amount = get.Amount,
+                    Price = get.Price,
+                    OrderTime = get.OrderTime,
+                    TransferPaymentsId = get.TransferPaymentsId,
+                    OrderStatus = get.OrderStatus,
+                    LuggageNum = get.LuggageNum,
+                };
+            }
+
         }
 
         public List<LuggageOrderEntity> GetAll()
@@ -58,6 +82,7 @@ namespace SparkleAir.DAL.EFRepository.LuggageOrders
                                {
                                    
                                    Id = p.Id,
+                                   FlightCode = p.TicketInvoicingDetail.TicketDetail.Ticket.AirFlight.AirFlightManagement.FlightCode,
                                    TicketInvoicingDetailId = p.TicketInvoicingDetailId,
                                    TicketInvoicingDetailName=p.TicketInvoicingDetail.FirstName+p.TicketInvoicingDetail.LastName,
                                    LuggageId = p.LuggageId,
@@ -78,5 +103,10 @@ namespace SparkleAir.DAL.EFRepository.LuggageOrders
         {
             throw new NotImplementedException();
         }
+
+
+
+       
+
     }
 }

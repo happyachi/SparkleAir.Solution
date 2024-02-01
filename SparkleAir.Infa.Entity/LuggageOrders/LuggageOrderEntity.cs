@@ -9,6 +9,7 @@ namespace SparkleAir.Infa.Entity.LuggageOrders
     public class LuggageOrderEntity
     {
         public int Id { get; set; }
+        public string FlightCode { get; set; }
 
         public int TicketInvoicingDetailId { get; set; }
         public string TicketInvoicingDetailName { get; set; }
