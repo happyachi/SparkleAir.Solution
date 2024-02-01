@@ -4,31 +4,34 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>會員等級設定</h2>
 
-<hr>
 <p>
-    <a href='@Url.Action("Create")' class="btn btn-sm btn-dark ps-3 pe-3"><i class="fa-solid fa-plus"></i>&nbsp;&nbsp;新增</a>
+    <a href='@Url.Action("Create")' class="btn btn-sm btn-dark ps-3 pe-3 btn-create"><i class="fa-solid fa-plus"></i>&nbsp;&nbsp;新增</a>
 </p>
-<table class="table" id="table_jq">
+<table class="table table_jq">
     <thead>
         <tr>
-                    <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ClassOrder)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MileageStart)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MileageEnd)
-        </th>
-        <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClassOrder)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MileageStart)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MileageEnd)
+            </th>
+            <th>
+               
+            </th>
         </tr>
     </thead>
-    <tbody> @foreach (var item in Model) { <tr>
+    <tbody>
+@foreach (var item in Model) {
+    <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
@@ -42,12 +45,9 @@
             @Html.DisplayFor(modelItem => item.MileageEnd)
         </td>
         <td>
-            <a href='@Url.Action("Edit/")@item.Id' class="btn btn-sm btn-dark ps-2 pe-2"><i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;編輯</a> |
-            <a href='@Url.Action("Details/")@item.Id' class="btn btn-sm btn-dark ps-2 pe-2"><i class="fa-solid fa-file"></i>&nbsp;&nbsp;詳細資訊</a> |
-            <a href='@Url.Action("Delete/")@item.Id' class="btn btn-sm btn-danger ps-2 pe-2"><i class="fa-solid fa-trash"></i>&nbsp;&nbsp;刪除</a>
-            
+            <a href='@Url.Action("Edit/")@item.Id' class="btn btn-sm btn-dark ps-2 pe-2 btn-edit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;編輯</a>
         </td>
     </tr>
 }
-    </tbody>
+        </tbody>
 </table>

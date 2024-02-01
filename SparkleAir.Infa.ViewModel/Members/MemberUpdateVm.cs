@@ -10,7 +10,6 @@ namespace SparkleAir.Infa.ViewModel.Members
     public class MemberUpdateVm
     {
         [Display(Name = "ID")]
-        [Required(ErrorMessage = "{0}必填")]
         public int Id { get; set; }
 
         [Display(Name = "是否授權")]

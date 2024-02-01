@@ -336,6 +336,7 @@
     <Content Include="bin\SparkleAir.FrontEnd.Site.dll.config" />
     <Content Include="bin\SparkleAir.Infa.EFModel.dll.config" />
     <Content Include="CodeTemplates\MvcView\Details.cs - 複製.t4" />
+    <Content Include="CodeTemplates\MvcView\Edit.cs - 複製.t4" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -387,7 +388,6 @@
     <Content Include="Views\Airports\Details.cshtml" />
     <Content Include="Views\Airports\Edit.cshtml" />
     <Content Include="Views\Members\Get.cshtml" />
-    <Content Include="Views\Members\Edit.cshtml" />
     <Content Include="Views\MemberLoginLogs\Index.cshtml" />
     <Content Include="Views\AirFlightsManagement\Index.cshtml" />
     <Content Include="Views\AirFlightsManagement\Create.cshtml" />
@@ -511,12 +511,12 @@
     <Content Include="CodeTemplates\ODataControllerWithActions\Controller.vb.t4" />
     <Content Include="CodeTemplates\ODataControllerWithContext\Controller.cs.t4" />
     <Content Include="CodeTemplates\ODataControllerWithContext\Controller.vb.t4" />
-    <Content Include="Views\MemberClasses\Create - 複製.cshtml" />
     <Content Include="Views\Details.cs.cs.html" />
     <Content Include="Views\Members\Details.cshtml" />
     <Content Include="Views\CompanyDepartments\Details.cshtml" />
     <Content Include="Views\Home\Error404.cshtml" />
     <Content Include="Views\Home\Error500.cshtml" />
+    <Content Include="Views\Members\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

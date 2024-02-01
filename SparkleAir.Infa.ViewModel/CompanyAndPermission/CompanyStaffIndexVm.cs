@@ -10,7 +10,6 @@ namespace SparkleAir.Infa.ViewModel.CompanyAndPermission
     public class CompanyStaffIndexVm
     {
         [Display(Name = "ID")]
-        [Required(ErrorMessage = "{0}必填")]
         public int Id { get; set; }
 
         [Display(Name = "帳號")]
@@ -35,7 +34,6 @@ namespace SparkleAir.Infa.ViewModel.CompanyAndPermission
 
         [Display(Name = "職位ID")]
         [Required(ErrorMessage = "{0}必填")]
-        [MaxLength(10)]
         public int CompanyJobId { get; set; }
 
         [Display(Name = "部門名稱")]

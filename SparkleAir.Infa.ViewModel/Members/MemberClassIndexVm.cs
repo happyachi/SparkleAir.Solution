@@ -9,7 +9,6 @@ namespace SparkleAir.Infa.ViewModel.Members
 {
     public class MemberClassIndexVm
     {
-        [Display(Name = "ID")]
         public int Id { get; set; }
 
         [Display(Name = "等級名稱")]
@@ -19,7 +18,6 @@ namespace SparkleAir.Infa.ViewModel.Members
 
         [Display(Name = "等級排序")]
         [Required(ErrorMessage = "{0}必填")]
-        [MaxLength(10)]
         public int ClassOrder { get; set; }
 
         [Display(Name = "里程區間開始")]
