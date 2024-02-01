@@ -7,7 +7,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <a href='@Url.Action("Create")' class="btn btn-sm btn-dark ps-3 pe-3 btn-create"><i class="fa-solid fa-plus"></i>&nbsp;&nbsp;新增</a>
 </p>
 <table class="table">
     <tr>
@@ -41,9 +41,9 @@
             @Html.DisplayFor(modelItem => item.Rank)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            <a href='@Url.Action("Edit/")@item.Id' class="btn btn-sm btn-dark ps-2 pe-2 btn-edit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;編輯</a> |
+            <a href='@Url.Action("Details/")@item.Id' class="btn btn-sm btn-dark ps-2 pe-2 btn-detail"><i class="fa-solid fa-file"></i>&nbsp;&nbsp;詳細資訊</a> 
+            
         </td>
     </tr>
 }
