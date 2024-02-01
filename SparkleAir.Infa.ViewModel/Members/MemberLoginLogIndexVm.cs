@@ -10,12 +10,13 @@ namespace SparkleAir.Infa.ViewModel.Members
     public class MemberLoginLogIndexVm
     {
         [Display(Name = "ID")]
-        [Required(ErrorMessage = "{0}必填")]
         public int Id { get; set; }
 
         [Display(Name = "會員ID")]
         [Required(ErrorMessage = "{0}必填")]
         public int MemberId { get; set; }
+
+        public string MemberName { get; set; }
 
         [Display(Name = "登入時間")]
         [Required(ErrorMessage = "{0}必填")]

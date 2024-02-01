@@ -12,6 +12,8 @@ namespace SparkleAir.Infa.Dto.Members
 
         public int MemberId { get; set; }
 
+        public string MemberName { get; set; }
+
         public DateTime Logintime { get; set; }
 
         public DateTime? LogoutTime { get; set; }

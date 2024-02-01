@@ -47,7 +47,9 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Members
             return View();
         }
 
+
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(MemberClassIndexVm vm)
         {
             if (!ModelState.IsValid) return View(vm);

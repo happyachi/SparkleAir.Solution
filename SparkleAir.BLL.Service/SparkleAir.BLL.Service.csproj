@@ -59,6 +59,9 @@
     <Compile Include="CompanyAndPermission\PermissionGroupService.cs" />
     <Compile Include="CompanyAndPermission\PermissionPageInfoService.cs" />
     <Compile Include="CompanyAndPermission\PermissionSettingService.cs" />
+    <Compile Include="MealMessages\AirMealService.cs" />
+    <Compile Include="MealMessages\MessageBoxService.cs" />
+    <Compile Include="MealMessages\MessageService.cs" />
     <Compile Include="Members\MemberClassService.cs" />
     <Compile Include="Members\MemberLoginLogService.cs" />
     <Compile Include="Airtype&amp;Owns\AirSeatService.cs" />
@@ -68,6 +71,10 @@
     <Compile Include="MileageDetails\MileageDetailService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TaxFree\TaxFreeService.cs" />
+    <Compile Include="TaxFree\TFOrderlistService.cs" />
+    <Compile Include="TaxFree\TFReservelistService.cs" />
+    <Compile Include="TaxFree\TFReserveService.cs" />
+    <Compile Include="TaxFree\TFWishlistService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SparkleAir.DAL.DapperRepository\SparkleAir.DAL.DapperRepository.csproj">
