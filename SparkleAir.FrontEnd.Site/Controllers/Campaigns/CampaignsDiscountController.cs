@@ -1,12 +1,17 @@
-﻿using SparkleAir.BLL.Service.AirFlights;
+﻿using Microsoft.Ajax.Utilities;
+using SparkleAir.BLL.Service.AirFlights;
 using SparkleAir.BLL.Service.Campaigns;
+using SparkleAir.BLL.Service.Members;
 using SparkleAir.BLL.Service.TaxFree;
 using SparkleAir.DAL.EFRepository.Campaigns;
+using SparkleAir.DAL.EFRepository.Members;
 using SparkleAir.DAL.EFRepository.TaxFree;
 using SparkleAir.FrontEnd.Site.Models.ViewModels.Campaigns;
+using SparkleAir.IDAL.IRepository.TaxFree;
 using SparkleAir.Infa.Criteria.Campaigns;
 using SparkleAir.Infa.Dto.Campaigns;
 using SparkleAir.Infa.Dto.TaxFree;
+using SparkleAir.Infa.EFModel.EFModels;
 using SparkleAir.Infa.ViewModel.Campaigns;
 using SparkleAir.Infa.ViewModel.TaxFree;
 using System;
@@ -20,9 +25,12 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
 {
     public class CampaignsDiscountController : BaseController
     {
+
+
         CampaignsDiscountsEFRepository repo = new CampaignsDiscountsEFRepository();
+        ITFRepository repoit = new TFItemEFRepository();
 
-
+        MemberClassEFRepository memberRepo = new MemberClassEFRepository();
         public ActionResult Index()
         {
             List<CampaignsDiscountIndexVm> discount = GetAll();
@@ -53,6 +61,9 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
         #region Create
         public ActionResult Create()
         {
+            var memberservice = new MemberClassService(memberRepo);
+            ViewBag.Member = memberservice.Search();
+            ViewBag.List = CreateSelectProducts();
             return View();
         }
 
@@ -60,6 +71,9 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
         public ActionResult Create(CampaignsDiscountVm discount)
         {
             if (!ModelState.IsValid) return View();
+            var memberservice = new MemberClassService(memberRepo);
+            ViewBag.Member = memberservice.Search();
+
             try
             {
                 CreateDiscount(discount);
@@ -103,7 +117,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
             try
             {
                 List<TFItemVm> vms = CreateSelectProducts();
-                return PartialView("_SelectProduct",vms);
+                return PartialView("SelectProduct",vms);
             }
             catch (Exception ex)
             {
