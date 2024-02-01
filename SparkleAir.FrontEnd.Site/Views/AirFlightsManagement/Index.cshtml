@@ -30,12 +30,6 @@
 			<div class="form-group row">
 				<div class="d-flex">
 					<input type="text" class="form-control me-1" id="FlightCode" name="FlightCode">
-					<input type="text" class="form-control me-1" id="DepartureAirport" name="DepartureAirport">
-					<input type="text" class="form-control me-1" id="ArrivalAirport" name="ArrivalAirport">
-					<input type="time" id="DepartureStartTime" name="DepartureStartTime" class="form-control me-1" />
-					<input type="time" id="DepartureEndTime" name="DepartureEndTime" class="form-control me-1" />
-					<input type="time" id="ArrivalStartTime" name="ArrivalStartTime" class="form-control me-1" />
-					<input type="time" id="ArrivalEndTime" name="ArrivalEndTime" class="form-control" />
 				</div>
 				<button type="button" class="btn btn-sm btn-dark col-sm-1" onclick="applyFilter()">搜尋</button>
 			</div>
@@ -87,6 +81,7 @@
 					</td>
 					<td>
 						@Html.ActionLink("編輯", "Edit", new { id = item.Id }, new { @class = "btn btn-sm btn-dark" }) |
+						@*<button type="button" class="btn btn-sm btn-dark edit-link" data-bs-toggle="modal" data-bs-target="#editModel" onclick="edit('@item.Id')">編輯</button> |*@
 						<button type="button" class="btn btn-sm btn-dark details-link" data-bs-toggle="modal" data-bs-target="#model" onclick="showModal('@item.Id')">詳細資訊</button> |
 						@Html.ActionLink("機型設定", "Create", "AirFlights", new { id = item.Id }, new { @class = "btn btn-sm btn-dark" })
 						@*@Html.ActionLink("刪除航班", "Delete", new { id = item.Id }, new { @class = "btn btn-sm btn-dark" })*@
@@ -98,7 +93,8 @@
 		</table>
 	</div>
 </div>
-<div class="modal fade" tabindex="-1" style="display:none" id="model" aria-labelledby="title" aria-hidden="true">
+
+<div class="modal fade" tabindex="-1" id="model" aria-labelledby="title" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -106,11 +102,14 @@
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
-				<div id="detail"></div>
+				<div id="detail">
+
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
 
 @*<div id="divMore" style="display:none"></div>*@
 
@@ -119,6 +118,12 @@
 {
 	<script>
 		document.querySelectorAll(".details-link").forEach(function (link) {
+			link.addEventListener('click', function (event) {
+				event.preventDefault();
+			});
+
+		});
+		document.querySelectorAll(".edit-link").forEach(function (link) {
 			link.addEventListener('click', function (event) {
 				event.preventDefault();
 			});
@@ -151,8 +156,8 @@
 
 		const data = await response.json();
 		console.log(data);
-		const formattedDepartureTime = formatTime(data.DepartureTime);
-		const formattedArrivalTime = formatTime(data.ArrivalTime);
+		const formattedDepartureTime = data.DepartureTime.Minutes.toString().padStart(2, '0')
+		const formattedArrivalTime = data.ArrivalTime.Minutes.toString().padStart(2, '0')
 		if (data.DepartureTerminal == null)  {
 			data.DepartureTerminal = '';
 		}
@@ -169,8 +174,8 @@
 <p>目的地: ${data.ArrivalAirport} </p>
 <p>出發航廈: ${data.DepartureTerminal} </p>
 <p>抵達航廈: ${data.ArrivalTerminal} </p>
-<p>出發時間: <span id="formattedDepartureTime">${formattedDepartureTime}</span> UTC ${data.DepartureTimeZone}</p>
-<p>抵達時間: <span id="formattedArrivalTime">${formattedArrivalTime}</span> UTC ${data.ArrivalTimeZone}</p>
+<p>出發時間: ${data.DepartureTime.Hours}:${formattedDepartureTime} UTC ${data.DepartureTimeZone}</p>
+<p>抵達時間: ${data.ArrivalTime.Hours}:${formattedArrivalTime} UTC ${data.ArrivalTimeZone}</p>
 
 <p>執飛時間: ${data.DayofWeek} </p>
 <p>飛行里程: ${data.Mile}</p>
@@ -213,9 +218,6 @@
 		content.innerHTML = '';
 		data.forEach(item => {
 
-			const formattedDepartureTime = formatTime(data.DepartureTime);
-			const formattedArrivalTime = formatTime(data.ArrivalTime);
-
 			// 以類似的方式建立其他單元格...
 
 			// 在每個單元格中加入資料
@@ -223,27 +225,36 @@
         <td>${item.FlightCode}</td>
         <td>${item.DepartureAirport}</td>
         <td>${item.ArrivalAirport}</td>
-        <td>${formattedDepartureTime}</td>
-        <td>${formattedArrivalTime}</td>
+        <td>${item.DepartureTime.Hours}:${item.DepartureTime.Minutes.toString().padStart(2, '0') }</td>
+        <td>${item.ArrivalTime.Hours}:${item.ArrivalTime.Minutes.toString().padStart(2, '0') }</td>
         <td>${item.DayofWeek}</td>
         <td>
 
 
         </td>
     `;
-
-			// 將整行加入表格
-			content.appendChild(row);
 		});
 		}
 
 
-		function formatTime(time) {
-			const date = new Date(0);
-			date.setUTCHours(time.Hours);
-			date.setUTCMinutes(time.Minutes);
-			return `${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
-		}
+	@*async function edit(itemId) {
+    try {
+        const response = await fetch('@Url.Content("~/AirFlightsManagement/Edit")' + `/${itemId}`);
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+		const data = await response.text();
+		console.log(data);
+		const div = document.querySelector('#detail');
+		const title = document.querySelector('#title');
+		title.innerHTML = `${data.FlightCode}`
+		div.innerHTML = data ;
+		$('#editModel').modal('show');
+    } catch (error) {
+        console.error('Error:', error);
+    }
+	}*@
 
 	</script>
 }

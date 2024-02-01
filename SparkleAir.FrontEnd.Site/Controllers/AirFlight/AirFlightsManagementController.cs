@@ -131,13 +131,16 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
             try
             {
                 AirFlightManagementVm vm = Get(id);
+                ViewBag.AirFlightEdit = Get(id);
                 ViewBag.Airports = _airportService.GetAll();
+                //return Json(vm, JsonRequestBehavior.AllowGet);
                 return View(vm);
+                //return View(vm);
             }
             catch (Exception ex)
             {
                 ModelState.AddModelError("", ex.Message);
-                return View();
+                return Json(new { error = ex.Message });
             }
 
         }
