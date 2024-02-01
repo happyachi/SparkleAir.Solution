@@ -145,6 +145,8 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AirFlight\AirFlightsController.cs" />
     <Compile Include="Controllers\AirFlight\AirFlightsManagementController.cs" />
+    <Compile Include="Controllers\Airtype&amp;Owns\OwnsController.cs" />
+    <Compile Include="Controllers\Airtype&amp;Owns\SearchController.cs" />
     <Compile Include="Controllers\Basics\CountriesController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\Campaigns\CampaignsCouponController.cs" />
@@ -425,6 +427,7 @@
     <Content Include="Views\Countries\Index.cshtml" />
     <Content Include="Views\Countries\Create.cshtml" />
     <Content Include="Views\Countries\Edit.cshtml" />
+    <Content Include="Views\Owns\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -435,6 +438,7 @@
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Campaigns\" />
     <Folder Include="Views\Companies\" />
+    <Folder Include="Views\Search\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

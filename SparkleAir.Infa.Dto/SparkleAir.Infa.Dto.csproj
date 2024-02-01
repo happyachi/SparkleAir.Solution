@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Airtype&amp;Owns\OwnDto.cs" />
+    <Compile Include="Airtype&amp;Owns\SearchDto.cs" />
     <Compile Include="AriFlights\AirFlightDto.cs" />
     <Compile Include="AriFlights\AirFlightManagementDto.cs" />
     <Compile Include="Basics\CountryDto.cs" />

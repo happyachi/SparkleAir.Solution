@@ -7,17 +7,18 @@ using System.Threading.Tasks;
 
 namespace SparkleAir.IDAL.IRepository.Airtype_Owns
 {
-    public interface IPlaneRepository
+    public  interface IOwnRepository
     {
-        void Create(PlaneEntity entity);
-        void Update(PlaneEntity entity);
+        void Create(OwnEntity entity);
+        void Update(OwnEntity entity);
         void Delete(int id);
 
-        List<PlaneEntity> GetAll();
+        List<OwnEntity> GetAll();
 
-        PlaneEntity Get(int id);
+        OwnEntity Get(int id);
+        bool Exists(string registrationnum);
 
-        bool Exists(string flightModel);
 
     }
 }
+

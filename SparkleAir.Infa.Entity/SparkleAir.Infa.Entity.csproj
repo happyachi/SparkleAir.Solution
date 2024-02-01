@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="AirFlightsEntity\AirFlightEntity.cs" />
     <Compile Include="AirFlightsEntity\AirFlightManagementEntity.cs" />
+    <Compile Include="Airtype&amp;Owns\OwnEntity.cs" />
     <Compile Include="Basics\CountryEntity.cs" />
     <Compile Include="Campaigns\CampaignsCouponEntity.cs" />
     <Compile Include="Campaigns\CampaignsDiscountEntity.cs" />

@@ -47,6 +47,8 @@
     <Compile Include="AirFlights\AirFlightManagementIndexVm.cs" />
     <Compile Include="AirFlights\AirFlightManagementVm.cs" />
     <Compile Include="AirFlights\AirFlightVm.cs" />
+    <Compile Include="Airtype&amp;Owns\OwnVm.cs" />
+    <Compile Include="Airtype&amp;Owns\OwnVmIndex.cs" />
     <Compile Include="Basics\CountryIndexVm.cs" />
     <Compile Include="Campaigns\CampaignsCouponIndexVm.cs" />
     <Compile Include="Campaigns\CampaignsCouponVm.cs" />
