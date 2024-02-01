@@ -32,7 +32,8 @@ namespace SparkleAir.Infa.ViewModel.TaxFree
 
         public bool IsPublished { get; set; }
 
-       
+        public string FileName { get; set; }    
+
 
     }
 
