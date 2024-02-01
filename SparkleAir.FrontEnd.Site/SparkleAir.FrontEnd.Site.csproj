@@ -167,6 +167,10 @@
     <Compile Include="Controllers\Members\MembersController.cs" />
     <Compile Include="Controllers\MileageDetails\MileageDetailController.cs" />
     <Compile Include="Controllers\TaxFree\TFItemController.cs" />
+    <Compile Include="Controllers\TaxFree\TFOrderlistController.cs" />
+    <Compile Include="Controllers\TaxFree\TFReserveController.cs" />
+    <Compile Include="Controllers\TaxFree\TFReservelistController.cs" />
+    <Compile Include="Controllers\TaxFree\TFWishlistController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -306,6 +310,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Files\Images\airplane.png" />
     <Content Include="Files\Images\empty.jpg" />
+    <Content Include="Files\Images\imgjake.jpg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="obj\Debug\SparkleAir.FrontEnd.Site.csproj.FileListAbsolute.txt" />
@@ -349,6 +354,8 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\popper.min.js" />
     <Content Include="Scripts\simplebar.min.js" />
+    <Content Include="Scripts\vendor\sass\node_modules\immutable\dist\immutable.es.js" />
+    <Content Include="Scripts\vendor\sass\node_modules\immutable\dist\immutable.min.js" />
     <Content Include="Scripts\volt.js" />
     <Content Include="CodeTemplates\AssemblyVersions.xml" />
     <Content Include="CodeTemplates\PackageVersions5.0.0.xml" />
@@ -429,10 +436,6 @@
     <Content Include="Views\Luggage\Edit.cshtml" />
     <Content Include="Views\MileageDetail\Index.cshtml" />
     <Content Include="Views\MileageDetail\Create.cshtml" />
-    <Content Include="Views\TFItem\Index.cshtml" />
-    <Content Include="Views\TFItem\Create.cshtml" />
-    <Content Include="Views\TFItem\Edit.cshtml" />
-    <Content Include="Views\TFItem\Details.cshtml" />
     <Content Include="Views\MemberClasses\Index.cshtml" />
     <Content Include="Views\MemberClasses\Create.cshtml" />
     <Content Include="Views\MemberClasses\Edit.cshtml" />
@@ -517,6 +520,18 @@
     <Content Include="Views\CompanyDepartments\Details.cshtml" />
     <Content Include="Views\Home\Error404.cshtml" />
     <Content Include="Views\Home\Error500.cshtml" />
+    <Content Include="Scripts\vendor\sass\node_modules\immutable\dist\immutable.js.flow" />
+    <Content Include="Views\TFItem\Index.cshtml" />
+    <Content Include="Views\TFItem\Details.cshtml" />
+    <Content Include="Views\TFItem\Create.cshtml" />
+    <Content Include="Views\TFOrderlist\Index.cshtml" />
+    <Content Include="Views\TFReserve\Index.cshtml" />
+    <Content Include="Views\TFWishlist\Index.cshtml" />
+    <Content Include="Views\TFReservelist\Index.cshtml" />
+    <Content Include="Views\TFReservelist\Details.cshtml" />
+    <Content Include="Views\TFReservelist\Edit.cshtml" />
+    <Content Include="Views\TFReservelist\Create.cshtml" />
+    <Content Include="Views\TFItem\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
