@@ -56,7 +56,10 @@
     <Compile Include="CompanyAndPermission\IPermissionGroupsAddStaffRepository.cs" />
     <Compile Include="CompanyAndPermission\IPermissionPageInfoRepository.cs" />
     <Compile Include="CompanyAndPermission\IPermissionSettingRepository.cs" />
+    <Compile Include="MealMessages\IMessageBoxRepository.cs" />
+    <Compile Include="MealMessages\IMessageRepository.cs" />
     <Compile Include="Members\IMemberClassRepository.cs" />
+    <Compile Include="MealMessages\IAirMealRepository.cs" />
     <Compile Include="Members\IMemberLoginLogRepository.cs" />
     <Compile Include="Airtype&amp;Owns\IAirSeatRepository.cs" />
     <Compile Include="Airtype&amp;Owns\IPlaneRepository.cs" />
@@ -65,7 +68,11 @@
     <Compile Include="MileageDetails\IMileageDetailRepository.cs" />
     <Compile Include="obj\Debug\.NETFramework,Version=v4.8.AssemblyAttributes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TaxFree\ITFOrderRepository.cs" />
     <Compile Include="TaxFree\ITFRepository.cs" />
+    <Compile Include="TaxFree\ITFReserve.cs" />
+    <Compile Include="TaxFree\ITFReservelist.cs" />
+    <Compile Include="TaxFree\ITFWishlist.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SparkleAir.Infa.Criteria\SparkleAir.Infa.Criteria.csproj">

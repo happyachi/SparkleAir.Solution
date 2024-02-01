@@ -1,0 +1,147 @@
+﻿@model IEnumerable<SparkleAir.Infa.ViewModel.TaxFree.TFReservelistsVm>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TFItemsId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TFItemsName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TFItemsSerialNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TFItemsImage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TFItemsQuantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TFItemsUnitPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnitPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Discount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TFReserveId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MemberId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MemberChineseFirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MemberChineseLastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MemberEnglishLastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MemberEnglishFirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MemberPhone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MemberEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MemberPassportNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TransferPaymentId)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TFItemsId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TFItemsName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TFItemsSerialNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TFItemsImage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TFItemsQuantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TFItemsUnitPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UnitPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Discount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TFReserveId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MemberId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MemberChineseFirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MemberChineseLastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MemberEnglishLastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MemberEnglishFirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MemberPhone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MemberEmail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MemberPassportNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TransferPaymentId)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
