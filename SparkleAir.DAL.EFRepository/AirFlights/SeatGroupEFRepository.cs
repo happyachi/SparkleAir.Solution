@@ -16,7 +16,7 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
         //應該要接收Airtype 然後跑座位
         //不然寫好多個Create
 
-        public void Create()
+        public void Create() //777-300ER
         {
             SeatGroup seatGroup;
             for (int i = 45; i <= 72; i++)

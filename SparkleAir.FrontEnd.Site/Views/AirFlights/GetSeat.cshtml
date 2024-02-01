@@ -26,37 +26,40 @@
 </p>
 <div class="row" id="datas">
 	<div style="overflow:auto">
-		<table class="table text-center">
-			<tr>
-				<th>
-					艙等
-				</th>
-				<th>
-					座位號碼
-				</th>
-				<th>
-					定位狀態
-				</th>
-				<th></th>
-			</tr>
-
-			@foreach (var seat in Model.Seats)
-			{
+		<table class="table text-center table_jq">
+			<thead>
 				<tr>
-					<td>
-						@Html.DisplayFor(modelItem => seat.CabinName)
-					</td>
-					<td>
-						@Html.DisplayFor(modelItem => seat.SeatNum)
-					</td>
-					<td>
-						@Html.DisplayFor(modelItem => seat.IsSeated)
-					</td>
-					<td>
-						<button class="btn btn-sm btn-dark link" onclick="showModal('@seat.Id')">訂位資訊</button>
-					</td>
+					<th>
+						艙等
+					</th>
+					<th>
+						座位號碼
+					</th>
+					<th>
+						定位狀態
+					</th>
+					<th></th>
 				</tr>
-			}
+			</thead>
+			<tbody>
+				@foreach (var seat in Model.Seats)
+				{
+					<tr>
+						<td>
+							@Html.DisplayFor(modelItem => seat.CabinName)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => seat.SeatNum)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => seat.IsSeated)
+						</td>
+						<td>
+							<button class="btn btn-sm btn-dark link" onclick="showModal('@seat.Id')">訂位資訊</button>
+						</td>
+					</tr>
+				}
+			</tbody>
 		</table>
 	</div>
 </div>

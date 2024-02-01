@@ -11,7 +11,7 @@ namespace SparkleAir.Infa.ViewModel.AirFlights
     {
         public int Id { get; set; }
 
-        public int AirOwnId { get; set; }
+        public int AirOwnId { get; set; }  //要有一定要有 todo
         public int AirFlightManagementId { get; set; }
 
         [Display(Name = "航班編號")]
