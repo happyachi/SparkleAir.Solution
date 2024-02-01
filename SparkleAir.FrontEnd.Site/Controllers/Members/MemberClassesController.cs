@@ -14,7 +14,7 @@ using System.Web.Mvc;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.Members
 {
-    public class MemberClassesController : Controller
+    public class MemberClassesController : BaseController
     {
         private readonly MemberClassService _service;
         private readonly IMemberClassRepository _repo;

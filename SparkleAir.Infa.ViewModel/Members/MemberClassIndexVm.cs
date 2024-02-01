@@ -10,7 +10,6 @@ namespace SparkleAir.Infa.ViewModel.Members
     public class MemberClassIndexVm
     {
         [Display(Name = "ID")]
-        [Required(ErrorMessage = "{0}必填")]
         public int Id { get; set; }
 
         [Display(Name = "等級名稱")]
