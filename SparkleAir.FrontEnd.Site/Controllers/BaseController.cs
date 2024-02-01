@@ -58,6 +58,12 @@ namespace SparkleAir.FrontEnd.Site.Controllers
                         Name = "班次管理",
                         ActionName = "Index",
                         ControllerName = "AirFlights",
+                    },
+                     new MenuItem
+                    {
+                        Name = "機隊管理",
+                        ActionName = "Index",
+                        ControllerName = "Owns",
                     }
                 }
             });

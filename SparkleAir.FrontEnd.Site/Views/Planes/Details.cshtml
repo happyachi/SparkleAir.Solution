@@ -1,16 +1,65 @@
 ﻿@model SparkleAir.Infa.ViewModel.Airtype_Owns.PlaneVm
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "詳細資料";
 }
 
 
 <style>
     .limited-width {
         max-width: 50%; /* 设置最大宽度，可以根据需要调整百分比值 */
-        overflow: hidden; /* 防止内容溢出 */
+        overflow: hidden;
+        word-wrap: break-word; /* 防止内容溢出 */
+    }
+
+    .km::after {
+        content: " km"; /* 添加 " km" 单位 */
+    }
+
+    .ton::after {
+        content: " ton"; /* 添加 " kg" 单位 */
+    }
+
+    .number-with-comma::after {
+        content: attr(data-number); /* 添加千分位符号 ",000" */
+    }
+
+    .card {
+        max-width: 40%; /* 圖片最大寬度為其父容器寬度 */
+        height: auto; /* 確保圖片高度按比例縮放 */
+        float: right; /* 靠右 */
+        clear: both; /* 清除浮動，防止文字被覆蓋 */
+        margin-top: 170px;
+    }
+
+    .card-body {
+        padding: 10px 10px 2px 10px; /* 上右下左的 padding 值 */ /* 調整內容的間距 */
+        background-color: #f0f0f0; /* 設置背景顏色 */
     }
 </style>
+
+<div class="card">
+    <img src="@Model.Img" alt="@Model.FlightModel">
+    <div class="card-body">
+        @if (Model.FlightModel == "777-300ER")
+        {
+            <p>法國航空於2004年4月29日接收第一架777-300ER客機</p>
+        }
+        else if (Model.FlightModel== "787-10")
+            {
+            <p>新加坡航空波音787-10</p>
+        }
+        else if (Model.FlightModel == "A320neo")
+        {
+            <p>2014年9月25日首飛的A320neo樣機</p>
+        }
+        else if (Model.FlightModel== "A350-900")
+        {
+            <p>卡達航空為空中巴士A350-900啟始客戶</p>
+        }
+            </div>
+        </div>
+
 
 <h2>詳細資料</h2>
 
