@@ -65,6 +65,29 @@ namespace SparkleAir.FrontEnd.Site.Controllers.CompaniesAndPermissions
             }
         }
 
+        public ActionResult Details(int id)
+        {
+            if (!ModelState.IsValid) return RedirectToAction("Index");
+
+            try
+            {
+                var dto = _service.Get(id);
+
+                var vm = new CompanyDepartmentIndexVm
+                {
+                    Id = dto.Id,
+                    Name = dto.Name
+                };
+
+                return View(vm);
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", ex.Message);
+                return RedirectToAction("Index");
+            }
+        }
+
         public ActionResult Edit(int id)
         {
             if (!ModelState.IsValid) return RedirectToAction("Index");

@@ -6,12 +6,14 @@
 
 <h2>Index</h2>
 
+<hr>
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <a href='@Url.Action("Create")' class="btn btn-sm btn-dark ps-3 pe-3"><i class="fa-solid fa-plus"></i>&nbsp;&nbsp;新增</a>
 </p>
-<table class="table">
-    <tr>
-        <th>
+<table class="table" id="table_jq">
+    <thead>
+        <tr>
+                    <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
@@ -24,10 +26,9 @@
             @Html.DisplayNameFor(model => model.MileageEnd)
         </th>
         <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
+        </tr>
+    </thead>
+    <tbody> @foreach (var item in Model) { <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
@@ -41,11 +42,12 @@
             @Html.DisplayFor(modelItem => item.MileageEnd)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            <a href='@Url.Action("Edit/")@item.Id' class="btn btn-sm btn-dark ps-2 pe-2"><i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;編輯</a> |
+            <a href='@Url.Action("Details/")@item.Id' class="btn btn-sm btn-dark ps-2 pe-2"><i class="fa-solid fa-file"></i>&nbsp;&nbsp;詳細資訊</a> |
+            <a href='@Url.Action("Delete/")@item.Id' class="btn btn-sm btn-danger ps-2 pe-2"><i class="fa-solid fa-trash"></i>&nbsp;&nbsp;刪除</a>
+            
         </td>
     </tr>
 }
-
+    </tbody>
 </table>
