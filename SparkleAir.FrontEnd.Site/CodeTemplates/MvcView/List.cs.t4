@@ -45,12 +45,12 @@ if (!String.IsNullOrEmpty(LayoutPageFile)) {
 }
 #>
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <a href='@Url.Action("Create")' class="btn btn-sm btn-dark ps-3 pe-3 btn-create"><i class="fa-solid fa-plus"></i>&nbsp;&nbsp;新增</a>
 </p>
-<table class="table" id="table_jq">
-    <thead>
-        <tr>
-            <# IEnumerable<PropertyMetadata> properties = ModelMetadata.Properties;
+<table class="table">
+    <tr>
+<#
+IEnumerable<PropertyMetadata> properties = ModelMetadata.Properties;
 foreach (PropertyMetadata property in properties) {
     if (property.Scaffold && !property.IsPrimaryKey && !property.IsForeignKey) {
 #>
@@ -69,9 +69,10 @@ foreach (PropertyMetadata property in properties) {
 }
 #>
         <th></th>
-        </tr>
-    </thead>
-    <tbody> @foreach (var item in Model) { <tr>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
 <#
 foreach (PropertyMetadata property in properties) {
     if (property.Scaffold && !property.IsPrimaryKey && !property.IsForeignKey) {
@@ -94,24 +95,24 @@ string pkName = GetPrimaryKeyName();
 if (pkName != null) {
 #>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.<#= pkName #> }) |
-            @Html.ActionLink("Details", "Details", new { id=item.<#= pkName #> }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.<#= pkName #> })
+            <a href='@Url.Action("Edit/")@item.Id' class="btn btn-sm btn-dark ps-2 pe-2 btn-edit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;編輯</a> |
+            <a href='@Url.Action("Details/")@item.Id' class="btn btn-sm btn-dark ps-2 pe-2 btn-detail"><i class="fa-solid fa-file"></i>&nbsp;&nbsp;詳細資訊</a> |
+            <a href='@Url.Action("Delete/")@item.Id' class="btn btn-sm btn-danger ps-2 pe-2 btn-delete"><i class="fa-solid fa-trash"></i>&nbsp;&nbsp;刪除</a>
         </td>
 <#
 } else {
 #>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            <a href='@Url.Action("Edit/")/* id=item.PrimaryKey */' class="btn btn-sm btn-dark ps-2 pe-2 btn-edit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;編輯</a> |
+            <a href='@Url.Action("Details/")/* id=item.PrimaryKey */' class="btn btn-sm btn-dark ps-2 pe-2 btn-detail"><i class="fa-solid fa-file"></i>&nbsp;&nbsp;詳細資訊</a> |
+            <a href='@Url.Action("Delete/")/* id=item.PrimaryKey */' class="btn btn-sm btn-danger ps-2 pe-2 btn-delete"><i class="fa-solid fa-trash"></i>&nbsp;&nbsp;刪除</a>
         </td>
 <#
 }
 #>
     </tr>
 }
-    </tbody>
+
 </table>
 <#
 // The following code closes the tag used in the case of a view using a layout page and the body and html tags in the case of a regular view page

@@ -102,7 +102,7 @@ foreach (PropertyMetadata property in ModelMetadata.Properties) {
         }
 
 #>
-        <div class="form-group">
+        <div class="mb-3">
 <#
         if (property.IsForeignKey) {
 #>
@@ -181,16 +181,17 @@ foreach (PropertyMetadata property in ModelMetadata.Properties) {
     }
 }
 #>
-        <div class="form-group">
+        <div class="mb-3">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="新增" class="btn btn-sm btn-success ps-3 pe-3 btn-create" />
             </div>
         </div>
     </div>
 }
 
+<hr>
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    <a href='@Url.Action("Index/")' class="btn btn-sm btn-dark ps-2 pe-2 btn-back-to-list"><i class="fa-solid fa-backward"></i>&nbsp;&nbsp;回清單頁</a>
 </div>
 <#
 if(IsLayoutPageSelected && ReferenceScriptLibraries && IsBundleConfigPresent) {

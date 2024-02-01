@@ -77,11 +77,11 @@ foreach (PropertyMetadata property in ModelMetadata.Properties) {
     <# string pkName=GetPrimaryKeyName();
        if (pkName !=null) {
        #>
-        <a href='@Url.Action("Edit/")@Model.Id' class="btn btn-sm btn-dark ps-2 pe-2"><i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;編輯</a> |
+        <a href='@Url.Action("Edit/")@item.Id' class="btn btn-sm btn-dark ps-2 pe-2"><i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;編輯</a> |
         <a href='@Url.Action("Index/")' class="btn btn-sm btn-dark ps-2 pe-2 btn-back-to-list"><i class="fa-solid fa-backward"></i>&nbsp;&nbsp;回清單頁</a>
         <# } else {
            #>
-            <a href='@Url.Action("Edit/")/* id=Model.PrimaryKey */' class="btn btn-sm btn-dark ps-2 pe-2 btn-edit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;編輯</a> |
+            <a href='@Url.Action("Edit/")/* id=item.PrimaryKey */' class="btn btn-sm btn-dark ps-2 pe-2 btn-edit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;編輯</a> |
             <a href='@Url.Action("Index/")' class="btn btn-sm btn-dark ps-2 pe-2 btn-back-to-list"><i class="fa-solid fa-backward"></i>&nbsp;&nbsp;回清單頁</a>
             <# }
                #>
