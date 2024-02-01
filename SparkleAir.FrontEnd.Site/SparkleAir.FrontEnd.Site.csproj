@@ -429,6 +429,16 @@
     <Content Include="Views\Countries\Edit.cshtml" />
     <Content Include="Scripts\vendor\sass\node_modules\immutable\dist\immutable.js.flow" />
     <Content Include="Views\TFItem\Index.cshtml" />
+    <Content Include="Views\TFItem\Details.cshtml" />
+    <Content Include="Views\TFItem\Create.cshtml" />
+    <Content Include="Views\TFItem\Edit.cshtml" />
+    <Content Include="Views\TFOrderlist\Index.cshtml" />
+    <Content Include="Views\TFReserve\Index.cshtml" />
+    <Content Include="Views\TFWishlist\Index.cshtml" />
+    <Content Include="Views\TFReservelist\Index.cshtml" />
+    <Content Include="Views\TFReservelist\Details.cshtml" />
+    <Content Include="Views\TFReserve\Create.cshtml" />
+    <Content Include="Views\TFReserve\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -439,10 +449,6 @@
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Campaigns\" />
     <Folder Include="Views\Companies\" />
-    <Folder Include="Views\TFOrderlist\" />
-    <Folder Include="Views\TFReservelist\" />
-    <Folder Include="Views\TFReserve\" />
-    <Folder Include="Views\TFWishlist\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

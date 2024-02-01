@@ -101,6 +101,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.TaxFree
                 Id = vm.Id,
                 Name = vm.Name,
                 TFCategoriesId = vm.TFCategoriesId,
+                TFCategoriesName = vm.TFCategoriesName,
                 SerialNumber = vm.SerialNumber,
                 Image = vm.Image,
                 Quantity = vm.Quantity,

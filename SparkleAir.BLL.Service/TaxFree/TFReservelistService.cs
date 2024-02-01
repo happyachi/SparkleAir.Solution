@@ -23,12 +23,28 @@ namespace SparkleAir.BLL.Service.TaxFree
             List<TFReservelistsDto> list = result.Select(x => new TFReservelistsDto
             {
                 Id = x.Id,
+                MemberChineseFirstName = x.MemberChineseFirstName,
+                MemberChineseLastName = x.MemberChineseLastName,
+                MemberEnglishFirstName = x.MemberEnglishFirstName,
+                MemberEnglishLastName = x.MemberEnglishLastName,
+                MemberPhone = x.MemberPhone,
+                MemberEmail = x.MemberEmail,
+                MemberPassportNumber = x.MemberPassportNumber,
+                MemberId = x.MemberId,
                 TFItemsId = x.TFItemsId,
+                TFReserveId = x.TFReserveId,
+                TFItemsName = x.TFItemsName,
+                TFItemsSerialNumber = x.TFItemsSerialNumber,
+                TFItemsImage = x.TFItemsImage,
+                TFItemsQuantity = x.TFItemsQuantity,
+                TFItemsUnitPrice = x.TFItemsUnitPrice,
+                TransferPaymentId = x.TransferPaymentId,
+
                 Quantity = x.Quantity,
                 UnitPrice = x.UnitPrice,
                 Discount = x.Discount.HasValue ? x.Discount.Value : 0,
                 TotalPrice = x.TotalPrice,
-                TFReserveId = x.TFReserveId
+                
             }).ToList();
             return list;
         }

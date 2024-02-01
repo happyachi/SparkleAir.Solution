@@ -33,6 +33,13 @@ namespace SparkleAir.FrontEnd.Site.Controllers.TaxFree
             {
                 Id = p.Id,
                 MemberId = p.MemberId,
+                MemberChineseFirstName = p.MemberChineseFirstName,
+                MemberChineseLastName = p.MemberChineseLastName,
+                MemberEnglishFirstName = p.MemberEnglishFirstName,
+                MemberEnglishLastName = p.MemberEnglishLastName,
+                MemberPassportNumber = p.MemberPassportNumber,
+                MemberEmail = p.MemberEmail,
+                MemberPhone = p.MemberPhone,
                 Discount = p.Discount,
                 TotalPrice = p.TotalPrice,
                 TransferPaymentId = p.TransferPaymentId,
