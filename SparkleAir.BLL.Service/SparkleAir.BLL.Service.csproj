@@ -56,6 +56,9 @@
     <Compile Include="CompanyAndPermission\PermissionGroupService.cs" />
     <Compile Include="CompanyAndPermission\PermissionPageInfoService.cs" />
     <Compile Include="CompanyAndPermission\PermissionSettingService.cs" />
+    <Compile Include="MealMessages\AirMealService.cs" />
+    <Compile Include="MealMessages\MessageBoxService.cs" />
+    <Compile Include="MealMessages\MessageService.cs" />
     <Compile Include="Members\MemberClassService.cs" />
     <Compile Include="Members\MemberLoginLogService.cs" />
     <Compile Include="Airtype&amp;Owns\AirSeatService.cs" />

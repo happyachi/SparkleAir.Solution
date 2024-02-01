@@ -59,7 +59,10 @@
     <Compile Include="Airtype&amp;Owns\AirSeatDto.cs" />
     <Compile Include="Airtype&amp;Owns\PlaneDto.cs" />
     <Compile Include="Luggage\LuggageDto.cs" />
+    <Compile Include="MealMessages\MessageBoxDto.cs" />
+    <Compile Include="MealMessages\MessageDto.cs" />
     <Compile Include="Members\MemberClassDto.cs" />
+    <Compile Include="MealMessages\AirMealDto.cs" />
     <Compile Include="Members\MemberDto.cs" />
     <Compile Include="Members\MemberLoginLogDto.cs" />
     <Compile Include="MileageDetails\MileageDetailDto.cs" />
