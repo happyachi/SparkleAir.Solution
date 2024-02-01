@@ -89,6 +89,12 @@ namespace SparkleAir.FrontEnd.Site.Controllers
                     },
                     new MenuItem
                     {
+                        Name = "託運明細清單",
+                        ActionName = "Index",
+                        ControllerName = "LuggageOrders",
+                    },
+                    new MenuItem
+                    {
                         Name = "里程管理",
                         ActionName = "Index",
                         ControllerName = "MileageDetail",

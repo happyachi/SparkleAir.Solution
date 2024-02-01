@@ -43,7 +43,14 @@ namespace SparkleAir.FrontEnd.Site.Controllers.LuggageOrders
             return View(data);
         }
 
+        public ActionResult GetDetail(int id)
+        {
+            var service = new LuggageOrderService(efRLuggageorder);
 
+            var data = service.Get(id);
+
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
         
         public ActionResult PartialIndex(string flightcode)
         {

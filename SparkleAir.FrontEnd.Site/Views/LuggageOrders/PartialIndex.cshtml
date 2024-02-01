@@ -19,20 +19,20 @@
         @*@Html.DisplayNameFor(model => model.LuggageId)*@
         <!--</th>-->
         @*<th>
-            @Html.DisplayNameFor(model => model.LuggagePrice)
-        </th>*@
+                @Html.DisplayNameFor(model => model.LuggagePrice)
+            </th>*@
         <th>
             @Html.DisplayNameFor(model => model.Amount)
         </th>
         @*<th>
-            @Html.DisplayNameFor(model => model.Price)
-        </th>*@
+                @Html.DisplayNameFor(model => model.Price)
+            </th>*@
         <th>
             @Html.DisplayNameFor(model => model.OrderTime)
         </th>
         @*<th>
-            @Html.DisplayNameFor(model => model.TransferPaymentsId)
-        </th>*@
+                @Html.DisplayNameFor(model => model.TransferPaymentsId)
+            </th>*@
         <th>
             @Html.DisplayNameFor(model => model.OrderStatus)
         </th>
@@ -58,20 +58,20 @@
                     @Html.DisplayFor(modelItem => item.LuggageId)
                 </td>*@
             @*<td>
-                @Html.DisplayFor(modelItem => item.LuggagePrice)
-            </td>*@
+                    @Html.DisplayFor(modelItem => item.LuggagePrice)
+                </td>*@
             <td class="amount">
                 @Html.DisplayFor(modelItem => item.Amount)
             </td>
             @*<td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>*@
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.OrderTime)
             </td>
             @*<td>
-                @Html.DisplayFor(modelItem => item.TransferPaymentsId)
-            </td>*@
+                    @Html.DisplayFor(modelItem => item.TransferPaymentsId)
+                </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.OrderStatus)
             </td>
@@ -80,7 +80,10 @@
             </td>
             <td>
                 @*@Html.ActionLink("Edit", "Edit", new { id=item.Id }) |*@
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) 
+                @*@Html.ActionLink("Details", "Details", new { id = item.Id })*@
+                <button type="button" class="btn btn-sm btn-dark ps-2 pe-2 btn-detail modal-dialog-scrollable detailBtn" data-bs-toggle="modal" data-bs-target="#exampleModal" value="@item.Id">
+                    <i class="fa-solid fa-file"></i>&nbsp;&nbsp;詳細資訊
+                </button>
                 @*@Html.ActionLink("Delete", "Delete", new { id=item.Id })*@
             </td>
 
@@ -89,6 +92,25 @@
     }
 
 </table>
+
+<!-- Modal -->
+@*<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <dl class="dl-horizontal" id="detail"></dl>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>*@
 
 
 
@@ -105,3 +127,57 @@
     icon.innerHTML = "託運總數量: " + total;
     console.log(total);
 </script>
+
+
+
+    <script>
+          $(document).ready(function () {
+      $(".open-modal").click(function () {
+          $("#myModal").modal('show');
+      });
+  });
+
+
+
+  const btns = document.querySelectorAll('.detailBtn');
+  btns.forEach(function (btn) {
+      btn.addEventListener('click', async function () {
+          console.log(123456);
+          const id = this.getAttribute('value');
+
+          const modalDiv = document.querySelector('.modal-body');
+           // 将 HTML 内容更新到 modalDiv 中
+          const response = await fetch(`@Url.Action("GetDetail", "LuggageOrders")?id=${id}`);
+          const data = await response.json();
+          const dl = document.querySelector('#detail')
+          const dateTime = createDateString(data.OrderTime)
+          const html = `<dt>航班代碼:</dt><dd>${data.FlightCode}</dd>
+                        <dt>開票Id:</dt><dd>${data.TicketInvoicingDetailId}</dd>
+                        <dt>姓名:</dt><dd>${data.TicketInvoicingDetailName}</dd>
+                        <dt>託運Id:</dt><dd>${data.LuggageId}</dd>
+                        <dt>託運預定價:</dt><dd>${data.LuggagePrice}</dd>
+                        <dt>數量:</dt><dd>${data.Amount}</dd>
+                        <dt>總價:</dt><dd>${data.Price}</dd>
+                        <dt>預定時間:</dt><dd>${dateTime}</dd>
+                        <dt>付款編號:</dt><dd>${data.TransferPaymentsId}</dd>
+                        <dt>訂單狀態:</dt><dd>${data.OrderStatus}</dd>
+                        <dt>託運編號:</dt><dd>${data.LuggageNum}</dd>`
+          dl.innerHTML = html;
+          console.log(data);
+
+      });
+  });
+
+  //轉換json檔傳來時間的方法
+  function createDateString(str) {
+      const milliseconds = parseInt(str.slice(6, 19), 10);
+      const date = new Date(milliseconds);
+      const year = date.getFullYear();
+      const month = (date.getMonth() + 1).toString().padStart(2, '0');
+      const day = date.getDate().toString().padStart(2, '0');
+      const hours = date.getHours().toString().padStart(2, '0');
+      const minutes = date.getMinutes().toString().padStart(2, '0');
+      const seconds = date.getSeconds().toString().padStart(2, '0');
+      return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+  }
+    </script>
