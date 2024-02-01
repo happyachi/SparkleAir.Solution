@@ -165,6 +165,12 @@ namespace SparkleAir.FrontEnd.Site.Controllers
                 {
                     new MenuItem
                     {
+                        Name = "國籍設定",
+                        ActionName = "Index",
+                        ControllerName = "Countries",
+                    },
+                    new MenuItem
+                    {
                         Name = "會員等級設定",
                         ActionName = "Index",
                         ControllerName = "MemberClasses",

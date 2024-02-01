@@ -335,8 +335,6 @@
     <Content Include="bin\SparkleAir.DAL.EFRepository.dll.config" />
     <Content Include="bin\SparkleAir.FrontEnd.Site.dll.config" />
     <Content Include="bin\SparkleAir.Infa.EFModel.dll.config" />
-    <Content Include="CodeTemplates\MvcView\Details.cs - 複製.t4" />
-    <Content Include="CodeTemplates\MvcView\Edit.cs - 複製.t4" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
