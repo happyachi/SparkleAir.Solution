@@ -70,7 +70,9 @@
     <Compile Include="Airtype&amp;Owns\PlaneRepository.cs" />
     <Compile Include="Luggages\LuggageEFRepository.cs" />
     <Compile Include="MealMessages\AirMealEFRepository.cs" />
+    <Compile Include="MealMessages\MessageBoxEFRepository.cs" />
     <Compile Include="MealMessages\MessageEFRepository.cs" />
+    <Compile Include="Members\MemberClassEFRepository.cs" />
     <Compile Include="Members\MemberEFRepository.cs" />
     <Compile Include="Members\MemberLoginLogEFRepository.cs" />
     <Compile Include="MileageDetails\MileageDetailEFRepository.cs" />
