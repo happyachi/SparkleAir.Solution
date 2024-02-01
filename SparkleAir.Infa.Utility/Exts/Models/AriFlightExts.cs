@@ -35,16 +35,10 @@ namespace SparkleAir.Infa.Utility.Exts.Models
         }
 
         //取得AirOwnId 給 EF 用的
-        public static int? GetAirOwnIdByFlightModel(this string flightModel, AppDbContext db)
+        public static int? GetAirOwnIdByFlightModel(this string registrationNum, AppDbContext db)
         {
-            var id = db.AirTypes.Select(t => t.FlightModel).FirstOrDefault();
-            var airOwnId = db.AirOwns
-                              .Join(db.AirTypes, ao => ao.AirTypeId, airtype => airtype.Id, (ao, airtype) => new { ao, airtype.FlightModel })
-                              .Where(joined => joined.FlightModel == flightModel)
-                              .Select(joined => (int?)joined.ao.Id)
-                              .FirstOrDefault();
-
-            return airOwnId;
+            var airOwnId = db.AirOwns.Where(t => t.RegistrationNum == registrationNum).FirstOrDefault();
+            return airOwnId.Id;
         }
 
         //取得FlightModel
@@ -86,7 +80,8 @@ namespace SparkleAir.Infa.Utility.Exts.Models
                 ArrivalTimeZone = db.AirPorts.Find(afm.ArrivalAirportId).TimeArea,
                 AirOwnId = afm.AirFlights.GetAirOwnId(),
                 FlightModel = db.GetFlightModelByAirOwnId(afm.AirFlights.GetAirOwnId()).Item1,
-                CrossDay = afm.CrossDay
+                CrossDay = afm.CrossDay,
+                RegistrationNum= afm.AirFlights.GetAirOwnId() == null ? "" : db.GetFlightModelByAirOwnId(afm.AirFlights.GetAirOwnId()).Item2
             };
             return entity;
         }
@@ -118,9 +113,7 @@ namespace SparkleAir.Infa.Utility.Exts.Models
         {
             var scheduledFlights = new List<DateTime>();
             var currentMonth = currentDate.Month;
-            //var startDate = new DateTime(currentDate.Year, currentDate.Month, 1);
-            //var daysInMonth = DateTime.DaysInMonth(currentDate.Year, currentDate.Month);
-            for (int month = currentMonth; month <= (currentMonth)+1; month++)
+            for (int month = currentMonth; month <= (currentMonth); month++)
             {
                 var daysInMonth = DateTime.DaysInMonth(currentDate.Year, month);
                 for (int day = 1; day <= daysInMonth; day++)
@@ -197,5 +190,20 @@ namespace SparkleAir.Infa.Utility.Exts.Models
             };
             return entity;
         }
+
+        public static bool IsExist(this DateTime deptTime)
+        {
+            AppDbContext db = new AppDbContext();
+            var flights = db.AirFlights
+      .Where(f => DbFunctions.TruncateTime(f.ScheduledDeparture) == deptTime)
+      .ToList();
+            if(flights.Count > 0)
+            {
+                return true;
+            }
+            return false;
+        }
     }
+
 }
+

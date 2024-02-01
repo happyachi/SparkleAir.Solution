@@ -16,12 +16,12 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
         private AppDbContext db = new AppDbContext();
         private Func<AirFlight, AirFlightEntity> ToEntityFunc = (f) => f.ToAirFlightEntity();
 
-        public async Task<int> Create(AirFlightEntity entity)
+        public async Task<(int,string)> Create(AirFlightEntity entity)
         {
             AirFlight airFlight = new AirFlight
             {
                 Id = entity.Id,
-                AirOwnId = (int)entity.FlightModel.GetAirOwnIdByFlightModel(db),
+                AirOwnId = (int)entity.RegistrationNum.GetAirOwnIdByFlightModel(db),
                 AirFlightManagementId = entity.AirFlightManagementId,
                 ScheduledDeparture = entity.ScheduledDeparture,
                 ScheduledArrival = entity.ScheduledArrival,
@@ -30,7 +30,8 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
             db.AirFlights.Add(airFlight);
             await db.SaveChangesAsync();
             var id = airFlight.Id;
-            return id;
+            var ati = airFlight.AirOwn.AirType.FlightModel;
+            return (id, ati);
         }
 
         public List<AirFlightEntity> GetAll()
@@ -55,6 +56,23 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
                 .ToAirFlightEntity();
 
             return flight;
+        }
+
+        public void UpdateSaleStatus(AirFlightEntity entity)
+        {
+            var flight = db.AirFlights
+                 .Include(f => f.AirOwn)
+                 .FirstOrDefault(f => f.Id == entity.Id);
+            if (flight != null)
+            {
+                flight.Id = entity.Id;
+                flight.AirOwnId = (int)entity.RegistrationNum.GetAirOwnIdByFlightModel(db);
+                flight.AirFlightManagementId = entity.AirFlightManagementId;
+                flight.ScheduledDeparture = entity.ScheduledDeparture;
+                flight.ScheduledArrival = entity.ScheduledArrival;
+                flight.AirFlightSaleStatusId = entity.AirFlightSaleStatusId;
+            }
+                db.SaveChanges();
         }
     }
 }

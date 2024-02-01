@@ -36,5 +36,7 @@ namespace SparkleAir.Infa.Entity.AirFlightsEntity
         public int? AirOwnId { get; set; }
 		public string FlightModel { get; set; }
         public int CrossDay { get; set; }
+
+        public string RegistrationNum { get; set; }
     }
 }

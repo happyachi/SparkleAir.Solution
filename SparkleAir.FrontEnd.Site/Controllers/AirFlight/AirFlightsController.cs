@@ -1,4 +1,5 @@
-﻿using SparkleAir.BLL.Service.AirFlights;
+﻿
+using SparkleAir.BLL.Service.AirFlights;
 using SparkleAir.BLL.Service.Airtype_Owns;
 using SparkleAir.DAL.EFRepository.AirFlights;
 using SparkleAir.DAL.EFRepository.Airtype_Owns;
@@ -39,6 +40,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
         private PlaneService _planeService;
 
 
+
         public AirFlightsController()
         {
             _airFlightRepo = new AirFlightEFRepository();
@@ -53,20 +55,34 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
             _planeRepo = new PlaneRepository();
             _planeService = new PlaneService(_planeRepo);
         }
-
         #endregion
 
         #region Index
 
         public ActionResult Index()
         {
-            List<AirFlightIndexVm> datas = GetAll();
-            return View(datas);
+            try
+            {
+                //await UpdateAndRetrieveSchedule();
+                List<AirFlightIndexVm> datas = GetAll();
+                return View(datas);
+            }
+            catch (Exception ex)
+            {
+                // 在实际应用中，你可能会进行日志记录或其他处理
+                return View("Error"); // 返回一个错误视图
+            }
+
         }
 
         private List<AirFlightIndexVm> GetAll()
         {
             List<AirFlightDto> dto = _airFlightService.GetAll();
+
+            foreach (var item in dto)
+            {
+                _airFlightService.UpdateSaleStatus(item);
+            }
 
             List<AirFlightIndexVm> vm = dto.Select(x => new AirFlightIndexVm
             {
@@ -82,7 +98,25 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
 
             return vm;
         }
+        private async Task<List<AirFlightIndexVm>> UpdateAndRetrieveSchedule()
+        {
+            List<AirFlightDto> dto = _airFlightService.GetAll();
+            List<(int, string)> updatedIds = new List<(int, string)>();
 
+            foreach (var item in dto)
+            {
+                _airFlightService.UpdateSaleStatus(item);
+                updatedIds.AddRange(await _airFlightService.UpdateScheduleIfNeeded(item));
+            }
+
+            // 获取更新后的数据并传递给视图
+            List<AirFlightIndexVm> vm = dto.Select(x => new AirFlightIndexVm
+            {
+                // 映射逻辑
+            }).ToList();
+
+            return vm;
+        }
         //public ActionResult CalendarPartial()
         //{
         //    List<AirFlightIndexVm> datas = GetAll();
@@ -94,7 +128,13 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
         //先 get AirFlightManagementVm 的資料 => 設定AirOwnID(FlightModel) => Create 一個月內的班表 
         public ActionResult Create(int id)
         {
-            ViewBag.AirOwn = _planeService.GetAll();
+            var db = new AppDbContext();
+            ViewBag.AirOwn = db.AirOwns.Select(x => new AirOwnVm
+            {
+                FlightModel = x.AirType.FlightModel,
+                RegistrationNum = x.RegistrationNum,
+                Status = x.Status
+            }).ToList();
             AirFlightCreateVm data = GetFlight(id);
             return View(data);
         }
@@ -120,6 +160,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
                 ScheduledArrival = nextFlightDate.Add(vm.ArrivalTime),
                 DepartureTimeZone = vm.DepartureTimeZone,
                 ArrivalTimeZone = vm.ArrivalTimeZone,
+                RegistrationNum = vm.RegistrationNum
             };
             return flight;
         }
@@ -146,10 +187,10 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
             if (!ModelState.IsValid) return View();
             try
             {
-                List<int> flightIds = await CreateFlight(vm);
+                List<(int, string)> flightIds = await CreateFlight(vm);
                 foreach (var flightId in flightIds)
                 {
-                   await _flightSeatsService.Create777300ER(flightId);
+                    await _flightSeatsService.CreateSeats(flightId.Item1, flightId.Item2);
                 }
                 return RedirectToAction("Index", "AirFlightsManagement");
             }
@@ -160,9 +201,9 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
             }
         }
 
-        private async Task<List<int>> CreateFlight(AirFlightCreateVm vm)
+        private async Task<List<(int, string)>> CreateFlight(AirFlightCreateVm vm)
         {
-            List<int> flightIds;
+            List<(int, string)> flights;
             AirFlightDto dto = new AirFlightDto
             {
                 AirOwnId = vm.AirOwnId,
@@ -176,10 +217,11 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
                 AirFlightSaleStatusId = 1, // 預設為 1 (銷售中)
                 DayofWeek = vm.DayofWeek,
                 DepartureTimeZone = vm.DepartureTimeZone,
-                ArrivalTimeZone = vm.ArrivalTimeZone
+                ArrivalTimeZone = vm.ArrivalTimeZone,
+                RegistrationNum = vm.RegistrationNum
             };
-            flightIds = await _airFlightService.Create(dto);
-            return flightIds;
+            flights = await _airFlightService.Create(dto);
+            return flights;
         }
 
         #endregion

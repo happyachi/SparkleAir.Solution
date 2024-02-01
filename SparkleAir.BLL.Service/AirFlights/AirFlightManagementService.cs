@@ -133,7 +133,8 @@ namespace SparkleAir.BLL.Service.AirFlights
                 ArrivalTimeZone = entity.ArrivalTimeZone,
                 AirOwnId = entity.AirOwnId,
                 FlightModel = entity.FlightModel,
-                CrossDay = entity.CrossDay
+                CrossDay = entity.CrossDay,
+                RegistrationNum = entity.RegistrationNum
             };
             return dto;
         }

@@ -18,7 +18,10 @@ namespace SparkleAir.BLL.Service.AirFlights
 
         public void Create()
         {
-            _repo.Create();
+            _repo.Create777300ER();
+            _repo.Create78710();
+            _repo.CreateA320neo();
+            _repo.CreateA350900();
         }
     }
 }

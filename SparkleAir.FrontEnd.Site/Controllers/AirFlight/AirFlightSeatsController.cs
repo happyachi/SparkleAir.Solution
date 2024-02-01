@@ -37,9 +37,9 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
             return View();
         }
 
-        public async Task<ActionResult> CreateFlightSeats(int FlightId)
+        public async Task<ActionResult> CreateFlightSeats(int FlightId, string flightModel)
         {
-            await _airFlightSeatsService.Create777300ER(FlightId);
+            await _airFlightSeatsService.CreateSeats(FlightId, flightModel);
             return View();
         }
     }

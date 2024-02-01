@@ -21,6 +21,9 @@ namespace SparkleAir.Infa.ViewModel.AirFlights
         [Display(Name = "機型")]
         public string FlightModel { get; set; }
 
+       
+        public string RegistrationNum { get; set; }
+
         [Display(Name = "出發地")]
         public string DepartureAirport { get; set; }
 

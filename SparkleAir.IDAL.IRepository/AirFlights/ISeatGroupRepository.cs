@@ -9,6 +9,9 @@ namespace SparkleAir.IDAL.IRepository.AirFlights
 {
     public interface ISeatGroupRepository
     {
-        void Create();
+        void Create777300ER();
+        void Create78710();
+        void CreateA320neo();
+        void CreateA350900();
     }
 }

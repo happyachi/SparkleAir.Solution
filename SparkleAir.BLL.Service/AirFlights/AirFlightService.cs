@@ -4,6 +4,7 @@ using SparkleAir.Infa.Dto.AriFlights;
 using SparkleAir.Infa.Entity.AirFlightsEntity;
 using SparkleAir.Infa.Utility.Exts.Models;
 using SparkleAir.Infa.Utility.Helper;
+using SparkleAir.Infa.Utility.Helper.AirFlights;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace SparkleAir.BLL.Service.AirFlights
             _repo = repo;
         }
 
-        public async Task<List<int>> Create(AirFlightDto dto)
+        public async Task<List<(int, string)>> Create(AirFlightDto dto)
         {
             FlightDate[] days = dto.DayofWeek.FlightDays();
             var today = DateTime.Today;
@@ -29,7 +30,7 @@ namespace SparkleAir.BLL.Service.AirFlights
             int thisYear = today.Year;
             DateTime currentDate = new DateTime(thisYear, thisMonth, 1);
             List<DateTime> scheduledFlights = currentDate.GetScheduledFlights(days, today);
-            List<int> ids = new List<int>();
+            List<(int, string)> ids = new List<(int, string)>();
             foreach (var scheduledFlight in scheduledFlights)
             {
                 // 將起飛時間和抵達時間與日期結合
@@ -48,10 +49,12 @@ namespace SparkleAir.BLL.Service.AirFlights
                     AirFlightSaleStatus = dto.AirFlightSaleStatus,
                     DayofWeek = dto.DayofWeek,
                     ScheduledDeparture = scheduledDeparture,
-                    ScheduledArrival = scheduledArrival
-                };                
-                var flight =await _repo.Create(entity);
-                ids.Add(flight);
+                    ScheduledArrival = scheduledArrival,
+                    RegistrationNum = dto.RegistrationNum
+                };
+                var flight = await _repo.Create(entity);
+                ids.Add((flight.Item1, flight.Item2));
+
             }
             return ids;
         }
@@ -65,14 +68,15 @@ namespace SparkleAir.BLL.Service.AirFlights
                 Id = entity.Id,
                 AirOwnId = entity.AirOwnId,
                 AirFlightManagementId = id,
-                ScheduledDeparture = entity.ScheduledDeparture,
-                ScheduledArrival = entity.ScheduledArrival,
+                ScheduledDeparture = entity.ScheduledDeparture.Date + TimeZoneHelper.ConvertToLocal(entity.ScheduledDeparture.TimeOfDay, entity.DepartureTimeZone),
+                ScheduledArrival = entity.ScheduledArrival.Date + TimeZoneHelper.ConvertToLocal(entity.ScheduledArrival.TimeOfDay, entity.ArrivalTimeZone),
                 AirFlightSaleStatusId = entity.AirFlightSaleStatusId,
                 FlightModel = entity.FlightModel,
                 FlightCode = entity.FlightCode,
                 DepartureAirport = entity.DepartureAirport,
                 ArrivalAirport = entity.ArrivalAirport,
                 AirFlightSaleStatus = entity.AirFlightSaleStatus,
+                RegistrationNum = entity.RegistrationNum
             };
 
             return dto;
@@ -82,14 +86,15 @@ namespace SparkleAir.BLL.Service.AirFlights
         {
             List<AirFlightEntity> entity = _repo.GetAll();
 
-            List<AirFlightDto> dto = entity.Select(x => new AirFlightDto
+            //會過濾掉起飛的飛機
+            List<AirFlightDto> dto = entity.Where(x => x.AirFlightSaleStatusId != 5).Select(x => new AirFlightDto
             {
                 Id = x.Id,
                 AirOwnId = x.AirOwnId,
                 AirFlightManagementId = x.AirFlightManagementId,
                 ScheduledDeparture = x.ScheduledDeparture.Date + TimeZoneHelper.ConvertToLocal(x.ScheduledDeparture.TimeOfDay, x.DepartureTimeZone),
                 ScheduledArrival = x.ScheduledArrival.Date + TimeZoneHelper.ConvertToLocal(x.ScheduledArrival.TimeOfDay, x.ArrivalTimeZone),
-                AirFlightSaleStatusId = x.AirFlightSaleStatusId,
+                AirFlightSaleStatusId = StatusHelper.SaleStatusUpdate(x.ScheduledDeparture),
                 FlightModel = x.FlightModel,
                 FlightCode = x.FlightCode,
                 DepartureAirport = x.DepartureAirport,
@@ -104,6 +109,79 @@ namespace SparkleAir.BLL.Service.AirFlights
             }).ToList();
 
             return dto;
+        }
+
+        public void UpdateSaleStatus(AirFlightDto dto)
+        {
+            int stausId = StatusHelper.SaleStatusUpdate(dto.ScheduledDeparture);
+            AirFlightEntity entity = new AirFlightEntity
+            {
+                Id = dto.Id,
+                AirOwnId = dto.AirOwnId,
+                AirFlightManagementId = dto.AirFlightManagementId,
+                ScheduledDeparture = dto.ScheduledDeparture,
+                ScheduledArrival = dto.ScheduledArrival,
+                AirFlightSaleStatusId = stausId,
+                FlightModel = dto.FlightModel,
+                FlightCode = dto.FlightCode,
+                DepartureAirport = dto.DepartureAirport,
+                ArrivalAirport = dto.ArrivalAirport,
+                AirFlightSaleStatus = dto.AirFlightSaleStatus,
+                DayofWeek = dto.DayofWeek,
+                DepartureTimeZone = dto.DepartureTimeZone,
+                ArrivalTimeZone = dto.ArrivalTimeZone,
+                DepartureAirportId = dto.DepartureAirportId,
+                ArrivalAirportId = dto.ArrivalAirportId,
+                RegistrationNum = dto.RegistrationNum
+            };
+            _repo.UpdateSaleStatus(entity);
+        }
+
+        public async Task<List<(int, string)>> UpdateScheduleIfNeeded(AirFlightDto dto)
+        {
+
+            FlightDate[] days = dto.DayofWeek.FlightDays();
+            var today = DateTime.Today;
+            //DateTime currentDate = today.AddMonths(1);
+            List<DateTime> scheduledFlights = today.GetScheduledFlights(days, today);
+            List<(int, string)> ids = new List<(int, string)>();
+            try
+            {
+                foreach (var scheduledFlight in scheduledFlights)
+                {
+                    DateTime scheduledDeparture = scheduledFlight.Date.Date + TimeZoneHelper.ConvertToGMT(dto.ScheduledDeparture.TimeOfDay, dto.DepartureTimeZone);
+                    DateTime scheduledArrival = scheduledFlight.Date.Date + TimeZoneHelper.ConvertToGMT(dto.ScheduledArrival.TimeOfDay, dto.ArrivalTimeZone);
+
+                    if (!scheduledFlight.IsExist())
+                    {
+                        AirFlightEntity entity = new AirFlightEntity
+                        {
+                            AirOwnId = dto.AirOwnId,
+                            FlightCode = dto.FlightCode,
+                            FlightModel = dto.FlightModel,
+                            DepartureAirport = dto.DepartureAirport,
+                            ArrivalAirport = dto.ArrivalAirport,
+                            AirFlightManagementId = dto.AirFlightManagementId,
+                            AirFlightSaleStatusId = dto.AirFlightSaleStatusId,
+                            AirFlightSaleStatus = dto.AirFlightSaleStatus,
+                            DayofWeek = dto.DayofWeek,
+                            ScheduledDeparture = scheduledDeparture,
+                            ScheduledArrival = scheduledArrival,
+                            RegistrationNum = dto.RegistrationNum
+                        };
+
+                        var flight = await _repo.Create(entity);
+                        ids.Add((flight.Item1, flight.Item2));
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return ids;
         }
     }
 }

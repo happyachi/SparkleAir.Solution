@@ -25,15 +25,15 @@ namespace SparkleAir.BLL.Service.AirFlights
             }
             if (mile < 2500)
             {
-                //todo 不同里程的價格REPO
+                await _repo.CreateTicketPirce2500(flightId);
             }
             if (mile < 5000)
             {
-                //todo 不同里程的價格REPO
+                await _repo.CreateTicketPirce5000(flightId);
             }
             if (mile < 10000)
             {
-                //todo 不同里程的價格REPO
+                await _repo.CreateTicketPirce10000(flightId);
             }
         }
     }

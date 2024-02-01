@@ -24,12 +24,15 @@
 
 		<div class="mb-3">
 			@Html.LabelFor(model => model.FlightModel, htmlAttributes: new { @class = "control-label col-md-2" })
-			<select class="form-select" aria-label="Default select example" name="FlightModel" id="FlightModel">
-				<option selected>@Model.FlightModel</option>
+			<select class="form-select" aria-label="Default select example" name="RegistrationNum" id="RegistrationNum">
+				<option selected>@Model.FlightModel | @Model.RegistrationNum</option>
 
 				@foreach (var airown in ViewBag.AirOwn)
 				{
-					<option value="@airown.FlightModel">@airown.FlightModel</option>
+					if (airown.Status == "Operational(運營中)")
+					{
+						<option value="@airown.RegistrationNum">@airown.FlightModel | @airown.RegistrationNum</option>
+					}
 				}
 			</select>
 			@Html.ValidationMessageFor(model => model.FlightModel, "", new { @class = "text-danger" })
