@@ -47,7 +47,7 @@ if (!String.IsNullOrEmpty(LayoutPageFile)) {
 <p>
     <a href='@Url.Action("Create")' class="btn btn-sm btn-dark ps-3 pe-3 btn-create"><i class="fa-solid fa-plus"></i>&nbsp;&nbsp;新增</a>
 </p>
-<table class="table">
+<table class="table table_jq">
     <tr>
 <#
 IEnumerable<PropertyMetadata> properties = ModelMetadata.Properties;

@@ -36,6 +36,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Members
             {
                 Id = member.Id,
                 MemberId = member.MemberId,
+                MemberName = member.MemberName,
                 Logintime = member.Logintime,
                 LogoutTime = member.LogoutTime,
                 IPAddress = member.IPAddress,
