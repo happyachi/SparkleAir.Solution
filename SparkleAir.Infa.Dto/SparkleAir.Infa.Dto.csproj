@@ -61,6 +61,7 @@
     <Compile Include="CompanyAndPermission\PermissionSettingDto.cs" />
     <Compile Include="Airtype&amp;Owns\AirSeatDto.cs" />
     <Compile Include="Airtype&amp;Owns\PlaneDto.cs" />
+    <Compile Include="LuggageOrders\LuggageOrderDto.cs" />
     <Compile Include="Luggage\LuggageDto.cs" />
     <Compile Include="MealMessages\MessageBoxDto.cs" />
     <Compile Include="MealMessages\MessageDto.cs" />

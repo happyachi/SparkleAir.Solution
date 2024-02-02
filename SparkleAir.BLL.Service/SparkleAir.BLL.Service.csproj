@@ -63,6 +63,7 @@
     <Compile Include="MealMessages\MessageBoxService.cs" />
     <Compile Include="MealMessages\MessageService.cs" />
     <Compile Include="Members\MemberClassService.cs" />
+    <Compile Include="LuggageOrders\LuggageOrderService.cs" />
     <Compile Include="Members\MemberLoginLogService.cs" />
     <Compile Include="Airtype&amp;Owns\AirSeatService.cs" />
     <Compile Include="Airtype&amp;Owns\PlaneService.cs" />

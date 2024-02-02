@@ -72,6 +72,9 @@
     <Compile Include="CompanyAndPermission\PermissionSettingIndexVm.cs" />
     <Compile Include="Airtype&amp;Owns\PlaneVm.cs" />
     <Compile Include="Airtype&amp;Owns\PlaneVmIndex.cs" />
+    <Compile Include="LuggageOrders\LuggageOrderCreateVm.cs" />
+    <Compile Include="LuggageOrders\LuggageOrderIndexVm.cs" />
+    <Compile Include="LuggageOrders\LuggageOrderToInVm.cs" />
     <Compile Include="Luggage\LuggageCreateVm.cs" />
     <Compile Include="Luggage\LuggageIndexVm.cs" />
     <Compile Include="Members\MemberClassIndexVm.cs" />
