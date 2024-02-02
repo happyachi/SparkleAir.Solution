@@ -161,6 +161,7 @@
     <Compile Include="Controllers\CompaniesAndPermissions\PermissionSettingsController.cs" />
     <Compile Include="Controllers\Airtype&amp;Owns\PlanesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MealMessages\AirMealsController.cs" />
     <Compile Include="Controllers\Members\MemberClassesController.cs" />
     <Compile Include="Controllers\Members\MemberLoginLogsController.cs" />
     <Compile Include="Controllers\Luggages\LuggageController.cs" />
@@ -425,6 +426,11 @@
     <Content Include="Views\Countries\Index.cshtml" />
     <Content Include="Views\Countries\Create.cshtml" />
     <Content Include="Views\Countries\Edit.cshtml" />
+    <Content Include="Views\AirMeals\Create.cshtml" />
+    <Content Include="Views\AirMeals\Delete.cshtml" />
+    <Content Include="Views\AirMeals\Details.cshtml" />
+    <Content Include="Views\AirMeals\Edit.cshtml" />
+    <Content Include="Views\AirMeals\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

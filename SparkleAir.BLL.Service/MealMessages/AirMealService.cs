@@ -5,6 +5,7 @@ using SparkleAir.Infa.Entity.MealMessageEntity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -55,6 +56,22 @@ namespace SparkleAir.BLL.Service.MealMessages
             }).ToList();
             return dtos;
     
+        }
+
+        public string Update(AirMealDto dto)
+        {
+            AirMealEntity entity = new AirMealEntity
+            {
+                Id = dto.Id,
+                Name = dto.Name,
+                AirCabinId = dto.AirCabinId,
+                MealContent = dto.MealContent,
+                Image = dto.Image,
+                ImageBit = dto.ImageBit,
+                Category = dto.Category
+            };
+            _repo.Update(entity);
+            return $"{entity.Name}修改成功";
         }
     }
 }
