@@ -49,6 +49,11 @@ namespace SparkleAir.BLL.Service.TaxFree
             _repo.Delete(Id);
         }
 
+        public void DeleteTFWishlist(int Id)
+        {
+            //_repo.DeleteTFWishlist(Id);
+        }
+
         public int Create(TFItemDto dto)
         {
             TFItemEntity entity = new TFItemEntity

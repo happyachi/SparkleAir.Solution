@@ -30,7 +30,8 @@ namespace SparkleAir.FrontEnd.Site
             bundles.Add(new StyleBundle("~/Content/css").Include(
 					  "~/Content/site.css",
                       "~/Content/volt.css",
-					  "~/Content/bootstrap.css"
+					  "~/Content/bootstrap.css",
+                      "~/Content/sparkleAir.css"
 					  ));
 		}
 	}
