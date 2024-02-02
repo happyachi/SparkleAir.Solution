@@ -23,13 +23,14 @@
         border-radius: 10px; /* 圓角半徑，根據需要進行調整 */
         /* 其他樣式屬性 */
     }
+   
 </style>
 
 
 <h2>持有飛機</h2>
 
 <p>
-    <a href="@Url.Action("Create", "Owns")">Create New</a>
+    <a href="@Url.Action("Create", "Owns")" class="btn btn-sm btn-dark">新增</a>
 </p>
 
 <div class="row mb-3">
@@ -54,27 +55,27 @@
     </div>
 </div>
 <table class="table table-hover">
-   
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.FlightModel)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AirTypeId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RegistrationNum)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ManufactureYear)
-            </th>
-            <th></th>
-        </tr>
 
- <tbody id="tablebody" >
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FlightModel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AirTypeId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RegistrationNum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ManufactureYear)
+        </th>
+        <th></th>
+    </tr >
+
+    <tbody id="tablebody">
         @foreach (var item in Model)
         {
             <tr>
@@ -94,9 +95,10 @@
                     @Html.DisplayFor(modelItem => item.ManufactureYear)
                 </td>
                 <td>
-                    @Html.ActionLink("更新", "Update", new { id = item.Id }, new { @class = "btn btn-sm btn-dark" }) |
-                    @Html.ActionLink("刪除", "Delete", new { id = item.Id }, new { @class = "btn btn-sm btn-dark" })
+                    <a href="@Url.Action("Update", new { id = item.Id })" class="btn btn-sm btn-dark">更新</a> |
+                    <a href="@Url.Action("Delete", new { id = item.Id })" class="btn btn-sm btn-dark">删除</a>
                 </td>
+
 
             </tr>
         }
@@ -176,15 +178,15 @@
                                 const row = document.createElement('tr');
 
                                 row.innerHTML = `
-                                                <td>${FlightModel}</td>
-                                                <td>${AirTypeId}</td>
-                                                <td>${RegistrationNum}</td>
-                                                <td>${Status}</td>
-                                                <td>${ManufactureYear}</td>
-                                                <td>
-                                                    <a href="${baseUrl}/Update?id=${Id}">Update</a> |
-                                                    <a href="${baseUrl}/Delete?id=${Id}">Delete</a>
-                                                </td>`;
+                                                    <td>${FlightModel}</td>
+                                                    <td>${AirTypeId}</td>
+                                                    <td>${RegistrationNum}</td>
+                                                    <td>${Status}</td>
+                                                    <td>${ManufactureYear}</td>
+                                                    <td>
+                                                        <a href="${baseUrl}/Update?id=${Id}">Update</a> |
+                                                        <a href="${baseUrl}/Delete?id=${Id}">Delete</a>
+                                                    </td>`;
 
                                 tableBody.appendChild(row);
                                 return row;

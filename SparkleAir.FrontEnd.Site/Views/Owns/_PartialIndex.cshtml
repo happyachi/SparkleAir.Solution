@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<SparkleAir.Infa.ViewModel.Airtype_Owns.OwnVmIndex>
 
 <table class="table">
+
     <tbody id="tablebody">
 
         @foreach (var item in Model)
@@ -22,10 +23,11 @@
                     @Html.DisplayFor(modelItem => item.ManufactureYear)
                 </td>
                 <td>
-                    @Html.ActionLink("Update", "Update", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    <a href="@Url.Action("Update", new { id = item.Id })" class="btn btn-sm btn-dark">更新</a> |
+                    <a href="@Url.Action("Delete", new { id = item.Id })" class="btn btn-sm btn-dark">删除</a>
                 </td>
+
             </tr>
         }
     </tbody>
-    </table>
+</table>
