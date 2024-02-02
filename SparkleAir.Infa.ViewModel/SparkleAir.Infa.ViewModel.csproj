@@ -67,6 +67,7 @@
     <Compile Include="Airtype&amp;Owns\PlaneVmIndex.cs" />
     <Compile Include="Luggage\LuggageCreateVm.cs" />
     <Compile Include="Luggage\LuggageIndexVm.cs" />
+    <Compile Include="MealMessage\AirMealVm.cs" />
     <Compile Include="Members\MemberClassIndexVm.cs" />
     <Compile Include="Members\MemberIndexVm.cs" />
     <Compile Include="Members\MemberLoginLogIndexVm.cs" />
