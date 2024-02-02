@@ -89,6 +89,12 @@ namespace SparkleAir.FrontEnd.Site.Controllers
                     },
                     new MenuItem
                     {
+                        Name = "託運明細清單",
+                        ActionName = "Index",
+                        ControllerName = "LuggageOrders",
+                    },
+                    new MenuItem
+                    {
                         Name = "里程管理",
                         ActionName = "Index",
                         ControllerName = "MileageDetail",
@@ -187,6 +193,12 @@ namespace SparkleAir.FrontEnd.Site.Controllers
                 Icon = "<i class=\"fa-solid fa-user\"></i>",
                 MenuItems = new List<IMenuItem>
                 {
+                    new MenuItem
+                    {
+                        Name = "國籍設定",
+                        ActionName = "Index",
+                        ControllerName = "Countries",
+                    },
                     new MenuItem
                     {
                         Name = "會員等級設定",

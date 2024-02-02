@@ -29,7 +29,7 @@ namespace SparkleAir.Infa.Utility.Exts.Models
                coupon.DisplayDescription,
                coupon.MemberCriteria,
                coupon.AirFlightsCriteria,
-               coupon.Campaign.CampaignType,
+               coupon.Campaign.Type,
                coupon.Id
             );  
             return campaignsCouponEntity;

@@ -20,7 +20,7 @@ namespace SparkleAir.FrontEnd.Site
 						"~/Scripts/modernizr-*"));
 
 			bundles.Add(new Bundle("~/bundles/bootstrap").Include(
-					  "~/Scripts/bootstrap.js"));
+					  "~/Scripts/bootstrap.bundle.js"));
 
             bundles.Add(new Bundle("~/bundles/volt").Include(
                       "~/Scripts/volt.js",
