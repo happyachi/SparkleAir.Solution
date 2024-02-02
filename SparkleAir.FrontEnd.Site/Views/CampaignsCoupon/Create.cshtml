@@ -23,9 +23,14 @@
         opacity: 0;
         transition: opacity 0.3s ease-in-out;
     }
+
+    /*Member間距*/
+    .member-label {
+        margin-right: 50px;
+    }
 </style>
 
-<h2>Create</h2>
+<h2>新增優惠券</h2>
 
 @using (Html.BeginForm())
 {
@@ -62,7 +67,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.DateEnd, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input type="datetime-local" id="DateStart" name="DateStart" class="control-label" />
+                <input type="datetime-local" id="DateEnd" name="DateEnd" class="control-label" />
                 @Html.ValidationMessageFor(model => model.DateEnd, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -159,7 +164,7 @@
                 <div class="form-check">
                     @foreach (var member in ViewBag.Member)
                     {
-                        <label class="checkbox-inline">
+                        <label class="checkbox-inline member-label">
                             <input class="form-check-input" type="checkbox" value="@member.Name" data-member="@member.Name" name="members">@member.Name
                         </label>
                     }
@@ -191,16 +196,17 @@
         </div>*@
 
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+    <div class="form-group mt-1">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-sm btn-success ps-3 pe-3 btn-create" />
         </div>
+    </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @*@Html.ActionLink("Back to List", "Index")*@
+    <a href='@Url.Action("Index/")' class="btn btn-sm btn-dark ps-2 pe-2 btn-back-to-list mt-2"><i class="fa-solid fa-backward"></i>&nbsp;&nbsp;回清單頁</a>
 </div>
 
 @section Scripts {

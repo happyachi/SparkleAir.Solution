@@ -297,14 +297,14 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
         //    return Json(new { data = coupons }, JsonRequestBehavior.AllowGet);
         //}
 
-
+        #region GetDetail
         public ActionResult GetDetail(int id)
         {
             var service = new CampaignsCouponsService(repo);
-
             var data = service.Get(id);
-
             return Json(data, JsonRequestBehavior.AllowGet);
         }
+        #endregion
+
     }
 }

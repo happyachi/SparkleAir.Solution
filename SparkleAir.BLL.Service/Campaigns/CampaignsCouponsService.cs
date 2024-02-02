@@ -93,7 +93,8 @@ namespace SparkleAir.BLL.Service.Campaigns
                 DisplayDescription = entity.DisplayDescription,
                 MemberCriteria = entity.MemberCriteria,
                 AirFlightsCriteria = entity.AirFlightsCriteria,
-                Campaign = entity.Campaign
+                Campaign = entity.Campaign,
+                Type = entity.Type
             };
             return dto;
         }

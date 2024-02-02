@@ -86,6 +86,7 @@ namespace SparkleAir.BLL.Service.Campaigns
                 BundleSKUs = entity.BundleSKUs,
                 MemberCriteria = entity.MemberCriteria,
                 TFItemsCriteria = entity.TFItemsCriteria,
+                Type = entity.Type
                 //Campaign = entity.Campaign
             };
             return dto;

@@ -280,6 +280,13 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
         }
         #endregion
 
-       
+        #region GetDetail
+        public ActionResult GetDetail(int id)
+        {
+            var service = new CampaignsDiscountsService(repo);
+            var data = service.Get(id);
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
     }
 }

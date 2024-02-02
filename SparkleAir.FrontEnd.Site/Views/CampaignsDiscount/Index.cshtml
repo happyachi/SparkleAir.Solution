@@ -93,9 +93,19 @@
                         </td>
 
                         <td>
-                            <a href='@Url.Action("Edit/")@item.Id' class="btn btn-sm btn-dark ps-2 pe-2 btn-edit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;編輯</a> |
-                            <a href='@Url.Action("Details/")@item.Id' class="btn btn-sm btn-dark ps-2 pe-2 btn-detail"><i class="fa-solid fa-file"></i>&nbsp;&nbsp;詳細資訊</a> |
-                            <a href='@Url.Action("Delete/")@item.Id' class="btn btn-sm btn-danger ps-2 pe-2 btn-delete"><i class="fa-solid fa-trash"></i>&nbsp;&nbsp;刪除</a>
+                            @if (item.Status != "已結束")
+                            {
+                                <a href='@Url.Action("Edit/")@item.Id' class="btn btn-sm btn-dark ps-2 pe-2 btn-edit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;編輯</a>
+                            }
+                            @*<a href='@Url.Action("Details/")@item.Id' class="btn btn-sm btn-dark ps-2 pe-2 btn-detail"><i class="fa-solid fa-file"></i>&nbsp;&nbsp;詳細資訊</a> |*@
+
+                            <button type="button" class="btn btn-sm btn-dark ps-2 pe-2 btn-detail modal-dialog-scrollable detailBtn" data-bs-toggle="modal" data-bs-target="#exampleModal" value="@item.Id">
+                                <i class="fa-solid fa-file"></i>&nbsp;&nbsp;詳細資訊
+                            </button>
+                            @if (item.Status != "已結束")
+                            {
+                                <a href='@Url.Action("Delete/")@item.Id' class="btn btn-sm btn-danger ps-2 pe-2 btn-delete"><i class="fa-solid fa-trash"></i>&nbsp;&nbsp;刪除</a>
+                            }
                         </td>
                     </tr>
                 }
@@ -104,9 +114,27 @@
     </div>
 </div>
 <div id="divMore" style="display:none"></div>
-<button type="button" class="btn btn-sm btn-dark col-sm-1" onclick="addProducts()">新增商品</button>
+
 <div class="select">
     <div id="selectProducts"></div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">活動詳細資訊</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <dl class="dl-horizontal" id="detail"></dl>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Close </button>
+                @*<button type="button" class="btn btn-primary">Save changes</button>*@
+            </div>
+        </div>
+    </div>
 </div>
 
 <script>
@@ -165,5 +193,43 @@
             $('#datas').html(data);
         })
         .catch(error => console.error('Error:', error));
+    }
+
+    //Details_BootStraps
+     const btnss = document.querySelectorAll('.detailBtn');
+    btnss.forEach(function (btn) {
+    btn.addEventListener('click',async function () {
+     const id2 = this.getAttribute('value');
+
+     const modalDiv1 = document.querySelector('.modal-body');
+      // 将 HTML 内容更新到 modalDiv 中
+     const response1 = await fetch(`@Url.Action("GetDetail", "CampaignsDiscount")?id=${id2}`);
+     const data1 = await response1.json();
+     const dl2 = document.querySelector('#detail')
+    /* const dateTime2 = createDateString(data1.OrderTime)*/
+     const html2 = `<dt>折扣活動名稱:</dt><dd>${data1.Name}</dd>
+                   <dt>狀態:</dt><dd>${data1.Status}</dd>
+                   <dt>折扣類型:</dt><dd>${data1.Type}</dd>
+                   <dt>折扣金額或百分比:</dt><dd>${data1.DiscountValue}</dd>
+                   <dt>最低消費金額:</dt><dd>${data1.Value}</dd>
+                   <dt>商品件數:</dt><dd>${data1.BundleSKUs}</dd>
+                   `
+     dl2.innerHTML = html2;
+     console.log(data1);
+         });
+     });
+
+    //轉換json檔傳來時間的方法
+    function createDateString(str) {
+        const milliseconds1 = parseInt(str.slice(7, 19), 13);
+        const date1 = new Date(milliseconds1);
+        const year1 = date1.getFullYear();
+        const month1 = (date1.getMonth() + 1).toString().padStart(2, '0');
+        const day1 = date1.getDate().toString().padStart(2, '0');
+        const hours1 = date1.getHours().toString().padStart(2, '0');
+        const minutes1 = date1.getMinutes().toString().padStart(2, '0');
+        const seconds1 = date1.getSeconds().toString().padStart(2, '0');
+        return `${year1}-${month1}-${day1} ${hours1}:${minutes1}:${seconds1}`;
 }
+
 </script>
