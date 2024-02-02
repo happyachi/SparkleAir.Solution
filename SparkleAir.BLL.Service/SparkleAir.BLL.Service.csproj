@@ -42,7 +42,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AirFlights\AirFlightManagementService.cs" />
+    <Compile Include="AirFlights\AirFlightSeatsService.cs" />
     <Compile Include="AirFlights\AirFlightService.cs" />
+    <Compile Include="AirFlights\AirTicketPriceService.cs" />
+    <Compile Include="AirFlights\SeatGroupService.cs" />
     <Compile Include="Basics\CountryService.cs" />
     <Compile Include="Campaigns\CampaignsCouponsService.cs" />
     <Compile Include="Campaigns\CampaignsDiscountsService.cs.cs" />
@@ -83,11 +86,11 @@
       <Name>SparkleAir.DAL.DTORepository</Name>
     </ProjectReference>
     <ProjectReference Include="..\SparkleAir.DAL.EFRepository\SparkleAir.DAL.EFRepository.csproj">
-      <Project>{0fc6afba-5585-43be-84ac-22de8bc3dc74}</Project>
+      <Project>{0FC6AFBA-5585-43BE-84AC-22DE8BC3DC74}</Project>
       <Name>SparkleAir.DAL.EFRepository</Name>
     </ProjectReference>
     <ProjectReference Include="..\SparkleAir.IDAL.IRepository\SparkleAir.IDAL.IRepository.csproj">
-      <Project>{73007f85-f88e-4292-ab16-8a5798a9a6fb}</Project>
+      <Project>{73007F85-F88E-4292-AB16-8A5798A9A6FB}</Project>
       <Name>SparkleAir.IDAL.IRepository</Name>
     </ProjectReference>
     <ProjectReference Include="..\SparkleAir.Infa.Criteria\SparkleAir.Infa.Criteria.csproj">
@@ -95,11 +98,11 @@
       <Name>SparkleAir.Infa.Criteria</Name>
     </ProjectReference>
     <ProjectReference Include="..\SparkleAir.Infa.Dto\SparkleAir.Infa.Dto.csproj">
-      <Project>{2431caf2-a681-4bb8-9973-3e568f7a7453}</Project>
+      <Project>{2431CAF2-A681-4BB8-9973-3E568F7A7453}</Project>
       <Name>SparkleAir.Infa.Dto</Name>
     </ProjectReference>
     <ProjectReference Include="..\SparkleAir.Infa.Entity\SparkleAir.Infa.Entity.csproj">
-      <Project>{88fb70a6-7d2c-40d0-a6a6-90cd80d5c422}</Project>
+      <Project>{88FB70A6-7D2C-40D0-A6A6-90CD80D5C422}</Project>
       <Name>SparkleAir.Infa.Entity</Name>
     </ProjectReference>
     <ProjectReference Include="..\SparkleAir.Infa.Utility\SparkleAir.Infa.Utility.csproj">
@@ -107,7 +110,7 @@
       <Name>SparkleAir.Infa.Utility</Name>
     </ProjectReference>
     <ProjectReference Include="..\SparkleAir.Infa.ViewModel\SparkleAir.Infa.ViewModel.csproj">
-      <Project>{4b7a6ecf-2f6d-449b-83d0-6e08d3e43a40}</Project>
+      <Project>{4B7A6ECF-2F6D-449B-83D0-6E08D3E43A40}</Project>
       <Name>SparkleAir.Infa.ViewModel</Name>
     </ProjectReference>
   </ItemGroup>

@@ -44,9 +44,15 @@
   <ItemGroup>
     <Compile Include="AirFlights\AirFlightCreateVm.cs" />
     <Compile Include="AirFlights\AirFlightIndexVm.cs" />
+    <Compile Include="AirFlights\AirFlightManagementCreateVm.cs" />
     <Compile Include="AirFlights\AirFlightManagementIndexVm.cs" />
     <Compile Include="AirFlights\AirFlightManagementVm.cs" />
+    <Compile Include="AirFlights\AirFlightSeatsCreateVm.cs" />
+    <Compile Include="AirFlights\AirFlightSeatsVm.cs" />
     <Compile Include="AirFlights\AirFlightVm.cs" />
+    <Compile Include="AirFlights\AirOwnVm.cs" />
+    <Compile Include="AirFlights\EachFlightSeatsVm.cs" />
+    <Compile Include="AirFlights\EachSeatInfoVm.cs" />
     <Compile Include="Basics\CountryIndexVm.cs" />
     <Compile Include="Campaigns\CampaignsCouponIndexVm.cs" />
     <Compile Include="Campaigns\CampaignsCouponVm.cs" />
@@ -81,6 +87,12 @@
     <Compile Include="TaxFree\TFReservelistsVm.cs" />
     <Compile Include="TaxFree\TFReservesVm.cs" />
     <Compile Include="TaxFree\TFWishlistsVm.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SparkleAir.Infa.Utility\SparkleAir.Infa.Utility.csproj">
+      <Project>{3B17053D-B105-432E-A867-05A051C94158}</Project>
+      <Name>SparkleAir.Infa.Utility</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SparkleAir.Infa.Utility\SparkleAir.Infa.Utility.csproj">

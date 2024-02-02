@@ -43,6 +43,9 @@
   <ItemGroup>
     <Compile Include="AriFlights\AirFlightDto.cs" />
     <Compile Include="AriFlights\AirFlightManagementDto.cs" />
+    <Compile Include="AriFlights\AirFlightSeatsDto.cs" />
+    <Compile Include="AriFlights\AirTicketPriceDto.cs" />
+    <Compile Include="AriFlights\EachSeatInfoDto.cs" />
     <Compile Include="Basics\CountryDto.cs" />
     <Compile Include="Campaigns\CampaignsCouponDto.cs" />
     <Compile Include="Campaigns\CampaignsDiscountDto.cs" />

@@ -1,0 +1,126 @@
+﻿@model IEnumerable<SparkleAir.Infa.ViewModel.AirFlights.AirFlightIndexVm>
+@section styles{
+	<style>
+	</style>
+}
+<div class="container" style="height: 100vh">
+	<h3 class="text-center fw-bolder">班表</h3>
+	<div class="row">
+		<div class="col text-center mb-3">
+			<form action="" id="formSearch">
+				<input type="text" class="text-end" name="year" id="year" value="2023"> / <input type="text" class="text-end" name="month" id="month" value="1">
+
+				<input type="button" value="查詢" class="btn btn-sm btn-primary" id="btnSearch">
+			</form>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-9" id="calendarContainer" style="overflow: auto">
+
+		</div>
+		<div class="col-md-3">
+			右側放單日的詳細資訊
+		</div>
+	</div>
+</div>
+<div id="divMore"></div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var btn = document.querySelector('#btn');
+
+        btn.addEventListener('click', function (event) {
+            event.preventDefault();
+
+            // 获取当前的年份和月份
+            var now = new Date();
+            var year = now.getFullYear();
+            var month = now.getMonth() + 1;
+
+            // 如果是日曆形式，發送 AJAX 請求獲取日曆形式的內容
+            var url = '@Url.Action("CalendarPartial", "AirFlights")';
+            fetch(url)
+                .then(response => response.text())
+                .then(data => {
+					$('#datas').html(data);
+					btn.innerText = '表單形式';
+					btn.href = '@Url.Action("Index", "AirFlights")';
+                })
+                .catch(error => console.error('Error:', error));
+        });
+	});
+
+
+	// 傳回指定年月的總天數
+	function daysInMonth(month, year) {
+		// 日期為0時, 會傳回上個月最後一天
+		// 再經由 getDate() 取得上個月最後一天的日期, 就是天數
+		return new Date(year, month + 1, 0).getDate();
+	}
+	// 生成空白月曆
+	function generateCalendar(year, month) {
+		const startDay = new Date(year, month, 1).getDay();
+		const totalDays = daysInMonth(month, year);
+		let tableHTML = `<table id="eventTable" class="table table-bordered table-responsive">
+<thead class="table-success text-center">
+						<tr>
+							<td>日
+							<td>一
+							<td>二
+							<td>三
+							<td>四
+							<td>五
+							<td>六
+</tr>
+</thead>
+<tbody>`;
+		let dayCounter = 1;
+		for (let i = 0; i < 6; i++) {
+			let rowHTML = '<tr>';
+			let emptyCells = 0;
+			for (let j = 0; j < 7; j++) {
+				if ((i === 0 && j < startDay) || dayCounter > totalDays) {
+					rowHTML += '<td class="not-current-month"></td>'; // 非本月的日期，加上灰色背景
+					emptyCells++;
+				} else {
+					rowHTML += '<td id="day-' + dayCounter + '"><div class="tdDay">' + dayCounter + '</div></td>'; // 本月的日期，加上ID
+					dayCounter++;
+				}
+			}
+			rowHTML += '</tr>';
+			if (emptyCells !== 7) {
+				tableHTML += rowHTML;
+			} else {
+				break;
+			}
+			if (dayCounter > totalDays) {
+				break;
+			}
+		}
+
+		tableHTML += '</tbody></table>';
+
+		return tableHTML;
+	};
+
+	let calendarContainer = document.querySelector('#calendarContainer');
+	document.addEventListener("DOMContentLoaded", function () {
+		let ctrlYear = document.querySelector('#year');
+		let ctrlMonth = document.querySelector('#month');
+		const now = new Date();
+
+		ctrlYear.value = now.getFullYear();
+		ctrlMonth.value = now.getMonth() + 1;
+		console.log(document.querySelector('#year'));
+		console.log(document.querySelector('#month'));
+		const year = parseInt(ctrlYear.value);
+		const month = parseInt(ctrlMonth.value) - 1;
+		calendarContainer.innerHTML = generateCalendar(year, month);
+
+		document.getElementById("btnSearch").addEventListener("click", function () {
+			const year = parseInt(ctrlYear.value);
+			const month = parseInt(ctrlMonth.value) - 1;
+			calendarContainer.innerHTML = generateCalendar(year, month);
+		});
+	});
+</script>

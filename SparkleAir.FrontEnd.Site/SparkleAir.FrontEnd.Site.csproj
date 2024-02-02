@@ -144,6 +144,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AirFlight\AirFlightsController.cs" />
+    <Compile Include="Controllers\AirFlight\AirFlightSeatsController.cs" />
     <Compile Include="Controllers\AirFlight\AirFlightsManagementController.cs" />
     <Compile Include="Controllers\Basics\CountriesController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -400,6 +401,8 @@
     <Content Include="Views\AirFlightsManagement\_DetailsPartial.cshtml" />
     <Content Include="Views\AirFlightsManagement\_SearchPartial.cshtml" />
     <Content Include="Views\AirFlights\Create.cshtml" />
+    <Content Include="Views\AirFlights\Index.cshtml" />
+    <Content Include="Views\AirFlights\_CalendarPartial.cshtml" />
     <Content Include="Views\CompanyDepartments\Index.cshtml" />
     <Content Include="Views\CompanyDepartments\Create.cshtml" />
     <Content Include="Views\CompanyDepartments\Edit.cshtml" />
@@ -440,6 +443,8 @@
     <Content Include="Views\Countries\Index.cshtml" />
     <Content Include="Views\Countries\Create.cshtml" />
     <Content Include="Views\Countries\Edit.cshtml" />
+    <Content Include="Views\AirFlights\GetSeat.cshtml" />
+    <Content Include="Views\AirFlights\_SeatsDetailPartial.cshtml" />
     <Content Include="CodeTemplates\ApiControllerEmpty\Controller.cs.t4" />
     <Content Include="CodeTemplates\ApiControllerEmpty\Controller.vb.t4" />
     <Content Include="CodeTemplates\ApiControllerWithActions\Controller.cs.t4" />
@@ -536,6 +541,7 @@
     <Folder Include="Models\ViewModels\Airtype&amp;Owns\" />
     <Folder Include="Models\ViewModels\Members\" />
     <Folder Include="obj\Debug\TempPE\" />
+    <Folder Include="Views\AirFlightSeats\" />
     <Folder Include="Views\Airtype&amp;Owns\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Campaigns\" />
@@ -586,7 +592,7 @@
       <Name>SparkleAir.DAL.EFRepository</Name>
     </ProjectReference>
     <ProjectReference Include="..\SparkleAir.IDAL.IRepository\SparkleAir.IDAL.IRepository.csproj">
-      <Project>{73007f85-f88e-4292-ab16-8a5798a9a6fb}</Project>
+      <Project>{73007F85-F88E-4292-AB16-8A5798A9A6FB}</Project>
       <Name>SparkleAir.IDAL.IRepository</Name>
     </ProjectReference>
     <ProjectReference Include="..\SparkleAir.Infa.Criteria\SparkleAir.Infa.Criteria.csproj">
@@ -594,7 +600,7 @@
       <Name>SparkleAir.Infa.Criteria</Name>
     </ProjectReference>
     <ProjectReference Include="..\SparkleAir.Infa.Dto\SparkleAir.Infa.Dto.csproj">
-      <Project>{2431caf2-a681-4bb8-9973-3e568f7a7453}</Project>
+      <Project>{2431CAF2-A681-4BB8-9973-3E568F7A7453}</Project>
       <Name>SparkleAir.Infa.Dto</Name>
     </ProjectReference>
     <ProjectReference Include="..\SparkleAir.Infa.EFModel\SparkleAir.Infa.EFModel.csproj">
@@ -606,7 +612,7 @@
       <Name>SparkleAir.Infa.Utility</Name>
     </ProjectReference>
     <ProjectReference Include="..\SparkleAir.Infa.ViewModel\SparkleAir.Infa.ViewModel.csproj">
-      <Project>{4b7a6ecf-2f6d-449b-83d0-6e08d3e43a40}</Project>
+      <Project>{4B7A6ECF-2F6D-449B-83D0-6E08D3E43A40}</Project>
       <Name>SparkleAir.Infa.ViewModel</Name>
     </ProjectReference>
   </ItemGroup>
