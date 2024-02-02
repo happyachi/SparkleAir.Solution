@@ -749,6 +749,8 @@
     <Content Include="Scripts\vendor\sass\node_modules\immutable\dist\immutable.js.flow" />
     <Content Include="Views\TFItem\Index.cshtml" />
     <Content Include="Views\CampaignsDiscount\SelectProduct.cshtml" />
+    <Content Include="Views\CampaignsDiscount\IPartialIndex.cshtml" />
+    <Content Include="Views\CampaignsCoupon\IPartialIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

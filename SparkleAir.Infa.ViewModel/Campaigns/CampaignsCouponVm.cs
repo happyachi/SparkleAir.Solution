@@ -22,18 +22,18 @@ namespace SparkleAir.FrontEnd.Site.Models.ViewModels.Campaigns
         
         [Display(Name = "活動期間")]
         [DataType(DataType.DateTime)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:YYYY/MM/DD HH:mm}")]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd HH:mm}", ApplyFormatInEditMode = true)]
         [Required(ErrorMessage = DAHelper.Required)]
         public DateTime DateStart { get; set; }
 
         [Display(Name = "活動結束日期")]
         [DataType(DataType.DateTime)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:YYYY/MM/DD HH:mm}")]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime DateEnd { get; set; }
 
         [Display(Name = "活動創建日")]
         [DataType(DataType.DateTime)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:YYYY/MM/DD HH:mm}")]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime DateCreated { get; set; }
 
         [Display(Name = "狀態")]

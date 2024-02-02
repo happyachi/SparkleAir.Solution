@@ -22,15 +22,19 @@ namespace SparkleAir.FrontEnd.Site.Models.ViewModels.Campaigns
 
         [Display(Name = "活動期間")]
         [Required(ErrorMessage = "{0}必填")]
-        [DataType(DataType.Date)]
-        //[DisplayFormat(DataFormatString ="{}")]
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime DateStart { get; set; }
 
         [Display(Name = "活動結束日期")]
         [Required(ErrorMessage = "{0}必填")]
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime DateEnd { get; set; }
 
         [Display(Name = "活動創建日")]
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime DateCreated { get; set; }
 
 
