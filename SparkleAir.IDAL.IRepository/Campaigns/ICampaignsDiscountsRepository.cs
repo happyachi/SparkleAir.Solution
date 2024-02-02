@@ -1,4 +1,5 @@
-﻿using SparkleAir.Infa.Entity.Campaigns;
+﻿using SparkleAir.Infa.Criteria.Campaigns;
+using SparkleAir.Infa.Entity.Campaigns;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,5 +24,8 @@ namespace SparkleAir.IDAL.IRepository.Campaigns
 
         //更新
         void Update(CampaignsDiscountEntity model);
+
+        //查詢
+        List<CampaignsDiscountEntity> Search(CampaignsDiscountSearchCriteria entity);
     }
 }

@@ -10,7 +10,6 @@ namespace SparkleAir.Infa.ViewModel.CompanyAndPermission
     public class CompanyDepartmentIndexVm
     {
         [Display(Name = "ID")]
-        [Required(ErrorMessage = "{0}必填")]
         public int Id { get; set; }
 
         [Display(Name = "部門名稱")]

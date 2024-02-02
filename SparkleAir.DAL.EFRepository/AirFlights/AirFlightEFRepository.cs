@@ -7,35 +7,72 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace SparkleAir.DAL.EFRepository.AirFlights
 {
     public class AirFlightEFRepository : IAirFlightRepository
     {
         private AppDbContext db = new AppDbContext();
+        private Func<AirFlight, AirFlightEntity> ToEntityFunc = (f) => f.ToAirFlightEntity();
 
-        public void Create(AirFlightEntity entity)
+        public async Task<(int,string)> Create(AirFlightEntity entity)
         {
             AirFlight airFlight = new AirFlight
             {
-                AirOwnId = (int)entity.FlightModel.GetAirOwnIdByFlightModel(db),
+                Id = entity.Id,
+                AirOwnId = (int)entity.RegistrationNum.GetAirOwnIdByFlightModel(db),
                 AirFlightManagementId = entity.AirFlightManagementId,
                 ScheduledDeparture = entity.ScheduledDeparture,
                 ScheduledArrival = entity.ScheduledArrival,
                 AirFlightSaleStatusId = entity.AirFlightSaleStatusId
             };
             db.AirFlights.Add(airFlight);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
+            var id = airFlight.Id;
+            var ati = airFlight.AirOwn.AirType.FlightModel;
+            return (id, ati);
+        }
+
+        public List<AirFlightEntity> GetAll()
+        {
+            var flights = db.AirFlights
+                .AsNoTracking()
+                .Include(x => x.AirOwn)
+                .Include(x => x.AirFlightManagement)
+                .Include(x => x.AirFlightManagement.AirPort)
+                .Include(x => x.AirOwn.AirType)
+                .Include(x => x.AirFlightSaleStatus)
+                .ToList()
+                .Select(ToEntityFunc)
+                .ToList();
+            return flights;
         }
 
         public AirFlightEntity GetById(int id)
         {
-            var flight = db.AirFlightManagements.Find(id);
-            var airplain = new AirFlightEntity
+            var flight = db.AirFlights
+                .Find(id)
+                .ToAirFlightEntity();
+
+            return flight;
+        }
+
+        public void UpdateSaleStatus(AirFlightEntity entity)
+        {
+            var flight = db.AirFlights
+                 .Include(f => f.AirOwn)
+                 .FirstOrDefault(f => f.Id == entity.Id);
+            if (flight != null)
             {
-                //todo
-            };
-            return airplain;
+                flight.Id = entity.Id;
+                flight.AirOwnId = (int)entity.RegistrationNum.GetAirOwnIdByFlightModel(db);
+                flight.AirFlightManagementId = entity.AirFlightManagementId;
+                flight.ScheduledDeparture = entity.ScheduledDeparture;
+                flight.ScheduledArrival = entity.ScheduledArrival;
+                flight.AirFlightSaleStatusId = entity.AirFlightSaleStatusId;
+            }
+                db.SaveChanges();
         }
     }
 }

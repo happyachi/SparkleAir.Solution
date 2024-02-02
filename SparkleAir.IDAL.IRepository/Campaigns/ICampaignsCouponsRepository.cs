@@ -1,4 +1,7 @@
-﻿using SparkleAir.Infa.Entity.Campaigns;
+﻿using SparkleAir.Infa.Criteria.AirFlights;
+using SparkleAir.Infa.Criteria.Campaigns;
+using SparkleAir.Infa.Entity.AirFlightsEntity;
+using SparkleAir.Infa.Entity.Campaigns;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,5 +26,7 @@ namespace SparkleAir.IDAL.IRepository.Campaigns
 
         //更新
         void Update(CampaignsCouponEntity model);
+
+        List<CampaignsCouponEntity> Search(CampaignsCouponSearchCriteria entity);
     }
 }
