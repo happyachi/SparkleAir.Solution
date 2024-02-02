@@ -81,6 +81,9 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Airports
         #region Create
         public ActionResult Create()
         {
+            var service = new AirportService(efRepository);
+            ViewBag.editAirport = service.GetAll(); //回傳所有的資料
+
             return View();
         }
 

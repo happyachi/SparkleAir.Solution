@@ -162,6 +162,7 @@
     <Compile Include="Controllers\CompaniesAndPermissions\PermissionSettingsController.cs" />
     <Compile Include="Controllers\Airtype&amp;Owns\PlanesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LuggageOrders\LuggageOrdersController.cs" />
     <Compile Include="Controllers\Members\MemberClassesController.cs" />
     <Compile Include="Controllers\Members\MemberLoginLogsController.cs" />
     <Compile Include="Controllers\Luggages\LuggageController.cs" />
@@ -618,6 +619,12 @@
     <Content Include="Views\Luggage\Edit.cshtml" />
     <Content Include="Views\MileageDetail\Index.cshtml" />
     <Content Include="Views\MileageDetail\Create.cshtml" />
+    <Content Include="Views\TFItem\Index.cshtml" />
+    <Content Include="Views\TFItem\Create.cshtml" />
+    <Content Include="Views\TFItem\Edit.cshtml" />
+    <Content Include="Views\TFItem\Details.cshtml" />
+    <Content Include="Views\LuggageOrders\Index.cshtml" />
+    <Content Include="Views\LuggageOrders\Create.cshtml" />
     <Content Include="Views\MemberClasses\Index.cshtml" />
     <Content Include="Views\MemberClasses\Create.cshtml" />
     <Content Include="Views\MemberClasses\Edit.cshtml" />
@@ -626,6 +633,8 @@
     <Content Include="Views\Countries\Edit.cshtml" />
     <Content Include="Views\AirFlights\GetSeat.cshtml" />
     <Content Include="Views\AirFlights\_SeatsDetailPartial.cshtml" />
+    <Content Include="Views\LuggageOrders\PartialIndex.cshtml" />
+    <Content Include="Views\LuggageOrders\Details.cshtml" />
     <Content Include="CodeTemplates\ApiControllerEmpty\Controller.cs.t4" />
     <Content Include="CodeTemplates\ApiControllerEmpty\Controller.vb.t4" />
     <Content Include="CodeTemplates\ApiControllerWithActions\Controller.cs.t4" />

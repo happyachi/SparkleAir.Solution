@@ -62,6 +62,7 @@
     <Compile Include="CompanyAndPermission\PermissionSettingEntity.cs" />
     <Compile Include="Airtype&amp;Owns\AirSeatEntity.cs" />
     <Compile Include="Airtype&amp;Owns\PlaneEntity.cs" />
+    <Compile Include="LuggageOrders\LuggageOrderEntity.cs" />
     <Compile Include="Luggages\LuggageEntity.cs" />
     <Compile Include="MealMessageEntity\MessageBoxEntity.cs" />
     <Compile Include="MealMessageEntity\MessageEntity.cs" />

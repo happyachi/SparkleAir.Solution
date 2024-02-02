@@ -61,6 +61,7 @@
     <Compile Include="CompanyAndPermission\IPermissionSettingRepository.cs" />
     <Compile Include="MealMessages\IMessageBoxRepository.cs" />
     <Compile Include="MealMessages\IMessageRepository.cs" />
+    <Compile Include="LuggageOrders\ILuggageOrderRepository.cs" />
     <Compile Include="Members\IMemberClassRepository.cs" />
     <Compile Include="MealMessages\IAirMealRepository.cs" />
     <Compile Include="Members\IMemberLoginLogRepository.cs" />
