@@ -22,6 +22,8 @@ namespace SparkleAir.FrontEnd.Site.Models.ViewModels.Campaigns
 
         [Display(Name = "活動期間")]
         [Required(ErrorMessage = "{0}必填")]
+        [DataType(DataType.Date)]
+        //[DisplayFormat(DataFormatString ="{}")]
         public DateTime DateStart { get; set; }
 
         [Display(Name = "活動結束日期")]
