@@ -178,9 +178,9 @@
             <button type="button" class="btn btn-sm btn-dark col-sm-1" onclick="toggle()">新增活動航班</button>
 
         </div>
-        <div class="select" id="selectContainer" style="display: none;">
+        @*<div class="select" id="selectContainer" style="display: none;">
             <div id="selectFlights">
-                @*@Html.Partial("SelectProduct")*@
+                @Html.Partial("SelectProduct")
                 @{
                     Html.RenderPartial("SelectFlights", list);
                 }
@@ -188,7 +188,7 @@
             </div>
             <button type="button" class="btn btn-sm btn-dark col-sm-1" onclick="cancelProducts()">取消</button>
             <button type="button" class="btn btn-sm btn-dark col-sm-1" onclick="saveProducts()">儲存</button>
-        </div>
+        </div>*@
 
 
         <div class="form-group">
@@ -236,14 +236,14 @@
             }, 300);
         }
 
-        //function updateMember() {
-        //    const members = Array.from(checks)
-        //        .filter(checkbox => checkbox.checked)
-        //        .map(checkbox => checkbox.value);
+        function updateMember() {
+            const members = Array.from(checks)
+                .filter(checkbox => checkbox.checked)
+                .map(checkbox => checkbox.value);
 
-        //    document.getElementById('flexCheckDefault').value = members.join(',');
-        //    console.log(members);
-        //}
+            document.getElementById('flexCheckDefault').value = members.join(',');
+            console.log(members);
+        }
 
         function saveProducts() {
 

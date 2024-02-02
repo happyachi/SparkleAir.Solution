@@ -151,12 +151,18 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
         #region Edit
         public ActionResult Edit(int id)
         {
+            var memberservice = new MemberClassService(memberRepo);
+            ViewBag.Member = memberservice.Get(id);
+            if (ViewBag.Member == null)  return RedirectToAction("Error");
+    
             var discount = Get(id);
             return View(discount);
         }
 
         private CampaignsDiscountVm Get(int id)
         {
+            var memberservice = new MemberClassService(memberRepo);
+            ViewBag.Member = memberservice.Get(id);
             var service = new CampaignsDiscountsService(repo);
             var get = service.Get(id);
             return new CampaignsDiscountVm
@@ -179,6 +185,8 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
         [HttpPost]
         public ActionResult Edit(CampaignsDiscountVm discount)
         {
+            var memberservice = new MemberClassService(memberRepo);
+            //ViewBag.Member = memberservice.Get(id);
             if (!ModelState.IsValid) return View();
             try
             {
@@ -194,6 +202,8 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
 
         private void Update(CampaignsDiscountVm vm)
         {
+            var memberservice = new MemberClassService(memberRepo);
+            //ViewBag.Member = memberservice.Get();
             var service = new CampaignsDiscountsService(repo);
             CampaignsDiscountDto dto = new CampaignsDiscountDto
             {
