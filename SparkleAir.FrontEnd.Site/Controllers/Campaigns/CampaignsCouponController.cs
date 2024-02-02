@@ -10,6 +10,7 @@ using SparkleAir.IDAL.IRepository.Campaigns;
 using SparkleAir.Infa.Criteria.AirFlights;
 using SparkleAir.Infa.Criteria.Campaigns;
 using SparkleAir.Infa.Dto.Campaigns;
+using SparkleAir.Infa.EFModel.EFModels;
 using SparkleAir.Infa.ViewModel.AirFlights;
 using SparkleAir.Infa.ViewModel.TaxFree;
 using System;
@@ -67,6 +68,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
             if (!ModelState.IsValid) return View();
             var memberservice = new MemberClassService(memberRepo);
             ViewBag.Member = memberservice.Search();
+
             try
             {
                 CreateCoupon(coupon);
@@ -106,41 +108,39 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
             service.Create(dto);
         }
 
-        //public ActionResult SelectFlights()
-        //{
-        //    if (!ModelState.IsValid) return View();
-        //    try
-        //    {
-        //        List<TFItemVm> vms = CreateSelectFlights();
-        //        return PartialView("SelectFlights", vms);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        ModelState.AddModelError(string.Empty, ex.Message);
-        //        return View();
-        //    }
-        //}
+        public ActionResult SelectFlights()
+        {
+            if (!ModelState.IsValid) return View();
+            try
+            {
+                List<AirFlightVm> vms = CreateSelectFlights();
+                return PartialView("SelectFlights", vms);
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, ex.Message);
+                return View();
+            }
+        }
 
-        //private List<TFItemVm> CreateSelectFlights()
-        //{
-        //    var dtos = new AirFlightService(new AirFlightEFRepository()).GetAll();
-        //    var flights = dtos.Select(x=> new AirFlightVm
-        //    {
-        //        Id = x.Id,
-        //        AirOwnId = x.AirOwnId,
-        //        AirFlightManagementId = x.AirFlightManagementId,
-        //        ScheduledDeparture = x.ScheduledDeparture,
-        //        ScheduledArrival = x.ScheduledArrival,
-        //        AirFlightSaleStatus = x.AirFlightSaleStatus,
-        //        FlightModel = x.FlightModel,
-        //        FlightCode = x.FlightCode,
-        //        DepartureAirPort=x.DepartureAirPort,
-        //        ArrivalAriPort=x.ArrivalAriPort,
-        //        AirFlightSaleStatusId=x.AirFlightSaleStatusId,
-        //    }).ToList();    
+        private List<AirFlightVm> CreateSelectFlights()
+        {
+            var dtos = new AirFlightService(new AirFlightEFRepository()).GetAll();
+            var flights = dtos.Select(x => new AirFlightVm
+            {
+                Id = x.Id,
+                AirOwnId = x.AirOwnId,
+                AirFlightManagementId = x.AirFlightManagementId,
+                ScheduledDeparture = x.ScheduledDeparture,
+                ScheduledArrival = x.ScheduledArrival,
+                AirFlightSaleStatus = x.AirFlightSaleStatus,
+                FlightModel = x.FlightModel,
+                FlightCode = x.FlightCode,
+                AirFlightSaleStatusId = x.AirFlightSaleStatusId,
+            }).ToList();
 
-        //    return flights;
-        //}
+            return flights;
+        }
 
         #endregion
 
