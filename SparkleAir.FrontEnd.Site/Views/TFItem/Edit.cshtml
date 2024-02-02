@@ -22,7 +22,12 @@
     <div class="mb-3">
         @Html.LabelFor(model => model.TFCategoriesName, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.TFCategoriesName, new { htmlAttributes = new { @class = "form-control" } })
+            <select id="TFCategoriesName" name="TFCategoriesName" class="form-select" aria-label="Default select example" onchange="updateTFCategoriesId()">
+                @foreach (var item in ViewBag.TFCategories)
+                    {
+                       <option value="@item.TFCategoriesName">@item.TFCategoriesName</option>
+                    }
+            </select>
             @Html.ValidationMessageFor(model => model.TFCategoriesName, "", new { @class = "text-danger" })
         </div>
     </div>
