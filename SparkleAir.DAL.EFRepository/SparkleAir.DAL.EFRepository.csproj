@@ -54,6 +54,7 @@
     <Compile Include="AirFlights\AirFlightSeatsEFRepository.cs" />
     <Compile Include="AirFlights\AirTicketPriceEFRepository.cs" />
     <Compile Include="AirFlights\SeatGroupEFRepository.cs" />
+    <Compile Include="Airtype&amp;Owns\OwnRepository.cs" />
     <Compile Include="Basics\CountryEFRepository.cs" />
     <Compile Include="Campaigns\CampaignsCouponsEFRepository.cs" />
     <Compile Include="Campaigns\CampaignsDiscountsEFRepository.cs" />

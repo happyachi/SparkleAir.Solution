@@ -146,6 +146,8 @@
     <Compile Include="Controllers\AirFlight\AirFlightsController.cs" />
     <Compile Include="Controllers\AirFlight\AirFlightSeatsController.cs" />
     <Compile Include="Controllers\AirFlight\AirFlightsManagementController.cs" />
+    <Compile Include="Controllers\Airtype&amp;Owns\OwnsController.cs" />
+    <Compile Include="Controllers\Airtype&amp;Owns\SearchController.cs" />
     <Compile Include="Controllers\Basics\CountriesController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\Campaigns\CampaignsCouponController.cs" />
@@ -635,6 +637,7 @@
     <Content Include="Views\AirFlights\_SeatsDetailPartial.cshtml" />
     <Content Include="Views\LuggageOrders\PartialIndex.cshtml" />
     <Content Include="Views\LuggageOrders\Details.cshtml" />
+    <Content Include="Views\Owns\Index.cshtml" />
     <Content Include="CodeTemplates\ApiControllerEmpty\Controller.cs.t4" />
     <Content Include="CodeTemplates\ApiControllerEmpty\Controller.vb.t4" />
     <Content Include="CodeTemplates\ApiControllerWithActions\Controller.cs.t4" />
@@ -745,6 +748,10 @@
     <Content Include="Views\Members\Edit.cshtml" />
     <Content Include="Scripts\vendor\sass\node_modules\immutable\dist\immutable.js.flow" />
     <Content Include="Views\CampaignsDiscount\SelectProduct.cshtml" />
+    <Content Include="Views\Owns\_PartialIndex.cshtml" />
+    <Content Include="Views\Owns\Create.cshtml" />
+    <Content Include="Views\Owns\Update.cshtml" />
+    <Content Include="Views\Owns\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -752,11 +759,10 @@
     <Folder Include="Models\ViewModels\Airtype&amp;Owns\" />
     <Folder Include="Models\ViewModels\Members\" />
     <Folder Include="obj\Debug\TempPE\" />
-    <Folder Include="Views\AirFlightSeats\" />
-    <Folder Include="Views\Airtype&amp;Owns\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Campaigns\" />
     <Folder Include="Views\Companies\" />
+    <Folder Include="Views\Search\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
