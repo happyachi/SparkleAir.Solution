@@ -15,8 +15,8 @@ namespace SparkleAir.Infa.Utility.Exts.Models
         {
             CampaignsDiscountEntity campaignsDiscountEntity = new CampaignsDiscountEntity
             (
-             //discount.Id,
-             //discount.CampaignId,
+             
+             discount.CampaignId,
              discount.Name,
              discount.DateCreated,
              discount.DateStart,
@@ -26,8 +26,9 @@ namespace SparkleAir.Infa.Utility.Exts.Models
              discount.Value,
              discount.BundleSKUs,
              discount.MemberCriteria,
-             discount.TFItemsCriteria
-             //discount.Campaign
+             discount.TFItemsCriteria,
+             discount.Campaign.Type,
+             discount.Id
             );
 
             return campaignsDiscountEntity;
