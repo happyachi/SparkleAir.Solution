@@ -88,11 +88,16 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Airports
         }
 
         [HttpPost]
-        public ActionResult Create(AirportCreateVm airport)
+        public ActionResult Create(AirportCreateVm airport, HttpPostedFileBase file1)
         {
             if (!ModelState.IsValid) return View();
+
+            string path = Server.MapPath("/Files/Airports");
             try
             {
+                //string newFileName = new UploadFileHelper().UploadImageFile(file1, path);
+                //model.FileName = newFileName;
+
                 CreateAirport(airport);
                 return RedirectToAction("Index");
             }

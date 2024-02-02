@@ -25,7 +25,7 @@ using SparkleAir.Infa.ViewModel.Airports;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.LuggageOrders
 {
-    public class LuggageOrdersController : Controller
+    public class LuggageOrdersController : BaseController
     {
         ILuggageOrderRepository efRLuggageorder = new LuggageOrderEFRepository();
         IAirFlightManagementRepository efAirFlightManagement = new AirFlightManagementEFRepository();
