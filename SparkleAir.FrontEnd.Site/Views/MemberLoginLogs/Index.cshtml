@@ -4,56 +4,56 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>會員登入紀錄</h2>
 
-<hr>
-<p>
-    <a href='@Url.Action("Create")' class="btn btn-sm btn-dark ps-3 pe-3"><i class="fa-solid fa-plus"></i>&nbsp;&nbsp;新增</a>
-</p>
-<table class="table" id="table_jq">
+<table class="table table_jq">
     <thead>
         <tr>
-                    <th>
-            @Html.DisplayNameFor(model => model.MemberId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Logintime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LogoutTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IPAddress)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LoginStatus)
-        </th>
-        <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.MemberId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MemberName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Logintime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LogoutTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IPAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LoginStatus)
+            </th>
+            
         </tr>
     </thead>
-    <tbody> @foreach (var item in Model) { <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.MemberId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Logintime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LogoutTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IPAddress)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LoginStatus)
-        </td>
-        <td>
-            <a href='@Url.Action("Edit/")@item.Id' class="btn btn-sm btn-dark ps-2 pe-2"><i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;編輯</a> |
-            <a href='@Url.Action("Details/")@item.Id' class="btn btn-sm btn-dark ps-2 pe-2"><i class="fa-solid fa-file"></i>&nbsp;&nbsp;詳細資訊</a> |
-            <a href='@Url.Action("Delete/")@item.Id' class="btn btn-sm btn-danger ps-2 pe-2"><i class="fa-solid fa-trash"></i>&nbsp;&nbsp;刪除</a>
-            
-        </td>
-    </tr>
-}
-    </tbody>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MemberId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MemberName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Logintime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LogoutTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IPAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LoginStatus)
+                </td>
+                
+            </tr>
+        }
+        </tbody>
 </table>

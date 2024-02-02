@@ -10,5 +10,7 @@ namespace SparkleAir.Infa.Utility.Helper
     {
         public const string DetailsPartial = "_DetailsPartial";
         public const string SearchPartial = "_SearchPartial";
+        public const string CalendarPartial = "_CalendarPartial"; //todo
+        public const string SeatsDetailPartial = "_SeatsDetailPartial";
     }
 }

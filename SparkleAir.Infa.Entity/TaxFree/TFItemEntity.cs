@@ -12,8 +12,9 @@ namespace SparkleAir.Infa.Entity.TaxFree
 
         public int TFCategoriesId { get; set; }
 
-        public string Name { get; set; }
+        public string TFCategoriesName { get; set; }
 
+        public string Name { get; set; }
 
         public string SerialNumber { get; set; }
 
@@ -23,13 +24,10 @@ namespace SparkleAir.Infa.Entity.TaxFree
 
         public int UnitPrice { get; set; }
 
-
         public string Description { get; set; }
 
         public bool IsPublished { get; set; }
 
-        //public int TFCategoryId { get; set; }
-        public virtual TFCategoryEntity TFCategory { get; set; }
 
     }
 

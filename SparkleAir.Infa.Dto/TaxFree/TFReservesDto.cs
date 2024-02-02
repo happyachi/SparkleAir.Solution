@@ -12,21 +12,26 @@ namespace SparkleAir.Infa.Dto.TaxFree
 
         public int MemberId { get; set; }
 
-        public int Discount { get; set; }
+        public string MemberChineseFirstName { get; set; }
+
+        public string MemberChineseLastName { get; set; }
+
+
+        public string MemberEnglishLastName { get; set; }
+
+        public string MemberEnglishFirstName { get; set; }
+        public string MemberPhone { get; set; }
+
+        public string MemberEmail { get; set; }
+
+        public string MemberPassportNumber { get; set; }
+
+        public int? Discount { get; set; }
 
         public int TotalPrice { get; set; }
 
         public int TransferPaymentId { get; set; }
 
-        //public virtual Member Member { get; set; }
-        //todo:TF
 
-        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        //public virtual ICollection<TFOrderStatus> TFOrderStatuses { get; set; }
-
-        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        //public virtual ICollection<TFReservelist> TFReservelists { get; set; }
-
-        //public virtual TransferPayment TransferPayment { get; set; }
     }
 }

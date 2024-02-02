@@ -1,0 +1,146 @@
+﻿@model SparkleAir.FrontEnd.Site.Models.ViewModels.Campaigns.CampaignsCouponVm
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CampaignsCouponVm</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CampaignId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CampaignId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Campaign)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Campaign)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateStart)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateStart)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateEnd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateEnd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCreated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateCreated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DiscountValue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiscountValue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DiscountQuantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiscountQuantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AvailableQuantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AvailableQuantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MinimumOrderValue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MinimumOrderValue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaximumDiscountAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaximumDiscountAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DisplayDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DisplayDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MemberCriteria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MemberCriteria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AirFlightsCriteria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AirFlightsCriteria)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -14,15 +14,15 @@ namespace SparkleAir.Infa.ViewModel.AirFlights
         public int AirFlightManagementId { get; set; }
 
         [Display(Name = "起飛時間")]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime ScheduledDeparture { get; set; }
 
         [Display(Name = "抵達時間")]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime ScheduledArrival { get; set; }
 
         public int AirFlightSaleStatusId { get; set; }
 
-        //from Airtypes 寫委派轉型
-        //from AirOwnId => AirTypeId => flightModel
         [Display(Name = "機型")]
         public string FlightModel { get; set; }
 
@@ -35,7 +35,7 @@ namespace SparkleAir.Infa.ViewModel.AirFlights
         [Display(Name = "目的地")]
         public string ArrivalAriPort { get; set; }
 
-        [Display(Name = "目的地")]
+        [Display(Name = "銷售狀態")]
         public string AirFlightSaleStatus { get; set; }
     }
 }
