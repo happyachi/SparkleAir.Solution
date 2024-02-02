@@ -26,10 +26,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
     public class CampaignsDiscountController : BaseController
     {
 
-
         CampaignsDiscountsEFRepository repo = new CampaignsDiscountsEFRepository();
-        ITFRepository repoit = new TFItemEFRepository();
-
         MemberClassEFRepository memberRepo = new MemberClassEFRepository();
         public ActionResult Index()
         {
@@ -110,7 +107,6 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
             service.Create(dto);
         }
 
- 
         public ActionResult SelectProduct()
         {
             if (!ModelState.IsValid) return View();

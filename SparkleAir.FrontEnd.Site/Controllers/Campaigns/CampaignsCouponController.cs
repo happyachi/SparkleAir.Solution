@@ -51,12 +51,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
 
             return vm;
         }
-        public ActionResult GetData()
-        {
-            List<CampaignsCouponIndexVm> coupons = GetAll();
-            return Json(new { data = coupons }, JsonRequestBehavior.AllowGet);
-        }
-
+     
         #region Create
         public ActionResult Create()
         {
@@ -295,6 +290,10 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
         }
         #endregion
 
-        
+        //public ActionResult GetData()
+        //{
+        //    List<CampaignsCouponIndexVm> coupons = GetAll();
+        //    return Json(new { data = coupons }, JsonRequestBehavior.AllowGet);
+        //}
     }
 }
