@@ -13,7 +13,9 @@ namespace SparkleAir.Infa.Dto.TaxFree
 
         public int TFCategoriesId { get; set; }
 
-       public string Name { get; set; }
+        public string TFCategoriesName { get; set; }
+
+        public string Name { get; set; }
 
     
         public string SerialNumber { get; set; }
@@ -29,8 +31,7 @@ namespace SparkleAir.Infa.Dto.TaxFree
 
         public bool IsPublished { get; set; }
 
-        //public int TFCtegoryId { get; set; }
-        public virtual TFCategoryDto TFCategory { get; set; }
+        
 
     }
 

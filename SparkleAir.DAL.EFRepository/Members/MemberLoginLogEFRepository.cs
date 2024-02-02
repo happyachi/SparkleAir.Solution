@@ -30,6 +30,7 @@ namespace SparkleAir.DAL.EFRepository.Members
             {
                 Id = member.Id,
                 MemberId = member.MemberId,
+                MemberName = member.Member.EnglishFirstName + "  "+member.Member.EnglishLastName,
                 Logintime = member.Logintime,
                 LogoutTime = member.LogoutTime,
                 IPAddress = member.IPAddress,

@@ -1,0 +1,156 @@
+﻿@model IEnumerable<SparkleAir.FrontEnd.Site.Models.ViewModels.Campaigns.CampaignsDiscountIndexVm>
+
+@section styles{
+    <style>
+        #divMore {
+            width: auto;
+            height: auto;
+            border: 1px solid gray;
+            position: absolute;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            /*四周隱影*/
+            border-radius: 10px;
+            padding: 10px;
+            font-size: 0.8em;
+            z-index: 999;
+        }
+    </style>
+}
+
+<h2>_SearchPartialCamapign</h2>
+
+<div class="row" id="datas">
+    <div style="overflow:auto">
+        <form id="filterForm" class="text-center align-items-center">
+            <div class="form-group row">
+                <label class="col-form-label col-1">活動名稱:</label>
+                <div class="col-sm-2">
+                    @*@Html.TextBox("Name")*@
+                    <input type="text" class="form-control" id="Discount" name="Name">
+                </div>
+                <button type="button" class="btn btn-sm btn-dark col-sm-1" onclick="applyFilter()" value="Search">搜尋</button>
+            </div>
+            <!-- 其他篩選條件... -->
+        </form>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.CampaignId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DateStart)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DateEnd)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DateCreated)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Type)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CampaignId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateStart)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateEnd)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateCreated)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Type)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+
+<div id="divMore" style="display:none"></div>
+
+<script>
+		document.querySelectorAll(".details-link").forEach(function (link) {
+			link.addEventListener('click', function (event) {
+				event.preventDefault();
+				//showModal(link.dataset.id); // 通過 dataset 獲取 itemId
+			});
+		});
+
+		function showModal(itemId) {
+			fetch('@Url.Content("~/CampaignDiscounts/DetailsPartial")' + `?id=${itemId}`)
+				.then(response => response.text())
+				.then(data => {
+					const div = document.querySelector('#divMore');
+					div.innerHTML = data;
+				})
+				.catch(error => console.error('Error:', error));
+
+			const x = event.clientX;
+			const y = event.clientY;
+			const div = document.querySelector('#divMore');
+			div.style.left = `${x}px`;
+			div.style.top = `${y}px`;
+			div.style.display = 'block';
+			event.stopPropagation();
+		}
+
+		// 添加此代码來隐藏div
+		document.body.addEventListener('click', function (event) {
+			const div = document.querySelector('#divMore');
+			const isClickInside = div.contains(event.target);
+			if (!isClickInside) {
+				div.style.display = 'none';
+			}
+		});
+		// 避免div內部的點擊觸發body的事件
+		document.querySelector('#divMore').addEventListener('click', function (event) {
+			event.stopPropagation();
+		});
+
+
+		function applyFilter() {
+    // 獲取表單數據
+    var formData = $('#filterForm').serialize();
+
+    // 構建 URL
+    var url = '@Url.Action("SearchPartialCamapign", "CampaignsDiscount")' + '?' + formData;
+
+    // 發送 AJAX 請求
+    fetch(url)
+        .then(response => response.text())
+        .then(data => {
+            // 更新表格內容或其他視圖操作，根據你的需求
+            $('#datas').html(data);
+        })
+        .catch(error => console.error('Error:', error));
+}
+</script>
