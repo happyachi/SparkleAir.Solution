@@ -7,7 +7,7 @@
 <h2>新增機場</h2>
 
 @*補了這*@
-@using (Html.BeginForm("Create", "Products", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Create", "Airports", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -23,10 +23,10 @@
                 <!--<select class="form-select" aria-label="Default select example" name="Lata">--> @* 下拉式選單  ,name="Lata" 要放要得欄位才抓地到值*@
 
                     <!--<option selected></option>
-                    @foreach (var item in ViewBag.editAirport)
+                   @* @foreach (var item in ViewBag.editAirport)
                     {
                         <option value="@item.Lata">@item.Lata</option>
-                    }
+                    }*@
 
                 </select>-->
 
@@ -53,10 +53,10 @@
                 <!--<select class="form-select" aria-label="Default select example" name="Country">-->  @*name="Country" 要放要得欄位才抓地到值*@
 
                     <!--<option selected></option>
-                    @foreach (var item in ViewBag.editAirport)
+                   @* @foreach (var item in ViewBag.editAirport)
                     {
                         <option value="@item.Country">@item.Country</option>
-                    }
+                    }*@
 
                 </select>-->
                 @Html.EditorFor(model => model.Country, new { htmlAttributes = new { @class = "form-control" } })
