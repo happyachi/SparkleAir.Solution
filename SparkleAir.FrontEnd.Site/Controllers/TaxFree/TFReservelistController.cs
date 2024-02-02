@@ -33,11 +33,23 @@ namespace SparkleAir.FrontEnd.Site.Controllers.TaxFree
             {
                 Id = p.Id,
                 TFItemsId = p.TFItemsId,
+                TFItemsName = p.TFItemsName,
+                TFItemsImage = p.TFItemsImage,
+                TFItemsSerialNumber = p.TFItemsSerialNumber,
+                TFItemsQuantity = p.TFItemsQuantity,
+                TFItemsUnitPrice = p.TFItemsUnitPrice,
                 Quantity = p.Quantity,
                 UnitPrice = p.UnitPrice,
                 Discount = p.Discount,
                 TotalPrice = p.TotalPrice,
-                TFReserveId = p.TFReserveId
+                TFReserveId = p.TFReserveId,
+                MemberChineseFirstName = p.MemberChineseFirstName,
+                MemberChineseLastName = p.MemberChineseLastName,
+                MemberEnglishFirstName = p.MemberEnglishFirstName,
+                MemberEnglishLastName = p.MemberEnglishLastName,
+                MemberPassportNumber = p.MemberPassportNumber,
+                MemberEmail = p.MemberEmail,
+                MemberPhone = p.MemberPhone 
             }).ToList();
             return vm;
 
@@ -59,11 +71,23 @@ namespace SparkleAir.FrontEnd.Site.Controllers.TaxFree
             {
                 Id = dto.Id,
                 TFItemsId = dto.TFItemsId,
+                TFItemsName = dto.TFItemsName,
+                TFItemsImage = dto.TFItemsImage,
+                TFItemsSerialNumber = dto.TFItemsSerialNumber,
+                TFItemsQuantity = dto.TFItemsQuantity,
+                TFItemsUnitPrice = dto.TFItemsUnitPrice,
                 Quantity = dto.Quantity,
                 UnitPrice = dto.UnitPrice,
                 Discount = dto.Discount,
                 TotalPrice = dto.TotalPrice,
-                TFReserveId = dto.TFReserveId
+                TFReserveId = dto.TFReserveId,
+                MemberChineseFirstName = dto.MemberChineseFirstName,
+                MemberChineseLastName = dto.MemberChineseLastName,
+                MemberEnglishFirstName = dto.MemberEnglishFirstName,
+                MemberEnglishLastName = dto.MemberEnglishLastName,
+                MemberPassportNumber = dto.MemberPassportNumber,
+                MemberEmail = dto.MemberEmail,
+                MemberPhone = dto.MemberPhone
 
             };
 

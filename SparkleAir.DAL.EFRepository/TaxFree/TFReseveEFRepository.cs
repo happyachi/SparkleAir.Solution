@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace SparkleAir.DAL.EFRepository.TaxFree
 {
@@ -39,10 +40,17 @@ namespace SparkleAir.DAL.EFRepository.TaxFree
         {
             var db = new AppDbContext();
             var getlist = db.TFReserves.AsNoTracking()
-                                         //.Include(x => x.TFItemsId) //todo
+                                         .Include(x => x.Member) 
                                          .Select(x => new TFReservesEntity {
                                              Id = x.Id,
                                              MemberId = x.MemberId,
+                                             MemberChineseFirstName = x.Member.ChineseFirstName,
+                                             MemberChineseLastName = x.Member.ChineseLastName,
+                                             MemberEnglishFirstName = x.Member.EnglishFirstName,
+                                             MemberEnglishLastName = x.Member.EnglishLastName,
+                                             MemberPhone = x.Member.Phone,
+                                             MemberEmail = x.Member.Email,
+                                             MemberPassportNumber = x.Member.PassportNumber,
                                              Discount = x.Discount,
                                              TotalPrice = x.TotalPrice,
                                              TransferPaymentId = x.TransferPaymentId
@@ -70,10 +78,18 @@ namespace SparkleAir.DAL.EFRepository.TaxFree
         {
             var db = new AppDbContext();
             List<TFReservesEntity> getlist = db.TFReserves.AsNoTracking()
+                                                 .Include(x => x.Member)
                                                  .Where(x => x.MemberId == entity.MemberId)
                                                  .Select(x => new TFReservesEntity {
                                                      Id = x.Id,
                                                      MemberId = x.MemberId,
+                                                     MemberChineseFirstName = x.Member.ChineseFirstName,
+                                                     MemberChineseLastName = x.Member.ChineseLastName,
+                                                     MemberEnglishFirstName = x.Member.EnglishFirstName,
+                                                     MemberEnglishLastName = x.Member.EnglishLastName,
+                                                     MemberPhone = x.Member.Phone,
+                                                     MemberEmail = x.Member.Email,
+                                                     MemberPassportNumber = x.Member.PassportNumber,
                                                      Discount = x.Discount,
                                                      TotalPrice = x.TotalPrice,
                                                      TransferPaymentId = x.TransferPaymentId

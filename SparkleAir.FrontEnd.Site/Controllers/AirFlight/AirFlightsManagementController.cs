@@ -11,6 +11,10 @@ using SparkleAir.Infa.Dto.AriFlights;
 using SparkleAir.Infa.Utility.Helper;
 using SparkleAir.Infa.Criteria.AirFlights;
 using SparkleAir.Infa.ViewModel.AirFlights;
+using SparkleAir.IDAL.IRepository.Airport;
+using SparkleAir.BLL.Service.Airports;
+using SparkleAir.DAL.EFRepository.Airports;
+using System.Threading.Tasks;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
 {
@@ -20,15 +24,22 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
 
         private IAirFlightManagementRepository _repo;
         private AirFlightManagementService _service;
+        private IAirTicketPriceRepository _priceRepository;
+        private AirTicketPriceService _priceService;
+
+        private IAirportRepository _airportRepo;
+        private AirportService _airportService;
 
         public AirFlightsManagementController()
         {
-            //EF
             _repo = new AirFlightManagementEFRepository();
-
-            //DP
-            //_repo = new AirFlightDapperRepository();
             _service = new AirFlightManagementService(_repo);
+
+            _priceRepository = new AirTicketPriceEFRepository();
+            _priceService = new AirTicketPriceService(_priceRepository);
+
+            _airportRepo = new AirportEFRepository();
+            _airportService = new AirportService(_airportRepo);
         }
 
         //for testing
@@ -64,20 +75,25 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
             return vm;
         }
 
+        #endregion
+
+        #region Create With Price for each Cabin
+
         public ActionResult Create()
         {
+            ViewBag.Airports = _airportService.GetAll();
             return View();
         }
 
-        #endregion
-
-        #region Create
         [HttpPost]
-        public ActionResult Create(AirFlightManagementVm vm)
+        public async Task<ActionResult> Create(AirFlightManagementCreateVm vm)
         {
+            if (!ModelState.IsValid) return View();
+            ViewBag.Airports = _airportService.GetAll();
             try
             {
-                CreateFlight(vm);
+                var flightId = CreateFlight(vm);
+                await _priceService.CreateTicketPirce1500(flightId, vm.Mile);
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
@@ -87,25 +103,25 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
             }
         }
 
-        private void CreateFlight(AirFlightManagementVm vm)
+        private int CreateFlight(AirFlightManagementCreateVm vm)
         {
             AirFlightManagementDto dto = new AirFlightManagementDto
             {
                 Id = vm.Id,
                 FlightCode = vm.FlightCode,
                 DepartureAirport = vm.DepartureAirport,
-                DepartureAirportId = vm.DepartureAirportId,
                 ArrivalAirport = vm.ArrivalAirport,
-                ArrivalAirportId = vm.ArrivalAirportId,
                 DepartureTime = vm.DepartureTime,
                 ArrivalTime = vm.ArrivalTime,
                 DayofWeek = vm.DayofWeek,
                 Mile = vm.Mile,
                 DepartureTimeZone = vm.DepartureTimeZone,
-                ArrivalTimeZone = vm.ArrivalTimeZone
+                ArrivalTimeZone = vm.ArrivalTimeZone,
+                CrossDay = vm.CrossDay
             };
 
-            _service.Create(dto);
+            var flightId = _service.Create(dto);
+            return flightId;
         }
         #endregion
 
@@ -115,12 +131,16 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
             try
             {
                 AirFlightManagementVm vm = Get(id);
+                ViewBag.AirFlightEdit = Get(id);
+                ViewBag.Airports = _airportService.GetAll();
+                //return Json(vm, JsonRequestBehavior.AllowGet);
                 return View(vm);
+                //return View(vm);
             }
             catch (Exception ex)
             {
                 ModelState.AddModelError("", ex.Message);
-                return View();
+                return Json(new { error = ex.Message });
             }
 
         }
@@ -144,7 +164,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
                 Mile = dto.Mile,
                 DepartureTimeZone = dto.DepartureTimeZone,
                 ArrivalTimeZone = dto.ArrivalTimeZone,
-                AriOwnId = (int)dto.AirOwnId
+                AirOwnId = (int)dto.AirOwnId
             };
             return vm;
         }
@@ -155,6 +175,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
 
             if (!ModelState.IsValid) return View(vm);
 
+            ViewBag.Airports = _airportService.GetAll();
             try
             {
                 Update(vm);
@@ -219,6 +240,11 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
             var viewModel = SearchAirFlights(vm);
             return PartialView("_SearchPartial", viewModel);
         }
+        public ActionResult Search(AirFlightManagementSearchCriteria vm)
+        {
+            var datas = SearchAirFlights(vm);
+            return Json(datas, JsonRequestBehavior.AllowGet);
+        }
         private List<AirFlightManagementIndexVm> SearchAirFlights(AirFlightManagementSearchCriteria vm)
         {
             var list = _service.Search(vm);
@@ -246,6 +272,12 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
                 viewModel.FlightModel = "未設定";
             }
             return PartialView("_DetailsPartial", viewModel);
+        }
+
+        public ActionResult GetFlightDetails(int id)
+        {
+            var flightDetail = _service.GetById(id);
+            return Json(flightDetail, JsonRequestBehavior.AllowGet);
         }
         #endregion
     }

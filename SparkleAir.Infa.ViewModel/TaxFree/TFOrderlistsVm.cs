@@ -39,14 +39,19 @@ namespace SparkleAir.Infa.ViewModel.TaxFree
         public string MemberPassportNumber { get; set; }
         public int TFItemsId { get; set; }
 
+        [Display(Name = "商品名稱")]
         public string TFItemsName { get; set; }
 
+        [Display(Name = "商品編號")]
         public string TFItemsSerialNumber { get; set; }
 
+        [Display(Name = "商品圖片")]
         public string TFItemsImage { get; set; }
 
+        [Display(Name = "商品數量")]
         public int TFItemsQuantity { get; set; }
 
+        [Display(Name = "商品單價")]
         public int TFItemsUnitPrice { get; set; }
 
         public int Quantity { get; set; }

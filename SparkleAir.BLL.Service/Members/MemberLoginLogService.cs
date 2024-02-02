@@ -26,6 +26,7 @@ namespace SparkleAir.BLL.Service.Members
             {
                 Id = m.Id,
                 MemberId = m.MemberId,
+                MemberName = m.MemberName,
                 Logintime = m.Logintime,
                 LogoutTime = m.LogoutTime,
                 IPAddress = m.IPAddress,

@@ -26,10 +26,22 @@ namespace SparkleAir.BLL.Service.TaxFree
             {
                 Id = x.Id,
                 MemberId = x.MemberId,
+                TFItemsSerialNumber = x.TFItemsSerialNumber,
+                TFItemsImage = x.TFItemsImage,
+                TFItemsName = x.TFItemsName,
+                TFItemsQuantity = x.TFItemsQuantity,
+                TFItemsUnitPrice = x.TFItemsUnitPrice,
+                MemberChineseFirstName = x.MemberChineseFirstName,
+                MemberChineseLastName = x.MemberChineseLastName,
+                MemberEnglishFirstName = x.MemberEnglishFirstName,
+                MemberEnglishLastName = x.MemberEnglishLastName,
+                MemberPhone = x.MemberPhone,
+                MemberEmail = x.MemberEmail,
+                MemberPassportNumber = x.MemberPassportNumber,
                 TFItemsId = x.TFItemsId,
                 Quantity = x.Quantity,
                 UnitPrice = x.UnitPrice
-                
+
             }).ToList();
             return list;
         }
@@ -45,6 +57,18 @@ namespace SparkleAir.BLL.Service.TaxFree
             {
                 Id = dto.Id,
                 MemberId = dto.MemberId,
+                TFItemsSerialNumber = dto.TFItemsSerialNumber,
+                TFItemsImage = dto.TFItemsImage,
+                TFItemsName = dto.TFItemsName,
+                TFItemsQuantity = dto.TFItemsQuantity,
+                TFItemsUnitPrice = dto.TFItemsUnitPrice,
+                MemberChineseFirstName = dto.MemberChineseFirstName,
+                MemberChineseLastName = dto.MemberChineseLastName,
+                MemberEnglishFirstName = dto.MemberEnglishFirstName,
+                MemberEnglishLastName = dto.MemberEnglishLastName,
+                MemberPhone = dto.MemberPhone,
+                MemberEmail = dto.MemberEmail,
+                MemberPassportNumber = dto.MemberPassportNumber,
                 TFItemsId = dto.TFItemsId,
                 Quantity = dto.Quantity,
                 UnitPrice = dto.UnitPrice
@@ -59,6 +83,18 @@ namespace SparkleAir.BLL.Service.TaxFree
             {
                 Id = dto.Id,
                 MemberId = dto.MemberId,
+                TFItemsSerialNumber = dto.TFItemsSerialNumber,
+                TFItemsImage = dto.TFItemsImage,
+                TFItemsName = dto.TFItemsName,
+                TFItemsQuantity = dto.TFItemsQuantity,
+                TFItemsUnitPrice = dto.TFItemsUnitPrice,
+                MemberChineseFirstName = dto.MemberChineseFirstName,
+                MemberChineseLastName = dto.MemberChineseLastName,
+                MemberEnglishFirstName = dto.MemberEnglishFirstName,
+                MemberEnglishLastName = dto.MemberEnglishLastName,
+                MemberPhone = dto.MemberPhone,
+                MemberEmail = dto.MemberEmail,
+                MemberPassportNumber = dto.MemberPassportNumber,
                 TFItemsId = dto.TFItemsId,
                 Quantity = dto.Quantity,
                 UnitPrice = dto.UnitPrice
@@ -74,6 +110,18 @@ namespace SparkleAir.BLL.Service.TaxFree
             TFOrderlistsDto dto = new TFOrderlistsDto
             {
                 Id = entity.Id,
+                TFItemsName = entity.TFItemsName,
+                MemberChineseFirstName = entity.MemberChineseFirstName,
+                MemberChineseLastName = entity.MemberChineseLastName,
+                MemberEnglishFirstName = entity.MemberEnglishFirstName,
+                MemberEnglishLastName = entity.MemberEnglishLastName,
+                MemberPhone= entity.MemberPhone,
+                MemberEmail = entity.MemberEmail,
+                MemberPassportNumber = entity.MemberPassportNumber,
+                TFItemsImage = entity.TFItemsImage,
+                TFItemsQuantity = entity.TFItemsQuantity,
+                TFItemsUnitPrice = entity.TFItemsUnitPrice, 
+                TFItemsSerialNumber = entity.TFItemsSerialNumber,
                 MemberId = entity.MemberId,
                 TFItemsId = entity.TFItemsId,
                 Quantity = entity.Quantity,

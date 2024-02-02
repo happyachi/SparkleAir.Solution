@@ -27,7 +27,14 @@ namespace SparkleAir.BLL.Service.TaxFree
                 MemberId = x.MemberId,
                 Discount= x.Discount.HasValue ? x.Discount.Value : 0,
                 TotalPrice = x.TotalPrice,
-                TransferPaymentId = x.TransferPaymentId
+                TransferPaymentId = x.TransferPaymentId,
+                MemberChineseFirstName = x.MemberChineseFirstName,
+                MemberChineseLastName = x.MemberChineseLastName,
+                MemberEnglishFirstName = x.MemberEnglishFirstName,
+                MemberEnglishLastName = x.MemberEnglishLastName,
+                MemberPhone = x.MemberPhone,
+                MemberEmail = x.MemberEmail,
+                MemberPassportNumber = x.MemberPassportNumber
 
 
             }).ToList();
@@ -44,6 +51,13 @@ namespace SparkleAir.BLL.Service.TaxFree
             {
                 Id = dto.Id,
                 MemberId = dto.MemberId,
+                MemberChineseFirstName = dto.MemberChineseFirstName,
+                MemberChineseLastName = dto.MemberChineseLastName,
+                MemberEnglishFirstName = dto.MemberEnglishFirstName,
+                MemberEnglishLastName = dto.MemberEnglishLastName,
+                MemberPhone = dto.MemberPhone,
+                MemberEmail = dto.MemberEmail,
+                MemberPassportNumber = dto.MemberPassportNumber,
                 Discount = dto.Discount,
                 TotalPrice = dto.TotalPrice,
                 TransferPaymentId = dto.TransferPaymentId
@@ -60,6 +74,13 @@ namespace SparkleAir.BLL.Service.TaxFree
 
                 Id = dto.Id,
                 MemberId = dto.MemberId,
+                MemberChineseFirstName = dto.MemberChineseFirstName,
+                MemberChineseLastName = dto.MemberChineseLastName,
+                MemberEnglishFirstName = dto.MemberEnglishFirstName,
+                MemberEnglishLastName = dto.MemberEnglishLastName,
+                MemberPhone = dto.MemberPhone,
+                MemberEmail = dto.MemberEmail,
+                MemberPassportNumber = dto.MemberPassportNumber,
                 Discount = dto.Discount,
                 TotalPrice = dto.TotalPrice,
                 TransferPaymentId = dto.TransferPaymentId

@@ -11,7 +11,7 @@ namespace SparkleAir.Infa.ViewModel.CompanyAndPermission
     public class CompanyStaffsChangePasswordLogIndexVm
     {
         [Display(Name = "ID")]
-        [Required(ErrorMessage = "{0}必填")]
+
         public int Id { get; set; }
 
         [Display(Name = "職員ID")]

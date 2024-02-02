@@ -9,7 +9,9 @@ namespace SparkleAir.IDAL.IRepository.AirFlights
 {
     public interface IAirFlightRepository
     {
-        void Create(AirFlightEntity entity);
+        Task<(int,string)> Create(AirFlightEntity entity);
         AirFlightEntity GetById(int id);
+        List<AirFlightEntity> GetAll();
+        void UpdateSaleStatus(AirFlightEntity entity);
     }
 }
