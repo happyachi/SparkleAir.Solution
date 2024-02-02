@@ -9,6 +9,9 @@ namespace SparkleAir.Infa.ViewModel.MealMessage
 {
     public class AirMealVm
     {
+        [Display(Name = "流水號")]
+        public int Id { get; set; }
+
         [Display(Name="餐點名稱")]
         public string Name { get; set; }
 
@@ -19,6 +22,7 @@ namespace SparkleAir.Infa.ViewModel.MealMessage
         [MaxLength(300)]
         public string MealContent { get; set; }
 
+        [Display(Name = "圖片上傳")]
         [MaxLength(3000)]
         public string Image { get; set; }
 

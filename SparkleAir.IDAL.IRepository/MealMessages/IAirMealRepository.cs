@@ -17,7 +17,8 @@ namespace SparkleAir.IDAL.IRepository.MealMessages
         int Create(AirMealEntity entity);
         void Update(AirMealEntity entity);
         void Delete(int id);
-        List<AirMealEntity> Search(string name);
+        //沒有要搜尋 直接呈現
+        List<AirMealEntity> Search();
         //給其他方法用(?
         AirMealEntity Get (int id);
     }

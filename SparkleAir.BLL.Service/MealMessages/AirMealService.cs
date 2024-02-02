@@ -40,10 +40,10 @@ namespace SparkleAir.BLL.Service.MealMessages
             _repo.Delete(id);
         }
 
-        //todo問一下GPT
-        public List<AirMealDto> Search(string name)
+        public List<AirMealDto> Search()
         {
-            var entities=_repo.Search(name);
+            
+            var entities=_repo.Search();
             var dtos=entities.Select(x=>new AirMealDto
             {
                 Id = x.Id,
