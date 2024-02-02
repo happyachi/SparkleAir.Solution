@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Edit";
+    bool isChecked = false;
 }
 
 <h2>Edit</h2>
@@ -10,7 +11,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>CampaignsDiscountVm</h4>
         <hr />
@@ -103,8 +104,16 @@
                 <div class="form-check">
                     @foreach (var member in ViewBag.Member)
                     {
+
+
                         <label class="checkbox-inline">
-                            <input class="form-check-input" type="checkbox" value="@member.Name" data-member="@member.Name" name="members">@member.Name
+                            @if (!string.IsNullOrEmpty(Model.MemberCriteria))
+                            {
+                                string[] members = Model.MemberCriteria.Split(',');
+                                isChecked = members.Contains(member.Name as string);
+                            }
+
+                            <input class="form-check-input" type="checkbox" value="@member.Name" data-member="@member.Name" name="members" @(isChecked ? "checked" : "") />@member.Name
                         </label>
                     }
                     <input type="hidden" name="MemberCriteria" id="flexCheckDefault" value="" />
@@ -142,14 +151,14 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-<script>
-    function updateMember() {
-        const members = Array.from(checks)
-            .filter(checkbox => checkbox.checked)
-            .map(checkbox => checkbox.value);
+    <script>
+        function updateMember() {
+            const members = Array.from(checks)
+                .filter(checkbox => checkbox.checked)
+                .map(checkbox => checkbox.value);
 
-        document.getElementById('flexCheckDefault').value = members.join(',');
-        console.log(members);
-    }
+            document.getElementById('flexCheckDefault').value = members.join(',');
+            console.log(members);
+        }
     </script>
 }
