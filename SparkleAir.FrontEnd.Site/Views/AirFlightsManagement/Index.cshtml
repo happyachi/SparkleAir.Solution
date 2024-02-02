@@ -6,24 +6,21 @@
 
 @section styles{
 	<style>
-		#divMore {
-			width: auto;
-			height: auto;
-			border: 1px solid gray;
-			position: absolute;
-			background-color: white;
-			box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-			/*四周隱影*/
-			border-radius: 10px;
-			padding: 10px;
-			font-size: 0.8em;
-			z-index: 999;
+
+
+		.flight-details p {
+			margin: 10px 0;
+			line-height: 1.5;
+		}
+
+		.flight-details strong {
+			color: #161A30; /* Blue color for strong tags */
 		}
 	</style>
 }
 <h2>航班管理</h2>
 
-@Html.ActionLink("新增航班", "Create", null, new { @class = "btn btn-sm btn-dark mt-2 mb-2" })
+@Html.ActionLink("新增航班", "Create", null, new { @class = "btn btn-sm btn-dark mt-2 mb-3" })
 <div class="row" id="datas">
 	<div style="overflow:auto">
 		<!--<form id="filterForm" class="text-center align-items-center">
@@ -33,7 +30,7 @@
 				</div>
 				<button type="button" class="btn btn-sm btn-dark col-sm-1" onclick="applyFilter()">搜尋</button>
 			</div>-->
-			<!-- 其他篩選條件... -->
+		<!-- 其他篩選條件... -->
 		<!--</form>-->
 		<table class="table text-center table_jq" id="flights">
 			<thead>
@@ -98,14 +95,14 @@
 </div>
 
 <div class="modal fade" tabindex="-1" id="model" aria-labelledby="title" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered">
+	<div class="modal-dialog modal-dialog-centered modal-dialog-auto">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h3 id="title" class="flex-grow-1 d-flex align-items-center justify-content-center"></h3>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
-				<div id="detail">
+				<div id="detail" class="text-center">
 
 				</div>
 			</div>
@@ -135,7 +132,7 @@
             }
 
             const data = await response.json();
-            console.log(data);
+
             const formattedDepartureTime = data.DepartureTime.Minutes.toString().padStart(2, '0')
             const formattedArrivalTime = data.ArrivalTime.Minutes.toString().padStart(2, '0')
             if (data.DepartureTerminal == null) {
@@ -143,22 +140,25 @@
             }
             if (data.ArrivalTerminal == null) {
                 data.ArrivalTerminal = '';
-            }
+			}
+			if (data.FlightModel == '') {
+				data.FlightModel = '未設定'
+			}
             const div = document.querySelector('#detail');
             const title = document.querySelector('#title');
             title.innerHTML = `${data.FlightCode}`
             div.innerHTML = `
-
-<p>機型: ${data.FlightModel} </p>
-<p>出發地: ${data.DepartureAirport} </p>
-<p>目的地: ${data.ArrivalAirport} </p>
-<p>出發航廈: ${data.DepartureTerminal} </p>
-<p>抵達航廈: ${data.ArrivalTerminal} </p>
-<p>出發時間: ${data.DepartureTime.Hours}:${formattedDepartureTime} UTC ${data.DepartureTimeZone}</p>
-<p>抵達時間: ${data.ArrivalTime.Hours}:${formattedArrivalTime} UTC ${data.ArrivalTimeZone}</p>
-
-<p>執飛時間: ${data.DayofWeek} </p>
-<p>飛行里程: ${data.Mile}</p>
+<div class="flight-details">
+    <p><strong>機型:</strong> ${data.FlightModel}</p>
+    <p><strong>出發地:</strong> ${data.DepartureAirport}</p>
+    <p><strong>目的地:</strong> ${data.ArrivalAirport}</p>
+    <p><strong>出發航廈:</strong> ${data.DepartureTerminal}</p>
+    <p><strong>抵達航廈:</strong> ${data.ArrivalTerminal}</p>
+    <p><strong>出發時間:</strong> ${data.DepartureTime.Hours}:${formattedDepartureTime} UTC ${data.DepartureTimeZone}</p>
+    <p><strong>抵達時間:</strong> ${data.ArrivalTime.Hours}:${formattedArrivalTime} UTC ${data.ArrivalTimeZone}</p>
+    <p><strong>執飛時間:</strong> ${data.DayofWeek}</p>
+    <p><strong>飛行里程:</strong> ${data.Mile}</p>
+</div>
     `;
             $('#model').modal('show');
         } catch (error) {

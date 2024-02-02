@@ -47,7 +47,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Image)
+            <img src="@Url.Content($"~/Files/Images/{Model.Image}")" alt="Uploaded Image" width="200" />
         </dd>
 
         <dt>
