@@ -7,6 +7,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
+using System.Xml.Linq;
+using SparkleAir.Infa.Criteria.Campaigns;
 
 namespace SparkleAir.DAL.EFRepository.Campaigns
 {
@@ -18,19 +21,18 @@ namespace SparkleAir.DAL.EFRepository.Campaigns
         {
             CampaignsDiscount discount = new CampaignsDiscount()
             {
-                //Id = entity.Id,
+                Id = entity.Id,
                 Name = entity.Name,
-                //CampaignId = entity.CampaignId,
+                CampaignId = entity.CampaignId,
                 DateStart = entity.DateStart,
                 DateEnd = entity.DateEnd,
-                DateCreated = DateTime.Now,
+                DateCreated = entity.DateCreated,
                 Status = entity.Status,
                 DiscountValue = entity.DiscountValue,
                 Value = entity.Value,
                 BundleSKUs = entity.BundleSKUs,
                 MemberCriteria = entity.MemberCriteria,
-                TFItemsCriteria = entity.TFItemsCriteria,
-                //Campaign = entity.Campaign
+                TFItemsCriteria = entity.TFItemsCriteria
             };
 
             db.CampaignsDiscounts.Add(discount);
@@ -55,24 +57,26 @@ namespace SparkleAir.DAL.EFRepository.Campaigns
         public List<CampaignsDiscountEntity> GetAll()
         {
             var discount = db.CampaignsDiscounts.AsNoTracking()
-                             //.Include(d => d.Campaign)
-                             //.OrderBy(d => d.DateCreated)
-                             .Select(entity =>new CampaignsDiscountEntity(
-                                 //entity.Id,
-                                 //entity.CampaignId,
-                                 entity.Name, DateTime.Now,
-                                 entity.DateStart,
-                                 entity.DateEnd,
-                                 entity.Status,
-                                 entity.DiscountValue,
-                                 entity.Value,
-                                 entity.BundleSKUs,
-                                 entity.MemberCriteria,
-                                 entity.TFItemsCriteria
-                                 //entity.Campaign.CampaignType            
-                                )).ToList();
+                             .Include(d => d.Campaign)
+                             .OrderBy(d => d.DateStart)
+                             .Select(func).ToList();
 
             return discount;
+        }
+
+        public List<CampaignsDiscountEntity> Search(CampaignsDiscountSearchCriteria entity)
+        {
+            var query = db.CampaignsDiscounts.AsNoTracking()
+                             .Include(c => c.Campaign)
+                             .OrderBy(c => c.DateCreated)
+                             .ToList()
+                             .Select(func);
+
+            if (!string.IsNullOrEmpty(entity.Name))
+            {
+                query = query.Where(e => e.Name.Contains(entity.Name));
+            }
+            return query.ToList();
         }
 
         public void Update(CampaignsDiscountEntity entity)

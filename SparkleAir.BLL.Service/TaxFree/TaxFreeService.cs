@@ -23,20 +23,24 @@ namespace SparkleAir.BLL.Service.TaxFree
         public List<TFItemDto> Get()
         {
             List<TFItemEntity> result = _repo.Get();
-            List<TFItemDto> list = result.Select(x => new TFItemDto
-            {
-                Id = x.Id,
-                Name = x.Name,
-                SerialNumber = x.SerialNumber,
-                Image = x.Image,
-                Quantity = x.Quantity,
-                UnitPrice = x.UnitPrice,
-                Description = x.Description,
-                IsPublished = x.IsPublished,
-                TFCategoriesId = x.TFCategoriesId
+            List<TFItemDto> list = result
 
 
-            }).ToList();
+                .Select(x => new TFItemDto
+                {
+                    Id = x.Id,
+                    TFCategoriesName = x.TFCategoriesName,
+                    Name = x.Name,
+                    SerialNumber = x.SerialNumber,
+                    Image = x.Image,
+                    Quantity = x.Quantity,
+                    UnitPrice = x.UnitPrice,
+                    Description = x.Description,
+                    IsPublished = x.IsPublished,
+                    TFCategoriesId = x.TFCategoriesId
+
+
+                }).ToList();
             return list;
         }
 
@@ -44,11 +48,13 @@ namespace SparkleAir.BLL.Service.TaxFree
         {
             _repo.Delete(Id);
         }
+
         public int Create(TFItemDto dto)
         {
             TFItemEntity entity = new TFItemEntity
             {
                 Id = dto.Id,
+                TFCategoriesName = dto.TFCategoriesName,
                 Name = dto.Name,
                 SerialNumber = dto.SerialNumber,
                 Image = dto.Image,
@@ -69,6 +75,7 @@ namespace SparkleAir.BLL.Service.TaxFree
             {
 
                 Id = dto.Id,
+                TFCategoriesName = dto.TFCategoriesName,
                 Name = dto.Name,
                 SerialNumber = dto.SerialNumber,
                 Image = dto.Image,
@@ -85,10 +92,11 @@ namespace SparkleAir.BLL.Service.TaxFree
         {
             TFItemEntity entity = _repo.Getid(Id);
 
-            TFItemDto dto = new TFItemDto 
+            TFItemDto dto = new TFItemDto
 
             {
                 Id = entity.Id,
+                TFCategoriesName = entity.TFCategoriesName,
                 Name = entity.Name,
                 SerialNumber = entity.SerialNumber,
                 Image = entity.Image,

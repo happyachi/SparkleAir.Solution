@@ -10,7 +10,6 @@ namespace SparkleAir.Infa.ViewModel.Members
     public class MemberIndexVm
     {
         [Display(Name = "ID")]
-        [Required(ErrorMessage = "{0}必填")]
         public int Id { get; set; }
 
         [Display(Name = "等級ID")]
@@ -53,7 +52,6 @@ namespace SparkleAir.Infa.ViewModel.Members
 
         [Display(Name = "性別")]
         [Required(ErrorMessage = "{0}必填")]
-        [MaxLength(10)]
         public bool Gender { get; set; }
 
         [Display(Name = "生日")]
@@ -73,7 +71,6 @@ namespace SparkleAir.Infa.ViewModel.Members
 
         [Display(Name = "總里程數")]
         [Required(ErrorMessage = "{0}必填")]
-        [MaxLength(10)]
         public int TotalMileage { get; set; }
 
         [Display(Name = "護照號碼")]
