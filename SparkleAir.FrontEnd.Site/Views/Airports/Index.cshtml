@@ -4,84 +4,88 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>機場列表</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <a href='@Url.Action("Create")' class="btn btn-sm btn-dark ps-3 pe-3 btn-create"><i class="fa-solid fa-plus"></i>&nbsp;&nbsp;新增</a>
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Lata)
-        </th>
-        <th style="display: none ">
-            @Html.DisplayNameFor(model => model.Gps)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Country)
-        </th>
-        <th style="display: none ">
-            @Html.DisplayNameFor(model => model.City)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AirPortName)
-        </th>
-        <th style="display: none ">
-            @Html.DisplayNameFor(model => model.TimeArea)
-        </th>
-        <th style="display: none ">
-            @Html.DisplayNameFor(model => model.Zone)
-        </th>
-        <th style="display: none ">
-            @Html.DisplayNameFor(model => model.CityIntroduction)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Continent)
-        </th>
-        <th style="display: none ">
-            @Html.DisplayNameFor(model => model.Img)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Lata)
-        </td>
-        <td style="display: none ">
-            @Html.DisplayFor(modelItem => item.Gps)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Country)
-        </td>
-        <td style="display: none ">
-            @Html.DisplayFor(modelItem => item.City)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AirPortName)
-        </td>
-        <td style="display: none ">
-            @Html.DisplayFor(modelItem => item.TimeArea)
-        </td>
-        <td style="display: none ">
-            @Html.DisplayFor(modelItem => item.Zone)
-        </td>
-        <td style="display: none ">
-            @Html.DisplayFor(modelItem => item.CityIntroduction)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Continent)
-        </td>
-        <td style="display: none ">
-            @Html.DisplayFor(modelItem => item.Img)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-        </td>
-    </tr>
-}
+<table class="table table_jq">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Lata)
+            </th>
+            <th style="display: none ">
+                @Html.DisplayNameFor(model => model.Gps)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Country)
+            </th>
+            <th style="display: none ">
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AirPortName)
+            </th>
+            <th style="display: none ">
+                @Html.DisplayNameFor(model => model.TimeArea)
+            </th>
+            <th style="display: none ">
+                @Html.DisplayNameFor(model => model.Zone)
+            </th>
+            <th style="display: none ">
+                @Html.DisplayNameFor(model => model.CityIntroduction)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Continent)
+            </th>
+            <th style="display: none ">
+                @Html.DisplayNameFor(model => model.Img)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Lata)
+                </td>
+                <td style="display: none ">
+                    @Html.DisplayFor(modelItem => item.Gps)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Country)
+                </td>
+                <td style="display: none ">
+                    @Html.DisplayFor(modelItem => item.City)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AirPortName)
+                </td>
+                <td style="display: none ">
+                    @Html.DisplayFor(modelItem => item.TimeArea)
+                </td>
+                <td style="display: none ">
+                    @Html.DisplayFor(modelItem => item.Zone)
+                </td>
+                <td style="display: none ">
+                    @Html.DisplayFor(modelItem => item.CityIntroduction)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Continent)
+                </td>
+                <td style="display: none ">
+                    @Html.DisplayFor(modelItem => item.Img)
+                </td>
+                <td>
+                    <a href='@Url.Action("Edit/")@item.Id' class="btn btn-sm btn-dark ps-2 pe-2 btn-edit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;編輯</a>
+                    <a href='@Url.Action("Details/")@item.Id' class="btn btn-sm btn-dark ps-2 pe-2 btn-detail"><i class="fa-solid fa-file"></i>&nbsp;&nbsp;詳細資訊</a>
+                    <a href='@Url.Action("Delete/")@item.Id' class="btn btn-sm btn-danger ps-2 pe-2 btn-delete"><i class="fa-solid fa-trash"></i>&nbsp;&nbsp;刪除</a>
+                </td>
+            </tr>
+        }
+    <tbody>
 
 </table>
