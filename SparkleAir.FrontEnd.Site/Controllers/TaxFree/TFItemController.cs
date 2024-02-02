@@ -62,7 +62,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.TaxFree
         public ActionResult Delete(int id)
         {
             DeleteItem(id);
-            return View("Index");
+            return RedirectToAction("Index","TFItem");
         }
 
         private void DeleteItem(int id)
@@ -176,6 +176,12 @@ namespace SparkleAir.FrontEnd.Site.Controllers.TaxFree
         [HttpPost]
         public ActionResult Edit(TFItemVm model, HttpPostedFileBase file)
         {
+            var service = new TaxFreeService(TFRepository);
+            var category1 = service.Get();
+            var data = category1.Select(x => x.TFCategoriesName).Distinct().ToList();
+            ViewBag.TFCategories = data;
+            
+            
             // save uploaded file
             string path = Server.MapPath("~/Files/Images");
             var helper = new UploadImgHelper();
@@ -186,6 +192,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.TaxFree
                 string result = helper.SaveAs(path, file);
                 model.Image = System.IO.Path.GetFullPath(result);
                 model.FileName = result;
+
                 UpdateItem(model);
                 //Create(model);
 
@@ -197,6 +204,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.TaxFree
                 ModelState.AddModelError(string.Empty, "上傳檔案失敗: " + ex.Message);
 
             }
+
             UpdateItem(model);
             return RedirectToAction("Index", "TFItem");
         }
@@ -214,7 +222,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.TaxFree
                 TFCategoriesId = vm.TFCategoriesId,
                 TFCategoriesName = vm.TFCategoriesName,
                 SerialNumber = vm.SerialNumber,
-                Image = vm.Image,
+                Image = vm.FileName,
                 Quantity = vm.Quantity,
                 UnitPrice = vm.UnitPrice,
                 Description = vm.Description,
