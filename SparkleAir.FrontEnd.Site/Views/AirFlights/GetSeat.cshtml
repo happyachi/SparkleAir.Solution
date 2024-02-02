@@ -4,25 +4,20 @@
 }
 @section styles{
 	<style>
-		#divMore {
-			width: auto;
-			height: auto;
-			border: 1px solid gray;
-			position: absolute;
-			background-color: white;
-			box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-			/*四周隱影*/
-			border-radius: 10px;
-			padding: 10px;
-			font-size: 0.8em;
-			z-index: 999;
+		.flight-details p {
+			margin: 10px 0;
+			line-height: 1.5;
+		}
+
+		.flight-details strong {
+			color: #161A30; /* Blue color for strong tags */
 		}
 	</style>
 }
 <p>
-	@Model.DepartureAirport => @Model.ArrivalAirport<br />
-	預定出發時間: @Model.ScheduledDeparture <br />
-	預定到達時間: @Model.ScheduledArrival
+	@Model.DepartureAirport <i class="fa-solid fa-right-long"></i> @Model.ArrivalAirport<br />
+	<i class="fa-solid fa-plane-departure"></i> @Model.ScheduledDeparture<br />
+	<i class="fa-solid fa-plane-arrival"></i> @Model.ScheduledArrival
 </p>
 <div class="row" id="datas">
 	<div style="overflow:auto">
@@ -63,7 +58,21 @@
 		</table>
 	</div>
 </div>
-<div id="divMore" style="display:none"></div>
+<div class="modal fade" tabindex="-1" id="model" aria-labelledby="title" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-dialog-auto">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3 id="title" class="flex-grow-1 d-flex align-items-center justify-content-center"></h3>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<div id="detail" class="text-center">
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 
 <script>
 		document.querySelectorAll(".link").forEach(function (link) {
@@ -73,35 +82,31 @@
 			});
 		});
 
-		function showModal(itemId) {
-			fetch('@Url.Content("~/AirFlights/SeatsDetailPartial")' + `?id=${itemId}`)
-				.then(response => response.text())
-				.then(data => {
-					const div = document.querySelector('#divMore');
-					div.innerHTML = data;
-				})
-				.catch(error => console.error('Error:', error));
-
-			const x = event.clientX;
-			const y = event.clientY;
-			const div = document.querySelector('#divMore');
-			div.style.left = `${x}px`;
-			div.style.top = `${y}px`;
-			div.style.display = 'block';
-			event.stopPropagation();
-			return false;
+async function showModal(itemId) {
+    try {
+        const response = await fetch('@Url.Content("~/AirFlights/SeatsDetailPartial")' + `?id=${itemId}`);
+		if (!response.ok) {
+		throw new Error(`HTTP error! Status: ${response.status}`);
 		}
 
-		// 添加此代码來隐藏div
-		document.body.addEventListener('click', function (event) {
-			const div = document.querySelector('#divMore');
-			const isClickInside = div.contains(event.target);
-			if (!isClickInside) {
-				div.style.display = 'none';
-			}
-		});
-		// 避免div內部的點擊觸發body的事件
-		document.querySelector('#divMore').addEventListener('click', function (event) {
-			event.stopPropagation();
-		});
+		const data = await response.json();
+		
+
+		const div = document.querySelector('#detail');
+		const title = document.querySelector('#title');
+		title.innerHTML = `${data.SeatNum}`
+		div.innerHTML = `
+	<div class="flight-details">
+		<p><strong>姓:</strong> ${data.LastName} </p>
+		<p><strong>名:</strong> ${data.FirstName} </p>
+		<p><strong>性別:</strong> ${data.Gender} </p>
+		<p><strong>國籍:</strong> ${data.Country} </p>
+		<p><strong>人別:</strong> ${data.TypeofPassenger} </p>
+		<p><strong>報到狀態:</strong> ${data.CheckInstatus}</p>
+		</div>`;
+		$('#model').modal('show');
+		} catch (error) {
+		console.error('Error:', error);
+		}
+		}
 </script>
