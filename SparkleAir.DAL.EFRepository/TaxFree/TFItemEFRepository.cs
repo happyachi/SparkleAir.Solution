@@ -61,6 +61,7 @@ namespace SparkleAir.DAL.EFRepository.TaxFree
         {
             var db = new AppDbContext();
             var tfModel = db.TFItems.Find(id);
+            db.TFWishlists.RemoveRange(tfModel.TFWishlists);
             db.TFItems.Remove(tfModel);
             db.SaveChanges();
 
