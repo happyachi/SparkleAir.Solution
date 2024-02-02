@@ -351,29 +351,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SparkleAir.BLL.Service\SparkleAir.BLL.Service.csproj">
-      <Project>{C3F49393-96C1-4B8C-B468-717A2F73EF89}</Project>
-      <Name>SparkleAir.BLL.Service</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SparkleAir.FrontEnd.Site\SparkleAir.FrontEnd.Site.csproj">
       <Project>{f24c52e9-0d8f-42ae-9ccd-2257d5d5e44d}</Project>
       <Name>SparkleAir.FrontEnd.Site</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SparkleAir.IDAL.IRepository\SparkleAir.IDAL.IRepository.csproj">
-      <Project>{73007f85-f88e-4292-ab16-8a5798a9a6fb}</Project>
-      <Name>SparkleAir.IDAL.IRepository</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SparkleAir.Infa.Dto\SparkleAir.Infa.Dto.csproj">
-      <Project>{2431caf2-a681-4bb8-9973-3e568f7a7453}</Project>
-      <Name>SparkleAir.Infa.Dto</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SparkleAir.Infa.Entity\SparkleAir.Infa.Entity.csproj">
-      <Project>{88fb70a6-7d2c-40d0-a6a6-90cd80d5c422}</Project>
-      <Name>SparkleAir.Infa.Entity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SparkleAir.Infa.ViewModel\SparkleAir.Infa.ViewModel.csproj">
-      <Project>{4b7a6ecf-2f6d-449b-83d0-6e08d3e43a40}</Project>
-      <Name>SparkleAir.Infa.ViewModel</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

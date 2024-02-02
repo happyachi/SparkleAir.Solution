@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace SparkleAir.DAL.EFRepository.TaxFree
 {
@@ -29,7 +30,7 @@ namespace SparkleAir.DAL.EFRepository.TaxFree
 
         void ITFOrderRepository.Delete(int id)
         {
-            var db =new AppDbContext();
+            var db = new AppDbContext();
             var tfModel = db.TFOrderlists.Find(id);
             db.TFOrderlists.Remove(tfModel);
             db.SaveChanges();
@@ -39,8 +40,30 @@ namespace SparkleAir.DAL.EFRepository.TaxFree
         {
             var db = new AppDbContext();
             var getlist = db.TFOrderlists.AsNoTracking()
-                                         //.Include(x => x.TFItemsId) //todo
-                                         .Select(x => new TFOrderlistsEntity { Id = x.Id, MemberId = x.MemberId, TFItemsId = x.TFItemsId, Quantity = x.Quantity, UnitPrice = x.UnitPrice })
+                                         .Include(x => x.TFItem)
+                                         .Include(x => x.Member)
+                                         .Select(x => new TFOrderlistsEntity
+                                         {
+                                             Id = x.Id,
+                                             MemberId = x.MemberId,
+                                             MemberChineseFirstName = x.Member.ChineseFirstName,
+                                             MemberChineseLastName = x.Member.ChineseLastName,
+                                             MemberEnglishFirstName = x.Member.EnglishFirstName,
+                                             MemberEnglishLastName = x.Member.EnglishLastName,
+                                             MemberPhone = x.Member.Phone,
+                                             MemberEmail = x.Member.Email,
+                                             MemberPassportNumber = x.Member.PassportNumber,
+                                             TFItemsId = x.TFItemsId,
+                                             TFItemsSerialNumber = x.TFItem.SerialNumber,
+                                             TFItemsImage = x.TFItem.Image,
+                                             TFItemsName = x.TFItem.Name,
+                                             TFItemsQuantity = x.TFItem.Quantity,
+                                             TFItemsUnitPrice = x.TFItem.UnitPrice,
+                                             Quantity = x.Quantity,
+                                             UnitPrice = x.UnitPrice
+
+
+                                         })
                                          .ToList();
             return getlist;
 
@@ -55,9 +78,22 @@ namespace SparkleAir.DAL.EFRepository.TaxFree
             {
                 Id = get.Id,
                 MemberId = get.MemberId,
+                MemberChineseFirstName = get.Member.ChineseFirstName,
+                MemberChineseLastName = get.Member.ChineseLastName,
+                MemberEnglishFirstName = get.Member.EnglishFirstName,
+                MemberEnglishLastName = get.Member.EnglishLastName,
+                MemberPhone = get.Member.Phone,
+                MemberEmail = get.Member.Email,
+                MemberPassportNumber = get.Member.PassportNumber,
+                TFItemsId = get.TFItemsId,
+                TFItemsSerialNumber = get.TFItem.SerialNumber,
+                TFItemsImage = get.TFItem.Image,
+                TFItemsName = get.TFItem.Name,
+                TFItemsQuantity = get.TFItem.Quantity,
+                TFItemsUnitPrice = get.TFItem.UnitPrice,
                 Quantity = get.Quantity,
                 UnitPrice = get.UnitPrice
-            }; 
+            };
             return getlist;
         }
 
@@ -65,8 +101,29 @@ namespace SparkleAir.DAL.EFRepository.TaxFree
         {
             var db = new AppDbContext();
             List<TFOrderlistsEntity> getlist = db.TFOrderlists.AsNoTracking()
-                                                 .Where(x=> x.MemberId == entity.MemberId)
-                                                 .Select(x => new TFOrderlistsEntity { Id = x.Id, MemberId = x.MemberId, TFItemsId = x.TFItemsId, Quantity = x.Quantity, UnitPrice = x.UnitPrice })
+                                                 .Include(x => x.TFItem)
+                                                 .Include(x => x.Member)
+                                                 .Where(x => x.MemberId == entity.MemberId)
+                                                 .Select(x => new TFOrderlistsEntity
+                                                 {
+                                                     Id = x.Id,
+                                                     MemberId = x.MemberId,
+                                                     MemberChineseFirstName = x.Member.ChineseFirstName,
+                                                     MemberChineseLastName = x.Member.ChineseLastName,
+                                                     MemberEnglishFirstName = x.Member.EnglishFirstName,
+                                                     MemberEnglishLastName = x.Member.EnglishLastName,
+                                                     MemberPhone = x.Member.Phone,
+                                                     MemberEmail = x.Member.Email,
+                                                     MemberPassportNumber = x.Member.PassportNumber,
+                                                     TFItemsId = x.TFItemsId,
+                                                     TFItemsSerialNumber = x.TFItem.SerialNumber,
+                                                     TFItemsImage = x.TFItem.Image,
+                                                     TFItemsName = x.TFItem.Name,
+                                                     TFItemsQuantity = x.TFItem.Quantity,
+                                                     TFItemsUnitPrice = x.TFItem.UnitPrice,
+                                                     Quantity = x.Quantity,
+                                                     UnitPrice = x.UnitPrice
+                                                 })
                                                  .ToList();
             return getlist;
         }

@@ -4,21 +4,14 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>會員</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.MemberClassId)
-        </th>
+
         <th>
             @Html.DisplayNameFor(model => model.MemberClassName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CountryId)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.CountryName)
@@ -44,28 +37,15 @@
         <th>
             @Html.DisplayNameFor(model => model.Phone)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TotalMileage)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PassportNumber)
-        </th>
+
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.MemberClassId)
-        </td>
+
         <td>
             @Html.DisplayFor(modelItem => item.MemberClassName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CountryId)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CountryName)
@@ -91,19 +71,10 @@
         <td>
             @Html.DisplayFor(modelItem => item.Phone)
         </td>
+
         <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TotalMileage)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PassportNumber)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            <a href='@Url.Action("Edit/")@item.Id' class="btn btn-sm btn-dark ps-2 pe-2 btn-edit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;編輯</a> |
+            <a href='@Url.Action("Details/")@item.Id' class="btn btn-sm btn-dark ps-2 pe-2 btn-detail"><i class="fa-solid fa-file"></i>&nbsp;&nbsp;詳細資訊</a> |
         </td>
     </tr>
 }

@@ -13,6 +13,23 @@ namespace SparkleAir.Infa.Entity.TaxFree
 
         public int MemberId { get; set; }
 
+        public string MemberChineseFirstName { get; set; }
+
+
+        public string MemberChineseLastName { get; set; }
+
+
+        public string MemberEnglishLastName { get; set; }
+
+
+        public string MemberEnglishFirstName { get; set; }
+
+        public string MemberPhone { get; set; }
+
+        public string MemberEmail { get; set; }
+
+        public string MemberPassportNumber { get; set; }
+
         public int? Discount { get; set; }
 
         public int TotalPrice { get; set; }

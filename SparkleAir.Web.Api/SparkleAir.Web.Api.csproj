@@ -570,10 +570,6 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SparkleAir.BLL.Service\SparkleAir.BLL.Service.csproj">
-      <Project>{c3f49393-96c1-4b8c-b468-717a2f73ef89}</Project>
-      <Name>SparkleAir.BLL.Service</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SparkleAir.DAL.DapperRepository\SparkleAir.DAL.DapperRepository.csproj">
       <Project>{217749e9-e16e-4906-bac3-32c1214f451c}</Project>
       <Name>SparkleAir.DAL.DapperRepository</Name>

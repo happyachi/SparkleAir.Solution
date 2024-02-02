@@ -1,0 +1,178 @@
+﻿@model SparkleAir.Infa.ViewModel.TaxFree.TFReservelistsVm
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TFReservelistsVm</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TFItemsId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TFItemsId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TFItemsName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TFItemsName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TFItemsSerialNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TFItemsSerialNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TFItemsImage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TFItemsImage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TFItemsQuantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TFItemsQuantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TFItemsUnitPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TFItemsUnitPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UnitPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UnitPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Discount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Discount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TFReserveId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TFReserveId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MemberId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MemberId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MemberChineseFirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MemberChineseFirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MemberChineseLastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MemberChineseLastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MemberEnglishLastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MemberEnglishLastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MemberEnglishFirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MemberEnglishFirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MemberPhone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MemberPhone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MemberEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MemberEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MemberPassportNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MemberPassportNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TransferPaymentId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TransferPaymentId)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

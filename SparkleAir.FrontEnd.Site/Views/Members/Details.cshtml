@@ -1,0 +1,129 @@
+﻿@model SparkleAir.Infa.ViewModel.Members.MemberIndexVm
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>詳細資料</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MemberClassId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MemberClassId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MemberClassName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MemberClassName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CountryId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CountryId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CountryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CountryName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChineseLastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChineseLastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChineseFirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChineseFirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EnglishLastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EnglishLastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EnglishFirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EnglishFirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateOfBirth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateOfBirth)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalMileage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalMileage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PassportNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PassportNumber)
+        </dd>
+
+    </dl>
+</div>
+<p>
+            <a href='@Url.Action("Edit/")@Model.Id' class="btn btn-sm btn-dark ps-2 pe-2"><i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;編輯</a> |
+        <a href='@Url.Action("Index/")' class="btn btn-sm btn-dark ps-2 pe-2 btn-back-to-list"><i class="fa-solid fa-backward"></i>&nbsp;&nbsp;回清單頁</a>
+        </p>
