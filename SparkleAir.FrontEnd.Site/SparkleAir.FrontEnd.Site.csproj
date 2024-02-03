@@ -311,6 +311,7 @@
     <Content Include="Files\Images\airplane.png" />
     <Content Include="Files\Images\empty.jpg" />
     <Content Include="Files\Images\imgjake.jpg" />
+    <Content Include="Files\Images\loading.gif" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="obj\Debug\SparkleAir.FrontEnd.Site.csproj.FileListAbsolute.txt" />
@@ -530,6 +531,8 @@
     <Content Include="Views\TFReservelist\Create.cshtml" />
     <Content Include="Views\TFItem\Edit.cshtml" />
     <Content Include="Views\Members\Edit.cshtml" />
+    <Content Include="Views\Members\Index1.cshtml" />
+    <Content Include="Views\Members\Index - 複製.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
