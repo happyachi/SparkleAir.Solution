@@ -46,8 +46,33 @@
         </td>
         <td>
             <a href='@Url.Action("Edit/")@item.Id' class="btn btn-sm btn-dark ps-2 pe-2 btn-edit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;編輯</a>
+            <a data-href='@Url.Action("Delete/")@item.Id' class="btn btn-sm btn-danger ps-2 pe-2 btn-delete"><i class="fa-solid fa-trash"></i>&nbsp;&nbsp;刪除</a>
         </td>
     </tr>
 }
         </tbody>
 </table>
+<script>
+
+    /*刪除前確認事件*/
+    const btnDelete = document.querySelectorAll('.btn-delete');
+    btnDelete.forEach((item) => {
+        item.addEventListener('click', function () {
+            Swal.fire({
+                title: "你確定要刪除嗎？",
+                showConfirmButton: false,
+                showDenyButton: true,
+                showCancelButton: true,
+                denyButtonText: `確定刪除`,
+                cancelButtonText: `取消`
+            }).then((result) => {
+                if (result.isDenied) {
+                    window.location.href = this.dataset.href;
+                } 
+            });
+        });
+    });
+
+
+    
+</script>

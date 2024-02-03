@@ -183,7 +183,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -229,7 +229,12 @@
                               <dt>訂單狀態:</dt><dd>${data1.OrderStatus}</dd>
                               <dt>託運編號:</dt><dd>${data1.LuggageNum}</dd>`
                 dl2.innerHTML = html2;
+
+                const dl3 = document.querySelector('#exampleModalLabel')
+                const html3 = `${data1.FlightCode}`
+                dl3.innerHTML = html3;
                 console.log(data1);
+
                 
             });
         });
@@ -246,6 +251,7 @@
             const seconds1 = date1.getSeconds().toString().padStart(2, '0');
             return `${year1}-${month1}-${day1} ${hours1}:${minutes1}:${seconds1}`;
         }
+
 
 
 
@@ -297,11 +303,7 @@
                         console.log(error);
                     }
                 });
-
-
-
                }
-
 
     });
 });

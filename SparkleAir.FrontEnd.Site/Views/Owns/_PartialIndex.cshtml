@@ -1,0 +1,33 @@
+﻿@model IEnumerable<SparkleAir.Infa.ViewModel.Airtype_Owns.OwnVmIndex>
+
+<table class="table">
+
+    <tbody id="tablebody">
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FlightModel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AirTypeId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RegistrationNum)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ManufactureYear)
+                </td>
+                <td>
+                    <a href="@Url.Action("Update", new { id = item.Id })" class="btn btn-sm btn-dark">更新</a> |
+                    <a href="@Url.Action("Delete", new { id = item.Id })" class="btn btn-sm btn-dark">删除</a>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>

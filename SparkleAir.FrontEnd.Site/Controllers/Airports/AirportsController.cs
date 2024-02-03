@@ -3,6 +3,8 @@ using SparkleAir.DAL.EFRepository.Airports;
 using SparkleAir.IDAL.IRepository.Airport;
 using SparkleAir.Infa.Dto.Airport;
 using SparkleAir.Infa.EFModel.EFModels;
+using SparkleAir.Infa.Utility;
+using SparkleAir.Infa.Utility.Helper.Airports;
 using SparkleAir.Infa.ViewModel.Airports;
 using System;
 using System.Collections.Generic;
@@ -15,7 +17,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Airports
    
     
     public  class AirportsController : BaseController
-    {
+    {//
         ////以下是server統一都可以直接叫用的方法
         //public AirportsController()
         //{
@@ -88,11 +90,16 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Airports
         }
 
         [HttpPost]
-        public ActionResult Create(AirportCreateVm airport)
+        public ActionResult Create(AirportCreateVm airport, HttpPostedFileBase file1)
         {
             if (!ModelState.IsValid) return View();
+            //
+            string path = Server.MapPath("~/Files/Airports");
             try
             {
+                string newFileName = new UploadFileHelper().UploadImageFile(file1, path);
+                airport.Img = newFileName;
+
                 CreateAirport(airport);
                 return RedirectToAction("Index");
             }
@@ -142,18 +149,30 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Airports
         }
 
         [HttpPost]
-        public ActionResult Edit(AirportCreateVm airport)
+        public ActionResult Edit(AirportCreateVm airport, HttpPostedFileBase file)
         {
             if (!ModelState.IsValid) return View(airport);
+
+            string path = Server.MapPath("~/Files/Airports");
+            var helper = new UploadImgHelper();
+
             try
             {
+                string newFileName = helper.SaveAs(path, file);
+                //airport.Image = System.IO.Path.GetFileName(newFileName);
+                airport.Img = newFileName;
+
                 Update(airport);
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
             {
+
                 ModelState.AddModelError(string.Empty, ex.Message);
+
+                airport.Img = string.Empty;
             }
+            Update(airport);
             return View(airport);
         }
 

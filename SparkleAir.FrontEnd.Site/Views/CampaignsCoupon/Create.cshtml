@@ -3,6 +3,7 @@
 
 @{
     ViewBag.Title = "Create";
+
     var list = ViewBag.List as IEnumerable<AirFlightVm>;
 
 }
@@ -176,7 +177,6 @@
         </div>
         <div>
             <button type="button" class="btn btn-sm btn-dark col-sm-1" onclick="toggle()">新增活動航班</button>
-
         </div>
         @*<div class="select" id="selectContainer" style="display: none;">
             <div id="selectFlights">
@@ -207,6 +207,7 @@
 
     <script>
 
+        /*折扣金額與百分比*/
         document.addEventListener("DOMContentLoaded", function () {
             var selectElement = document.querySelector(".CampaignId");
             var discountLabel = document.querySelector(".discountLabel");
@@ -250,7 +251,6 @@
             var selectContainer = document.querySelector('#selectContainer');
             selectContainer.style.opacity = '0';
 
-
             setTimeout(function () {
                 selectContainer.style.display = 'none';
             }, 300);
@@ -273,6 +273,5 @@
                 });
             });
         });
-
     </script>
 }

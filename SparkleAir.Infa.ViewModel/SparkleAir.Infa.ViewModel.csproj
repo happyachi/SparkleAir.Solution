@@ -53,6 +53,8 @@
     <Compile Include="AirFlights\AirOwnVm.cs" />
     <Compile Include="AirFlights\EachFlightSeatsVm.cs" />
     <Compile Include="AirFlights\EachSeatInfoVm.cs" />
+    <Compile Include="Airtype&amp;Owns\OwnVm.cs" />
+    <Compile Include="Airtype&amp;Owns\OwnVmIndex.cs" />
     <Compile Include="Basics\CountryIndexVm.cs" />
     <Compile Include="Campaigns\CamapignsDiscountSelectProductsVm.cs" />
     <Compile Include="Campaigns\CampaignsCouponIndexVm.cs" />
