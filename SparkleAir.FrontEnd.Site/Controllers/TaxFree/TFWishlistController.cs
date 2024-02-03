@@ -116,6 +116,12 @@ namespace SparkleAir.FrontEnd.Site.Controllers.TaxFree
             {
                 Id = p.Id,
                 MemberId = p.MemberId,
+                MemberChineseFirstName = p.MemberChineseFirstName,
+                MemberChineseLastName = p.MemberChineseLastName,
+                MemberEnglishFirstName = p.MemberEnglishFirstName,
+                MemberEnglishLastName = p.MemberEnglishLastName,
+                TFItemsName = p.TFItemsName,
+                TFItemsSerialNumber = p.TFItemsSerialNumber,
                 TFItemsId = p.TFItemsId
             }).ToList();
             return vm;
@@ -128,7 +134,13 @@ namespace SparkleAir.FrontEnd.Site.Controllers.TaxFree
             return new TFWishlistsVm 
             {
                 Id = dto.Id, 
-                MemberId = dto.MemberId, 
+                MemberId = dto.MemberId,
+                MemberChineseFirstName = dto.MemberChineseFirstName,
+                MemberChineseLastName = dto.MemberChineseLastName,
+                MemberEnglishFirstName = dto.MemberEnglishFirstName,
+                MemberEnglishLastName = dto.MemberEnglishLastName,
+                TFItemsName = dto.TFItemsName,
+                TFItemsSerialNumber = dto.TFItemsSerialNumber,
                 TFItemsId = dto.TFItemsId 
             };
         }
