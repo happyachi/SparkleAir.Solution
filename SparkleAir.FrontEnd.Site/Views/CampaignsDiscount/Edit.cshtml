@@ -11,9 +11,25 @@
         color: #555; /* 深灰色文字 */
         cursor: not-allowed; /* 顯示禁用的游標 */
     }
+
+    /*Member間距*/
+    .member-label {
+        margin-right: 50px;
+    }
 </style>
 
-<h2>Edit</h2>
+<div style="display: flex; align-items: center;">
+    <h2 style="margin-right: 30px;">促銷活動編輯</h2>
+    @Html.EditorFor(model => model.Status, new
+    {
+        htmlAttributes = new
+        {
+            @class = "form-control",
+            @readonly = "readonly",
+            @style = "background-color: #d2f5e3; width: 130px; cursor: not-allowed; text-align: center;"
+        }
+    })
+</div>
 
 
 @using (Html.BeginForm())
@@ -113,15 +129,15 @@
                     @foreach (var member in ViewBag.Member)
                     {
 
-
-                        <label class="checkbox-inline">
+                        <label class="checkbox-inline member-label">
                             @if (!string.IsNullOrEmpty(Model.MemberCriteria))
                             {
                                 string[] members = Model.MemberCriteria.Split(',');
                                 isChecked = members.Contains(member.Name as string);
+                                <input class="form-check-input" type="checkbox" value="@member.Name" data-member="@member.Name" name="members" @(isChecked ? "checked" : "") />@member.Name
                             }
 
-                            <input class="form-check-input" type="checkbox" value="@member.Name" data-member="@member.Name" name="members" @(isChecked ? "checked" : "") />@member.Name
+
                         </label>
                     }
                     <input type="hidden" name="MemberCriteria" id="flexCheckDefault" value="" />
@@ -137,29 +153,29 @@
             </div>
         </div>
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Type, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+        <div class="mb-3">
+            <div class="col-md-offset-2 col-md-10 mt-5">
+                <input type="submit" value="儲存" class="btn btn-sm btn-success ps-3 pe-3 btn-create" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    <a href='@Url.Action("Index/")' class="btn btn-sm btn-dark ps-2 pe-2 btn-back-to-list mt-2"><i class="fa-solid fa-backward"></i>&nbsp;&nbsp;回清單頁</a>
 </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    <script>
+<script>
         function updateMember() {
             const members = Array.from(checks)
                 .filter(checkbox => checkbox.checked)
@@ -168,5 +184,10 @@
             document.getElementById('flexCheckDefault').value = members.join(',');
             console.log(members);
         }
-    </script>
+
+        //狀態欄位修飾
+        window.onload = function () {
+        var statusInput = document.getElementById('@Html.IdFor(model => model.Status)');
+        statusInput.value += "的活動";
+</script>
 }

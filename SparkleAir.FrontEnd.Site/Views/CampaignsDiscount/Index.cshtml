@@ -32,6 +32,9 @@
     .btn-delete {
         font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif;
     }
+
+
+
 </style>
 
 <div class="discount-section">
@@ -39,122 +42,124 @@
     <h2>折扣活動</h2>
 </div>
 
-<p>
-    <a href='@Url.Action("Create")' class="btn btn-sm btn-dark ps-3 pe-3 btn-create"><i class="fa-solid fa-plus"></i>&nbsp;&nbsp;新增</a>
-</p>
-<div class="row" id="datas">
-    <div style="overflow:auto">
-        <!--<form id="filterForm" class="text-center align-items-center">
-            <div class="form-group row">
-                <label class="col-form-label col-1">活動名稱:</label>
-                <div class="col-sm-2">
-                    <input type="text" class="form-control" id="Discount" name="Name">
-                </div>
-                <button type="button" class="btn btn-sm btn-dark col-sm-1" onclick="applyFilter()">搜尋</button>
-            </div>-->
-        <!-- 其他篩選條件... -->
-        <!--</form>-->
 
-        <table class="table table_jq">
-            <thead>
-                <tr>
-                    @*<th>
-                            @Html.DisplayNameFor(model => model.CampaignId)
-                        </th>*@
-                    <th>
-                        @Html.DisplayNameFor(model => model.Name)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Type)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.DateStart)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.DateEnd)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.DateCreated)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Status)
-                    </th>
+    <p>
+        <a href='@Url.Action("Create")' class="btn btn-sm btn-dark ps-3 pe-3 btn-create"><i class="fa-solid fa-plus"></i>&nbsp;&nbsp;新增</a>
+    </p>
 
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
+    <div class="row" id="datas">
+        <div style="overflow:auto">
+            <!--<form id="filterForm" class="text-center align-items-center">
+                <div class="form-group row">
+                    <label class="col-form-label col-1">活動名稱:</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" id="Discount" name="Name">
+                    </div>
+                    <button type="button" class="btn btn-sm btn-dark col-sm-1" onclick="applyFilter()">搜尋</button>
+                </div>-->
+            <!-- 其他篩選條件... -->
+            <!--</form>-->
+
+            <table class="table table_jq">
+                <thead>
                     <tr>
-                        @*<td>
-                                @Html.DisplayFor(modelItem => item.CampaignId)
-                            </td>*@
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Type)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.DateStart)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.DateEnd)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.DateCreated)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Status)
-                        </td>
+                        @*<th>
+                                @Html.DisplayNameFor(model => model.CampaignId)
+                            </th>*@
+                        <th>
+                            @Html.DisplayNameFor(model => model.Name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Type)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DateStart)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DateEnd)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DateCreated)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Status)
+                        </th>
 
-                        <td>
-                            @if (item.Status != "已結束")
-                            {
-                                <a href='@Url.Action("Edit/")@item.Id' class="btn btn-sm btn-dark ps-2 pe-2 btn-edit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;編輯</a>
-                            }
-                            @*<a href='@Url.Action("Details/")@item.Id' class="btn btn-sm btn-dark ps-2 pe-2 btn-detail"><i class="fa-solid fa-file"></i>&nbsp;&nbsp;詳細資訊</a> |*@
-
-                            <button type="button" class="btn btn-sm btn-dark ps-2 pe-2 btn-detail modal-dialog-scrollable detailBtn" data-bs-toggle="modal" data-bs-target="#exampleModal" value="@item.Id">
-                                <i class="fa-solid fa-file"></i>&nbsp;&nbsp;詳細資訊
-                            </button>
-                            @if (item.Status != "已結束")
-                            {
-                                <a href='@Url.Action("Delete/")@item.Id' class="btn btn-sm btn-danger ps-2 pe-2 btn-delete"><i class="fa-solid fa-trash"></i>&nbsp;&nbsp;刪除</a>
-                            }
-                        </td>
+                        <th></th>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.CampaignId)
+                                </td>*@
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Type)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateStart)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateEnd)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateCreated)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Status)
+                            </td>
+
+                            <td>
+                                @if (item.Status != "已結束")
+                                {
+                                    <a href='@Url.Action("Edit/")@item.Id' class="btn btn-sm btn-dark ps-2 pe-2 btn-edit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;編輯</a>
+                                }
+                                @*<a href='@Url.Action("Details/")@item.Id' class="btn btn-sm btn-dark ps-2 pe-2 btn-detail"><i class="fa-solid fa-file"></i>&nbsp;&nbsp;詳細資訊</a> |*@
+
+                                <button type="button" class="btn btn-sm btn-dark ps-2 pe-2 btn-detail modal-dialog-scrollable detailBtn" data-bs-toggle="modal" data-bs-target="#exampleModal" value="@item.Id">
+                                    <i class="fa-solid fa-file"></i>&nbsp;&nbsp;詳細資訊
+                                </button>
+                                @if (item.Status != "已結束")
+                                {
+                                    <a href='@Url.Action("Delete/")@item.Id' class="btn btn-sm btn-danger ps-2 pe-2 btn-delete"><i class="fa-solid fa-trash"></i>&nbsp;&nbsp;刪除</a>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
-<div id="divMore" style="display:none"></div>
+    <div id="divMore" style="display:none"></div>
 
-<div class="select">
-    <div id="selectProducts"></div>
-</div>
+    <div class="select">
+        <div id="selectProducts"></div>
+    </div>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">活動詳細資訊</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <dl class="dl-horizontal" id="detail"></dl>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Close </button>
-                @*<button type="button" class="btn btn-primary">Save changes</button>*@
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">活動詳細資訊</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <dl class="dl-horizontal" id="detail"></dl>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Close </button>
+                    @*<button type="button" class="btn btn-primary">Save changes</button>*@
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<script>
+    <script>
 		document.querySelectorAll(".details-link").forEach(function (link) {
 			link.addEventListener('click', function (event) {
 				event.preventDefault();
@@ -281,4 +286,4 @@
         });
     });
 
-</script>
+    </script>
