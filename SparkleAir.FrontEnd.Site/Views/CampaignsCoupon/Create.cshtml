@@ -193,7 +193,7 @@
         <button type="button" class="btn btn-sm btn-dark col-sm-1" onclick="saveFlights()">儲存</button>
     </div>
     @*<div class="myproductslist"></div>*@
-    <input class="productslist" name="TFItemsCriteria" value="" id="productList" />
+    <input class="productslist" name="AirFlightsCriteria" value="" id="productList" />
 
 
     <div class="form-group mt-1">
@@ -252,23 +252,6 @@
             console.log(members);
         }
 
-        function saveFlights() {
-            var selectContainer = document.querySelector('#selectContainer');
-            selectContainer.style.opacity = '0';
-
-            setTimeout(function () {
-                selectContainer.style.display = 'none';
-            }, 300);
-
-            // Get selected IDs from the partial view
-            const selectedIds = Array.from(checks)
-                .filter(checkbox => checkbox.checked)
-                .map(checkbox => checkbox.getAttribute('data-member'));
-
-            // Update the list in the main view
-            updateMyProductsList(selectedIds);
-
-        }
         const input = document.querySelector('#Name');
         const checks = document.querySelectorAll('.form-check-input');
 
@@ -286,5 +269,29 @@
                 });
             });
         });
+
+        function updateMyProductsList(selectedIds) {
+            const myProductsList = document.querySelector('#productList');
+            myProductsList.value = selectedIds.join(',');
+        }
+
+        //儲存
+        function saveFlights() {
+            var selectContainer = document.querySelector('#selectContainer');
+            selectContainer.style.opacity = '0';
+
+            // Get selected IDs from the partial view
+            const selectedIds = Array.from(checks)
+                .filter(checkbox => checkbox.checked)
+                .map(checkbox => checkbox.getAttribute('data-member'));
+
+            // Update the list in the main view
+            updateMyProductsList(selectedIds);
+
+            setTimeout(function () {
+                selectContainer.style.display = 'none';
+            }, 300);
+        }
+
     </script>
 }

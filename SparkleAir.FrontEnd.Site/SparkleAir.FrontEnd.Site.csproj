@@ -754,6 +754,7 @@
     <Content Include="Views\Owns\Delete.cshtml" />
     <Content Include="Views\CampaignsDiscount\IPartialIndex.cshtml" />
     <Content Include="Views\CampaignsCoupon\IPartialIndex.cshtml" />
+    <Content Include="Views\CampaignsCoupon\SelectFlights.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

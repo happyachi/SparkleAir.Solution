@@ -59,6 +59,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
         {
             var memberservice = new MemberClassService(memberRepo);
             ViewBag.Member = memberservice.Search();
+            ViewBag.List = CreateSelectFlights();
             return View();
         }
 

@@ -18,6 +18,11 @@
         font-size: 0.8em;
         z-index: 999;
     }
+
+    .btn-delete {
+        font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+    
 </style>
 
 <h2>折扣活動</h2>
@@ -231,5 +236,37 @@
         const seconds1 = date1.getSeconds().toString().padStart(2, '0');
         return `${year1}-${month1}-${day1} ${hours1}:${minutes1}:${seconds1}`;
 }
+    function showDeleteConfirmation(url) {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: "Deleted!",
+                    text: "Your file has been deleted.",
+                    icon: "success"
+                }).then(() => {
+                    // 在確認刪除後，執行實際的刪除操作
+                    window.location.href = url;
+                });
+            }
+        });
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("click", function (e) {
+            if (e.target.classList.contains("btn-delete")) {
+                e.preventDefault();
+                var deleteUrl = e.target.getAttribute("href");
+                showDeleteConfirmation(deleteUrl);
+            }
+        });
+    });
 
 </script>

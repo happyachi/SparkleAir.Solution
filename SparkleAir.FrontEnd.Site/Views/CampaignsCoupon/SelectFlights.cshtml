@@ -1,8 +1,8 @@
-﻿@model IEnumerable<SparkleAir.Infa.ViewModel.TaxFree.TFItemVm>
+﻿@model IEnumerable<SparkleAir.Infa.ViewModel.AirFlights.AirFlightVm>
 
 @*<p>
-    @Html.ActionLink("Create New", "Create")
-</p>*@
+        <a href='@Url.Action("Create")' class="btn btn-sm btn-dark ps-3 pe-3 btn-create"><i class="fa-solid fa-plus"></i>&nbsp;&nbsp;新增</a>
+    </p>*@
 <table class="table table_jq">
     <thead>
         <tr>
@@ -10,34 +10,37 @@
                 <input class="form-check-input checkAll" type="checkbox" value="" id="selectAllitemCheckbox">
                 <label class="form-check-label" for="flexCheckDefault"></label>
             </th>
-            @*<th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>*@
             <th>
-                @Html.DisplayNameFor(model => model.TFCategoriesName)
+                @Html.DisplayNameFor(model => model.AirOwnId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                @Html.DisplayNameFor(model => model.AirFlightManagementId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SerialNumber)
+                @Html.DisplayNameFor(model => model.ScheduledDeparture)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Image)
+                @Html.DisplayNameFor(model => model.ScheduledArrival)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Quantity)
+                @Html.DisplayNameFor(model => model.AirFlightSaleStatusId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.UnitPrice)
+                @Html.DisplayNameFor(model => model.FlightModel)
             </th>
-            @*<th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>*@
             <th>
-                @Html.DisplayNameFor(model => model.IsPublished)
+                @Html.DisplayNameFor(model => model.FlightCode)
             </th>
-          
+            <th>
+                @Html.DisplayNameFor(model => model.DepartureAirPort)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArrivalAriPort)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AirFlightSaleStatus)
+            </th>
+            @*<th></th>*@
         </tr>
     </thead>
     <tbody>
@@ -46,38 +49,45 @@
             <tr>
                 <td>
                     <label class="fcheckbox-inline" for="flexCheckDefault">
-                        <input class="form-check-input products" type="checkbox" value="@item.Name" data-member="@item.Name" name="items">
+                        <input class="form-check-input products" type="checkbox" value="@item.FlightCode" data-member="@item.FlightCode" name="items">
                     </label>
                     @*<input name="ItemCriteria" id="flexCheckDefault" value="" />*@
                 </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AirOwnId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AirFlightManagementId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ScheduledDeparture)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ScheduledArrival)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AirFlightSaleStatusId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FlightModel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FlightCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DepartureAirPort)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArrivalAriPort)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AirFlightSaleStatus)
+                </td>
                 @*<td>
-                    @Html.DisplayFor(modelItem => item.Id)
-                </td>*@
-                <td>
-                    @Html.DisplayFor(modelItem => item.TFCategoriesName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SerialNumber)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Image)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Quantity)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UnitPrice)
-                </td>
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>*@
-                <td>
-                    @Html.DisplayFor(modelItem => item.IsPublished)
-                </td>
-               
+            <a href='@Url.Action("Edit/")@item.Id' class="btn btn-sm btn-dark ps-2 pe-2 btn-edit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;編輯</a> |
+            <a href='@Url.Action("Details/")@item.Id' class="btn btn-sm btn-dark ps-2 pe-2 btn-detail"><i class="fa-solid fa-file"></i>&nbsp;&nbsp;詳細資訊</a> |
+            <a href='@Url.Action("Delete/")@item.Id' class="btn btn-sm btn-danger ps-2 pe-2 btn-delete"><i class="fa-solid fa-trash"></i>&nbsp;&nbsp;刪除</a>
+        </td>*@
             </tr>
         }
     </tbody>
@@ -111,7 +121,7 @@
 
     const items = document.querySelector('#flexCheckDefault');
 
- 
+
     const selectedIds = []; // 儲存選的item.Id
 
     selectAll.addEventListener('change', function () {
@@ -142,3 +152,4 @@
     }
 
 </script>
+

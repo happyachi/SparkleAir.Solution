@@ -39,7 +39,6 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
             var service = new CampaignsDiscountsService(repo);
 
             List<CampaignsDiscountDto> dto = service.GetAll();
-
             List<CampaignsDiscountIndexVm> vm = dto.Select(d => new CampaignsDiscountIndexVm
             {
                 Id = d.Id,
