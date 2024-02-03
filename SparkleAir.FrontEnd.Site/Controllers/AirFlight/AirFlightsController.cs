@@ -245,6 +245,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
                     ScheduledDeparture = model.ScheduledDeparture,
                     Seats = GetSeatInfo(model.Id)
                 };
+                //return Json(vm,JsonRequestBehavior.AllowGet);
                 return View(vm);
             }
             catch (Exception ex)
@@ -276,8 +277,8 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
             var model = _flightSeatsService.GetEachSeatInfo(id);
             model.Gender = (model.Gender == "0") ? "男" : "女";
             model.CheckInstatus = (model.CheckInstatus == "1") ? "已報到" : "未報到";
-
-            return PartialView("_SeatsDetailPartial", model);
+            return Json(model,JsonRequestBehavior.AllowGet);
+            //return PartialView("_SeatsDetailPartial", model);
         }
 
         #endregion

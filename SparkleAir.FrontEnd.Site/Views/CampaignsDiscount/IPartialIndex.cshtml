@@ -1,0 +1,168 @@
+﻿@model SparkleAir.FrontEnd.Site.Models.ViewModels.Campaigns.CampaignsDiscountVm
+
+<div>
+    <h4>CampaignsDiscountVm</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CampaignId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CampaignId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Campaign)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Campaign)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateStart)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateStart)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateEnd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateEnd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCreated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateCreated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DiscountValue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiscountValue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Value)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Value)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BundleSKUs)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BundleSKUs)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MemberCriteria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MemberCriteria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TFItemsCriteria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TFItemsCriteria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+
+    </dl>
+</div>
+@*<p>
+        <a href='@Url.Action("Edit/")@Model.Id' class="btn btn-sm btn-dark ps-2 pe-2"><i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;編輯</a> |
+    <a href='@Url.Action("Index/")' class="btn btn-sm btn-dark ps-2 pe-2 btn-back-to-list"><i class="fa-solid fa-backward"></i>&nbsp;&nbsp;回清單頁</a>
+    </p>*@
+
+<script>
+        $(document).ready(function () {
+    $(".open-modal").click(function () {
+        $("#myModal").modal('show');
+    });
+});
+
+
+
+const btns = document.querySelectorAll('.detailBtn');
+btns.forEach(function (btn) {
+    btn.addEventListener('click', async function () {
+        console.log(123456);
+        const id = this.getAttribute('value');
+
+        const modalDiv = document.querySelector('.modal-body');
+         // 将 HTML 内容更新到 modalDiv 中
+        const response = await fetch(`@Url.Action("GetDetail", "LuggageOrders")?id=${id}`);
+        const data = await response.json();
+        const dl = document.querySelector('#detail')
+        const dateTime = createDateString(data.OrderTime)
+        const html = `<dt>航班代碼:</dt><dd>${data.FlightCode}</dd>
+                      <dt>開票Id:</dt><dd>${data.TicketInvoicingDetailId}</dd>
+                      <dt>姓名:</dt><dd>${data.TicketInvoicingDetailName}</dd>
+                      <dt>託運Id:</dt><dd>${data.LuggageId}</dd>
+                      <dt>託運預定價:</dt><dd>${data.LuggagePrice}</dd>
+                      <dt>數量:</dt><dd>${data.Amount}</dd>
+                      <dt>總價:</dt><dd>${data.Price}</dd>
+                      <dt>預定時間:</dt><dd>${dateTime}</dd>
+                      <dt>付款編號:</dt><dd>${data.TransferPaymentsId}</dd>
+                      <dt>訂單狀態:</dt><dd>${data.OrderStatus}</dd>
+                      <dt>託運編號:</dt><dd>${data.LuggageNum}</dd>`
+        dl.innerHTML = html;
+        console.log(data);
+
+    });
+});
+
+//轉換json檔傳來時間的方法
+function createDateString(str) {
+    const milliseconds = parseInt(str.slice(6, 19), 10);
+    const date = new Date(milliseconds);
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+    const hours = date.getHours().toString().padStart(2, '0');
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+    const seconds = date.getSeconds().toString().padStart(2, '0');
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+}
+</script>

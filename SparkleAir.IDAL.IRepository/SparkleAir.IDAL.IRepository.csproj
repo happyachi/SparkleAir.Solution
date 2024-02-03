@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="AirFlights\IAirFlightManagementRepository.cs" />
     <Compile Include="AirFlights\IAirFlightRepository.cs" />
+    <Compile Include="Airtype&amp;Owns\IOwnRepository.cs" />
     <Compile Include="Basics\ICountryRepository.cs" />
     <Compile Include="AirFlights\IAirFlightSeatsRepository.cs" />
     <Compile Include="AirFlights\IAirTicketPriceRepository.cs" />

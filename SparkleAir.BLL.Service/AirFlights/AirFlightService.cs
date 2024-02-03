@@ -87,7 +87,7 @@ namespace SparkleAir.BLL.Service.AirFlights
             List<AirFlightEntity> entity = _repo.GetAll();
 
             //會過濾掉起飛的飛機
-            List<AirFlightDto> dto = entity.Where(x => x.AirFlightSaleStatusId != 5).Select(x => new AirFlightDto
+            List<AirFlightDto> dto = entity.Select(x => new AirFlightDto
             {
                 Id = x.Id,
                 AirOwnId = x.AirOwnId,
@@ -114,13 +114,14 @@ namespace SparkleAir.BLL.Service.AirFlights
         public void UpdateSaleStatus(AirFlightDto dto)
         {
             int stausId = StatusHelper.SaleStatusUpdate(dto.ScheduledDeparture);
+
             AirFlightEntity entity = new AirFlightEntity
             {
                 Id = dto.Id,
                 AirOwnId = dto.AirOwnId,
                 AirFlightManagementId = dto.AirFlightManagementId,
-                ScheduledDeparture = dto.ScheduledDeparture,
-                ScheduledArrival = dto.ScheduledArrival,
+                ScheduledDeparture = dto.ScheduledDeparture.Date + TimeZoneHelper.ConvertToGMT(dto.ScheduledDeparture.TimeOfDay, dto.DepartureTimeZone),
+                ScheduledArrival = dto.ScheduledArrival.Date + TimeZoneHelper.ConvertToGMT(dto.ScheduledArrival.TimeOfDay, dto.ArrivalTimeZone),
                 AirFlightSaleStatusId = stausId,
                 FlightModel = dto.FlightModel,
                 FlightCode = dto.FlightCode,

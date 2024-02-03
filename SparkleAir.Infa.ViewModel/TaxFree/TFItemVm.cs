@@ -29,7 +29,7 @@ namespace SparkleAir.Infa.ViewModel.TaxFree
 
         [Display(Name = "商品描述")]
         public string Description { get; set; }
-
+        [Display(Name = "上架狀態")]
         public bool IsPublished { get; set; }
 
         public string FileName { get; set; }    

@@ -55,5 +55,6 @@ namespace SparkleAir.Infa.EFModel.EFModels
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TFWishlist> TFWishlists { get; set; }
+
     }
 }

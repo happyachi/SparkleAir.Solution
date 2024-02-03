@@ -47,7 +47,7 @@
     <nav class="navbar navbar-dark navbar-theme-primary px-4 col-12 d-lg-none">
         <a class="navbar-brand me-lg-5" href="../../index.html">
             <img class="navbar-brand-light"
-                 src="'@Url.Content("~/Files/Images/airplane.png")'"
+                 src='@Url.Content("~/Files/Images/airplane.png")'
                  alt="Logo" />
         </a>
         <div class="d-flex align-items-center">
@@ -130,8 +130,13 @@
     @RenderSection("scripts", required: false)
     <script>
         $(document).ready(function () {
-            $('.table_jq').DataTable();
+            $('.table_jq').DataTable( {
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/zh-HANT.json',
+                },
+            });
         });
+
     </script>
     
 </body>

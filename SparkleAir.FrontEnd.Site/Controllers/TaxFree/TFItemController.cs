@@ -62,7 +62,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.TaxFree
         public ActionResult Delete(int id)
         {
             DeleteItem(id);
-            return View("Index");
+            return RedirectToAction("Index","TFItem");
         }
 
         private void DeleteItem(int id)
@@ -75,58 +75,89 @@ namespace SparkleAir.FrontEnd.Site.Controllers.TaxFree
         {
             var service = new TaxFreeService(TFRepository);
             var category = service.Get();
-            ViewBag.TFCategories = category.Select(x=>x.TFCategoriesName).Distinct();
+            var data= category.Select(x => x.TFCategoriesName).Distinct().ToList();
+            ViewBag.TFCategories = data;
+
             return View();
         }
 
         [HttpPost]
-        public ActionResult Create(TFItemVm vm)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View();
-            }
-            try
-            {
-                CreateItem(vm);
-                return RedirectToAction("Index");
-            }
-            catch (Exception ex)
-            {
-                ModelState.AddModelError(string.Empty, ex.Message);
-                return View(vm);
-            }
-
-        }
-
-        private void CreateItem(TFItemVm vm)
+        public ActionResult Create(TFItemVm vm, HttpPostedFileBase file)
         {
             var service = new TaxFreeService(TFRepository);
+            var category1 = service.Get();
+            var data = category1.Select(x => x.TFCategoriesName).Distinct().ToList();
 
-            
+            ViewBag.TFCategories = data;
 
+            string path = Server.MapPath("~/Files/Images");
 
-            TFItemDto dto = new TFItemDto
+            var helper = new UploadImgHelper();
+
+            try
             {
-                Id = vm.Id,
-                Name = vm.Name,
-                TFCategoriesId = vm.TFCategoriesId,
+                //UpdateItem(model);
+                string result = helper.SaveAs(path, file);
+                vm.Image = System.IO.Path.GetFullPath(result);
+                vm.FileName = result;
+                var server = new TaxFreeService(TFRepository);
+                 var dto = new TFItemDto {
+                    Id = vm.Id,
+                    Name = vm.Name,
+                    TFCategoriesId = vm.TFCategoriesId,
+                    TFCategoriesName = vm.TFCategoriesName,
+                    SerialNumber = vm.SerialNumber,
+                    Image = vm.FileName,
+                    Quantity = vm.Quantity,
+                    UnitPrice = vm.UnitPrice,
+                    Description = vm.Description,
+                    IsPublished = vm.IsPublished,
 
-                TFCategoriesName = vm.TFCategoriesName,
-                SerialNumber = vm.SerialNumber,
-                Image = vm.Image,
-                Quantity = vm.Quantity,
-                UnitPrice = vm.UnitPrice,
-                Description = vm.Description,
-                IsPublished = vm.IsPublished,
+                };
+                var category = server.Create(dto);
+                //Create(model);
 
-            };
-            service.Create(dto);
+                return RedirectToAction("Index", "TFItem");
+            }
+
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, "上傳檔案失敗: " + ex.Message);
+
+            }
+            return View(vm);
+
+            //return RedirectToAction("Index", "TFItem");
         }
+
+        //private void CreateItem(TFItemVm vm)
+        //{
+        //    var service = new TaxFreeService(TFRepository);
+
+        //    TFItemDto dto = new TFItemDto
+        //    {
+        //        Id = vm.Id,
+        //        Name = vm.Name,
+        //        TFCategoriesId = vm.TFCategoriesId,
+        //        TFCategoriesName = vm.TFCategoriesName,
+        //        SerialNumber = vm.SerialNumber,
+        //        Image = vm.Image,
+        //        Quantity = vm.Quantity,
+        //        UnitPrice = vm.UnitPrice,
+        //        Description = vm.Description,
+        //        IsPublished = vm.IsPublished,
+
+        //    };
+        //    service.Create(dto);
+        //}
 
         public ActionResult Edit(int id)
         {
             var TFItem = Getid(id);
+            var service = new TaxFreeService(TFRepository);
+            var category1 = service.Get();
+            var data = category1.Select(x => x.TFCategoriesName).Distinct().ToList();
+            ViewBag.TFCategories = category1;
             return View(TFItem);
         }
 
@@ -149,35 +180,36 @@ namespace SparkleAir.FrontEnd.Site.Controllers.TaxFree
         [HttpPost]
         public ActionResult Edit(TFItemVm model, HttpPostedFileBase file)
         {
+            var service = new TaxFreeService(TFRepository);
+            var category1 = service.Get();
+            //var data = category1.Select(x => x.TFCategoriesName).Distinct().ToList();
+            ViewBag.TFCategories = category1;
+            
+            
             // save uploaded file
-            string path = Server.MapPath("../../Files/Images");
+            string path = Server.MapPath("~/Files/Images");
             var helper = new UploadImgHelper();
 
             try
             {
-                UpdateItem(model);
+                //UpdateItem(model);
                 string result = helper.SaveAs(path, file);
-                model.Image = System.IO.Path.GetFileName(file.FileName);
+                model.Image = System.IO.Path.GetFullPath(result);
                 model.FileName = result;
 
-                Create(model);
+                UpdateItem(model);
+                //Create(model);
 
                 return RedirectToAction("Index", "TFItem");
             }
-            catch (UploadFileNullException uploadFileNullex)
-            {
-                model.Image = string.Empty;
-                model.FileName = string.Empty;
-                Create(model);
 
-                return RedirectToAction("Index", "TFItem");
-            }
             catch (Exception ex)
             {
                 ModelState.AddModelError(string.Empty, "上傳檔案失敗: " + ex.Message);
 
             }
 
+            UpdateItem(model);
             return RedirectToAction("Index", "TFItem");
         }
 
@@ -194,7 +226,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.TaxFree
                 TFCategoriesId = vm.TFCategoriesId,
                 TFCategoriesName = vm.TFCategoriesName,
                 SerialNumber = vm.SerialNumber,
-                Image = vm.Image,
+                Image = vm.FileName,
                 Quantity = vm.Quantity,
                 UnitPrice = vm.UnitPrice,
                 Description = vm.Description,
@@ -222,7 +254,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.TaxFree
                 IsPublished = dto.IsPublished,
             };
         }
-
-
     }
 }
+
+
