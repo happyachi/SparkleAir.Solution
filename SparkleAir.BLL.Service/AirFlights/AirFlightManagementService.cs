@@ -189,9 +189,6 @@ namespace SparkleAir.BLL.Service.AirFlights
                 AirOwnId = x.AirOwnId,
                 CrossDay = x.CrossDay
             }).ToList();
-
-            // todo 根據 出發地(DropDown) 目的地(DropDown) 時間段(Range) 執飛時段(checkbox)去做篩選
-            // 是要傳整個 dto 還是 根據要的資料去寫參數(?
         }
     }
 }
