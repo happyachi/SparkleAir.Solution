@@ -6,8 +6,6 @@
 
 @section styles{
 	<style>
-
-
 		.flight-details p {
 			margin: 10px 0;
 			line-height: 1.5;
@@ -19,8 +17,9 @@
 	</style>
 }
 <h2>航班管理</h2>
-
-@Html.ActionLink("新增航班", "Create", null, new { @class = "btn btn-sm btn-dark mt-2 mb-3" })
+<p>
+	<a href='@Url.Action("Create")' class="btn btn-sm btn-dark ps-3 pe-3 btn-create"><i class="fa-solid fa-plus"></i>&nbsp;&nbsp;新增</a>
+</p>
 <div class="row" id="datas">
 	<div style="overflow:auto">
 		<!--<form id="filterForm" class="text-center align-items-center">
@@ -79,9 +78,10 @@
 							@Html.DisplayFor(modelItem => item.DayofWeek)
 						</td>
 						<td>
-							@Html.ActionLink("編輯", "Edit", new { id = item.Id }, new { @class = "btn btn-sm btn-dark" }) |
+							<a href='@Url.Action("Edit/")@item.Id' class="btn btn-sm btn-dark ps-2 pe-2 btn-edit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;編輯</a> |s
 							@*<button type="button" class="btn btn-sm btn-dark edit-link" data-bs-toggle="modal" data-bs-target="#editModel" onclick="edit('@item.Id')">編輯</button> |*@
-							<button type="button" class="btn btn-sm btn-dark details-link" data-bs-toggle="modal" data-bs-target="#model" onclick="showModal('@item.Id')">詳細資訊</button> |
+							<button type="button" class="btn btn-sm btn-dark ps-2 pe-2 btn-detail details-link" data-bs-toggle="modal" data-bs-target="#model" onclick="showModal('@item.Id')"> <i class="fa-solid fa-file"></i>&nbsp;&nbsp;詳細資訊</button> |
+							<a href='@Url.Action("AirFlights/Create/")@item.Id' class="btn btn-sm btn-dark ps-3 pe-3 btn-create"><i class="fa-solid fa-plus"></i>&nbsp;&nbsp;機型設定</a>
 							@Html.ActionLink("機型設定", "Create", "AirFlights", new { id = item.Id }, new { @class = "btn btn-sm btn-dark" })
 							@*@Html.ActionLink("刪除航班", "Delete", new { id = item.Id }, new { @class = "btn btn-sm btn-dark" })*@
 
