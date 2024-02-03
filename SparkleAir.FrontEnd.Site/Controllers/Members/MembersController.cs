@@ -33,6 +33,12 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Members
 		}
         // GET: Members
         public ActionResult Index()
+        { 
+            return View();
+        }
+
+
+        public ActionResult Index1()
         {
             MemberSearchCriteria criteria = null;
 
@@ -56,7 +62,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Members
                 PassportNumber = member.PassportNumber
             }).ToList();
 
-			return View(vmList);
+			return PartialView("Index1",vmList);
         }
 
         public ActionResult Details(int id)

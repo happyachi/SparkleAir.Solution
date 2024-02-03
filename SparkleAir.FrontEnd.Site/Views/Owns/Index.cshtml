@@ -23,6 +23,7 @@
         border-radius: 10px; /* 圓角半徑，根據需要進行調整 */
         /* 其他樣式屬性 */
     }
+    
    
 </style>
 
@@ -116,6 +117,7 @@
     // 下拉列表值变化时触发
     $('#statusDropdown').change(function () {
         // 获取选择的值
+       
         var selectedStatus = $(this).val();
 
 
@@ -136,6 +138,7 @@
     });
            // 頁面首次加載時觸發一次
            $('#statusDropdown').trigger('change');
+          
 });
 
     </script>
@@ -153,6 +156,8 @@
                 "sortType": "asc",
                 "sortBy": "airTypeId"
             };
+         
+          
             const loadSearch = async () => {
                 try {
                     const response = await fetch('/Search/Search', {
@@ -170,7 +175,7 @@
                     if (tableBody) {
                         // 清空现有的表格内容
                         tableBody.innerHTML = '';
-
+                       
                         // 将 fetchDataAndLoadSearch 移到 loadSearch 函数内部
                         const fetchDataAndLoadSearch = () => {
                             const searchResult = data.map(result => {
@@ -184,17 +189,22 @@
                                                     <td>${Status}</td>
                                                     <td>${ManufactureYear}</td>
                                                     <td>
-                                                        <a href="${baseUrl}/Update?id=${Id}">Update</a> |
-                                                        <a href="${baseUrl}/Delete?id=${Id}">Delete</a>
-                                                    </td>`;
+                <a href="${baseUrl}/Update?id=${Id}" class="btn btn-sm btn-dark">更新</a> |
+                <a href="${baseUrl}/Delete?id=${Id}" class="btn btn-sm btn-dark">刪除</a>
+            </td>`;
 
                                 tableBody.appendChild(row);
+                               
+
                                 return row;
                             });
+                          
+                          
                         };
 
                         // 调用 fetchDataAndLoadSearch 函数
                         fetchDataAndLoadSearch();
+                    
                     } else {
                         console.error("Element with id 'tablebody' not found.");
                     }
@@ -212,6 +222,7 @@
             });
             // 调用 loadSearch 函数
             loadSearch();
+           
         });
     </script>
 

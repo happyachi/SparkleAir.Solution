@@ -1,0 +1,104 @@
+﻿@model IEnumerable<SparkleAir.Infa.ViewModel.Members.MemberIndexVm>
+
+@*把原本的 'ViewBag.Title = "Index";' 
+替換成 '<h2> Index</h2>'
+@{
+    ViewBag.Title = "Index";
+}*@
+
+<h2> Index</h2>
+<p>
+    <a href='@Url.Action("Create")' class="btn btn-sm btn-dark ps-3 pe-3 btn-create"><i class="fa-solid fa-plus"></i>&nbsp;&nbsp;新增</a>
+</p>
+<table class="table table_jq">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MemberClassName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CountryName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ChineseLastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ChineseFirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EnglishLastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EnglishFirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateOfBirth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalMileage)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MemberClassName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CountryName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ChineseLastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ChineseFirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EnglishLastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EnglishFirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOfBirth)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalMileage)
+                </td>
+
+                <td>
+                    <a href='@Url.Action("Edit/")@item.Id' class="btn btn-sm btn-dark ps-2 pe-2 btn-edit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;編輯</a> |
+                    <a href='@Url.Action("Details/")@item.Id' class="btn btn-sm btn-dark ps-2 pe-2 btn-detail"><i class="fa-solid fa-file"></i>&nbsp;&nbsp;詳細資訊</a> |
+
+                    @*要把刪除的 "href" 屬性 改成 "data-href"  ，這樣按下刪除件時才不會直接觸發刪除
+                    要在class 加上 "btn-delete"*@
+                    <a data-href='@Url.Action("Delete/")@item.Id' class="btn btn-sm btn-danger ps-2 pe-2 btn-delete"><i class="fa-solid fa-trash"></i>&nbsp;&nbsp;刪除</a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+@* PartialView 要把 "section Scripts" 標籤刪掉才可以使用js *@
+<script>
+
+</script>
