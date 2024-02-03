@@ -38,7 +38,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Members
         }
 
 
-            public ActionResult Index1()
+        public ActionResult Index1()
         {
             MemberSearchCriteria criteria = null;
 
