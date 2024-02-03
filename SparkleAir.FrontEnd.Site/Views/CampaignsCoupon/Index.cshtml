@@ -6,6 +6,15 @@
 
 
     <style>
+        .coupon-section {
+            display: flex;
+            /*align-items: center;*/ /* 垂直居中 */
+        }
+
+        .fa-ticket {
+            margin-right: 10px; /* 調整圖示和標題之間的間距 */
+        }
+
         #divMore {
             width: auto;
             height: auto;
@@ -25,7 +34,10 @@
         }
     </style>
 
-<h2>優惠券活動</h2>
+    <div class="coupon-section">
+        <i class="fa-solid fa-ticket fa-2x"></i>
+        <h2>優惠券活動</h2>
+    </div>
 
 <p>
     <a href='@Url.Action("Create")' class="btn btn-sm btn-dark ps-3 pe-3 btn-create"><i class="fa-solid fa-plus"></i>&nbsp;&nbsp;新增</a>
