@@ -154,6 +154,10 @@ namespace SparkleAir.FrontEnd.Site.Controllers.TaxFree
         public ActionResult Edit(int id)
         {
             var TFItem = Getid(id);
+            var service = new TaxFreeService(TFRepository);
+            var category1 = service.Get();
+            var data = category1.Select(x => x.TFCategoriesName).Distinct().ToList();
+            ViewBag.TFCategories = category1;
             return View(TFItem);
         }
 
@@ -178,8 +182,8 @@ namespace SparkleAir.FrontEnd.Site.Controllers.TaxFree
         {
             var service = new TaxFreeService(TFRepository);
             var category1 = service.Get();
-            var data = category1.Select(x => x.TFCategoriesName).Distinct().ToList();
-            ViewBag.TFCategories = data;
+            //var data = category1.Select(x => x.TFCategoriesName).Distinct().ToList();
+            ViewBag.TFCategories = category1;
             
             
             // save uploaded file
