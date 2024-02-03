@@ -56,6 +56,8 @@
     <Compile Include="Airports\AirportIndexVm.cs" />
     <Compile Include="CompanyAndPermission\CompanyDepartmentIndexVm.cs" />
     <Compile Include="CompanyAndPermission\CompanyJobIndexVm.cs" />
+    <Compile Include="CompanyAndPermission\CompanyStaffCreateVm.cs" />
+    <Compile Include="CompanyAndPermission\CompanyStaffLoginVm.cs" />
     <Compile Include="CompanyAndPermission\CompanyStaffIndexVm.cs" />
     <Compile Include="CompanyAndPermission\CompanyStaffLoginLogIndexVm.cs" />
     <Compile Include="CompanyAndPermission\CompanyStaffsChangePasswordLogIndexVm.cs" />

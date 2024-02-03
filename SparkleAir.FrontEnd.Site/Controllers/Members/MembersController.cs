@@ -33,6 +33,12 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Members
 		}
         // GET: Members
         public ActionResult Index()
+        { 
+            return View();
+        }
+
+
+        public ActionResult Index1()
         {
             MemberSearchCriteria criteria = null;
 
