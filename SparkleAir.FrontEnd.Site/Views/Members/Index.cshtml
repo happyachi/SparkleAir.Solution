@@ -62,7 +62,11 @@
 
             /* 如果要用搜尋套件，要加下面這個 */
             $(document).ready(function () {
-                $('.table_jq').DataTable();
+                $('.table_jq').DataTable({
+                    language: {
+                        url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/zh-HANT.json',
+                    },
+                });
             });
 
             /*刪除前確認事件*/
