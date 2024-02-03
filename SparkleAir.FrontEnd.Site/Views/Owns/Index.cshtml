@@ -1,0 +1,230 @@
+﻿@model IEnumerable<SparkleAir.Infa.ViewModel.Airtype_Owns.OwnVmIndex>
+@{
+    ViewBag.Title = "機隊管理";
+
+}
+<!-- 使用 CDN 引入 SweetAlert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<!-- 使用 CDN 引入 SmoothScroll -->
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@16"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<style>
+    #keyword {
+        border: 0.5px solid;
+        outline: none;
+    }
+
+    #statusDropdown {
+        padding: 5px; /* 調整內邊距 */
+        font-size: 14px; /* 調整字體大小 */
+        border-radius: 10px; /* 圓角半徑，根據需要進行調整 */
+        /* 其他樣式屬性 */
+    }
+    
+   
+</style>
+
+
+<h2>持有飛機</h2>
+
+<p>
+    <a href="@Url.Action("Create", "Owns")" class="btn btn-sm btn-dark">新增</a>
+</p>
+
+<div class="row mb-3">
+    <div class="col-3">
+        <select id="statusDropdown">
+            <option value="All">請選擇機況</option>
+            @foreach (var item in ViewBag.select)
+            {
+                <option value="@item">@item</option>
+            }
+        </select>
+
+    </div>
+    <div class="col-6">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+            </ul>
+        </nav>
+    </div>
+    <div class="col-3">
+        <input type="search" id="keyword" class="form-control-sm" placeholder="請輸入註冊編號" />
+    </div>
+</div>
+<table class="table table-hover">
+
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FlightModel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AirTypeId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RegistrationNum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ManufactureYear)
+        </th>
+        <th></th>
+    </tr >
+
+    <tbody id="tablebody">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FlightModel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AirTypeId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RegistrationNum)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ManufactureYear)
+                </td>
+                <td>
+                    <a href="@Url.Action("Update", new { id = item.Id })" class="btn btn-sm btn-dark">更新</a> |
+                    <a href="@Url.Action("Delete", new { id = item.Id })" class="btn btn-sm btn-dark">删除</a>
+                </td>
+
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+@section Scripts{
+    <script>
+
+
+       $(document).ready(function () {
+    // 下拉列表值变化时触发
+    $('#statusDropdown').change(function () {
+        // 获取选择的值
+       
+        var selectedStatus = $(this).val();
+
+
+
+        // 发起 Ajax 请求获取所有列表的数据
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("PartialIndex", "Owns")',
+            data: { status: selectedStatus },
+            success: function (result) {
+                // 更新表格数据
+                $('#tablebody').html(result);
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    });
+           // 頁面首次加載時觸發一次
+           $('#statusDropdown').trigger('change');
+          
+});
+
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const inputKeyword = document.querySelector('#keyword');
+            let baseUrl = '/Owns';
+
+            const searchData = {
+                "airTypeId": null,
+                "keyword": "",
+                "page": 1,
+                "pageSize": 5,
+                "sortType": "asc",
+                "sortBy": "airTypeId"
+            };
+         
+          
+            const loadSearch = async () => {
+                try {
+                    const response = await fetch('/Search/Search', {
+                        method: 'POST',
+                        body: JSON.stringify(searchData),
+                        headers: { 'Content-Type': 'application/json' }
+                    });
+
+
+                    const data = await response.json();
+                    console.log(data);
+
+                    const tableBody = document.querySelector('#tablebody');
+
+                    if (tableBody) {
+                        // 清空现有的表格内容
+                        tableBody.innerHTML = '';
+                       
+                        // 将 fetchDataAndLoadSearch 移到 loadSearch 函数内部
+                        const fetchDataAndLoadSearch = () => {
+                            const searchResult = data.map(result => {
+                                const { FlightModel, AirTypeId, RegistrationNum, Status, ManufactureYear, Id } = result;
+                                const row = document.createElement('tr');
+
+                                row.innerHTML = `
+                                                    <td>${FlightModel}</td>
+                                                    <td>${AirTypeId}</td>
+                                                    <td>${RegistrationNum}</td>
+                                                    <td>${Status}</td>
+                                                    <td>${ManufactureYear}</td>
+                                                    <td>
+                <a href="${baseUrl}/Update?id=${Id}" class="btn btn-sm btn-dark">更新</a> |
+                <a href="${baseUrl}/Delete?id=${Id}" class="btn btn-sm btn-dark">刪除</a>
+            </td>`;
+
+                                tableBody.appendChild(row);
+                               
+
+                                return row;
+                            });
+                          
+                          
+                        };
+
+                        // 调用 fetchDataAndLoadSearch 函数
+                        fetchDataAndLoadSearch();
+                    
+                    } else {
+                        console.error("Element with id 'tablebody' not found.");
+                    }
+                } catch (error) {
+                    console.error("Error fetching data:", error);
+                }
+            };
+
+            // 搜尋
+            inputKeyword.addEventListener('input', event => {
+                searchData.keyword = event.target.value;
+                //console.log(event.target.value);
+                searchData.page = 1;
+                loadSearch();
+            });
+            // 调用 loadSearch 函数
+            loadSearch();
+           
+        });
+    </script>
+
+}
+

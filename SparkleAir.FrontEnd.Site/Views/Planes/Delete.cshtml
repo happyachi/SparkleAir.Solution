@@ -1,13 +1,26 @@
 ﻿@model SparkleAir.Infa.ViewModel.Airtype_Owns.PlaneVm
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "刪除機型";
 }
 
 <style>
     .limited-width {
         max-width: 50%; /* 设置最大宽度，可以根据需要调整百分比值 */
-        overflow: hidden; /* 防止内容溢出 */
+        overflow: hidden;
+        word-wrap: break-word; /* 防止内容溢出 */
+    }
+
+    .km::after {
+        content: " km"; /* 添加 " km" 单位 */
+    }
+
+    .ton::after {
+        content: " ton"; /* 添加 " kg" 单位 */
+    }
+
+    .number-with-comma::after {
+        content: attr(data-number); /* 添加千分位符号 ",000" */
     }
 </style>
 
@@ -80,8 +93,14 @@
     {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-danger" /> |
-            @Html.ActionLink("Back to List", "Index")
+        <div class="form-actions no-color mb-3">
+            <input type="submit" value="確認刪除" class="btn btn-danger" /> 
+
+        </div>
+
+        <div>
+            <a href="@Url.Action("Index")" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> 返回
+            </a>
         </div>
     }

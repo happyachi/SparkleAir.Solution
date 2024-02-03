@@ -1,0 +1,69 @@
+﻿@model SparkleAir.Infa.ViewModel.Airtype_Owns.OwnVmIndex
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>你確定要刪除這筆資料嗎?</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FlightModel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FlightModel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AirTypeId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AirTypeId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RegistrationNum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RegistrationNum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ManufactureYear)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ManufactureYear)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color mb-3">
+            <input type="submit" value="確認刪除" class="btn btn-danger" />
+
+        </div>
+
+        <div>
+            <a href="@Url.Action("Index")" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> 返回
+            </a>
+        </div>
+    }
+</div>

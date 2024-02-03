@@ -66,9 +66,9 @@ namespace SparkleAir.BLL.Service.MileageDetails
 
             var changemile = dto.ChangeMile >= 0 ? memb.TotalMileage+ dto.ChangeMile : memb.TotalMileage;//總里程
 
-            var sb=_repo.Getfinalmile(dto.MermberIsd);
+            var sb=_repo.Getfinalmile(dto.MermberIsd); //取得某會員的最後一筆里程紀錄
 
-
+            //todo orderNumber 要寫自動帶入參數
 
             MileageDetailEntity entity = new MileageDetailEntity
             {

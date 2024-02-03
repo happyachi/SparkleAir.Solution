@@ -20,7 +20,7 @@ namespace SparkleAir.FrontEnd.Site
 						"~/Scripts/modernizr-*"));
 
 			bundles.Add(new Bundle("~/bundles/bootstrap").Include(
-					  "~/Scripts/bootstrap.js"));
+					  "~/Scripts/bootstrap.bundle.js"));
 
             bundles.Add(new Bundle("~/bundles/volt").Include(
                       "~/Scripts/volt.js",
@@ -30,7 +30,8 @@ namespace SparkleAir.FrontEnd.Site
             bundles.Add(new StyleBundle("~/Content/css").Include(
 					  "~/Content/site.css",
                       "~/Content/volt.css",
-					  "~/Content/bootstrap.css"
+					  "~/Content/bootstrap.css",
+                      "~/Content/sparkleAir.css"
 					  ));
 		}
 	}

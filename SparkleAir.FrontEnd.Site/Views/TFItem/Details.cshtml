@@ -19,6 +19,14 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.TFCategoriesName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TFCategoriesName)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Name)
         </dt>
 
@@ -39,7 +47,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Image)
+            <img src="@Url.Content($"~/Files/Images/{Model.Image}")" alt="Uploaded Image" width="200" />
         </dd>
 
         <dt>

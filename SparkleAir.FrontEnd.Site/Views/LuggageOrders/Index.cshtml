@@ -1,0 +1,315 @@
+﻿@model IEnumerable<SparkleAir.Infa.ViewModel.LuggageOrders.LuggageOrderIndexVm>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@section styles
+    {
+
+    <style>
+/* 定义动画 */
+@*@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}*@
+
+/* 应用动画 */
+        .popup {
+           /* transition: opacity 0.3s ease;
+            opacity: 0.7;
+            animation: fadein 0.5s ease forwards;*/
+            /* 这里的 0.5s 是动画的持续时间，可以根据需要调整 */
+        }
+
+
+    </style>
+}
+
+<h3>託運明細清單</h3>
+
+@*<div aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+            <symbol id="check-circle-fill" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+            </symbol>
+            <symbol id="info-fill" viewBox="0 0 16 16">
+                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+            </symbol>
+
+        </svg>
+
+        <div id="icon" class="alert alert-success d-flex align-items-center " aria-hidden="true" role="alert">
+            <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Info:"><use xlink:href="#info-fill" /></svg>
+            <div>
+                An example alert with an icon
+            </div>
+        </div>
+    </div>*@
+
+
+
+
+<p>
+    <a href='@Url.Action("Create")' class="btn btn-sm btn-dark ps-3 pe-3 btn-create"><i class="fa-solid fa-plus"></i>&nbsp;&nbsp;新增</a>
+</p>
+
+<label for="selecttotal">航班代號：</label>
+<select id="selecttotal" class="form-select mb-2" aria-label="Default select example" name="FlightCode">
+    @*name="Lata" 要放要得欄位才抓地到值*@
+    
+    <option value=""></option>
+    @foreach (var item in ViewBag.luggageorder)
+    {
+        <option value="@item.FlightCode">@item.FlightCode</option>
+    }
+
+
+</select>
+
+@*跳出alert的位置*@
+<div id="icon" class="alert alert-warning alert-dismissible fade show  popup mt-3 border border-warning" aria-hidden="true" style="display:none"
+     role="alert">
+     <div><h3 id="icon2"></h3></div>
+    <button id="btn" type="button" class="btn-close" readonly data-bs-dismiss="alert" aria-label="Close" disabled="true"> </button>
+</div>
+
+
+<table id="table" class="table table_jq">
+
+    <thead>                                  
+
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FlightCode)
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.TicketInvoicingDetailId)*@
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TicketInvoicingDetailName)
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.LuggageId)*@
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.LuggagePrice)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.OrderTime)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.TransferPaymentsId)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.OrderStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LuggageNum)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FlightCode)
+                </td>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.TicketInvoicingDetailId)*@
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TicketInvoicingDetailName)
+                </td>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.LuggageId)*@
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.LuggagePrice)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                @*<td >
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderTime)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.TransferPaymentsId)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderStatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LuggageNum)
+                </td>
+                <td>
+                    @*@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |*@
+                    @*@Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = " open-modal"})*@
+                    <button type="button" class="btn btn-sm btn-dark ps-2 pe-2 btn-detail modal-dialog-scrollable detailBtn" data-bs-toggle="modal" data-bs-target="#exampleModal" value="@item.Id">
+                        <i class="fa-solid fa-file"></i>&nbsp;&nbsp;詳細資訊
+                    </button>
+                    @*@Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+                </td>
+            </tr>
+
+            //Html.RenderPartial("PartialIndex",Model);
+        }
+    </tbody>
+
+
+</table>
+
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <dl class="dl-horizontal" id="detail"></dl>
+                </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Close </button>
+                @*<button type="button" class="btn btn-primary">Save changes</button>*@
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $(".open-modal").click(function () {
+                $("#myModal").modal('show');
+            });
+        });
+
+
+
+        const btnss = document.querySelectorAll('.detailBtn');
+        btnss.forEach(function (btn) {
+            btn.addEventListener('click',async function () {
+                const id2 = this.getAttribute('value');
+
+                const modalDiv1 = document.querySelector('.modal-body');
+                 // 将 HTML 内容更新到 modalDiv 中
+                const response1 = await fetch(`@Url.Action("GetDetail", "LuggageOrders")?id=${id2}`);
+                const data1 = await response1.json();
+                const dl2 = document.querySelector('#detail')
+                const dateTime2 = createDateString(data1.OrderTime)
+                const html2 = `<dt>航班代碼:</dt><dd>${data1.FlightCode}</dd>
+                              <dt>開票Id:</dt><dd>${data1.TicketInvoicingDetailId}</dd>
+                              <dt>姓名:</dt><dd>${data1.TicketInvoicingDetailName}</dd>
+                              <dt>託運Id:</dt><dd>${data1.LuggageId}</dd>
+                              <dt>託運預定價:</dt><dd>${data1.LuggagePrice}</dd>
+                              <dt>數量:</dt><dd>${data1.Amount}</dd>
+                              <dt>總價:</dt><dd>${data1.Price}</dd>
+                              <dt>預定時間:</dt><dd>${dateTime2}</dd>
+                              <dt>付款編號:</dt><dd>${data1.TransferPaymentsId}</dd>
+                              <dt>訂單狀態:</dt><dd>${data1.OrderStatus}</dd>
+                              <dt>託運編號:</dt><dd>${data1.LuggageNum}</dd>`
+                dl2.innerHTML = html2;
+
+                const dl3 = document.querySelector('#exampleModalLabel')
+                const html3 = `${data1.FlightCode}`
+                dl3.innerHTML = html3;
+                console.log(data1);
+
+                
+            });
+        });
+
+        //轉換json檔傳來時間的方法
+        function createDateString(str) {
+            const milliseconds1 = parseInt(str.slice(6, 19), 10);
+            const date1 = new Date(milliseconds1);
+            const year1 = date1.getFullYear();
+            const month1 = (date1.getMonth() + 1).toString().padStart(2, '0');
+            const day1 = date1.getDate().toString().padStart(2, '0');
+            const hours1 = date1.getHours().toString().padStart(2, '0');
+            const minutes1 = date1.getMinutes().toString().padStart(2, '0');
+            const seconds1 = date1.getSeconds().toString().padStart(2, '0');
+            return `${year1}-${month1}-${day1} ${hours1}:${minutes1}:${seconds1}`;
+        }
+
+
+
+
+       $(document).ready(function () {
+    // 下拉列表值变化时触发
+           $('#selecttotal').change(function () {
+        // 获取选择的值
+        var selectedStatus = $(this).val();
+               console.log(selectedStatus);
+
+               if (selectedStatus == "") {
+                   // 发起 Ajax 请求获取所有列表的数据
+                   $.ajax({
+                       type: 'GET',
+                       url: `@Url.Action("PartialIndex", "LuggageOrders")`,
+                       success: function (result) {
+                           // 更新表格数据
+                           $('#table').html(result);
+
+                           var hidden = document.querySelector("#icon");
+                           var icon = document.querySelector("#icon2");
+                           hidden.style.display = "none";
+                           icon.innerHTML ="";
+                       },
+                       error: function (error) {
+                           console.log(error);
+                       }
+                   });
+
+               }
+               else
+               {
+                    // 发起 Ajax 请求获取所有列表的数据
+                $.ajax({
+                    type: 'GET',
+                    url: `@Url.Action("PartialIndex", "LuggageOrders")?flightcode=${selectedStatus}`,
+                    /*data: selectedStatus,*/
+                    success: function (result) {
+                        // 更新表格数据
+                        $('#table').html(result);
+
+                        var hidden = document.querySelector("#icon");
+                        var icon = document.querySelector("#icon2");
+                        hidden.style.display = "block";
+                        /*icon.removeattribute(hidden);*/
+
+                   },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+               }
+
+    });
+});
+
+        const popover = new bootstrap.Popover('.popover-dismiss', {
+            trigger: 'focus'
+        })
+    </script>
+}

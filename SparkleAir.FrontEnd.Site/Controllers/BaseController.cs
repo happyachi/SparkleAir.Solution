@@ -58,6 +58,12 @@ namespace SparkleAir.FrontEnd.Site.Controllers
                         Name = "班次管理",
                         ActionName = "Index",
                         ControllerName = "AirFlights",
+                    },
+                     new MenuItem
+                    {
+                        Name = "機隊管理",
+                        ActionName = "Index",
+                        ControllerName = "Owns",
                     }
                 }
             });
@@ -89,6 +95,12 @@ namespace SparkleAir.FrontEnd.Site.Controllers
                     },
                     new MenuItem
                     {
+                        Name = "託運明細清單",
+                        ActionName = "Index",
+                        ControllerName = "LuggageOrders",
+                    },
+                    new MenuItem
+                    {
                         Name = "里程管理",
                         ActionName = "Index",
                         ControllerName = "MileageDetail",
@@ -106,6 +118,30 @@ namespace SparkleAir.FrontEnd.Site.Controllers
                         Name = "品項設定",
                         ActionName = "Index",
                         ControllerName = "TFItem",
+                    },
+                    new MenuItem
+                    {
+                        Name = "備貨量檢視",
+                        ActionName = "Index",
+                        ControllerName = "TFOrderlist",
+                    },
+                    new MenuItem
+                    {
+                        Name = "免稅品預訂單檢視",
+                        ActionName = "Index",
+                        ControllerName = "TFReserve",
+                    },
+                    new MenuItem
+                    {
+                        Name = "免稅品預訂管理",
+                        ActionName = "Index",
+                        ControllerName = "TFReservelist",
+                    },
+                    new MenuItem
+                    {
+                        Name = "願望清單檢視",
+                        ActionName = "Index",
+                        ControllerName = "TFWishlist",
                     }
                 }
             });
@@ -163,6 +199,12 @@ namespace SparkleAir.FrontEnd.Site.Controllers
                 Icon = "<i class=\"fa-solid fa-user\"></i>",
                 MenuItems = new List<IMenuItem>
                 {
+                    new MenuItem
+                    {
+                        Name = "國籍設定",
+                        ActionName = "Index",
+                        ControllerName = "Countries",
+                    },
                     new MenuItem
                     {
                         Name = "會員等級設定",

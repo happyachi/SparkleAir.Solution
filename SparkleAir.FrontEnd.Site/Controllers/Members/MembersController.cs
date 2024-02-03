@@ -62,7 +62,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Members
                 PassportNumber = member.PassportNumber
             }).ToList();
 
-			return View(vmList);
+			return PartialView("Index1",vmList);
         }
 
         public ActionResult Details(int id)

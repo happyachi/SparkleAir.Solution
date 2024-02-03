@@ -10,7 +10,6 @@ namespace SparkleAir.Infa.ViewModel.Basics
     public class CountryIndexVm
     {
         [Display(Name = "ID")]
-        [Required(ErrorMessage = "{0}必填")]
         public int Id { get; set; }
 
         [Display(Name = "中文國籍")]

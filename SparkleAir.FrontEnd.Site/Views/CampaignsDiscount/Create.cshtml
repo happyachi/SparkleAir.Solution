@@ -1,0 +1,244 @@
+﻿@using SparkleAir.Infa.ViewModel.TaxFree
+@model SparkleAir.FrontEnd.Site.Models.ViewModels.Campaigns.CampaignsDiscountVm
+
+@{
+    ViewBag.Title = "Create";
+
+    var list = ViewBag.List as IEnumerable<TFItemVm>;
+}
+
+<style>
+    #selectContainer {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 20px;
+        border: 1px solid #ccc;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        display: none;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+    }
+</style>
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.Campaign, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Campaign, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Campaign, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DateStart, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="datetime-local" id="DateStart" name="DateStart" class="control-label" />
+                @Html.ValidationMessageFor(model => model.DateStart, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DateEnd, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="datetime-local" id="DateEnd" name="DateEnd" class="control-label" />
+                @Html.ValidationMessageFor(model => model.DateEnd, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group mt-3">
+            <p>折扣類型</p>
+            <select name="CampaignId" id="CampaignId" class="form-select CampaignId" aria-label="Default select example">
+                <option selected>請下拉選擇</option>
+                <option value="5">折扣金額</option>
+                <option value="6">折扣折數</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <div class="discountLabel">
+                折扣金額或百分比
+            </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DiscountValue, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DiscountValue, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.DateCreated, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DateCreated, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DateCreated, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Value, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Value, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Value, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BundleSKUs, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BundleSKUs, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.BundleSKUs, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MemberCriteria, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="form-check">
+                    @foreach (var member in ViewBag.Member)
+                    {
+                        <label class="checkbox-inline">
+                            <input class="form-check-input" type="checkbox" value="@member.Name" data-member="@member.Name" name="members">@member.Name
+                        </label>
+                    }
+                    <input type="hidden" name="MemberCriteria" id="flexCheckDefault" value="" />
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TFItemsCriteria, htmlAttributes: new { @class = "control-label col-md-2" })
+            @*<div class="col-md-10">
+                    @Html.EditorFor(model => model.TFItemsCriteria, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.TFItemsCriteria, "", new { @class = "text-danger" })
+                </div>*@
+        </div>
+        <div>
+            <button type="button" class="btn btn-sm btn-dark col-sm-1" onclick="toggle()">新增活動商品</button>
+        </div>
+
+        <div class="select" id="selectContainer" style="display: none;">
+            <div id="selectProducts">
+                @*@Html.Partial("SelectProduct")*@
+                @{
+                    Html.RenderPartial("SelectProduct", list);
+                }
+
+            </div>
+            <button type="button" class="btn btn-sm btn-dark col-sm-1" onclick="cancelProducts()">取消</button>
+            <button type="button" class="btn btn-sm btn-dark col-sm-1" onclick="saveProducts()">儲存</button>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
+@section Scripts{
+    <script>
+
+        /*折扣金額與百分比*/
+        document.addEventListener("DOMContentLoaded", function () {
+            var selectElement = document.querySelector(".CampaignId");
+            var discountLabel = document.querySelector(".discountLabel");
+
+            selectElement.addEventListener("change", function () {
+                if (selectElement.value === "5") {
+                    discountLabel.innerHTML = "折扣金額";
+                } else if (selectElement.value === "6") {
+                    discountLabel.innerHTML = "折扣百分比";
+                } else {
+                    discountLabel.innerHTML = "折扣金額或百分比";
+                }
+            });
+        });
+
+        function toggle() {
+            var selectContainer = document.querySelector('#selectContainer');
+            selectContainer.style.display = 'block';
+            selectContainer.style.opacity = '1';
+        }
+
+        function cancelProducts() {
+            var selectContainer = document.querySelector('#selectContainer');
+            selectContainer.style.opacity = '0';
+            setTimeout(function () {
+                selectContainer.style.display = 'none';
+            }, 300);
+        }
+
+        function updateMember() {
+            const members = Array.from(checks)
+                .filter(checkbox => checkbox.checked)
+                .map(checkbox => checkbox.value);
+
+            document.getElementById('flexCheckDefault').value = members.join(',');
+            console.log(members);
+        }
+
+        function saveProducts() {
+
+            var selectContainer = document.querySelector('#selectContainer');
+            selectContainer.style.opacity = '0';
+
+            setTimeout(function () {
+                selectContainer.style.display = 'none';
+            }, 300);
+        }
+      
+        const input = document.querySelector('#Name');
+        const checks = document.querySelectorAll('.form-check-input');
+
+        input.addEventListener('change', () => {
+            checks.forEach(function (checkbox) {
+                checkbox.checked = "checked";
+                updateMember();
+                console.log("update")
+            });
+
+            checks.forEach(function (item) {
+                item.addEventListener('change', function () {
+                    updateMember();
+                    console.log("cancle")
+                });
+            });
+        });
+    </script>
+}

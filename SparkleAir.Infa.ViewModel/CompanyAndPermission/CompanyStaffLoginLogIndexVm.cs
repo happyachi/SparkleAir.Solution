@@ -10,7 +10,6 @@ namespace SparkleAir.Infa.ViewModel.CompanyAndPermission
     public class CompanyStaffLoginLogIndexVm
     {
         [Display(Name = "ID")]
-        [Required(ErrorMessage = "{0}必填")]
         public int Id { get; set; }
 
         [Display(Name = "職員ID")]
@@ -39,7 +38,6 @@ namespace SparkleAir.Infa.ViewModel.CompanyAndPermission
 
         [Display(Name = "登入狀態")]
         [Required(ErrorMessage = "{0}必填")]
-        [MaxLength(10)]
         public bool LoginStatus { get; set; }
     }
 }

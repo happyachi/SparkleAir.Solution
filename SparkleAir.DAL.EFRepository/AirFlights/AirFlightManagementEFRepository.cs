@@ -31,6 +31,7 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
                 ArrivalTime = entity.ArrivalTime,
                 DayofWeek = entity.DayofWeek,
                 Mile = entity.Mile,
+                CrossDay = entity.CrossDay
             };
 
             db.AirFlightManagements.Add(airFlight);
@@ -73,6 +74,7 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
         public void Update(AirFlightManagementEntity entity)
         {
             var flight = db.AirFlightManagements
+                .Include(f => f.AirPort)
                 .FirstOrDefault(f => f.Id == entity.Id);
 
             if (flight != null)
@@ -86,6 +88,7 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
                 flight.ArrivalTime = entity.ArrivalTime;
                 flight.DayofWeek = entity.DayofWeek;
                 flight.Mile = entity.Mile;
+                flight.CrossDay = entity.CrossDay;
             }
             db.SaveChanges();
         }
