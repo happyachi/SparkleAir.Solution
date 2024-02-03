@@ -1,13 +1,15 @@
-﻿using System;
+﻿using SparkleAir.Infa.EFModel.EFModels;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace SparkleAir.FrontEnd.Site.Models.ViewModels.Campaigns
 {
     public class CampaignsDiscountIndexVm
     {
-        //public int Id { get; set; }
+        public int Id { get; set; }
 
-        //public int CampaignId { get; set; }
+        [Display(Name = "行銷活動編號")]
+        public int CampaignId { get; set; }
 
         [Display(Name = "促銷名稱")]
         public string Name { get; set; }
@@ -23,6 +25,9 @@ namespace SparkleAir.FrontEnd.Site.Models.ViewModels.Campaigns
 
         [Display(Name = "狀態")]
         public string Status { get; set; }
+
+        [Display(Name = "折扣類型")]
+        public string Type { get; set; }
 
     }
 }

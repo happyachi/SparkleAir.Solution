@@ -1,0 +1,112 @@
+﻿@model SparkleAir.Infa.ViewModel.AirFlights.EachFlightSeatsVm
+@{
+	ViewBag.Title = "GetSeat";
+}
+@section styles{
+	<style>
+		.flight-details p {
+			margin: 10px 0;
+			line-height: 1.5;
+		}
+
+		.flight-details strong {
+			color: #161A30; /* Blue color for strong tags */
+		}
+	</style>
+}
+<p>
+	@Model.DepartureAirport <i class="fa-solid fa-right-long"></i> @Model.ArrivalAirport<br />
+	<i class="fa-solid fa-plane-departure"></i> @Model.ScheduledDeparture<br />
+	<i class="fa-solid fa-plane-arrival"></i> @Model.ScheduledArrival
+</p>
+<div class="row" id="datas">
+	<div style="overflow:auto">
+		<table class="table text-center table_jq">
+			<thead>
+				<tr>
+					<th>
+						艙等
+					</th>
+					<th>
+						座位號碼
+					</th>
+					<th>
+						定位狀態
+					</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var seat in Model.Seats)
+				{
+					<tr>
+						<td>
+							@Html.DisplayFor(modelItem => seat.CabinName)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => seat.SeatNum)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => seat.IsSeated)
+						</td>
+						<td>
+							<button class="btn btn-sm btn-dark link" onclick="showModal('@seat.Id')">訂位資訊</button>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+</div>
+<div class="modal fade" tabindex="-1" id="model" aria-labelledby="title" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-dialog-auto">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3 id="title" class="flex-grow-1 d-flex align-items-center justify-content-center"></h3>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<div id="detail" class="text-center">
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+		document.querySelectorAll(".link").forEach(function (link) {
+			link.addEventListener('click', function (event) {
+				event.preventDefault();
+				/*showModal(button.dataset.id);// 通過 dataset 獲取 itemId*/
+			});
+		});
+
+async function showModal(itemId) {
+    try {
+        const response = await fetch('@Url.Content("~/AirFlights/SeatsDetailPartial")' + `?id=${itemId}`);
+		if (!response.ok) {
+		throw new Error(`HTTP error! Status: ${response.status}`);
+		}
+
+		const data = await response.json();
+		
+
+		const div = document.querySelector('#detail');
+		const title = document.querySelector('#title');
+		title.innerHTML = `${data.SeatNum}`
+		div.innerHTML = `
+	<div class="flight-details">
+		<p><strong>姓:</strong> ${data.LastName} </p>
+		<p><strong>名:</strong> ${data.FirstName} </p>
+		<p><strong>性別:</strong> ${data.Gender} </p>
+		<p><strong>國籍:</strong> ${data.Country} </p>
+		<p><strong>人別:</strong> ${data.TypeofPassenger} </p>
+		<p><strong>報到狀態:</strong> ${data.CheckInstatus}</p>
+		</div>`;
+		$('#model').modal('show');
+		} catch (error) {
+		console.error('Error:', error);
+		}
+		}
+</script>

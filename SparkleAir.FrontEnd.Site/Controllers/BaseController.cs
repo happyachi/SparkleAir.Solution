@@ -58,6 +58,12 @@ namespace SparkleAir.FrontEnd.Site.Controllers
                         Name = "班次管理",
                         ActionName = "Index",
                         ControllerName = "AirFlights",
+                    },
+                     new MenuItem
+                    {
+                        Name = "機隊管理",
+                        ActionName = "Index",
+                        ControllerName = "Owns",
                     }
                 }
             });
@@ -86,6 +92,12 @@ namespace SparkleAir.FrontEnd.Site.Controllers
                         Name = "託運管理",
                         ActionName = "Index",
                         ControllerName = "Luggage",
+                    },
+                    new MenuItem
+                    {
+                        Name = "託運明細清單",
+                        ActionName = "Index",
+                        ControllerName = "LuggageOrders",
                     },
                     new MenuItem
                     {

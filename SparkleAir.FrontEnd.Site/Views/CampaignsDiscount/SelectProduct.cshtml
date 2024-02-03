@@ -1,0 +1,115 @@
+﻿@model IEnumerable<SparkleAir.Infa.ViewModel.TaxFree.TFItemVm>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table class="table">
+    <tr>
+        <th>
+            <input class="form-check-input checkAll" type="checkbox" value="" id="selectAllitemCheckbox">
+            <label class="form-check-label" for="flexCheckDefault">
+                全選
+            </label>
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TFCategoriesName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SerialNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Image)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnitPrice)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.IsPublished)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                <label class="fcheckbox-inline" for="flexCheckDefault">
+                    <input class="form-check-input products" type="checkbox" value="@item.Name" data-member="@item.Name" name="items">@item.Name
+                </label>
+                <input name="ItemCriteria" id="flexCheckDefault" value="" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TFCategoriesName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SerialNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Image)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnitPrice)
+            </td>
+            @*<td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.IsPublished)
+            </td>
+            @*<td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>*@
+        </tr>
+    }
+
+</table>
+
+<script>
+    
+    const selectAll = document.querySelector('#selectAllitemCheckbox');
+    const select = document.querySelectorAll('.products');
+
+    
+
+    selectAll.addEventListener('change', function () {
+        const isChecked = selectAll.checked;
+        select.forEach(product => {
+            product.checked = isChecked;
+        });
+    });
+
+    function updateItems() {
+        console.log("123");
+        const items = Array.from(checks)
+            .filter(checkbox => checkbox.checked)
+            .map(checkbox => checkbox.value);
+
+        document.getElementById('flexCheckDefault').value = items.join(',');
+        console.log(items);
+    }
+
+    const items = document.querySelector('#flexCheckDefault');
+    
+</script>

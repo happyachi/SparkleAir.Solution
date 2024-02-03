@@ -6,17 +6,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 
 namespace SparkleAir.Infa.Utility.Exts.Models
 {
     public static class AriFlightExts
     {
+        //用lata取得Id
         public static int GetAirportId(this string lata, AppDbContext db)
         {
             var data = db.AirPorts.FirstOrDefault(airPort => airPort.Lata == lata);
             return data.Id;
         }
 
+        //用Id取得Lata
         public static (string, int) GetAirport(this int airportId, AppDbContext db)
         {
             var data = db.AirPorts.Find(airportId);
@@ -24,46 +28,38 @@ namespace SparkleAir.Infa.Utility.Exts.Models
             return (data.Lata, data.TimeArea);
         }
 
+        //取得AirOwnId 給 ToAirFlightManagementEntity 用的
         public static int? GetAirOwnId(this IEnumerable<AirFlight> airFlights)
         {
             return airFlights?.Select(f => f.AirOwnId).FirstOrDefault();
         }
 
-        public static int? GetAirOwnIdByFlightModel(this string flightModel, AppDbContext db)
+        //取得AirOwnId 給 EF 用的
+        public static int? GetAirOwnIdByFlightModel(this string registrationNum, AppDbContext db)
         {
-            var airOwnId = db.AirOwns
-                              .Join(db.AirTypes, ao => ao.AirTypeId, airtype => airtype.Id, (ao, airtype) => new { ao, airtype.FlightModel })
-                              .Where(joined => joined.FlightModel == flightModel)
-                              .Select(joined => (int?)joined.ao.Id)
-                              .FirstOrDefault();
-
-            return airOwnId;
+            var airOwnId = db.AirOwns.Where(t => t.RegistrationNum == registrationNum).FirstOrDefault();
+            return airOwnId.Id;
         }
 
-        //public static string GetFlightModel(this int? airownId, AppDbContext db)
-        //{
-        //    var flightModel = db.AirOwns
-        //            .Where(ao => ao.Id == airownId)
-        //            .Join(db.AirFlights, ao => ao.Id, af => af.AirOwnId, (ao, af) => new { ao, af })
-        //            .Join(db.AirFlightManagements, a => a.af.AirFlightManagementId, afm => afm.Id, (a, afm) => afm)
-        //            .Select(a => a.AirTypeId) // 選擇 AirTypeId
-        //            .Join(db.AirTypes, airTypeId => airTypeId, airtype => airtype.Id, (airTypeId, airtype) => airtype.FlightModel)
-        //            .FirstOrDefault();
-
-        //    return flightModel ?? "";
-        //}
-
-        public static string GetFlightModelByAirOwnId(this AppDbContext db, int? airOwnId)
+        //取得FlightModel
+        public static (string, string) GetFlightModelByAirOwnId(this AppDbContext db, int? airOwnId)
         {
             var flightModel = db.AirOwns
                             .Where(ao => ao.Id == airOwnId)
                             .Join(db.AirTypes, ao => ao.AirTypeId, ty => ty.Id, (ao, ty) => ty.FlightModel)
                             .FirstOrDefault();
-
-            return flightModel ?? "";
+            var num = db.AirOwns.Where(ao => ao.Id == airOwnId).FirstOrDefault();
+            if (num == null)
+            {
+                return (flightModel ?? "", "");
+            }
+            else
+            {
+                return (flightModel ?? "", num.RegistrationNum);
+            }
         }
 
-        //AirFlightManagement To AirFlightManagementEntity
+        //轉換AirFlightManagement To AirFlightManagementEntity
         public static AirFlightManagementEntity ToAirFlightManagementEntity(this AirFlightManagement afm)
         {
             AppDbContext db = new AppDbContext();
@@ -78,24 +74,46 @@ namespace SparkleAir.Infa.Utility.Exts.Models
                 ArrivalTime = afm.ArrivalTime,
                 DayofWeek = afm.DayofWeek,
                 Mile = afm.Mile,
-                DepartureAirport = afm.DepartureAirportId.GetAirport(db).Item1,
-                ArrivalAirport = afm.ArrivalAirportId.GetAirport(db).Item1,
-                DepartureTimeZone = afm.DepartureAirportId.GetAirport(db).Item2,
-                ArrivalTimeZone = afm.ArrivalAirportId.GetAirport(db).Item2,
+                DepartureAirport = db.AirPorts.Find(afm.DepartureAirportId).Lata,
+                ArrivalAirport = db.AirPorts.Find(afm.ArrivalAirportId).Lata,
+                DepartureTimeZone = db.AirPorts.Find(afm.DepartureAirportId).TimeArea,
+                ArrivalTimeZone = db.AirPorts.Find(afm.ArrivalAirportId).TimeArea,
                 AirOwnId = afm.AirFlights.GetAirOwnId(),
-                FlightModel = db.GetFlightModelByAirOwnId(afm.AirFlights.GetAirOwnId()),
+                FlightModel = db.GetFlightModelByAirOwnId(afm.AirFlights.GetAirOwnId()).Item1,
+                CrossDay = afm.CrossDay,
+                RegistrationNum= afm.AirFlights.GetAirOwnId() == null ? "" : db.GetFlightModelByAirOwnId(afm.AirFlights.GetAirOwnId()).Item2
+            };
+            return entity;
+        }
+        public static EachSeatInfoEntity ToEachSeatInfoEntity(this AirBookSeat airBookSeat, int seatId)
+        {
+            EachSeatInfoEntity entity = new EachSeatInfoEntity
+            {
+
+                AirFlightSeatId = seatId,
+                TicketInvoicingDetailId = airBookSeat.TicketInvoicingDetailId,
+                ReservationTime = airBookSeat.ReservationTime,
+                TransferPaymentId = airBookSeat.TransferPaymentId,
+                HandlingFee = airBookSeat.HandlingFee,
+                SeatAssignmentNum = airBookSeat.SeatAssignmentNum,
+                SeatNum = airBookSeat.AirFlightSeat.SeatNum,
+                LastName = airBookSeat.TicketInvoicingDetail.LastName,
+                FirstName = airBookSeat.TicketInvoicingDetail.FirstName,
+                Country = airBookSeat.TicketInvoicingDetail.Country.ChineseName,
+                Gender = airBookSeat.TicketInvoicingDetail.Gender.ToString(),
+                TypeofPassenger = airBookSeat.TicketInvoicingDetail.TicketDetail.TypeofPassenger.PassengerType,
+                CheckInstatus = airBookSeat.TicketInvoicingDetail.CheckInStatus.ToString()
             };
             return entity;
         }
 
-        //用迴圈跑值班表
+        //用迴圈跑值班表(一個月內的)
+        //todo 可以設定要跑出多久之後的班表
         public static List<DateTime> GetScheduledFlights(this DateTime currentDate, FlightDate[] days, DateTime today)
         {
             var scheduledFlights = new List<DateTime>();
             var currentMonth = currentDate.Month;
-            //var startDate = new DateTime(currentDate.Year, currentDate.Month, 1);
-            //var daysInMonth = DateTime.DaysInMonth(currentDate.Year, currentDate.Month);
-            for (int month = currentMonth; month <= (currentMonth + 1); month++)
+            for (int month = currentMonth; month <= (currentMonth); month++)
             {
                 var daysInMonth = DateTime.DaysInMonth(currentDate.Year, month);
                 for (int day = 1; day <= daysInMonth; day++)
@@ -117,5 +135,75 @@ namespace SparkleAir.Infa.Utility.Exts.Models
             }
             return scheduledFlights;
         }
+
+        //轉換AirFlight To AirFlightEntity
+        public static AirFlightEntity ToAirFlightEntity(this AirFlight af)
+        {
+            AppDbContext db = new AppDbContext();
+            AirFlightEntity entity = new AirFlightEntity
+            {
+                Id = af.Id,
+                AirOwnId = af.AirOwnId,
+                AirFlightManagementId = af.AirFlightManagementId,
+                ScheduledDeparture = af.ScheduledDeparture,
+                ScheduledArrival = af.ScheduledArrival,
+                AirFlightSaleStatusId = af.AirFlightSaleStatusId,
+                FlightModel = af.AirOwn.AirType.FlightModel,
+                FlightCode = af.AirFlightManagement.FlightCode,
+                DepartureAirport = db.AirPorts.Find(af.AirFlightManagement.DepartureAirportId).Lata,
+                ArrivalAirport = db.AirPorts.Find(af.AirFlightManagement.ArrivalAirportId).Lata,
+                DepartureAirportId = db.GetFlightCode(af.AirFlightManagementId).Item1,
+                ArrivalAirportId = db.GetFlightCode(af.AirFlightManagementId).Item2,
+                DepartureTimeZone = db.AirPorts.Find(af.AirFlightManagement.DepartureAirportId).TimeArea,
+                ArrivalTimeZone = db.AirPorts.Find(af.AirFlightManagement.ArrivalAirportId).TimeArea,
+                AirFlightSaleStatus = af.AirFlightSaleStatus.Status,
+                DayofWeek = af.AirFlightManagement.DayofWeek,
+                RegistrationNum = af.AirOwn.RegistrationNum
+            };
+            return entity;
+        }
+        public static string GetSaleStatus(this int statusId, AppDbContext db)
+        {
+            var status = db.AirFlightSaleStatuses.Find(statusId);
+            return status.Status;
+        }
+        //取得ToAirFlightEntity所需相關訊息
+        //出發地ID 目的地ID
+        public static (int, int) GetFlightCode(this AppDbContext db, int id)
+        {
+            var data = db.AirFlightManagements.Find(id);
+            return (data.DepartureAirportId, data.ArrivalAirportId);
+        }
+
+        public static AirFlightSeatsEntity ToFlightSeatsEntity(this AirFlightSeat seats, int airFlightId)
+        {
+            AirFlightSeatsEntity entity = new AirFlightSeatsEntity
+            {
+                Id = seats.Id,
+                AirFlightId = airFlightId,
+                AirCabinId = seats.AirCabinId,
+                IsSeated = seats.IsSeated,
+                SeatNum = seats.SeatNum,
+                CabinName = seats.AirCabin.CabinClass,
+                FlightModel = seats.AirFlight.AirOwn.AirType.FlightModel,
+                RegisterNum = seats.AirFlight.AirOwn.RegistrationNum
+            };
+            return entity;
+        }
+
+        public static bool IsExist(this DateTime deptTime)
+        {
+            AppDbContext db = new AppDbContext();
+            var flights = db.AirFlights
+      .Where(f => DbFunctions.TruncateTime(f.ScheduledDeparture) == deptTime)
+      .ToList();
+            if(flights.Count > 0)
+            {
+                return true;
+            }
+            return false;
+        }
     }
+
 }
+
