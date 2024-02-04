@@ -175,6 +175,7 @@
     <Compile Include="Controllers\TaxFree\TFReserveController.cs" />
     <Compile Include="Controllers\TaxFree\TFReservelistController.cs" />
     <Compile Include="Controllers\TaxFree\TFWishlistController.cs" />
+    <Compile Include="Controllers\Tickets\TicketsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

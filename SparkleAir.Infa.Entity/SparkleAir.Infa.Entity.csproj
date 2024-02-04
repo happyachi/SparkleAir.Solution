@@ -80,6 +80,7 @@
     <Compile Include="TaxFree\TFReservelistsEntity.cs" />
     <Compile Include="TaxFree\TFReservesEntity.cs" />
     <Compile Include="TaxFree\TFWishlistsEntity.cs" />
+    <Compile Include="Tickets\TicketsEntity.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SparkleAir.Infa.EFModel\SparkleAir.Infa.EFModel.csproj">

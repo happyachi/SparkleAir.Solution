@@ -87,6 +87,7 @@
     <Compile Include="TaxFree\TFReseveEFRepository.cs" />
     <Compile Include="TaxFree\TFResevelistEFRepository.cs" />
     <Compile Include="TaxFree\TFWishlistEFRepository.cs" />
+    <Compile Include="Tickets\TicketsEFRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SparkleAir.IDAL.IRepository\SparkleAir.IDAL.IRepository.csproj">
