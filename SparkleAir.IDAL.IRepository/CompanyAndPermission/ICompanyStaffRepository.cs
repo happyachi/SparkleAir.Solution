@@ -12,6 +12,8 @@ namespace SparkleAir.IDAL.IRepository.CompanyAndPermission
     {
         List<CompanyStaffEntity> Search();
 
+        List<CompanyStaffEntity> SearchByJobId(int jobId);
+
         void Create(CompanyStaffEntity entity);
 
         CompanyStaffEntity Get(CompanyStaffGetCriteria criteria);

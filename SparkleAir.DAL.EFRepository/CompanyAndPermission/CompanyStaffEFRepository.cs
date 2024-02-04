@@ -102,6 +102,31 @@ namespace SparkleAir.DAL.EFRepository.CompanyAndPermission
             return entity;
         }
 
+        public List<CompanyStaffEntity> SearchByJobId(int jobId)
+        {
+            var entity = _db.CompanyStaffs
+                .Include(c => c.CompanyJob)
+                .Include(c => c.CompanyJob.CompanyDepartment)
+                .AsNoTracking()
+                .Where(c => c.CompanyJobId == jobId)
+                .Select(c => new CompanyStaffEntity
+                {
+                    Id = c.Id,
+                    Account = c.Account,
+                    Password = c.Password,
+                    FirstName = c.FirstName,
+                    LastName = c.LastName,
+                    CompanyJobId = c.CompanyJobId,
+                    CompanyDepartmentName = c.CompanyJob.CompanyDepartment.Name,
+                    JobTitle = c.CompanyJob.JobTitle,
+                    Status = c.Status,
+                    RegistrationTime = c.RegistrationTime
+                })
+                .ToList();
+
+            return entity;
+        }
+
         public string GetLeastAccount(string yearAndMonth)
         {
             var account = _db.CompanyStaffs

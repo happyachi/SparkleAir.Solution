@@ -10,6 +10,8 @@ namespace SparkleAir.IDAL.IRepository.CompanyAndPermission
     public interface IPermissionGroupsAddStaffRepository
     {
         List<PermissionGroupsAddStaffEntity> Search();
+        List<PermissionGroupsAddStaffEntity> SearchByGroupId(int groupId);
+
 
         PermissionGroupsAddStaffEntity Get(int id);
 

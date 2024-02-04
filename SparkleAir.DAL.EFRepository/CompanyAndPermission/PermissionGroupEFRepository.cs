@@ -70,7 +70,7 @@ namespace SparkleAir.DAL.EFRepository.CompanyAndPermission
 
             if(entity.Name != null) permissionGroup.Name = entity.Name;
             if (entity.Ddescribe != null) permissionGroup.Ddescribe = entity.Ddescribe;
-            if (entity.Criteria != null) permissionGroup.Criteria = entity.Criteria;
+            permissionGroup.Criteria = entity.Criteria;
 
             _db.SaveChanges();
         }

@@ -65,6 +65,24 @@ namespace SparkleAir.DAL.EFRepository.CompanyAndPermission
             return entities;
         }
 
+        public List<PermissionGroupsAddStaffEntity> SearchByGroupId(int groupId)
+        {
+            var entities = _db.PermissionGroupsAddStaffs
+                .Include(x => x.PermissionGroup)
+                .Include(x => x.CompanyStaff)
+                .Where(x => x.PermissionGroupsId == groupId)
+                .Select(x => new PermissionGroupsAddStaffEntity
+                {
+                    Id = x.Id,
+                    PermissionGroupsId = x.PermissionGroupsId,
+                    PermissionGroupsName = x.PermissionGroup.Name,
+                    CompanyStaffsId = x.CompanyStaffsId,
+                    CompanyStaffsName = x.CompanyStaff.FirstName + " " + x.CompanyStaff.LastName
+                }).ToList();
+
+            return entities;
+        }
+
         public void Update(PermissionGroupsAddStaffEntity entity)
         {
             var permissionGroupsAddStaff = _db.PermissionGroupsAddStaffs.Find(entity.Id);

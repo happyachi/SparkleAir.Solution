@@ -3,6 +3,7 @@ using SparkleAir.DAL.EFRepository.CompanyAndPermission;
 using SparkleAir.IDAL.IRepository.CompanyAndPermission;
 using SparkleAir.Infa.Criteria.CompanyAndPermission;
 using SparkleAir.Infa.Dto.CompanyAndPermission;
+using SparkleAir.Infa.EFModel.EFModels;
 using SparkleAir.Infa.ViewModel.CompanyAndPermission;
 using System;
 using System.Collections.Generic;
@@ -21,14 +22,24 @@ namespace SparkleAir.FrontEnd.Site.Controllers.CompaniesAndPermissions
         private readonly IPermissionPageInfoRepository _pageInfogRepo;
 
         private readonly IPermissionSettingRepository _permissionSettingRepo;
+        private readonly ICompanyStaffRepository _staffRepo;
+        private readonly IPermissionGroupsAddStaffRepository _groupsAddStaffRepo;
+
+        private readonly CompanyJobService _companyJobService;
+        private readonly ICompanyJobRepository _companyJobRepo;
         public PermissionGroupsController()
         {
             _repo = new PermissionGroupEFRepository();
             _permissionSettingRepo = new PermissionSettingEFRepository();
-            _service = new PermissionGroupService(_repo, _permissionSettingRepo);
+            _staffRepo = new CompanyStaffEFRepository();
+            _groupsAddStaffRepo = new PermissionGroupsAddStaffEFRepository();
+            _service = new PermissionGroupService(_repo, _permissionSettingRepo, _staffRepo, _groupsAddStaffRepo);
 
             _pageInfogRepo = new PermissionPageInfoEFRepository();
             _pageInfoService = new PermissionPageInfoService(_pageInfogRepo);
+
+            _companyJobRepo = new CompanyJobEFRepository();
+            _companyJobService = new CompanyJobService(_companyJobRepo);
         }
 
         // GET: PermissionGroups
@@ -101,6 +112,16 @@ namespace SparkleAir.FrontEnd.Site.Controllers.CompaniesAndPermissions
                     {
                         Id = p.Id,
                         PageName = p.PageName,
+                    })
+                    .ToList();
+
+                ViewBag.companyJobList = _companyJobService.Search()
+                    .Select(c => new CompanyJobDto
+                    {
+                        Id = c.Id,
+                        JobTitle = c.JobTitle,
+                        CompanyDepartmentName = c.CompanyDepartmentName,
+                        CompanyDepartmentId = c.CompanyDepartmentId
                     })
                     .ToList();
 
