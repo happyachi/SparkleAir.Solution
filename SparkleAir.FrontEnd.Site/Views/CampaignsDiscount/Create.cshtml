@@ -244,22 +244,32 @@
             myProductsList.value = selectedIds.join(',');
         }
 
+
         function saveProducts() {
-            var selectContainer = document.querySelector('#selectContainer');
-            selectContainer.style.opacity = '0';
+            // Prevent the default form submission behavior
+            event.preventDefault();
 
-            // Get selected IDs from the partial view
-            const selectedIds = Array.from(checks)
-                .filter(checkbox => checkbox.checked)
-                .map(checkbox => checkbox.getAttribute('data-member'));
+            // Get all selected checkboxes inside the selectProducts div
+            var checkboxes = document.querySelectorAll('#selectProducts input[type="checkbox"]:checked');
 
-            // Update the list in the main view
-            updateMyProductsList(selectedIds);
+            // Extract values and create a comma-separated string
+            var selectedProducts = [];
+            checkboxes.forEach(function (checkbox) {
+                if (checkbox.value !== 'on') {
+                    selectedProducts.push(checkbox.value);
+                }
+            });
 
-            setTimeout(function () {
-                selectContainer.style.display = 'none';
-            }, 300);
+            // Join values with a comma to create a comma-separated string
+            var productListValue = selectedProducts.length > 0 ? selectedProducts.join(',') : '';
+
+            // Set the value of the productList input field
+            document.getElementById('productList').value = productListValue;
+
+            // Hide the selectContainer div (you may want to adjust this based on your needs)
+            document.getElementById('selectContainer').style.display = 'none';
         }
+       
 
     </script>
 }

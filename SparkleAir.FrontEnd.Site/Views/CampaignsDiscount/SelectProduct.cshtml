@@ -8,7 +8,8 @@
         <tr>
             <th>
                 <input class="form-check-input checkAll" type="checkbox" value="" id="selectAllitemCheckbox">
-                <label class="form-check-label" for="flexCheckDefault"></label>
+                <label class="form-check-label" for="flexCheckproduct"></label>
+                <input type="hidden" id="selectedItems" name="selectedItems" />
             </th>
             @*<th>
                 @Html.DisplayNameFor(model => model.Id)
@@ -45,7 +46,7 @@
         {
             <tr>
                 <td>
-                    <label class="fcheckbox-inline" for="flexCheckDefault">
+                    <label class="fcheckbox-inline" for="flexCheckproduct">
                         <input class="form-check-input products" type="checkbox" value="@item.Name" data-member="@item.Name" name="items">
                     </label>
                     @*<input name="ItemCriteria" id="flexCheckDefault" value="" />*@
@@ -105,11 +106,11 @@
             .filter(checkbox => checkbox.checked)
             .map(checkbox => checkbox.value);
 
-        document.getElementById('flexCheckDefault').value = items.join(',');
+        document.getElementById('flexCheckproduct').value = items.join(',');
         console.log(items);
     }
 
-    const items = document.querySelector('#flexCheckDefault');
+    const items = document.querySelector('#flexCheckproduct');
 
  
     const selectedIds = []; // 儲存選的item.Id
@@ -137,7 +138,8 @@
             }
         });
 
-        document.getElementById('flexCheckDefault').value = selectedIds.join(',');
+        // 設置選中的項目到 hidden input 中
+        document.getElementById('selectedItems').value = selectedIds.join(',');
         console.log(selectedIds);
     }
 

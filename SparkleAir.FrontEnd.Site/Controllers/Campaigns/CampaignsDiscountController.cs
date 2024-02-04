@@ -111,8 +111,8 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
             if (!ModelState.IsValid) return View();
             try
             {
-                List<TFItemVm> vms = CreateSelectProducts();
-                return PartialView("SelectProduct",vms);
+                var vms = CreateSelectProducts();
+                return PartialView("SelectProduct", vms);
             }
             catch (Exception ex)
             {
@@ -121,7 +121,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
             }
         }
 
-        private List<TFItemVm> CreateSelectProducts()
+        private IEnumerable<SparkleAir.Infa.ViewModel.TaxFree.TFItemVm> CreateSelectProducts()
         {
             var dtos = new TaxFreeService(new TFItemEFRepository()).Get();
             var products = dtos.Select(x => new TFItemVm
