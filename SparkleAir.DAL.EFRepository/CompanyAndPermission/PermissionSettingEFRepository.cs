@@ -77,6 +77,30 @@ namespace SparkleAir.DAL.EFRepository.CompanyAndPermission
             return entities;
         }
 
+        public List<PermissionSettingEntity> Search(int groupId)
+        {
+            var entities = _db.PermissionSettings
+                .Include(x => x.PermissionGroup)
+                .Include(x => x.PermissionPageInfo)
+                .AsNoTracking()
+                .Where(p=> p.PermissionGroupsId == groupId)
+                .Select(p => new PermissionSettingEntity
+                {
+                    Id = p.Id,
+                    PermissionGroupsId = p.PermissionGroupsId,
+                    PermissionGroupsName = p.PermissionGroup.Name,
+                    PermissionPageInfoId = p.PermissionPageInfoId,
+                    PermissionPageInfoName = p.PermissionPageInfo.PageName,
+                    ViewPermission = p.ViewPermission,
+                    EditPermission = p.EditPermission,
+                    DeletePermission = p.DeletePermission,
+                    CreatePermission = p.CreatePermission
+                })
+                .ToList();
+
+            return entities;
+        }
+
         public void Update(PermissionSettingEntity entity)
         {
             var permissionSetting = _db.PermissionSettings.Find(entity.Id);

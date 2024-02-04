@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using System.Web.UI.WebControls;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.CompaniesAndPermissions
@@ -16,12 +17,17 @@ namespace SparkleAir.FrontEnd.Site.Controllers.CompaniesAndPermissions
     public class CompanyStaffsController : BaseController
     {
         private readonly CompanyStaffService _service;
-        private readonly ICompanyStaffRepository _repo;
+        private readonly CompanyJobService _companyJobService;
+        private readonly ICompanyStaffRepository _repo; 
+        private readonly ICompanyJobRepository _companyJobRepo;
 
         public CompanyStaffsController()
         {
             _repo = new CompanyStaffEFRepository();
             _service = new CompanyStaffService(_repo);
+
+            _companyJobRepo = new CompanyJobEFRepository();
+            _companyJobService = new CompanyJobService(_companyJobRepo);
         }
 
         // GET: CompanyStaffs
@@ -47,11 +53,19 @@ namespace SparkleAir.FrontEnd.Site.Controllers.CompaniesAndPermissions
 
         public ActionResult Create()
         {
+
+            ViewBag.CompanyJobs = _companyJobService.Search().Select(c=> new CompanyJobIndexVm
+            {
+                Id = c.Id,
+                CompanyDepartmentName = c.CompanyDepartmentName,
+                JobTitle = c.JobTitle
+            }).ToList();
+
             return View();
         }
 
         [HttpPost]
-        public ActionResult Create(CompanyStaffIndexVm vm)
+        public ActionResult Create(CompanyStaffCreateVm vm)
         {
             if (!ModelState.IsValid) return View(vm);
 
@@ -59,15 +73,9 @@ namespace SparkleAir.FrontEnd.Site.Controllers.CompaniesAndPermissions
             {
                 var dto = new CompanyStaffDto()
                 {
-                    Account = vm.Account,
-                    Password = vm.Password,
                     FirstName = vm.FirstName,
                     LastName = vm.LastName,
                     CompanyJobId = vm.CompanyJobId,
-                    CompanyDepartmentName = vm.CompanyDepartmentName,
-                    JobTitle = vm.JobTitle,
-                    Status = vm.Status,
-                    RegistrationTime = vm.RegistrationTime
                 };
 
                 _service.Create(dto);
@@ -197,11 +205,6 @@ namespace SparkleAir.FrontEnd.Site.Controllers.CompaniesAndPermissions
                 ModelState.AddModelError("", ex.Message);
                 return RedirectToAction("Index");
             }
-        }
-
-        public ActionResult Login()
-        {
-            return View();
         }
 
         

@@ -9,8 +9,6 @@ namespace SparkleAir.Infa.ViewModel.CompanyAndPermission
 {
     public class CompanyStaffLoginVm
     {
-
-
         [Display(Name = "帳號")]
         [Required(ErrorMessage = "{0}必填")]
         [MaxLength(10)]
@@ -22,6 +20,5 @@ namespace SparkleAir.Infa.ViewModel.CompanyAndPermission
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        
     }
 }

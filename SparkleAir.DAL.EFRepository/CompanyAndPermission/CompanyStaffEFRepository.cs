@@ -54,8 +54,10 @@ namespace SparkleAir.DAL.EFRepository.CompanyAndPermission
             }
             else
             {
-                query = staff.FirstOrDefault(m => CompanyStaffGetFunc(m, criteria));
+                query = staff.FirstOrDefault(m => m.Account == criteria.Account);
             }
+
+            if (query == null) return null;
 
             var entity = new CompanyStaffEntity
             {
@@ -68,7 +70,9 @@ namespace SparkleAir.DAL.EFRepository.CompanyAndPermission
                 CompanyDepartmentName = query.CompanyJob.CompanyDepartment.Name,
                 JobTitle = query.CompanyJob.JobTitle,
                 Status = query.Status,
-                RegistrationTime = query.RegistrationTime
+                RegistrationTime = query.RegistrationTime,
+                RoleGroupName = query.PermissionGroupsAddStaffs.Select(m => m.PermissionGroup.Name).ToList(),
+                RoleGroupId = query.PermissionGroupsAddStaffs.Select(m => m.PermissionGroup.Id).ToList()
             };
 
             return entity;
@@ -96,6 +100,17 @@ namespace SparkleAir.DAL.EFRepository.CompanyAndPermission
                 .ToList();
 
             return entity;
+        }
+
+        public string GetLeastAccount(string yearAndMonth)
+        {
+            var account = _db.CompanyStaffs
+                .AsNoTracking()
+                .Where(c => c.Account.Contains(yearAndMonth))
+                .OrderByDescending(c => c.Account)
+                .FirstOrDefault();
+            if (account == null) return null;
+            return account.Account;
         }
 
         public void Update(CompanyStaffEntity entity)

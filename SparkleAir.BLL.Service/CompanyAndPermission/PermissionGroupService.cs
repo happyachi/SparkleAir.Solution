@@ -12,10 +12,12 @@ namespace SparkleAir.BLL.Service.CompanyAndPermission
     public class PermissionGroupService
     {
         private readonly IPermissionGroupRepository _repo;
+        private readonly IPermissionSettingRepository _settingRepo;
 
-        public PermissionGroupService(IPermissionGroupRepository repo)
+        public PermissionGroupService(IPermissionGroupRepository repo, IPermissionSettingRepository settingRepo)
         {
             _repo = repo;
+            _settingRepo = settingRepo;
         }
 
         public List<PermissionGroupDto> Search()
@@ -51,13 +53,40 @@ namespace SparkleAir.BLL.Service.CompanyAndPermission
                 Id = entity.Id,
                 Name = entity.Name,
                 Ddescribe = entity.Ddescribe,
-                Criteria = entity.Criteria
+                Criteria = entity.Criteria,
+                PermissionSettingPageId = entity.PermissionSettingPageId,
+                PermissionSettingPageName = entity.PermissionSettingPageName
             };
             return dto;
         }
 
         public void Update(PermissionGroupDto dto)
         {
+            var permissionSettingId = dto.PermissionSettingPageIdString;
+            var permissionSettingIdList = permissionSettingId.Split(',').Select(int.Parse).ToArray();
+
+            var settingEntity = _settingRepo.Search(dto.Id);
+            var settingPageIdList = settingEntity.Select(p=>p.PermissionPageInfoId).ToArray();
+
+            var needCreateList = permissionSettingIdList.Except(settingPageIdList);
+            needCreateList.ToList().Select(p => new PermissionSettingEntity
+            {
+                PermissionGroupsId = dto.Id,
+                PermissionPageInfoId = p,
+                ViewPermission = true,
+                EditPermission = true,
+                DeletePermission = true,
+                CreatePermission = true
+            }).ToList().ForEach(p => _settingRepo.Create(p));
+
+            var neddDeleteList = settingPageIdList.Except(permissionSettingIdList);
+            foreach (var pageId in neddDeleteList)
+            {
+                settingEntity.Where(s => s.PermissionPageInfoId == pageId).ToList()
+                    .ForEach(s => _settingRepo.Delete(s.Id));
+            }
+                
+            // PermissionGroup
             var entity = new PermissionGroupEntity
             {
                 Id = dto.Id,

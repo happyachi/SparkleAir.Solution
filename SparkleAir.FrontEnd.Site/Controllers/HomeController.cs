@@ -8,7 +8,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers
 {
 	public class HomeController : BaseController
     {
-		public ActionResult Index()
+        public ActionResult Index()
 		{
 			return View();
 		}

@@ -163,6 +163,7 @@
     <Compile Include="Controllers\CompaniesAndPermissions\PermissionPageInfosController.cs" />
     <Compile Include="Controllers\CompaniesAndPermissions\PermissionSettingsController.cs" />
     <Compile Include="Controllers\Airtype&amp;Owns\PlanesController.cs" />
+    <Compile Include="Controllers\CompaniesAndPermissions\StaffAuthController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LuggageOrders\LuggageOrdersController.cs" />
     <Compile Include="Controllers\Members\MemberClassesController.cs" />
@@ -428,6 +429,7 @@
     <Content Include="Files\Images\empty.jpg" />
     <Content Include="Files\Images\imgjake.jpg" />
     <Content Include="Files\Images\loading.gif" />
+    <Content Include="Files\LayoutImages\signin.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="obj\Debug\SparkleAir.FrontEnd.Site.csproj.FileListAbsolute.txt" />
@@ -757,6 +759,7 @@
     <Content Include="Views\CampaignsCoupon\IPartialIndex.cshtml" />
     <Content Include="Views\Members\Index1.cshtml" />
     <Content Include="Views\Members\Index - 複製.cshtml" />
+    <Content Include="Views\StaffAuth\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -767,6 +770,7 @@
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Campaigns\" />
     <Folder Include="Views\Companies\" />
+    <Folder Include="Views\Login\" />
     <Folder Include="Views\Search\" />
   </ItemGroup>
   <ItemGroup>

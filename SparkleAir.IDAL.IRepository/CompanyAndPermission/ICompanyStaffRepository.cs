@@ -19,5 +19,7 @@ namespace SparkleAir.IDAL.IRepository.CompanyAndPermission
         void Update(CompanyStaffEntity entity);
 
         void Delete(int id);
+
+        string GetLeastAccount(string yearAndMonth);
     }
 }

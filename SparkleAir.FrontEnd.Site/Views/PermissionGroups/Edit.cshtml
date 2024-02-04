@@ -9,38 +9,50 @@
 
 @using (Html.BeginForm())
 {
-    @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
     
-    <div class="form-horizontal">
+<div class="form-horizontal">
 
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
+    <input data-val="true"  id="PermissionSettingPageIdString" name="PermissionSettingPageIdString" type="hidden" value="">
 
-        <div class="mb-3">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+    <div class="row">
+        <div class="col">
+            <div class="mb-3">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(model => model.Ddescribe, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Ddescribe, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Ddescribe, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(model => model.Criteria, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Criteria, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Criteria, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
+        <div class="col">
+            @foreach (var item in ViewBag.pageInfoList)
+            {
+                string check = (Model.PermissionSettingPageId.Contains(item.Id)) ? "checked" : "";
 
-        <div class="mb-3">
-            @Html.LabelFor(model => model.Ddescribe, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Ddescribe, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Ddescribe, "", new { @class = "text-danger" })
-            </div>
+                <input type="checkbox" class="btn-check checked-page" id="page_@item.Id" autocomplete="off" @check>
+                <label class="btn btn-outline-primary" for="page_@item.Id">@item.PageName</label>
+            }
         </div>
-
-        <div class="mb-3">
-            @Html.LabelFor(model => model.Criteria, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Criteria, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Criteria, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
         <div class="mb-3">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="儲存" class="btn btn-sm btn-success ps-3 pe-3 btn-update" />
@@ -48,6 +60,7 @@
             </div>
         </div>
     </div>
+</div>
 }
 
 <div>
@@ -58,4 +71,26 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+<script>
+    const checkPage = document.querySelectorAll('.checked-page')
+    const permissionSettingPageIdString = document.querySelector('#PermissionSettingPageIdString')
+
+    let getPageId = () => {
+        let pageId = [];
+        checkPage.forEach(item => {
+            if (item.checked) {
+                pageId.push(item.id.split("_")[1]);
+            }
+        });
+        permissionSettingPageIdString.value = pageId;
+    };
+
+    getPageId()
+
+    checkPage.forEach(item => {
+        item.addEventListener('change', (event) => {
+            getPageId();
+        });
+    });
+    </script>
 }

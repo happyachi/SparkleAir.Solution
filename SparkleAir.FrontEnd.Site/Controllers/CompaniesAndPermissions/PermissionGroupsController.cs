@@ -17,10 +17,18 @@ namespace SparkleAir.FrontEnd.Site.Controllers.CompaniesAndPermissions
         private readonly PermissionGroupService _service;
         private readonly IPermissionGroupRepository _repo;
 
+        private readonly PermissionPageInfoService _pageInfoService;
+        private readonly IPermissionPageInfoRepository _pageInfogRepo;
+
+        private readonly IPermissionSettingRepository _permissionSettingRepo;
         public PermissionGroupsController()
         {
             _repo = new PermissionGroupEFRepository();
-            _service = new PermissionGroupService(_repo);
+            _permissionSettingRepo = new PermissionSettingEFRepository();
+            _service = new PermissionGroupService(_repo, _permissionSettingRepo);
+
+            _pageInfogRepo = new PermissionPageInfoEFRepository();
+            _pageInfoService = new PermissionPageInfoService(_pageInfogRepo);
         }
 
         // GET: PermissionGroups
@@ -83,8 +91,18 @@ namespace SparkleAir.FrontEnd.Site.Controllers.CompaniesAndPermissions
                     Id = dto.Id,
                     Name = dto.Name,
                     Ddescribe = dto.Ddescribe,
-                    Criteria = dto.Criteria
+                    Criteria = dto.Criteria,
+                    PermissionSettingPageName = dto.PermissionSettingPageName,
+                    PermissionSettingPageId = dto.PermissionSettingPageId
                 };
+
+                ViewBag.pageInfoList = _pageInfoService.Search()
+                    .Select(p=> new PermissionPageInfoDto
+                    {
+                        Id = p.Id,
+                        PageName = p.PageName,
+                    })
+                    .ToList();
 
                 return View(vm);
             }
@@ -107,7 +125,8 @@ namespace SparkleAir.FrontEnd.Site.Controllers.CompaniesAndPermissions
                     Id = vm.Id,
                     Name = vm.Name,
                     Ddescribe = vm.Ddescribe,
-                    Criteria = vm.Criteria
+                    Criteria = vm.Criteria,
+                    PermissionSettingPageIdString = vm.PermissionSettingPageIdString
                 };
 
                 _service.Update(dto);
