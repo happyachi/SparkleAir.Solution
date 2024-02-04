@@ -9,6 +9,11 @@
 @*<p>
     <a href='@Url.Action("Create")' class="btn btn-sm btn-dark ps-3 pe-3 btn-create"><i class="fa-solid fa-plus"></i>&nbsp;&nbsp;新增</a>
 </p>*@
+
+<p>
+    @Html.ActionLink("Export to Excel", "ExportToExcel", "TFWishlist", new { area = "" }, new { @class = "btn btn-primary" })
+</p>
+
 <table class="table table_jq">
     <thead>
         <tr>

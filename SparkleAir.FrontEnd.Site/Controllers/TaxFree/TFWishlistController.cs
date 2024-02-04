@@ -8,6 +8,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using OfficeOpenXml;
+using OfficeOpenXml.Style;
+using System.IO;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.TaxFree
 {
@@ -41,6 +44,31 @@ namespace SparkleAir.FrontEnd.Site.Controllers.TaxFree
            return PartialView("Index1", wishlists);
         }
 
+        public ActionResult ExportToExcel()
+        {
+            var data = Get();
+            ExcelPackage.LicenseContext = LicenseContext.Commercial;
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+
+            using (var package = new ExcelPackage())
+            {
+                // 建立一個工作表
+                var worksheet = package.Workbook.Worksheets.Add("Sheet1");
+
+                // 填充資料
+                worksheet.Cells.LoadFromCollection(data, true);
+
+                // 設定列寬
+                worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
+
+                // 保存 Excel 檔案
+                byte[] fileBytes = package.GetAsByteArray();
+
+                // 透過 File 方法回傳檔案至使用者端
+                return File(fileBytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "ExportedData.xlsx");
+            }
+        }
+
         public ActionResult Details(int id)
         {
             TFWishlistsVm vm = Getid(id);
@@ -63,6 +91,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.TaxFree
         {
             return View(); 
         }
+
 
         [HttpPost]
         public ActionResult Create(TFWishlistsVm vm)
