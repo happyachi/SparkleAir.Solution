@@ -36,17 +36,20 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>@*CampaignsDiscountVm*@</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
+<div class="form-horizontal">
+    <h4>@*CampaignsDiscountVm*@</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
 
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.CampaignId, htmlAttributes: new { @class = "control-label col-md-2" })
+    @Html.HiddenFor(model => model.CampaignId)
+
+    @*<div class="form-group">
+            @html.labelfor(model => model.campaignid, htmlattributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CampaignId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CampaignId, "", new { @class = "text-danger" })
+              @Html.HiddenFor(model => model.Id)
+                @html.editorfor(model => model.campaignid, new { htmlattributes = new { @class = "form-control" } })
+                @html.validationmessagefor(model => model.campaignid, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -58,39 +61,39 @@
             </div>
         </div>*@
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control readonly-field", @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control readonly-field", @readonly = "readonly" } })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.DateStart, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DateStart, new { htmlAttributes = new { @class = "form-control readonly-field", @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.DateStart, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.DateStart, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DateStart, new { htmlAttributes = new { @class = "form-control readonly-field", @readonly = "readonly" } })
+            @Html.ValidationMessageFor(model => model.DateStart, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.DateEnd, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DateEnd, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DateEnd, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.DateEnd, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DateEnd, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.DateEnd, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.DateCreated, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DateCreated, new { htmlAttributes = new { @class = "form-control readonly-field", @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.DateCreated, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.DateCreated, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DateCreated, new { htmlAttributes = new { @class = "form-control readonly-field", @readonly = "readonly" } })
+            @Html.ValidationMessageFor(model => model.DateCreated, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        @*<div class="form-group">
+    @*<div class="form-group">
             @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control" } })
@@ -98,62 +101,62 @@
             </div>
         </div>*@
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.DiscountValue, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DiscountValue, new { htmlAttributes = new { @class = "form-control readonly-field", @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.DiscountValue, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.DiscountValue, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DiscountValue, new { htmlAttributes = new { @class = "form-control readonly-field", @readonly = "readonly" } })
+            @Html.ValidationMessageFor(model => model.DiscountValue, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Value, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Value, new { htmlAttributes = new { @class = "form-control readonly-field", @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.Value, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Value, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Value, new { htmlAttributes = new { @class = "form-control readonly-field", @readonly = "readonly" } })
+            @Html.ValidationMessageFor(model => model.Value, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.BundleSKUs, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.BundleSKUs, new { htmlAttributes = new { @class = "form-control readonly-field", @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.BundleSKUs, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.BundleSKUs, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.BundleSKUs, new { htmlAttributes = new { @class = "form-control readonly-field", @readonly = "readonly" } })
+            @Html.ValidationMessageFor(model => model.BundleSKUs, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.MemberCriteria, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="form-check">
-                    @if (ViewBag.Member != null)
+    <div class="form-group">
+        @Html.LabelFor(model => model.MemberCriteria, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="form-check">
+                @if (ViewBag.Member != null)
+                {
+                    foreach (var member in ViewBag.Member)
                     {
-                        foreach (var member in ViewBag.Member)
-                        {
-                            <label class="checkbox-inline member-label">
-                                @if (!string.IsNullOrEmpty(Model.MemberCriteria))
-                                {
-                                    string[] members = Model.MemberCriteria.Split(',');
-                                    isChecked = members.Contains(member.Name as string);
-                                    <input class="form-check-input" type="checkbox" value="@member.Name" data-member="@member.Name" name="members" @(isChecked ? "checked" : "") />@member.Name
-                                }
-                            </label>
-                        }
+                        <label class="checkbox-inline member-label">
+                            @if (!string.IsNullOrEmpty(Model.MemberCriteria))
+                            {
+                                string[] members = Model.MemberCriteria.Split(',');
+                                isChecked = members.Contains(member.Name as string);
+                                <input class="form-check-input" type="checkbox" value="@member.Name" data-member="@member.Name" name="members" @(isChecked ? "checked" : "") onclick="updateMember()" />@member.Name
+                            }
+                        </label>
                     }
-                    <input type="hidden" name="MemberCriteria" id="flexCheckDefault" value="" />
-                </div>
+                }
+                <input type="hidden" name="MemberCriteria" id="flexCheckDefault" value="" />
             </div>
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.TFItemsCriteria, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TFItemsCriteria, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TFItemsCriteria, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.TFItemsCriteria, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TFItemsCriteria, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.TFItemsCriteria, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        @*<div class="form-group">
+    @*<div class="form-group">
             @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Type, new { htmlAttributes = new { @class = "form-control" } })
@@ -161,12 +164,12 @@
             </div>
         </div>*@
 
-        <div class="mb-3">
-            <div class="col-md-offset-2 col-md-10 mt-5">
-                <input type="submit" value="儲存" class="btn btn-sm btn-success ps-3 pe-3 btn-create" />
-            </div>
+    <div class="mb-3">
+        <div class="col-md-offset-2 col-md-10 mt-5">
+            <input type="submit" value="儲存" class="btn btn-sm btn-success ps-3 pe-3 btn-create" />
         </div>
     </div>
+</div>
 }
 
 <div>
@@ -176,8 +179,10 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 <script>
-        function updateMember() {
-            const members = Array.from(checks)
+    function updateMember() {
+        console.log("123");
+        const checks = document.querySelectorAll('.form-check-input');
+        const members = Array.from(checks)
                 .filter(checkbox => checkbox.checked)
                 .map(checkbox => checkbox.value);
 
@@ -186,8 +191,12 @@
         }
 
         //狀態欄位修飾
-        window.onload = function () {
+    window.onload = function () {
         var statusInput = document.getElementById('@Html.IdFor(model => model.Status)');
         statusInput.value += "的活動";
+    }
+
+    updateMember();
+
 </script>
 }
