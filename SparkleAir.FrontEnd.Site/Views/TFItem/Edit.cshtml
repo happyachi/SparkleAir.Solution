@@ -24,9 +24,9 @@
         <div class="col-md-10">
             <select id="TFCategoriesName" name="TFCategoriesName" class="form-select" aria-label="Default select example" onchange="updateTFCategoriesId()">
                 @foreach (var item in ViewBag.TFCategories)
-                    {
-                       <option value="@item.TFCategoriesName">@item.TFCategoriesName</option>
-                    }
+                {
+                    <option value="@item">@item.TFCategoriesName</option>
+                }
             </select>
             @Html.ValidationMessageFor(model => model.TFCategoriesName, "", new { @class = "text-danger" })
         </div>
@@ -137,11 +137,13 @@
         var selectedCategory = $("#TFCategoriesName").val();
 
         var categoryMapping = {
-            "飾品精品": 1,
-            "生活旅行": 2,
-            "電子產品": 3,
-            "點心茶飲": 4,
-            "寵物專區": 5
+            "電子產品": 1,
+            "時尚與配飾": 2,
+            "美容與保健品": 3,
+            "家居與生活用品": 4,
+            "食品與飲料": 5,
+            "運動與戶外用品": 6,
+            "旅行與行李": 7
 
         };
 

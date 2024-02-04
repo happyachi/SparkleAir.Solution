@@ -424,7 +424,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Files\Images\airplane.png" />
     <Content Include="Files\Images\empty.jpg" />
-    <Content Include="Files\Images\imgjake.jpg" />
+    <Content Include="Files\Images\loading.gif" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="obj\Debug\SparkleAir.FrontEnd.Site.csproj.FileListAbsolute.txt" />
@@ -745,6 +745,8 @@
     <Content Include="Views\Members\Edit.cshtml" />
     <Content Include="Scripts\vendor\sass\node_modules\immutable\dist\immutable.js.flow" />
     <Content Include="Views\CampaignsDiscount\SelectProduct.cshtml" />
+    <Content Include="Views\TFWishlist\Index1.cshtml" />
+    <Content Include="Views\TFItem\IndexTFItem.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

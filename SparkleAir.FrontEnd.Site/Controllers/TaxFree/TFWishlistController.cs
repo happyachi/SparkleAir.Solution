@@ -17,8 +17,28 @@ namespace SparkleAir.FrontEnd.Site.Controllers.TaxFree
         // GET: TFWishlist
         public ActionResult Index()
         {
-            List<TFWishlistsVm> data = Get();
-            return View(data);
+            return View();
+        }
+        public ActionResult Index1()
+        { 
+
+           
+            List<TFWishlistsVm> wishlists = Get();
+
+            //// 使用LINQ進行分組和整理
+            //var groupedWishlists = wishlists
+            //    .GroupBy(x => x.MemberId)
+            //    .Select(group => new
+            //    {
+            //        MemberId = group.Key,
+            //        MemberChineseLastName = group.First().MemberChineseLastName,
+            //        MemberChineseFirstName = group.First().MemberChineseFirstName,
+            //        MemberEnglishLastName = group.First().MemberEnglishLastName,
+            //        MemberEnglishFirstName = group.First().MemberEnglishFirstName,
+            //        TFItems = string.Join(", ", group.Select(item => $"{item.TFItemsName} ({item.TFItemsSerialNumber})"))
+            //    });
+
+           return PartialView("Index1", wishlists);
         }
 
         public ActionResult Details(int id)
@@ -120,6 +140,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.TaxFree
                 MemberChineseLastName = p.MemberChineseLastName,
                 MemberEnglishFirstName = p.MemberEnglishFirstName,
                 MemberEnglishLastName = p.MemberEnglishLastName,
+                MemberPassportNumber = p.MemberPassportNumber,
                 TFItemsName = p.TFItemsName,
                 TFItemsSerialNumber = p.TFItemsSerialNumber,
                 TFItemsId = p.TFItemsId
