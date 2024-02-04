@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -11,6 +12,7 @@ using SparkleAir.DAL.EFRepository.MealMessages;
 using SparkleAir.IDAL.IRepository.MealMessages;
 using SparkleAir.Infa.Dto.MealMessages;
 using SparkleAir.Infa.EFModel.EFModels;
+using SparkleAir.Infa.Utility.Helper;
 using SparkleAir.Infa.ViewModel.MealMessage;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.MealMessages
@@ -127,17 +129,50 @@ namespace SparkleAir.FrontEnd.Site.Controllers.MealMessages
         // 如需詳細資料，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,AirCabinId,MealContent,Image,ImageBit,Category")] AirMeal airMeal)
+        public ActionResult Edit(AirMealVm vm, HttpPostedFileBase file)
         {
-            if (ModelState.IsValid)
+            string path = Server.MapPath("../../Files/AirMealImgs");
+            var helper = new UploadHelper();
+            try
             {
-                db.Entry(airMeal).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                UpdateEfToDto(vm);
+                //實際存的路徑
+                string uploadedFile = helper.UploadImageFile(file, path);
+                //上傳的來源
+                vm.Image = Path.GetFileName(file.FileName);
+                vm.UploadedImage = uploadedFile;
+
+                Create(vm);
+                return RedirectToAction("Index", "AirMeals");
             }
-            ViewBag.AirCabinId = new SelectList(db.AirCabins, "Id", "CabinClass", airMeal.AirCabinId);
-            return View(airMeal);
+            catch(ArgumentException UploadFileNull)
+            {
+                vm.Image = string.Empty;
+                vm.UploadedImage=string.Empty;
+                Create(vm);
+                return RedirectToAction("Index", "AirMeals");
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, "上傳檔案失敗: " + ex.Message);
+            }
+            //return View(vm);
+            return RedirectToAction("Index", "AirMeals");
         }
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Edit([Bind(Include = "Id,Name,AirCabinId,MealContent,Image,ImageBit,Category")] AirMeal airMeal)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Entry(airMeal).State = EntityState.Modified;
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //    ViewBag.AirCabinId = new SelectList(db.AirCabins, "Id", "CabinClass", airMeal.AirCabinId);
+        //    return View(airMeal);
+        //}
 
         // GET: AirMeals/Delete/5
         public ActionResult Delete(int? id)
@@ -164,6 +199,22 @@ namespace SparkleAir.FrontEnd.Site.Controllers.MealMessages
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        private void UpdateEfToDto(AirMealVm vm)
+        {
+            AirMealDto dto = new AirMealDto
+            {
+                Id = vm.Id,
+                Name = vm.Name,
+                AirCabinId = vm.AirCabinId,
+                MealContent = vm.MealContent,
+                Image = vm.Image,
+                //ImageBit = vm.ImageBit,
+                Category = vm.Category
+            };
+            _service.Update(dto);
+        }
+
 
         protected override void Dispose(bool disposing)
         {

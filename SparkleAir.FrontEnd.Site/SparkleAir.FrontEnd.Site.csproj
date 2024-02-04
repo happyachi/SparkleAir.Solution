@@ -758,6 +758,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Files\AirMealImgs\" />
     <Folder Include="Models\ViewModels\Airtype&amp;Owns\" />
     <Folder Include="Models\ViewModels\Members\" />
     <Folder Include="obj\Debug\TempPE\" />
