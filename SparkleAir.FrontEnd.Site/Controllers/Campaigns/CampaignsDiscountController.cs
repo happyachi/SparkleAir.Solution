@@ -173,7 +173,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
                 BundleSKUs= get.BundleSKUs,
                 MemberCriteria = get.MemberCriteria,
                 TFItemsCriteria = get.TFItemsCriteria,
-                //Campaign = get.Campaign
+                Campaign = get.Campaign
             };
         }
 
