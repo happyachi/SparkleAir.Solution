@@ -57,6 +57,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
         {
             ViewBag.Airports = _airportService.GetAll();
             List<AirFlightManagementIndexVm> data = GetAll();
+
             return View(data);
         }
 

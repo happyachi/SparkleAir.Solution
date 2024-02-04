@@ -98,13 +98,13 @@ namespace SparkleAir.BLL.Service.AirFlights
                 ArrivalTerminal = x.ArrivalTerminal,
                 DepartureTime = TimeZoneHelper.ConvertToLocal(x.DepartureTime, x.DepartureTimeZone),
                 ArrivalTime = TimeZoneHelper.ConvertToLocal(x.ArrivalTime, x.ArrivalTimeZone),
-                DayofWeek = x.DayofWeek,
+                DayofWeek = SplitFlightDaysHelper.dayofweek(x.DayofWeek),
                 Mile = x.Mile,
                 DepartureAirport = x.DepartureAirport,
                 ArrivalAirport = x.ArrivalAirport,
                 DepartureTimeZone = x.DepartureTimeZone,
                 ArrivalTimeZone = x.ArrivalTimeZone,
-                AirOwnId =x.AirOwnId,
+                AirOwnId = x.AirOwnId,
                 FlightModel = x.FlightModel,
                 CrossDay = x.CrossDay
             }).ToList();
@@ -125,7 +125,7 @@ namespace SparkleAir.BLL.Service.AirFlights
                 ArrivalTerminal = entity.ArrivalTerminal,
                 DepartureTime = TimeZoneHelper.ConvertToLocal(entity.DepartureTime, entity.DepartureTimeZone),
                 ArrivalTime = TimeZoneHelper.ConvertToLocal(entity.ArrivalTime, entity.ArrivalTimeZone),
-                DayofWeek = entity.DayofWeek,
+                DayofWeek = SplitFlightDaysHelper.dayofweek(entity.DayofWeek),
                 Mile = entity.Mile,
                 DepartureAirport = entity.DepartureAirport,
                 ArrivalAirport = entity.ArrivalAirport,
@@ -167,7 +167,7 @@ namespace SparkleAir.BLL.Service.AirFlights
 
         public List<AirFlightManagementDto> Search(AirFlightManagementSearchCriteria dto)
         {
-           
+
             var list = _repo.Search(dto);
 
             return list.Select(x => new AirFlightManagementDto

@@ -758,6 +758,7 @@
     <Content Include="Views\CampaignsCoupon\IPartialIndex.cshtml" />
     <Content Include="Views\Members\Index1.cshtml" />
     <Content Include="Views\Members\Index - 複製.cshtml" />
+    <Content Include="Views\Tickets\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
