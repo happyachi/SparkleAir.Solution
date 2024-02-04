@@ -150,6 +150,8 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
         {
             var memberservice = new MemberClassService(memberRepo);
             ViewBag.Member = memberservice.Search();
+            if (ViewBag.Member == null) return RedirectToAction("Error");
+
             var coupon = Get(id);
             return View(coupon);
         }
@@ -157,7 +159,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
         private CampaignsCouponVm Get(int id)
         {
             var memberservice = new MemberClassService(memberRepo);
-            ViewBag.Member = memberservice.Search();
+            //ViewBag.Member = memberservice.Search();
             var service = new CampaignsCouponsService(repo);
             var get = service.Get(id);
             return new CampaignsCouponVm
@@ -186,7 +188,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
         public ActionResult Edit(CampaignsCouponVm coupon)
         {
             var memberservice = new MemberClassService(memberRepo);
-            ViewBag.Member = memberservice.Search();
+            //ViewBag.Member = memberservice.Search();
             if (!ModelState.IsValid) return View();
             try
             {
@@ -203,7 +205,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
         private void Update(CampaignsCouponVm vm)
         {
             var memberservice = new MemberClassService(memberRepo);
-            ViewBag.Member = memberservice.Search();
+            //ViewBag.Member = memberservice.Search();
             var service = new CampaignsCouponsService(repo);
             CampaignsCouponDto dto = new CampaignsCouponDto
             {
