@@ -41,6 +41,7 @@
 	<style>
 		#sidebarMenu {
 			display: none;
+
 		}
 
 		.navbar {
@@ -51,7 +52,7 @@
 		}
 
 		.content {
-			margin-top: 100px; /* 不被navbar遮擋 */
+			margin-top: 50px; /* 不被navbar遮擋 */
 		}
 
 		#navContene {
@@ -87,6 +88,17 @@
 
 	</nav>
 
+	<button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Enable both scrolling & backdrop</button>
+
+	<div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+		<div class="offcanvas-header">
+			<h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Backdrop with scrolling</h5>
+			<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+		</div>
+		<div class="offcanvas-body">
+			<p>Try scrolling the rest of the page to see this option in action.</p>
+		</div>
+	</div>
 	<!-- 左側-->
 	<nav id="sidebarMenu"
 		 class="sidebar  bg-gray-800 text-white collapse"
@@ -167,7 +179,7 @@
 			var footer = document.querySelector("footer");
 			var opensidebar = document.querySelector("#btn");
 
-			opensidebar.addEventListener("click", function () {
+			opensidebar.addEventListener("mouseenter", function () {
 				sidebarMenu.style.display = (sidebarMenu.style.display === "none") ? "block" : "none";
 				content.style.marginLeft = (sidebarMenu.style.display === "none") ? "0" : sidebarMenu.offsetWidth + "px";
 				footer.style.marginLeft = (sidebarMenu.style.display === "none") ? "0" : sidebarMenu.offsetWidth + "px";
@@ -192,7 +204,6 @@
 				footer.style.marginLeft = "0";
 			});
 		});
-		sidebarMenu.style.display = "none";
 
 	</script>
 </body>

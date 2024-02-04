@@ -19,7 +19,7 @@
 <h2>航班管理</h2>
 <p>
 	@*<a href='@Url.Action("Create")' class="btn btn-sm btn-dark ps-3 pe-3 btn-create"><i class="fa-solid fa-plus"></i>&nbsp;&nbsp;新增</a>*@
-	<button type="button" class="btn btn-sm btn-dark ps-2 pe-2 btn-create createbtn" data-bs-toggle="modal" data-bs-target="#createpage" onclick=" createPage()"> <i class="fa-solid fa-plus"></i>&nbsp;&nbsp;新增</button>
+	<button type="button" class="btn btn-sm btn-dark ps-2 pe-2 btn-create createbtn" data-bs-toggle="modal" data-bs-target="#createpage" onclick="createPage()"> <i class="fa-solid fa-plus"></i>&nbsp;&nbsp;新增</button>
 
 </p>
 <div class="row" id="datas">
@@ -78,8 +78,6 @@
 							<a href='@Url.Action("AirFlights/Create/")@item.Id' class="btn btn-sm btn-dark ps-3 pe-3 btn-create"><i class="fa-solid fa-plus"></i>&nbsp;&nbsp;機型設定</a>
 							@Html.ActionLink("機型設定", "Create", "AirFlights", new { id = item.Id }, new { @class = "btn btn-sm btn-dark" })
 							@*@Html.ActionLink("刪除航班", "Delete", new { id = item.Id }, new { @class = "btn btn-sm btn-dark" })*@
-
-
 						</td>
 					</tr>
 				}
@@ -107,7 +105,7 @@
 
 <!--Create-->
 <div class="modal fade" tabindex="-1" id="createpage" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="createTitle" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered modal-dialog-auto modal-dialog-scrollable">
+	<div class="modal-dialog modal-dialog-centered modal-dialog-auto modal-dialog-scrollable modal-lg">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h3 id="createTitle" class="flex-grow-1 d-flex align-items-center justify-content-center">新增航班</h3>
@@ -126,7 +124,7 @@
 
 <!--Edit-->
 <div class="modal fade" tabindex="-1" id="updatepage" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="updateTitle" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered modal-dialog-auto modal-dialog-scrollable">
+	<div class="modal-dialog modal-dialog-centered modal-dialog-auto modal-dialog-scrollable modal-lg">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h3 id="updateTitle" class="flex-grow-1 d-flex align-items-center justify-content-center">更新航班</h3>
@@ -146,42 +144,51 @@
 @section Scripts
 {
 	<script>
-    document.querySelectorAll(".details-link").forEach(function (link) {
-        link.addEventListener('click', function (event) {
-            event.preventDefault();
-        });
-	})
+		document.querySelectorAll(".details-link").forEach(function (link) {
+			link.addEventListener('click', function (event) {
+				event.preventDefault();
+			});
+		});
 
-	document.querySelectorAll(".update-link").forEach(function (link) {
-        link.addEventListener('click', function (event) {
-            event.preventDefault();
-        });
-	})
+		document.querySelectorAll(".update-link").forEach(function (link) {
+			link.addEventListener('click', function (event) {
+				event.preventDefault();
+			});
+		});
 
-	document.querySelector(".createbtn").addEventListener('click', function (event) {
-            event.preventDefault();
-        });
+		document.querySelector(".createbtn").addEventListener('click', function (event) {
+			event.preventDefault();
+		});
 
 		function createPage() {
 			try {
 				document.getElementById("createpage").style.display = "block";
 				$('#create').modal('show');
-			}catch (error) {
-			console.error('Error:', error);}
-
-		}
-
-		function updatePage() {
-			try {
-				document.getElementById("updatepage").style.display = "block";
-				$('#update').modal('show');
 			} catch (error) {
 				console.error('Error:', error);
 			}
+		};
 
-		}
+		async function updatePage(itemId) {
+			  try {
+        const response = await fetch('@Url.Content("~/AirFlightsManagement/Edit")' + `?id=${itemId}`);
 
-    async function showModal(itemId) {
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        const modalContent = document.querySelector('#updatePage');
+        modalContent.innerHTML = data;
+
+        $('#updatepage').modal('show');
+		} catch (error) {
+        console.error('Error:', error);
+			}
+		};
+
+		    async function showModal(itemId) {
         try {
             const response = await fetch('@Url.Content("~/AirFlightsManagement/GetFlightDetails")' + `?id=${itemId}`);
             if (!response.ok) {
@@ -197,10 +204,10 @@
             }
             if (data.ArrivalTerminal == null) {
                 data.ArrivalTerminal = '';
-			}
-			if (data.FlightModel == '') {
-				data.FlightModel = '未設定'
-			}
+            }
+            if (data.FlightModel == '') {
+                data.FlightModel = '未設定'
+            }
             const div = document.querySelector('#detail');
             const title = document.querySelector('#title');
             title.innerHTML = `${data.FlightCode}`
@@ -221,47 +228,21 @@
         } catch (error) {
             console.error('Error:', error);
         }
-    }
-
-
-    async function applyFilter() {
-        // 獲取表單數據
-        var formData = $('#filterForm').serialize();
-        const content = document.querySelector('#content');
-        const response = await fetch('@Url.Content("~/AirFlightsManagement/SearchPartial")' + `?${formData}`);
-        const data = await response.json();
-        console.log(data);
-        // 發送 AJAX 請求
-        content.innerHTML = '';
-        data.forEach(item => {
-            content.innerHTML = `
-    <td>${item.FlightCode}</td>
-    <td>${item.DepartureAirport}</td>
-    <td>${item.ArrivalAirport}</td>
-    <td>${item.DepartureTime.Hours}:${item.DepartureTime.Minutes.toString().padStart(2, '0')}</td>
-    <td>${item.ArrivalTime.Hours}:${item.ArrivalTime.Minutes.toString().padStart(2, '0')}</td>
-    <td>${item.DayofWeek}</td>
-    <td>
-
-
-    </td>
-`;
-        });
-		}
+		};
 
 		const departureAirport = document.querySelector('#departureAir');
 		const departureTime = document.querySelector('.deptTimeZone')
 		departureAirport.addEventListener('change', () => {
 			const dept = departureAirport.querySelector(`[value=${departureAirport.value}]`);
 			departureTime.value = dept.getAttribute('data-yu-dept');
-		})
+		});
 
 		const arrivalAirpoirt = document.querySelector('#arrivalAir');
 		const arrivalTime = document.querySelector('.arriTimeZone')
 		arrivalAirpoirt.addEventListener('change', () => {
 			const arri = arrivalAirpoirt.querySelector(`[value=${arrivalAirpoirt.value}]`);
 			arrivalTime.value = arri.getAttribute('data-yu-arri');
-		})
+		});
 
 		const createCheckboxes = document.querySelectorAll('.day-checkbox');
 		createCheckboxes.forEach(function (checkbox) {
@@ -271,13 +252,14 @@
 		});
 
 		function updateDayOfWeekSelection() {
-			const selectedDays = Array.from(checkboxes)
+			const selectedDays = Array.from(createCheckboxes)
 				.filter(checkbox => checkbox.checked)
 				.map(checkbox => checkbox.value.toString()); // 將數字轉換為字符串
-			console.log("123");
+			console.log(selectedDays);
 			// 將選中的星期以逗號分隔的字串形式存儲到 DayOfWeekSelection 屬性
 			document.getElementById('DayofWeek').value = selectedDays.join(',');
-		}
+		};
+
 		$(".create").on("click", function (e) {
 			e.preventDefault();
 
@@ -310,7 +292,6 @@
 				}
 			});
 		});
-
 
 		$(".update").on("click", function (e) {
 			e.preventDefault();
@@ -358,8 +339,5 @@
 				}
 			});
 		});
-
-
 	</script>
 }
-
