@@ -77,7 +77,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
             }
             catch (Exception ex)
             {
-                return View("Error"); // 返回一个错误视图
+                return View("Error");
             }
 
         }
@@ -115,7 +115,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
                 updatedIds.AddRange(await _airFlightService.UpdateScheduleIfNeeded(item));
             }
 
-            // 获取更新后的数据并传递给视图
+ 
             List<AirFlightIndexVm> vm = dto.Select(x => new AirFlightIndexVm
             {
                 // 映射逻辑
