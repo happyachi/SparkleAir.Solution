@@ -73,5 +73,21 @@ namespace SparkleAir.BLL.Service.MealMessages
             _repo.Update(entity);
             //return $"{entity.Name}修改成功";
         }
+
+        public AirMealDto Get(int id)
+        {
+            var entity = _repo.Get(id);
+            AirMealDto dto = new AirMealDto
+            {
+                Id = entity.Id,
+                Name = entity.Name,
+                AirCabinId = entity.AirCabinId,
+                MealContent = entity.MealContent,
+                Image = entity.Image,
+                ImageBit = entity.ImageBit,
+                Category = entity.Category
+            };
+            return dto;
+        }
     }
 }

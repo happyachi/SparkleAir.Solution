@@ -1,18 +1,16 @@
 ﻿@model IEnumerable<SparkleAir.Infa.ViewModel.MealMessage.AirMealVm>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "餐點清單";
 }
 
-<h2>Index</h2>
+<h2>餐點清單</h2>
 
 <p>
     <a href='@Url.Action("Create")' class="btn btn-sm btn-dark ps-3 pe-3 btn-create"><i class="fa-solid fa-plus"></i>&nbsp;&nbsp;新增</a>
 </p>
 <table class="table table_jq">
     <thead>
-
-
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
@@ -26,6 +24,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Image)
             </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.UploadedImage)
+                </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.Category)
             </th>
@@ -33,8 +34,6 @@
         </tr>
     </thead>
     <tbody>
-
-
         @foreach (var item in Model)
         {
             <tr>
@@ -48,8 +47,12 @@
                     @Html.DisplayFor(modelItem => item.MealContent)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Image)
+                    @*@Html.DisplayFor(modelItem => item.Image)*@
+                    <img src="@Url.Content($"~/Files/AirMealImgs/{item.Image}")" alt="Image" width="200" />
                 </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.UploadedImage)
+                </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.Category)
                 </td>
@@ -60,5 +63,6 @@
                 </td>
             </tr>
         }
+
     </tbody>
 </table>

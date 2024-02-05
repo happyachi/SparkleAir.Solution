@@ -39,17 +39,17 @@ namespace SparkleAir.DAL.EFRepository.MealMessages
 
         public AirMealEntity Get(int id)
         {
-            var a = db.AirMeals.Find(id);
-            var b = new AirMealEntity
-            {
-                Id = a.Id,
-                Name = a.Name,
-                AirCabinId = a.AirCabinId,
-                MealContent = a.MealContent,
-                Image = a.Image,
-                ImageBit = a.ImageBit,
-                Category = a.Category
-            };
+            //var a = db.AirMeals.Find(id);
+            //var b = new AirMealEntity
+            //{
+            //    Id = a.Id,
+            //    Name = a.Name,
+            //    AirCabinId = a.AirCabinId,
+            //    MealContent = a.MealContent,
+            //    Image = a.Image,
+            //    ImageBit = a.ImageBit,
+            //    Category = a.Category
+            //};
 
 
             AirMealEntity data=db.AirMeals.Where(x=>x.Id == id)

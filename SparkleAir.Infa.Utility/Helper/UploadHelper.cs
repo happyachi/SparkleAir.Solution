@@ -17,7 +17,7 @@ namespace SparkleAir.Infa.Utility.Helper
         public string UploadImageFile(HttpPostedFileBase file, string path)
         {
             //判斷有無上傳檔案，沒有則丟出例外
-            if (file == null || file.ContentLength == 0) throw new ArgumentNullException("file");
+            //if (file == null || file.ContentLength == 0) throw new ArgumentNullException("file");
             //取得檔名並判斷是否為允許的檔案類型
 
             string[] allowExts = { ".jpg", ".jpeg", ".png" };

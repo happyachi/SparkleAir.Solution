@@ -34,6 +34,7 @@ namespace SparkleAir.Infa.ViewModel.MealMessage
         //public byte[] ImageBit { get; set; }
 
         [Required]
+        [Display(Name = "分類")]
         [MaxLength(10)]
         public string Category { get; set; }
     }

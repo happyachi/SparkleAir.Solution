@@ -45,18 +45,20 @@ namespace SparkleAir.FrontEnd.Site.Controllers.MealMessages
         }
 
         // GET: AirMeals/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int id)
         {
-            if (id == null)
+            var dto = _service.Get(id);
+            var vm =new AirMealVm
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            AirMeal airMeal = db.AirMeals.Find(id);
-            if (airMeal == null)
-            {
-                return HttpNotFound();
-            }
-            return View(airMeal);
+                Id = dto.Id,
+                Name = dto.Name,
+                AirCabinId = dto.AirCabinId,
+                MealContent = dto.MealContent,
+                Image = dto.Image,
+                Category = dto.Category
+            };
+            return View(vm);
+
         }
 
         // GET: AirMeals/Create
@@ -71,22 +73,32 @@ namespace SparkleAir.FrontEnd.Site.Controllers.MealMessages
         // 如需詳細資料，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(AirMealVm vm)
+        public ActionResult Create(AirMealVm vm, HttpPostedFileBase file)
         {
+            string path = Server.MapPath("~/Files/AirMealImgs");
             if (ModelState.IsValid)
             {
-                AirMealDto dto = new AirMealDto
+                try
                 {
-                    Id = vm.Id,
-                    Name = vm.Name,
-                    AirCabinId = vm.AirCabinId,
-                    MealContent = vm.MealContent,
-                    Image = vm.Image,
-                    //ImageBit = vm.ImageBit,
-                    Category = vm.Category
-                };
-                _service.Create(dto);
-                return RedirectToAction("Index");
+                    string UploadedImage = new UploadHelper().UploadImageFile(file, path);
+                    vm.Image = UploadedImage;
+                    AirMealDto dto = new AirMealDto
+                    {
+                        Id = vm.Id,
+                        Name = vm.Name,
+                        AirCabinId = vm.AirCabinId,
+                        MealContent = vm.MealContent,
+                        Image = vm.Image,
+                        //ImageBit = vm.ImageBit,
+                        Category = vm.Category
+                    };
+                    _service.Create(dto);
+                    return RedirectToAction("Index");
+                }
+                catch(Exception ex)
+                {
+                    ModelState.AddModelError(string.Empty, ex.Message);
+                }
             }
 
             ViewBag.AirCabinId = new SelectList(db.AirCabins, "Id", "CabinClass", vm.AirCabinId);
@@ -120,8 +132,19 @@ namespace SparkleAir.FrontEnd.Site.Controllers.MealMessages
             {
                 return HttpNotFound();
             }
-            ViewBag.AirCabinId = new SelectList(db.AirCabins, "Id", "CabinClass", airMeal.AirCabinId);
-            return View(airMeal);
+            AirMealVm vm = new AirMealVm
+            {
+                Id = airMeal.Id,
+                Name = airMeal.Name,
+                AirCabinId = airMeal.AirCabinId,
+                MealContent = airMeal.MealContent,
+                Image = airMeal.Image,
+                //ImageBit = vm.ImageBit,
+                Category = airMeal.Category
+            };
+            ViewBag.AirCabinId = new SelectList(db.AirCabins, "Id", "CabinClass", vm.AirCabinId);
+           
+            return View(vm);
         }
 
         // POST: AirMeals/Edit/5
@@ -131,25 +154,25 @@ namespace SparkleAir.FrontEnd.Site.Controllers.MealMessages
         [ValidateAntiForgeryToken]
         public ActionResult Edit(AirMealVm vm, HttpPostedFileBase file)
         {
-            string path = Server.MapPath("../../Files/AirMealImgs");
+            string path = Server.MapPath("~/Files/AirMealImgs");
             var helper = new UploadHelper();
             try
             {
-                UpdateEfToDto(vm);
+                
                 //實際存的路徑
                 string uploadedFile = helper.UploadImageFile(file, path);
                 //上傳的來源
-                vm.Image = Path.GetFileName(file.FileName);
+                //vm.Image = Path.GetFileName(file.FileName);
+                vm.Image = uploadedFile;
                 vm.UploadedImage = uploadedFile;
-
-                Create(vm);
+                UpdateEfToDto(vm);
                 return RedirectToAction("Index", "AirMeals");
             }
             catch(ArgumentException UploadFileNull)
             {
                 vm.Image = string.Empty;
                 vm.UploadedImage=string.Empty;
-                Create(vm);
+                UpdateEfToDto(vm);
                 return RedirectToAction("Index", "AirMeals");
             }
             catch (Exception ex)
@@ -175,18 +198,21 @@ namespace SparkleAir.FrontEnd.Site.Controllers.MealMessages
         //}
 
         // GET: AirMeals/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
-            if (id == null)
+
+            var dto = _service.Get(id);
+            var vm = new AirMealVm
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            AirMeal airMeal = db.AirMeals.Find(id);
-            if (airMeal == null)
-            {
-                return HttpNotFound();
-            }
-            return View(airMeal);
+                Id = dto.Id,
+                Name = dto.Name,
+                AirCabinId = dto.AirCabinId,
+                MealContent = dto.MealContent,
+                Image = dto.Image,
+                Category = dto.Category
+            };
+            return View(vm);
+
         }
 
         // POST: AirMeals/Delete/5
@@ -194,9 +220,10 @@ namespace SparkleAir.FrontEnd.Site.Controllers.MealMessages
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            AirMeal airMeal = db.AirMeals.Find(id);
-            db.AirMeals.Remove(airMeal);
-            db.SaveChanges();
+            _service.Delete(id);
+            //AirMeal airMeal = db.AirMeals.Find(id);
+            //db.AirMeals.Remove(airMeal);
+            //db.SaveChanges();
             return RedirectToAction("Index");
         }
 
