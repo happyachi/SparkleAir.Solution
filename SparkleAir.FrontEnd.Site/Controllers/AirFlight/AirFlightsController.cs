@@ -3,6 +3,7 @@ using SparkleAir.BLL.Service.AirFlights;
 using SparkleAir.BLL.Service.Airtype_Owns;
 using SparkleAir.DAL.EFRepository.AirFlights;
 using SparkleAir.DAL.EFRepository.Airtype_Owns;
+using SparkleAir.FrontEnd.Site.Models.Authorize;
 using SparkleAir.IDAL.IRepository.AirFlights;
 using SparkleAir.IDAL.IRepository.Airtype_Owns;
 using SparkleAir.Infa.Criteria.AirFlights;
@@ -20,6 +21,7 @@ using System.Web.Mvc;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
 {
+    [StaffAuthorize(PageName = "AirFlights")]
     public class AirFlightsController : BaseController
     {
         #region CTOR

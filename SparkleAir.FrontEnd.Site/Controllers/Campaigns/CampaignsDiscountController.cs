@@ -6,6 +6,7 @@ using SparkleAir.BLL.Service.TaxFree;
 using SparkleAir.DAL.EFRepository.Campaigns;
 using SparkleAir.DAL.EFRepository.Members;
 using SparkleAir.DAL.EFRepository.TaxFree;
+using SparkleAir.FrontEnd.Site.Models.Authorize;
 using SparkleAir.FrontEnd.Site.Models.ViewModels.Campaigns;
 using SparkleAir.IDAL.IRepository.TaxFree;
 using SparkleAir.Infa.Criteria.Campaigns;
@@ -23,6 +24,7 @@ using System.Xml.Linq;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
 {
+    [StaffAuthorize(PageName = "CampaignsDiscount")]
     public class CampaignsDiscountController : BaseController
     {
 

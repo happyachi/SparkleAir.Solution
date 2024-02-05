@@ -1,5 +1,6 @@
 ﻿using SparkleAir.BLL.Service.CompanyAndPermission;
 using SparkleAir.DAL.EFRepository.CompanyAndPermission;
+using SparkleAir.FrontEnd.Site.Models.Authorize;
 using SparkleAir.IDAL.IRepository.CompanyAndPermission;
 using SparkleAir.Infa.Criteria.CompanyAndPermission;
 using SparkleAir.Infa.ViewModel.CompanyAndPermission;
@@ -57,7 +58,6 @@ namespace SparkleAir.FrontEnd.Site.Controllers.CompaniesAndPermissions
                 return View(vm);
             }
         }
-
 
         public ActionResult Logout()
         {

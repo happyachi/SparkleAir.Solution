@@ -1,5 +1,6 @@
 ﻿using SparkleAir.BLL.Service.AirFlights;
 using SparkleAir.DAL.EFRepository.AirFlights;
+using SparkleAir.FrontEnd.Site.Models.Authorize;
 using SparkleAir.IDAL.IRepository.AirFlights;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ using System.Web.Mvc;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
 {
+    [StaffAuthorize(PageName = "AirFlightSeats")]
     public class AirFlightSeatsController : Controller
     {
         private ISeatGroupRepository _seatGroupRepo;

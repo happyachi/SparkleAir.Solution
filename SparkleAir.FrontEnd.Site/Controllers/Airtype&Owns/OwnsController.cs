@@ -9,9 +9,11 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SparkleAir.Infa.ViewModel.Airtype_Owns;
+using SparkleAir.FrontEnd.Site.Models.Authorize;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.Airtype_Owns
 {
+    [StaffAuthorize(PageName = "Owns")]
     public class OwnsController :BaseController
     {// GET: Properties
         public ActionResult Index()
