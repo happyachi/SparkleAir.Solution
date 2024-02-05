@@ -69,6 +69,7 @@ namespace SparkleAir.Infa.Utility.Exts.Models
                 FlightCode = afm.FlightCode,
                 DepartureAirportId = afm.DepartureAirportId,
                 ArrivalAirportId = afm.ArrivalAirportId,
+                DepartureTerminal = afm.DepartureTerminal,
                 ArrivalTerminal = afm.ArrivalTerminal,
                 DepartureTime = afm.DepartureTime,
                 ArrivalTime = afm.ArrivalTime,

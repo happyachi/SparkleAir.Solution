@@ -18,28 +18,6 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-
-
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <!-- Primary Meta Tags -->
-    <title>@ViewBag.Title - </title>
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="title" content="sparkle air" />
-    <meta name="author" content="sparkle air" />
-    <meta name="description" content="sparkle air" />
-    <meta name="keywords" content="sparkle air" />
-    <link rel="canonical"
-          href="https://themesberg.com/product/admin-dashboard/volt-premium-bootstrap-5-dashboard" />
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
-    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.4/dist/sweetalert2.min.css" rel="stylesheet">
-    
-
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-    @RenderSection("styles", required: false)
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<!-- Primary Meta Tags -->
 	<title>@ViewBag.Title - </title>
@@ -83,19 +61,6 @@
 </head>
 
 <body>
-    <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
-    <!-- 漢堡-->
-
-
-
-    <nav class="navbar navbar-dark navbar-theme-primary px-4 col-12 d-lg-none">
-        <a class="navbar-brand me-lg-5" href="../../index.html">
-            <img class="navbar-brand-light"
-                 src="'@Url.Content("~/Files/Images/airplane.png")'"
-                 alt="Logo" />
-        </a>
-        <div class="d-flex align-items-center">
-            <button class="navbar-toggler d-lg-none collapsed"
 	<!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
 	<!-- 漢堡-->
     <nav class="navbar navbar-dark navbar-theme-primary px-4 col-12" id="hamburger">
@@ -112,9 +77,7 @@
             <a class="navbar-brand me-lg-5" href="@Url.Action("Index", "Home")">
                 <h2 style="color:white" class="mt-2">Sparkle AirLine</h2>
             </a>
-
         </div>
-
         <!-- 右側登出-->
         <div class="dropdown text-end dropstart">
             <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -129,9 +92,7 @@
             </ul>
         </div>
     </nav>
-
 	<button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Enable both scrolling & backdrop</button>
-
 	<div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
 		<div class="offcanvas-header">
 			<h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Backdrop with scrolling</h5>
@@ -166,30 +127,13 @@
 				</div>
 			</div>
 			<ul class="nav flex-column pt-3 pt-md-0" id="navContene">
-
 				<!--動態生成menu items-->
 				@Html.Raw(ViewBag.MenuItems)
-
-
-
 				<li role="separator"
 					class="dropdown-divider mt-4 mb-3 border-gray-700"></li>
-
             </ul>
         </div>
     </nav>
-    <!-- 內容-->
-
-    
-        <main class="content p-4">
-            @RenderBody()
-        </main>
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Sparkle Airline</p>
-        </footer>
-			</ul>
-		</div>
-	</nav>
 	<!-- 內容-->
 	<main class="content p-4" style="margin-left:0">
 		@RenderBody()
@@ -197,23 +141,6 @@
 	<footer>
 		<p class="ms-3">&copy; @DateTime.Now.Year - Sparkle Airline</p>
 	</footer>
-
-
-
-
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-
-    @Scripts.Render("~/bundles/volt")
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
-    @RenderSection("scripts", required: false)
-    <script>
-        $(document).ready(function () {
-            $('.table_jq').DataTable();
-        });
-    </script>
 
 	@Scripts.Render("~/bundles/jquery")
 	@Scripts.Render("~/bundles/bootstrap")
@@ -243,7 +170,6 @@
 				footer.style.marginLeft = (sidebarMenu.style.display === "none") ? "0" : sidebarMenu.offsetWidth + "px";
 				sparkle.style.marginLeft = (sidebarMenu.style.display === "none") ? "0" : sidebarMenu.offsetWidth + "px";
 			});
-
 
 			document.addEventListener("mouseenter", function (e) {
 				// 確認事件目標不在左側欄內部

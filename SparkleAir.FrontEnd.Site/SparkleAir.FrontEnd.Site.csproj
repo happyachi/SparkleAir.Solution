@@ -801,6 +801,7 @@
     <Content Include="Views\Tickets\Index.cshtml" />
     <Content Include="Views\StaffAuth\Login.cshtml" />
     <Content Include="Views\StaffAuth\Unauthorized.cshtml" />
+    <Content Include="Views\AirFlights\Index1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

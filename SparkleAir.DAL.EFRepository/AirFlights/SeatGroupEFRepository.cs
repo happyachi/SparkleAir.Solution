@@ -202,7 +202,7 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
                         {
                             seatGroup = new SeatGroup
                             {
-                                AirTypeId = 5,
+                                AirTypeId = 3,
                                 SeatAreaId = 1,
                                 SeatNum = i + c.ToString(),
                             };
@@ -215,7 +215,7 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
                         {
                             seatGroup = new SeatGroup
                             {
-                                AirTypeId = 5,
+                                AirTypeId = 3,
                                 SeatAreaId = 2,
                                 SeatNum = i + c.ToString(),
                             };
@@ -228,7 +228,7 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
                         {
                             seatGroup = new SeatGroup
                             {
-                                AirTypeId = 5,
+                                AirTypeId = 3,
                                 SeatAreaId = 4,
                                 SeatNum = i + c.ToString(),
                             };
@@ -239,7 +239,7 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
                     {
                         seatGroup = new SeatGroup
                         {
-                            AirTypeId = 5,
+                            AirTypeId = 3,
                             SeatAreaId = 3,
                             SeatNum = i + c.ToString(),
                         };
@@ -263,7 +263,7 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
                         {
                             seatGroup = new SeatGroup
                             {
-                                AirTypeId = 6,
+                                AirTypeId = 4,
                                 SeatAreaId = 3,
                                 SeatNum = i + c.ToString(),
                             };
@@ -274,7 +274,7 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
                     {
                         seatGroup = new SeatGroup
                         {
-                            AirTypeId = 6,
+                            AirTypeId = 4,
                             SeatAreaId = 3,
                             SeatNum = i + c.ToString(),
                         };
@@ -295,7 +295,7 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
                         {
                             seatGroup = new SeatGroup
                             {
-                                AirTypeId = 6,
+                                AirTypeId = 4,
                                 SeatAreaId = 1,
                                 SeatNum = i + c.ToString(),
                             };
@@ -310,7 +310,7 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
                             {
                                 seatGroup = new SeatGroup
                                 {
-                                    AirTypeId = 6,
+                                    AirTypeId = 4,
                                     SeatAreaId = 1,
                                     SeatNum = i + c.ToString(),
                                 };
@@ -321,7 +321,7 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
 
                                 seatGroup = new SeatGroup
                                 {
-                                    AirTypeId = 6,
+                                    AirTypeId = 4,
                                     SeatAreaId = 2,
                                     SeatNum = i + c.ToString(),
                                 };
@@ -332,7 +332,7 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
                         {
                             seatGroup = new SeatGroup
                             {
-                                AirTypeId = 6,
+                                AirTypeId = 4,
                                 SeatAreaId = 2,
                                 SeatNum = i + c.ToString(),
                             };
@@ -345,7 +345,7 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
                         {
                             seatGroup = new SeatGroup
                             {
-                                AirTypeId = 6,
+                                AirTypeId = 4,
                                 SeatAreaId = 3,
                                 SeatNum = i + c.ToString(),
                             };
@@ -360,7 +360,7 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
                             {
                                 seatGroup = new SeatGroup
                                 {
-                                    AirTypeId = 6,
+                                    AirTypeId = 4,
                                     SeatAreaId = 4,
                                     SeatNum = i + c.ToString(),
                                 };
@@ -370,7 +370,7 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
 
                                     seatGroup = new SeatGroup
                                     {
-                                        AirTypeId = 6,
+                                        AirTypeId = 4,
                                         SeatAreaId = 3,
                                         SeatNum = i + c.ToString(),
                                     };
@@ -383,7 +383,7 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
                             {
                                 seatGroup = new SeatGroup
                                 {
-                                    AirTypeId = 6,
+                                    AirTypeId = 4,
                                     SeatAreaId = 3,
                                     SeatNum = i + c.ToString(),
                                 };
@@ -397,7 +397,7 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
                         {
                             seatGroup = new SeatGroup
                             {
-                                AirTypeId = 6,
+                                AirTypeId = 4,
                                 SeatAreaId = 3,
                                 SeatNum = i + c.ToString(),
                             };
