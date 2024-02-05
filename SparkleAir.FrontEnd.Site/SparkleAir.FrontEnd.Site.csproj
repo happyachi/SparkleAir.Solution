@@ -453,6 +453,8 @@
     <Content Include="Content\v4-shims.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Files\Images\airplane.png" />
+    <Content Include="Files\Images\background.jpg" />
+    <Content Include="Files\Images\background2.jpg" />
     <Content Include="Files\Images\empty.jpg" />
     <Content Include="Files\Images\loading.gif" />
     <Content Include="Global.asax" />
