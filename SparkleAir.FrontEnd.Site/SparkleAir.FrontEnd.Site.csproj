@@ -176,6 +176,8 @@
     <Compile Include="Controllers\AirFlight\AirFlightsController.cs" />
     <Compile Include="Controllers\AirFlight\AirFlightSeatsController.cs" />
     <Compile Include="Controllers\AirFlight\AirFlightsManagementController.cs" />
+    <Compile Include="Controllers\Airtype&amp;Owns\OwnsController.cs" />
+    <Compile Include="Controllers\Airtype&amp;Owns\SearchController.cs" />
     <Compile Include="Controllers\Basics\CountriesController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\Campaigns\CampaignsCouponController.cs" />
