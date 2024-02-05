@@ -76,11 +76,6 @@
 					aria-label="Toggle navigation" id="btn">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			@*<span class="navbar-toggler-icon collapsed me-5" data-bs-toggle="collapse"
-				data-bs-target="#sidebarMenu"
-				aria-controls="sidebarMenu"
-				aria-expanded="false"
-				aria-label="Toggle navigation" id="open"></span>*@
 			<a class="navbar-brand me-lg-5" href="@Url.Action("Index", "Home")">
 				<h2 style="color:white" class="mt-2">Sparkle AirLine</h2>
 			</a>
@@ -124,18 +119,6 @@
 				</div>
 			</div>
 			<ul class="nav flex-column pt-3 pt-md-0" id="navContene">
-				<li class="nav-item">
-					<a href="@Url.Action("Index", "Home")"
-					   class="nav-link d-flex align-items-center">
-						<span class="sidebar-icon">
-							<img src='@Url.Content("~/Files/Images/airplane.png")' ;
-								 height="20"
-								 width="20"
-								 alt="Logo" />
-						</span>
-						<span class="mt-1 ms-1 sidebar-text">SparkleAir</span>
-					</a>
-				</li>
 
 				<!--動態生成menu items-->
 				@Html.Raw(ViewBag.MenuItems)
