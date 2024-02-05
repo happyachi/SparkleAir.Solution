@@ -3,95 +3,98 @@
 @*<p>
     @Html.ActionLink("Create New", "Create")
 </p>*@
-<table class="table">
-    <tr>
-        <th>
-            <input class="form-check-input checkAll" type="checkbox" value="" id="selectAllitemCheckbox">
-            <label class="form-check-label" for="flexCheckDefault">
-                全選
-            </label>
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TFCategoriesName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SerialNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Image)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Quantity)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UnitPrice)
-        </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>*@
-        <th>
-            @Html.DisplayNameFor(model => model.IsPublished)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model) {
+<table class="table table_jq">
+    <thead>
         <tr>
-            <td>
-                <label class="fcheckbox-inline" for="flexCheckDefault">
-                    <input class="form-check-input products" type="checkbox" value="@item.Name" data-member="@item.Name" name="items">@item.Name
-                </label>
-                <input name="ItemCriteria" id="flexCheckDefault" value="" />
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TFCategoriesName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SerialNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Image)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Quantity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UnitPrice)
-            </td>
-            @*<td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>*@
-            <td>
-                @Html.DisplayFor(modelItem => item.IsPublished)
-            </td>
-            @*<td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>*@
+            <th>
+                <input class="form-check-input checkAll" type="checkbox" value="" id="selectAllitemCheckbox">
+                <label class="form-check-label" for="flexCheckproduct"></label>
+                <input type="hidden" id="selectedItems" name="selectedItems" />
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.TFCategoriesName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SerialNumber)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnitPrice)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.IsPublished)
+            </th>
+          
         </tr>
-    }
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            if (item != null)
+            {
+                <tr>
+                    <td>
+                        <label class="fcheckbox-inline" for="flexCheckproduct">
+                            <input class="form-check-input products" type="checkbox" value="@item.Name" data-member="@item.Name" name="items">
+                        </label>
+                        @*<input name="ItemCriteria" id="flexCheckDefault" value="" />*@
+                    </td>
+                    @*<td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TFCategoriesName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SerialNumber)
+                    </td>
+                    @*<td>
+                        @Html.DisplayFor(modelItem => item.Image)
+                    </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Quantity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UnitPrice)
+                    </td>
+                    @*<td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsPublished)
+                    </td>
 
+                </tr>
+                }
+            }
+        </tbody>
 </table>
+<div class="select" id="selectContainer" style="display: none;">
+    <button type="button" class="btn btn-sm btn-dark col-sm-1" onclick="cancelProducts()">取消</button>
+    <button type="button" class="btn btn-sm btn-dark col-sm-1" onclick="saveProducts()">儲存</button>
+</div>
 
 <script>
-    
+
     const selectAll = document.querySelector('#selectAllitemCheckbox');
     const select = document.querySelectorAll('.products');
-
-    
 
     selectAll.addEventListener('change', function () {
         const isChecked = selectAll.checked;
@@ -106,10 +109,41 @@
             .filter(checkbox => checkbox.checked)
             .map(checkbox => checkbox.value);
 
-        document.getElementById('flexCheckDefault').value = items.join(',');
+        document.getElementById('flexCheckproduct').value = items.join(',');
         console.log(items);
     }
 
-    const items = document.querySelector('#flexCheckDefault');
-    
+    const items = document.querySelector('#flexCheckproduct');
+
+ 
+    const selectedIds = []; // 儲存選的item.Id
+
+    selectAll.addEventListener('change', function () {
+        const isChecked = selectAll.checked;
+        select.forEach(product => {
+            product.checked = isChecked;
+            updateItems(); // 更新選中的項目
+        });
+    });
+
+    select.forEach(product => {
+        product.addEventListener('change', function () {
+            updateItems(); // 更新選中的項目
+        });
+    });
+
+    function updateItems() {
+        selectedIds.length = 0; // 清空
+        select.forEach(product => {
+            if (product.checked) {
+                const itemId = product.getAttribute('data-member');
+                selectedIds.push(itemId);
+            }
+        });
+
+        // 設置選中的項目到 hidden input 中
+        document.getElementById('selectedItems').value = selectedIds.join(',');
+        console.log(selectedIds);
+    }
+
 </script>

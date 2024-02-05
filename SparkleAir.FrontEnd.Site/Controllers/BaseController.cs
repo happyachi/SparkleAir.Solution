@@ -152,26 +152,31 @@ namespace SparkleAir.FrontEnd.Site.Controllers
                     }
                 }
             });
+
             menuItems.Add(new TopLevelMenuComponent
             {
                 Name = "行銷",
-                Icon = "<i class=\"fa-solid fa-chart-simple\"></i>",
+                Icon = "<i class=\"fa-solid fa-tags\"></i>",
                 MenuItems = new List<IMenuItem>
                 {
                     new MenuItem
                     {
-                        Name = "優惠券活動",
+                        Name = "優惠券",
                         ActionName = "Index",
                         ControllerName = "CampaignsCoupon",
+
                     },
                     new MenuItem
                     {
-                        Name = "折扣活動",
+                        Name = "折扣促銷",
                         ActionName = "Index",
                         ControllerName = "CampaignsDiscount",
                     }
                 }
             });
+
+
+
             menuItems.Add(new TopLevelMenuComponent
             {
                 Name = "金流",

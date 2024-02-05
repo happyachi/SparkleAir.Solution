@@ -1,13 +1,16 @@
 ﻿@using SparkleAir.Infa.ViewModel.TaxFree
 @model SparkleAir.FrontEnd.Site.Models.ViewModels.Campaigns.CampaignsDiscountVm
 
+
+
 @{
     ViewBag.Title = "Create";
 
-    var list = ViewBag.List as IEnumerable<TFItemVm>;
+
 }
 
 <style>
+
     #selectContainer {
         position: fixed;
         top: 50%;
@@ -21,9 +24,57 @@
         opacity: 0;
         transition: opacity 0.3s ease-in-out;
     }
+
+    #DateStart, #DateEnd {
+        width: 3000px; /* Adjust the width as needed */
+    }
+
+    /*Member間距*/
+    .member-label {
+        margin-right: 50px;
+    }
+
+    .productslist {
+        width: 300px; /* Adjust the width as needed */
+        height: 200px;
+    }
+
+    .title {
+        font-weight: bold;
+        font-size: 2.4em; /* 調整文字大小 */
+    }
+
+    .form-horizontal label.control-label {
+        font-weight: bold;
+        font-size: 1.2em; /* 調整文字大小 */
+    }
+
+    .form-horizontal .form-group {
+        margin-bottom: 15px; /* 調整行之間的間距 */
+    }
+
+    /* 如果需要美化細節，也可以針對其他元素進行樣式設定 */
+
+    .discountLabel {
+        font-weight: bold;
+        font-size: 1.2em; /* 調整文字大小 */
+    }
+
+    .productslist {
+        margin-top: 15px; /* 調整間距 */
+    }
+
+    #info-icon {
+        margin-left: 5px; /* Adjust the margin as needed */
+        cursor: pointer;
+    }
+
 </style>
 
-<h2>Create</h2>
+<h2 class="title">
+    新增折扣活動
+    <i class="fa-solid fa-circle-info" id="info-icon" onclick="showUsageInfo()"></i>
+</h2>
 
 
 @using (Html.BeginForm())
@@ -67,7 +118,7 @@
         </div>
 
         <div class="form-group mt-3">
-            <p>折扣類型</p>
+            <p style="font-size: 1.2em; font-weight: bold;">折扣類型</p>
             <select name="CampaignId" id="CampaignId" class="form-select CampaignId" aria-label="Default select example">
                 <option selected>請下拉選擇</option>
                 <option value="5">折扣金額</option>
@@ -123,11 +174,14 @@
             @Html.LabelFor(model => model.MemberCriteria, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="form-check">
-                    @foreach (var member in ViewBag.Member)
+                    @if (ViewBag.Member != null)
                     {
-                        <label class="checkbox-inline">
-                            <input class="form-check-input" type="checkbox" value="@member.Name" data-member="@member.Name" name="members">@member.Name
-                        </label>
+                        foreach (var member in ViewBag.Member)
+                        {
+                            <label class="checkbox-inline member-label">
+                                <input class="form-check-input" type="checkbox" value="@member.Name" data-member="@member.Name" name="members">@member.Name
+                            </label>
+                        }
                     }
                     <input type="hidden" name="MemberCriteria" id="flexCheckDefault" value="" />
                 </div>
@@ -142,32 +196,36 @@
                 </div>*@
         </div>
         <div>
-            <button type="button" class="btn btn-sm btn-dark col-sm-1" onclick="toggle()">新增活動商品</button>
+            <button type="button" class="btn btn-sm btn-dark col-sm-1" onclick="toggle()">+ 新增活動商品</button>
         </div>
-
+        @*<div class="myproductslist"></div>*@
         <div class="select" id="selectContainer" style="display: none;">
             <div id="selectProducts">
                 @*@Html.Partial("SelectProduct")*@
                 @{
+                    var list = ViewBag.List as IEnumerable<TFItemVm>;
                     Html.RenderPartial("SelectProduct", list);
                 }
-
             </div>
             <button type="button" class="btn btn-sm btn-dark col-sm-1" onclick="cancelProducts()">取消</button>
             <button type="button" class="btn btn-sm btn-dark col-sm-1" onclick="saveProducts()">儲存</button>
         </div>
+        @*<div class="myproductslist"></div>*@
+<textarea class="productslist mt-3" name="TFItemsCriteria" id="productList"></textarea>
 
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+
+        <div class="mb-3">
+            <div class="col-md-offset-2 col-md-10 mt-2">
+                <input type="submit" value="新增" class="btn btn-sm btn-success ps-3 pe-3 btn-create" />
             </div>
         </div>
     </div>
 }
 
+<hr>
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    <a href='@Url.Action("Index/")' class="btn btn-sm btn-dark ps-2 pe-2 btn-back-to-list"><i class="fa-solid fa-backward"></i>&nbsp;&nbsp;回清單頁</a>
 </div>
 
 
@@ -213,16 +271,6 @@
             console.log(members);
         }
 
-        function saveProducts() {
-
-            var selectContainer = document.querySelector('#selectContainer');
-            selectContainer.style.opacity = '0';
-
-            setTimeout(function () {
-                selectContainer.style.display = 'none';
-            }, 300);
-        }
-      
         const input = document.querySelector('#Name');
         const checks = document.querySelectorAll('.form-check-input');
 
@@ -240,5 +288,61 @@
                 });
             });
         });
+
+        function updateMyProductsList(selectedIds) {
+            const myProductsList = document.querySelector('#productList');
+            myProductsList.value = selectedIds.join(',');
+        }
+
+        function saveProducts() {
+            // Prevent the default form submission behavior
+            event.preventDefault();
+
+            // Get all selected checkboxes inside the selectProducts div
+            var checkboxes = document.querySelectorAll('#selectProducts input[type="checkbox"]:checked');
+
+            // Extract values and create a comma-separated string
+            var selectedProducts = [];
+            checkboxes.forEach(function (checkbox) {
+                if (checkbox.value !== 'on') {
+                    selectedProducts.push(checkbox.value);
+                }
+            });
+
+            // Join values with a new line to create a new line-separated string
+            var productListValue = selectedProducts.length > 0 ? selectedProducts.join('\n') : '';
+
+
+            // Set the value of the productList input field
+            document.getElementById('productList').value = productListValue;
+
+            // Hide the selectContainer div (you may want to adjust this based on your needs)
+            document.getElementById('selectContainer').style.display = 'none';
+        }
+
+        var campaignSelect = document.getElementById("CampaignId");
+
+        var discountValueInput = document.getElementById("DiscountValue");
+
+        campaignSelect.addEventListener("change", function () {
+            var selectedValue = campaignSelect.value;
+
+            if (selectedValue === "6") {
+                discountValueInput.placeholder = "輸入95，表示95折";
+            } else {
+                discountValueInput.placeholder = "輸入100，表示折100元";
+            }
+        });
+
+        function showUsageInfo() {
+            Swal.fire({
+                title: "建立活動規範",
+        html: "<div style='text-align: middle;'>(1) 開始時間必須在目前時間的半小時後.<br>(2) 活動期間不能超過三個月.</div>",
+                icon: "info"
+            });
+        }
+
+
+
     </script>
 }
