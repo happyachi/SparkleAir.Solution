@@ -1,9 +1,20 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-
-<main>
-    <div class="container">
-        <h1>歡迎登入 Sparkle Airline</h1>
-    </div>
-</main>
+@section Styles{
+    <style>
+        .bg-cover {
+            height: 150vh;
+            background-image: url('../../Files/Images/background2.jpg');
+            background-position: center;
+            background-size: cover
+        }
+    </style>
+    }
+<div class="bg-cover" >
+    <main>
+        <div class="container">
+            <h1>歡迎登入 Sparkle Airline</h1>
+        </div>
+    </main>
+</div>

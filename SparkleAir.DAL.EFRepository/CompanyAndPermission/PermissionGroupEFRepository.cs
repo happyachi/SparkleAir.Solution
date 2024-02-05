@@ -40,8 +40,11 @@ namespace SparkleAir.DAL.EFRepository.CompanyAndPermission
                 Id = permissionGroup.Id,
                 Name = permissionGroup.Name,
                 Ddescribe = permissionGroup.Ddescribe,
-                Criteria = permissionGroup.Criteria
+                Criteria = permissionGroup.Criteria,
+                PermissionSettingPageName = permissionGroup.PermissionSettings.Select(m => m.PermissionPageInfo.PageName).ToList(),
+                PermissionSettingPageId = permissionGroup.PermissionSettings.Select(m => m.PermissionPageInfo.Id).ToList()
             };
+
             return entity;
         }
 
@@ -67,7 +70,7 @@ namespace SparkleAir.DAL.EFRepository.CompanyAndPermission
 
             if(entity.Name != null) permissionGroup.Name = entity.Name;
             if (entity.Ddescribe != null) permissionGroup.Ddescribe = entity.Ddescribe;
-            if (entity.Criteria != null) permissionGroup.Criteria = entity.Criteria;
+            permissionGroup.Criteria = entity.Criteria;
 
             _db.SaveChanges();
         }

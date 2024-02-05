@@ -1,5 +1,6 @@
 ﻿using SparkleAir.BLL.Service.TaxFree;
 using SparkleAir.DAL.EFRepository.TaxFree;
+using SparkleAir.FrontEnd.Site.Models.Authorize;
 using SparkleAir.IDAL.IRepository.TaxFree;
 using SparkleAir.Infa.Dto.TaxFree;
 using SparkleAir.Infa.ViewModel.TaxFree;
@@ -11,6 +12,7 @@ using System.Web.Mvc;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.TaxFree
 {
+    [StaffAuthorize(PageName = "TFOrderlist")]
     public class TFOrderlistController : Controller
     {
         ITFOrderRepository TFOrderRepo = new TFOrderlistEFRepository();
@@ -102,9 +104,10 @@ namespace SparkleAir.FrontEnd.Site.Controllers.TaxFree
             {
                 Id = vm.Id,
                 MemberId = vm.MemberId,
+                
                 TFItemsId = vm.TFItemsId,
                 Quantity = vm.Quantity,
-                UnitPrice = vm.UnitPrice
+                UnitPrice = vm.UnitPrice,
             };
             service.Create(dto);
         }

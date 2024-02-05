@@ -50,7 +50,11 @@
 							@Html.DisplayFor(modelItem => seat.IsSeated)
 						</td>
 						<td>
-							<button class="btn btn-sm btn-dark link" onclick="showModal('@seat.Id')">訂位資訊</button>
+							@if (seat.IsSeated == true)
+							{
+								<button class="btn btn-sm btn-dark link" onclick="showModal('@seat.Id')">訂位資訊</button>
+							}
+							
 						</td>
 					</tr>
 				}
@@ -90,7 +94,7 @@ async function showModal(itemId) {
 		}
 
 		const data = await response.json();
-		
+
 
 		const div = document.querySelector('#detail');
 		const title = document.querySelector('#title');

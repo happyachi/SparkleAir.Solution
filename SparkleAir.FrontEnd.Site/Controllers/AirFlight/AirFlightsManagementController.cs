@@ -15,9 +15,11 @@ using SparkleAir.IDAL.IRepository.Airport;
 using SparkleAir.BLL.Service.Airports;
 using SparkleAir.DAL.EFRepository.Airports;
 using System.Threading.Tasks;
+using SparkleAir.FrontEnd.Site.Models.Authorize;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
 {
+    [StaffAuthorize(PageName = "AirFlightsManagement")]
     public class AirFlightsManagementController : BaseController
     {
         #region CTOR
@@ -55,7 +57,9 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
         // GET: AirFlights
         public ActionResult Index()
         {
+            ViewBag.Airports = _airportService.GetAll();
             List<AirFlightManagementIndexVm> data = GetAll();
+
             return View(data);
         }
 
@@ -88,19 +92,23 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
         [HttpPost]
         public async Task<ActionResult> Create(AirFlightManagementCreateVm vm)
         {
-            if (!ModelState.IsValid) return View();
+            if (!ModelState.IsValid)
+            {
+                return Json(new { success = false, errors = ModelState.Values.SelectMany(v => v.Errors.Select(e => e.ErrorMessage)) });
+            };
             ViewBag.Airports = _airportService.GetAll();
             try
             {
                 var flightId = CreateFlight(vm);
-                await _priceService.CreateTicketPirce1500(flightId, vm.Mile);
-                return RedirectToAction("Index");
+                await _priceService.CreateTicketPirce(flightId, vm.Mile);
+                return Json(new { success = true });
             }
             catch (Exception ex)
             {
                 ModelState.AddModelError("", ex.Message);
-                return View();
+                return Json(new { success = false, errors = new[] { ex.Message } });
             }
+
         }
 
         private int CreateFlight(AirFlightManagementCreateVm vm)
@@ -112,6 +120,8 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
                 DepartureAirport = vm.DepartureAirport,
                 ArrivalAirport = vm.ArrivalAirport,
                 DepartureTime = vm.DepartureTime,
+                DepartureTerminal = vm.DepartureTerminal,
+                ArrivalTerminal = vm.ArrivalTerminal,
                 ArrivalTime = vm.ArrivalTime,
                 DayofWeek = vm.DayofWeek,
                 Mile = vm.Mile,
@@ -172,19 +182,20 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
         [HttpPost]
         public ActionResult Edit(AirFlightManagementVm vm)
         {
-
-            if (!ModelState.IsValid) return View(vm);
-
+            if (!ModelState.IsValid)
+            {
+                return Json(new { success = false, errors = ModelState.Values.SelectMany(v => v.Errors.Select(e => e.ErrorMessage)) });
+            };
             ViewBag.Airports = _airportService.GetAll();
             try
             {
                 Update(vm);
-                return RedirectToAction("Index");
+                return Json(new { success = true });
             }
             catch (Exception ex)
             {
                 ModelState.AddModelError("", ex.Message);
-                return View();
+                return Json(new { success = false, errors = new[] { ex.Message } });
             }
         }
 

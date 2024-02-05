@@ -20,5 +20,12 @@ namespace SparkleAir.Infa.Utility.Helper
 
             return daysArray;
         }
+
+        public static string dayofweek(this string days)
+        {
+            var dayArr = days.Split(',').Select(d => int.Parse(d).ToString());
+            var day = dayArr.Select(d => d == "0" ? "7" : d);
+            return string.Join(",", day);
+        }
     }
 }

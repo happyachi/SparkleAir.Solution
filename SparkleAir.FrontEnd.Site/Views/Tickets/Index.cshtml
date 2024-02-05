@@ -1,0 +1,69 @@
+﻿@model IEnumerable<SparkleAir.Infa.ViewModel.Tickets.TicketsIndexVm>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a href='@Url.Action("Create")' class="btn btn-sm btn-dark ps-3 pe-3 btn-create"><i class="fa-solid fa-plus"></i>&nbsp;&nbsp;新增</a>
+</p>
+<table class="table table_jq">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.memberId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderNum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalPayableAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ActualPaidAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsEstablished)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsInvoiced)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.memberId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderNum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalPayableAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ActualPaidAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsEstablished)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsInvoiced)
+        </td>
+        <td>
+            <a href='@Url.Action("Edit/")@item.Id' class="btn btn-sm btn-dark ps-2 pe-2 btn-edit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;編輯</a> |
+            <a href='@Url.Action("Details/")@item.Id' class="btn btn-sm btn-dark ps-2 pe-2 btn-detail"><i class="fa-solid fa-file"></i>&nbsp;&nbsp;詳細資訊</a> |
+            <a href='@Url.Action("Delete/")@item.Id' class="btn btn-sm btn-danger ps-2 pe-2 btn-delete"><i class="fa-solid fa-trash"></i>&nbsp;&nbsp;刪除</a>
+        </td>
+    </tr>
+}
+
+</table>

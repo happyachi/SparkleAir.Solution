@@ -81,8 +81,7 @@ namespace SparkleAir.Infa.EFModel.EFModels
 
         public bool IsAllow { get; set; }
 
-        [Required]
-        [StringLength(50)]
+        [StringLength(100)]
         public string ConfirmCode { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

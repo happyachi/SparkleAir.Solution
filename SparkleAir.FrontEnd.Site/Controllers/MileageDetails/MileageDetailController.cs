@@ -3,6 +3,7 @@ using SparkleAir.BLL.Service.Members;
 using SparkleAir.BLL.Service.MileageDetails;
 using SparkleAir.DAL.EFRepository.Members;
 using SparkleAir.DAL.EFRepository.MileageDetails;
+using SparkleAir.FrontEnd.Site.Models.Authorize;
 using SparkleAir.IDAL.IRepository.Members;
 using SparkleAir.IDAL.IRepository.MileageDetails;
 using SparkleAir.Infa.Criteria.Members;
@@ -18,6 +19,7 @@ using System.Web.Mvc;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.MileageDetails
 {
+    [StaffAuthorize(PageName = "MileageDetail")]
     public class MileageDetailController : BaseController
     {
 

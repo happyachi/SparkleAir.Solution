@@ -57,12 +57,14 @@
     <Compile Include="Helper\Campaigns\CamapignsTimeHelper.cs" />
     <Compile Include="Helper\Campaigns\PriceHelper.cs" />
     <Compile Include="Helper\CompanyAndPermission\CompanyFunc.cs" />
+    <Compile Include="Helper\HashHelper.cs" />
     <Compile Include="Helper\Members\MemberFunc.cs" />
     <Compile Include="Helper\DAHelper.cs" />
     <Compile Include="Helper\SplitFlightDaysHelper.cs" />
     <Compile Include="Helper\PartialView.cs" />
     <Compile Include="Helper\TimeZoneHelper.cs" />
     <Compile Include="Helper\SqlDbHelper.cs" />
+    <Compile Include="Helper\UploadHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Helper\UploadImgHelper.cs" />
   </ItemGroup>
