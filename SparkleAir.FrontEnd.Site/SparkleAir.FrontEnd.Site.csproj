@@ -175,6 +175,7 @@
     <Compile Include="Controllers\TaxFree\TFReserveController.cs" />
     <Compile Include="Controllers\TaxFree\TFReservelistController.cs" />
     <Compile Include="Controllers\TaxFree\TFWishlistController.cs" />
+    <Compile Include="Controllers\Tickets\TicketsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -757,6 +758,7 @@
     <Content Include="Views\CampaignsCoupon\IPartialIndex.cshtml" />
     <Content Include="Views\Members\Index1.cshtml" />
     <Content Include="Views\Members\Index - 複製.cshtml" />
+    <Content Include="Views\Tickets\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
