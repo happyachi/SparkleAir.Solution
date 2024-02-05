@@ -29,6 +29,14 @@ namespace SparkleAir.FrontEnd.Site.Controllers.TaxFree
             List<TFItemVm> data = Get();
             return View(data);
         }
+
+        //public ActionResult IndexTFItem()
+        //{
+        //    List<TFItemVm> data = Get();
+        //    return PartialView("IndexTFItem", data);
+        //}
+
+
         public ActionResult Details(int id)
         {
             TFItemVm vm = Getid(id);
@@ -64,7 +72,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.TaxFree
         public ActionResult Delete(int id)
         {
             DeleteItem(id);
-            return RedirectToAction("Index","TFItem");
+            return RedirectToAction("Index", "TFItem");
         }
 
         private void DeleteItem(int id)
@@ -77,7 +85,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.TaxFree
         {
             var service = new TaxFreeService(TFRepository);
             var category = service.Get();
-            var data= category.Select(x => x.TFCategoriesName).Distinct().ToList();
+            var data = category.Select(x => x.TFCategoriesName).Distinct().ToList();
             ViewBag.TFCategories = data;
 
             return View();
@@ -103,7 +111,8 @@ namespace SparkleAir.FrontEnd.Site.Controllers.TaxFree
                 vm.Image = System.IO.Path.GetFullPath(result);
                 vm.FileName = result;
                 var server = new TaxFreeService(TFRepository);
-                 var dto = new TFItemDto {
+                var dto = new TFItemDto
+                {
                     Id = vm.Id,
                     Name = vm.Name,
                     TFCategoriesId = vm.TFCategoriesId,
@@ -186,8 +195,8 @@ namespace SparkleAir.FrontEnd.Site.Controllers.TaxFree
             var category1 = service.Get();
             //var data = category1.Select(x => x.TFCategoriesName).Distinct().ToList();
             ViewBag.TFCategories = category1;
-            
-            
+
+
             // save uploaded file
             string path = Server.MapPath("~/Files/Images");
             var helper = new UploadImgHelper();

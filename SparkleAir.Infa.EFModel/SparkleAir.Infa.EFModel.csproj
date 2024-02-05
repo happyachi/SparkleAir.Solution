@@ -99,7 +99,6 @@
     <Compile Include="EFModels\PermissionSetting.cs" />
     <Compile Include="EFModels\SeatArea.cs" />
     <Compile Include="EFModels\SeatGroup.cs" />
-    <Compile Include="EFModels\sysdiagram.cs" />
     <Compile Include="EFModels\TFCategory.cs" />
     <Compile Include="EFModels\TFItem.cs" />
     <Compile Include="EFModels\TFOrderlist.cs" />

@@ -62,7 +62,6 @@ namespace SparkleAir.DAL.EFRepository.TaxFree
                                              Quantity = x.Quantity,
                                              UnitPrice = x.UnitPrice
 
-
                                          })
                                          .ToList();
             return getlist;

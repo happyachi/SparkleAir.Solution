@@ -22,7 +22,7 @@ namespace SparkleAir.Infa.EFModel.EFModels
 
         public int UnitPrice { get; set; }
 
-        public int? Discount { get; set; }
+        public int Discount { get; set; }
 
         public int TotalPrice { get; set; }
 
