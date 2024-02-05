@@ -22,6 +22,11 @@ namespace SparkleAir.FrontEnd.Site.Controllers.TaxFree
             List<TFOrderlistsVm> data = Get();
             return View(data);
         }
+        public ActionResult Indexget()
+        {
+            List<TFOrderlistsVm> data = Get();
+            return Json(data,JsonRequestBehavior.AllowGet);
+        }
 
         public ActionResult Details(int id)
         {
