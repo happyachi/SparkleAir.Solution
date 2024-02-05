@@ -115,13 +115,29 @@
             </div>
         </div>*@
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.DiscountValue, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.DiscountValue, new { htmlAttributes = new { @class = "form-control readonly-field", @readonly = "readonly" } })
-            @Html.ValidationMessageFor(model => model.DiscountValue, "", new { @class = "text-danger" })
-        </div>
+<div class="form-group">
+    @{
+        string label = "";
+        string editorFormat = "";
+
+        if (Model.CampaignId == 1)
+        {
+            label = "折扣金額";
+            editorFormat = "{0:N0}";
+        }
+        else if (Model.CampaignId == 4)
+        {
+            label = "折扣折數";
+            editorFormat = "{0:0}%"; // 加上 % 符號
+        }
+    }
+
+    @Html.Label(label, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(model => model.DiscountValue, string.Format(editorFormat, Model.DiscountValue), new { @class = "form-control readonly-field", @readonly = "readonly" })
+        @Html.ValidationMessageFor(model => model.DiscountValue, "", new { @class = "text-danger" })
     </div>
+</div>
 
     <div class="form-group">
         @Html.LabelFor(model => model.DiscountQuantity, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -134,7 +150,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.AvailableQuantity, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.AvailableQuantity, new { htmlAttributes = new { @class = "form-control readonly-field", @readonly = "readonly" } })
+            @Html.TextBoxFor(model => model.AvailableQuantity, "{0:N0}", new { @class = "form-control readonly-field", @readonly = "readonly" })
             @Html.ValidationMessageFor(model => model.AvailableQuantity, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -142,7 +158,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.MinimumOrderValue, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.MinimumOrderValue, new { htmlAttributes = new { @class = "form-control readonly-field", @readonly = "readonly" } })
+            @Html.TextBoxFor(model => model.MinimumOrderValue, "{0:N0}", new { @class = "form-control readonly-field", @readonly = "readonly" })
             @Html.ValidationMessageFor(model => model.MinimumOrderValue, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -150,7 +166,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.MaximumDiscountAmount, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.MaximumDiscountAmount, new { htmlAttributes = new { @class = "form-control readonly-field", @readonly = "readonly" } })
+            @Html.TextBoxFor(model => model.MaximumDiscountAmount, "{0:N0}", new { @class = "form-control readonly-field", @readonly = "readonly" })
             @Html.ValidationMessageFor(model => model.MaximumDiscountAmount, "", new { @class = "text-danger" })
         </div>
     </div>

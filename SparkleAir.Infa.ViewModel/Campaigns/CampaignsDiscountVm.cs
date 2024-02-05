@@ -49,7 +49,7 @@ namespace SparkleAir.FrontEnd.Site.Models.ViewModels.Campaigns
         [Required(ErrorMessage = "{0}必填")]
         public decimal Value { get; set; }
 
-        [Display(Name = "商品件數")]
+        [Display(Name = "最低購買數量")]
         public decimal? BundleSKUs { get; set; }
 
         [Display(Name = "會員篩選")]

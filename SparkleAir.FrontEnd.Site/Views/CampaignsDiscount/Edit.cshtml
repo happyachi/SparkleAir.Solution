@@ -1,4 +1,5 @@
-﻿@model SparkleAir.FrontEnd.Site.Models.ViewModels.Campaigns.CampaignsDiscountVm
+﻿@using SparkleAir.Infa.ViewModel.TaxFree
+@model SparkleAir.FrontEnd.Site.Models.ViewModels.Campaigns.CampaignsDiscountVm
 
 @{
     ViewBag.Title = "Edit";
@@ -30,11 +31,10 @@
     .form-horizontal .form-group {
         margin-bottom: 15px; /* 調整行之間的間距 */
     }
-
 </style>
 
 <div style="display: flex; align-items: center;">
-    <h2 style="margin-right: 30px;" class="title" >促銷活動編輯</h2>
+    <h2 style="margin-right: 30px;" class="title">促銷活動編輯</h2>
     @Html.EditorFor(model => model.Status, new
     {
         htmlAttributes = new
@@ -116,18 +116,34 @@
             </div>
         </div>*@
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.DiscountValue, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.DiscountValue, new { htmlAttributes = new { @class = "form-control readonly-field", @readonly = "readonly" } })
-            @Html.ValidationMessageFor(model => model.DiscountValue, "", new { @class = "text-danger" })
-        </div>
+<div class="form-group">
+    @{
+        string label = "";
+        string editorFormat = "";
+
+        if (Model.CampaignId == 5)
+        {
+            label = "折扣金額";
+            editorFormat = "{0:N0}";
+        }
+        else if (Model.CampaignId == 6)
+        {
+            label = "折扣折數";
+            editorFormat = "{0:0}%"; // 加上 % 符號
+        }
+    }
+
+    @Html.Label(label, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(model => model.DiscountValue, string.Format(editorFormat, Model.DiscountValue), new { @class = "form-control readonly-field", @readonly = "readonly" })
+        @Html.ValidationMessageFor(model => model.DiscountValue, "", new { @class = "text-danger" })
     </div>
+</div>
 
     <div class="form-group">
         @Html.LabelFor(model => model.Value, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.Value, new { htmlAttributes = new { @class = "form-control readonly-field", @readonly = "readonly" } })
+            @Html.TextBoxFor(model => model.Value, "{0:N0}", new { @class = "form-control readonly-field", @readonly = "readonly" })
             @Html.ValidationMessageFor(model => model.Value, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -135,7 +151,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.BundleSKUs, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.BundleSKUs, new { htmlAttributes = new { @class = "form-control readonly-field", @readonly = "readonly" } })
+            @Html.TextBoxFor(model => model.BundleSKUs, "{0:N0}", new { @class = "form-control readonly-field", @readonly = "readonly" })
             @Html.ValidationMessageFor(model => model.BundleSKUs, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -164,11 +180,27 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.TFItemsCriteria, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.TFItemsCriteria, htmlAttributes: new { @class = "control-label" })
+        </div>
         <div class="col-md-10">
-            @Html.TextAreaFor(model => model.TFItemsCriteria, new { @class = "form-control", rows = 4 }) <!-- 設定 rows 屬性來指定行數 -->
+            <button type="button" class="btn btn-sm btn-dark" onclick="toggle()">+ 新增活動商品</button>
+            <br> <!-- 換行 -->
+            @Html.TextAreaFor(model => model.TFItemsCriteria, new { @class = "form-control mt-2", rows = 4 })
             @Html.ValidationMessageFor(model => model.TFItemsCriteria, "", new { @class = "text-danger" })
         </div>
+    </div>
+
+    <div class="select" id="selectContainer" style="display: none;">
+        <div id="selectProducts">
+            @*@Html.Partial("SelectProduct")*@
+            @*@{
+                var list = ViewBag.List as IEnumerable<TFItemVm>;
+                Html.RenderPartial("SelectProduct", list);
+            }*@
+        </div>
+        <button type="button" class="btn btn-sm btn-dark col-sm-1" onclick="cancelProducts()">取消</button>
+        <button type="button" class="btn btn-sm btn-dark col-sm-1" onclick="saveProducts()">儲存</button>
     </div>
 
     @*<div class="form-group">
@@ -193,7 +225,7 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-<script>
+    <script>
     function updateMember() {
         console.log("123");
         const checks = document.querySelectorAll('.form-check-input');
@@ -213,5 +245,20 @@
 
     updateMember();
 
-</script>
+
+        function toggle() {
+            var selectContainer = document.querySelector('#selectContainer');
+            selectContainer.style.display = 'block';
+            selectContainer.style.opacity = '1';
+        }
+
+        function cancelProducts() {
+            var selectContainer = document.querySelector('#selectContainer');
+            selectContainer.style.opacity = '0';
+            setTimeout(function () {
+                selectContainer.style.display = 'none';
+            }, 300);
+        }
+
+    </script>
 }
