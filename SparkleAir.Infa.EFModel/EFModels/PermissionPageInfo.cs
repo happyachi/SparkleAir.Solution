@@ -18,7 +18,7 @@ namespace SparkleAir.Infa.EFModel.EFModels
         public int Id { get; set; }
 
         [Required]
-        [StringLength(10)]
+        [StringLength(50)]
         public string PageNumber { get; set; }
 
         [Required]

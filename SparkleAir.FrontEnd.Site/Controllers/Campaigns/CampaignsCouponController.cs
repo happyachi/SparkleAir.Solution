@@ -5,6 +5,7 @@ using SparkleAir.BLL.Service.Members;
 using SparkleAir.DAL.EFRepository.AirFlights;
 using SparkleAir.DAL.EFRepository.Campaigns;
 using SparkleAir.DAL.EFRepository.Members;
+using SparkleAir.FrontEnd.Site.Models.Authorize;
 using SparkleAir.FrontEnd.Site.Models.ViewModels.Campaigns;
 using SparkleAir.IDAL.IRepository.Campaigns;
 using SparkleAir.Infa.Criteria.AirFlights;
@@ -22,6 +23,7 @@ using static Dapper.SqlMapper;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
 {
+    [StaffAuthorize(PageName = "CampaignsCoupon")]
     public class CampaignsCouponController : BaseController
     {
         CampaignsCouponsEFRepository repo = new CampaignsCouponsEFRepository();

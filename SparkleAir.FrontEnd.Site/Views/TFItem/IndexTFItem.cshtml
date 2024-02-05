@@ -1,0 +1,146 @@
+﻿@model IEnumerable<SparkleAir.Infa.ViewModel.TaxFree.TFItemVm>
+
+@*@{
+    ViewBag.Title = "Index";
+}*@
+
+<h2>商品管理頁面</h2>
+
+<p>
+    <a href='@Url.Action("Create")' class="btn btn-sm btn-dark ps-3 pe-3 btn-create"><i class="fa-solid fa-plus"></i>&nbsp;&nbsp;新增</a>
+</p>
+<table class="table table_jq">
+    <thead>
+        <tr>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.TFCategoriesId)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.TFCategoriesName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SerialNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnitPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsPublished)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.FileName)
+                </th>*@
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.TFCategoriesId)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.TFCategoriesName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SerialNumber)
+                </td>
+                <td>
+                    <img src="@Url.Content($"~/Files/Images/{item.Image}")" alt="Uploaded Image" width="200" />
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnitPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsPublished)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.FileName)
+                    </td>*@
+            <td>
+                <a href='@Url.Action("Edit/")@item.Id' class="btn btn-sm btn-dark ps-2 pe-2 btn-edit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;編輯</a> |
+                <a href='@Url.Action("Details/")@item.Id' class="btn btn-sm btn-dark ps-2 pe-2 btn-detail"><i class="fa-solid fa-file"></i>&nbsp;&nbsp;詳細資訊</a> |
+                <a data-href='@Url.Action("Delete/")@item.Id' class="btn btn-sm btn-danger ps-2 pe-2 btn-delete"><i class="fa-solid fa-trash"></i>&nbsp;&nbsp;刪除</a>
+            </td>
+            
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+<div class="justify-content-center text-center">
+    <img src='@Url.Content("~/Files/Images/loading.gif")' class="img-fluid" alt="Alternate Text" style="height:150px; background-size: cover" />
+</div>
+
+<script>
+
+
+</script>
+@*@section  Scripts{
+    <script>
+    /* 顯示AJAX內容 */
+    function showAjaxContent(itemId) {
+        fetch('@Url.Content("~/TFWishlist/Index1")')
+        .then(response => response.text())
+        .then(data => {
+            const main = document.querySelector('main');
+            main.innerHTML = data;
+
+            /* 如果要用搜尋套件，要加下面這個 */
+            $(document).ready(function () {
+                $('.table_jq').DataTable({
+                    language: {
+                        url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/zh-HANT.json',
+                    },
+                });
+            });
+
+            /*刪除前確認事件*/
+            const btnDelete = document.querySelectorAll('.btn-delete');
+            btnDelete.forEach((item) => {
+                item.addEventListener('click', function () {
+                    Swal.fire({
+                        title: "你確定要刪除嗎？",
+                        showConfirmButton: false,
+                        showDenyButton: true,
+                        showCancelButton: true,
+                        denyButtonText: `確定刪除`,
+                        cancelButtonText: `取消`
+                    }).then((result) => {
+                        if (result.isDenied) {
+                            window.location.href = this.dataset.href;
+                        }
+                    });
+                });
+            });
+        })
+        .catch(error => console.error('Error:', error));
+    }
+
+    showAjaxContent();
+    </script>
+}*@

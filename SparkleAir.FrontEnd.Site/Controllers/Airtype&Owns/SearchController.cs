@@ -1,4 +1,5 @@
-﻿using SparkleAir.Infa.Dto.Airtype_Owns;
+﻿using SparkleAir.FrontEnd.Site.Models.Authorize;
+using SparkleAir.Infa.Dto.Airtype_Owns;
 using SparkleAir.Infa.EFModel.EFModels;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ using HttpPostAttribute = System.Web.Mvc.HttpPostAttribute;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.Airtype_Owns
 {
+    [StaffAuthorize(PageName = "Search")]
     public class SearchController : BaseController
     {
         private readonly AppDbContext _dbContext;

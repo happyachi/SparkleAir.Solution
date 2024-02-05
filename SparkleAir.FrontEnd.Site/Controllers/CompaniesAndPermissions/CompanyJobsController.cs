@@ -1,5 +1,6 @@
 ﻿using SparkleAir.BLL.Service.CompanyAndPermission;
 using SparkleAir.DAL.EFRepository.CompanyAndPermission;
+using SparkleAir.FrontEnd.Site.Models.Authorize;
 using SparkleAir.IDAL.IRepository.CompanyAndPermission;
 using SparkleAir.Infa.Dto.CompanyAndPermission;
 using SparkleAir.Infa.ViewModel.CompanyAndPermission;
@@ -11,6 +12,7 @@ using System.Web.Mvc;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.CompaniesAndPermissions
 {
+    [StaffAuthorize(PageName = "CompanyJobs")]
     public class CompanyJobsController : BaseController
     {
         private readonly CompanyJobService _service;

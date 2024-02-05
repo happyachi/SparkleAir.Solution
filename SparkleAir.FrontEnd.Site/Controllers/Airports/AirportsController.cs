@@ -1,5 +1,6 @@
 ﻿using SparkleAir.BLL.Service.Airports;
 using SparkleAir.DAL.EFRepository.Airports;
+using SparkleAir.FrontEnd.Site.Models.Authorize;
 using SparkleAir.IDAL.IRepository.Airport;
 using SparkleAir.Infa.Dto.Airport;
 using SparkleAir.Infa.EFModel.EFModels;
@@ -14,8 +15,8 @@ using System.Web.Mvc;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.Airports
 {
-   
-    
+
+    [StaffAuthorize(PageName = "Airports")]
     public  class AirportsController : BaseController
     {//
         ////以下是server統一都可以直接叫用的方法

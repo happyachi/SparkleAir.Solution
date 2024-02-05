@@ -42,5 +42,6 @@ namespace SparkleAir.Infa.ViewModel.AirFlights
 
         public int DepartureTimeZone { get; set; }
         public int ArrivalTimeZone { get; set; }
+        public int CrossDay {  get; set; }
     }
 }

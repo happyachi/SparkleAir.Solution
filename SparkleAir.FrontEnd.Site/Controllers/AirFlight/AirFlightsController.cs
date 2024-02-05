@@ -3,6 +3,7 @@ using SparkleAir.BLL.Service.AirFlights;
 using SparkleAir.BLL.Service.Airtype_Owns;
 using SparkleAir.DAL.EFRepository.AirFlights;
 using SparkleAir.DAL.EFRepository.Airtype_Owns;
+using SparkleAir.FrontEnd.Site.Models.Authorize;
 using SparkleAir.IDAL.IRepository.AirFlights;
 using SparkleAir.IDAL.IRepository.Airtype_Owns;
 using SparkleAir.Infa.Criteria.AirFlights;
@@ -20,6 +21,7 @@ using System.Web.Mvc;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
 {
+    [StaffAuthorize(PageName = "AirFlights")]
     public class AirFlightsController : BaseController
     {
         #region CTOR
@@ -61,20 +63,24 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
 
         public ActionResult Index()
         {
+            return View();
+
+        }
+        public async Task<ActionResult> Index1()
+        {
             try
             {
-                //await UpdateAndRetrieveSchedule();
+                await UpdateAndRetrieveSchedule();
                 List<AirFlightIndexVm> datas = GetAll();
-                return View(datas);
+                //return View(datas);
+                return PartialView("Index1", datas);
             }
             catch (Exception ex)
             {
-                // 在实际应用中，你可能会进行日志记录或其他处理
                 return View("Error"); // 返回一个错误视图
             }
 
         }
-
         private List<AirFlightIndexVm> GetAll()
         {
             List<AirFlightDto> dto = _airFlightService.GetAll();
@@ -213,7 +219,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
                 DepartureAirport = vm.DepartureAirport,
                 ArrivalAirport = vm.ArrivalAirport,
                 ScheduledDeparture = vm.ScheduledDeparture,
-                ScheduledArrival = vm.ScheduledArrival,
+                ScheduledArrival = vm.ScheduledArrival.AddDays(vm.CrossDay),
                 AirFlightSaleStatusId = 1, // 預設為 1 (銷售中)
                 DayofWeek = vm.DayofWeek,
                 DepartureTimeZone = vm.DepartureTimeZone,
@@ -277,7 +283,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
             var model = _flightSeatsService.GetEachSeatInfo(id);
             model.Gender = (model.Gender == "0") ? "男" : "女";
             model.CheckInstatus = (model.CheckInstatus == "1") ? "已報到" : "未報到";
-            return Json(model,JsonRequestBehavior.AllowGet);
+            return Json(model, JsonRequestBehavior.AllowGet);
             //return PartialView("_SeatsDetailPartial", model);
         }
 

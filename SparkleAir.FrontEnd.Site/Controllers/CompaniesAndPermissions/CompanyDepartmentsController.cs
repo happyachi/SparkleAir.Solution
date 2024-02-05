@@ -1,5 +1,6 @@
 ﻿using SparkleAir.BLL.Service.CompanyAndPermission;
 using SparkleAir.DAL.EFRepository.CompanyAndPermission;
+using SparkleAir.FrontEnd.Site.Models.Authorize;
 using SparkleAir.IDAL.IRepository.CompanyAndPermission;
 using SparkleAir.Infa.Criteria.Members;
 using SparkleAir.Infa.Dto.CompanyAndPermission;
@@ -13,6 +14,7 @@ using System.Web.Mvc;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.CompaniesAndPermissions
 {
+    [StaffAuthorize(PageName = "CompanyDepartments")]
     public class CompanyDepartmentsController : BaseController
     {
         private readonly ICompanyDepartmentRepository _repo;

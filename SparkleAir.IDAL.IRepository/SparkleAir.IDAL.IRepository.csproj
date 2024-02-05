@@ -78,6 +78,7 @@
     <Compile Include="TaxFree\ITFReserve.cs" />
     <Compile Include="TaxFree\ITFReservelist.cs" />
     <Compile Include="TaxFree\ITFWishlist.cs" />
+    <Compile Include="Tickets\ITicketsRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SparkleAir.Infa.Criteria\SparkleAir.Infa.Criteria.csproj">

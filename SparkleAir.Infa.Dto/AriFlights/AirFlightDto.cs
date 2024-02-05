@@ -15,8 +15,6 @@ namespace SparkleAir.Infa.Dto.AriFlights
         public DateTime ScheduledArrival { get; set; }
         public int AirFlightSaleStatusId { get; set; }
 
-        //from Airtypes 寫委派轉型
-        //from AirOwnId => AirTypeId => flightModel
         public string FlightModel { get; set; }
         public string FlightCode { get; set; }
         public string DepartureAirport { get; set; }
@@ -30,5 +28,6 @@ namespace SparkleAir.Infa.Dto.AriFlights
         public int ArrivalAirportId { get; set; }
 
         public string RegistrationNum { get; set; }
+        public int CrossDay {  get; set; }
     }
 }

@@ -27,5 +27,7 @@ namespace SparkleAir.Infa.Dto.CompanyAndPermission
         public string Status { get; set; }
 
         public DateTime RegistrationTime { get; set; }
+
+        public List<string> RoleGroups { get; set; }
     }
 }

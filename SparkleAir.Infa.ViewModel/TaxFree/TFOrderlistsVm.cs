@@ -12,7 +12,7 @@ namespace SparkleAir.Infa.ViewModel.TaxFree
         public int Id { get; set; }
 
         public int MemberId { get; set; }
-
+        [Display(Name = "中文姓")]
         public string MemberChineseLastName { get; set; }
 
         [Display(Name = "中文名")]
@@ -53,9 +53,9 @@ namespace SparkleAir.Infa.ViewModel.TaxFree
 
         [Display(Name = "商品單價")]
         public int TFItemsUnitPrice { get; set; }
-
+        [Display(Name = "購買價格")]
         public int Quantity { get; set; }
-
+        [Display(Name ="金額")]
         public int UnitPrice { get; set; }
         
     }
