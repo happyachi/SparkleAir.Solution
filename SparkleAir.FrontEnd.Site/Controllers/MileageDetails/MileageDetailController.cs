@@ -41,6 +41,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.MileageDetails
             return View(data); 
         }
 
+        //初始自動加入會員的初始資料
         public ActionResult Example()
         {
             var ser = new MileageDetailService(efRMileage, memberRepo);
@@ -78,6 +79,8 @@ namespace SparkleAir.FrontEnd.Site.Controllers.MileageDetails
             return View();
 
         }
+
+
 
         private void Update(MileageDetailIndexVm mileage)
         {
