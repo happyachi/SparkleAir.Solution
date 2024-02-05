@@ -12,6 +12,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers
     {
         public ActionResult Index()
 		{
+
 			return View();
 		}
 

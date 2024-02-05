@@ -14,7 +14,7 @@ using System.Web.Mvc;
 namespace SparkleAir.FrontEnd.Site.Controllers.TaxFree
 {
     [StaffAuthorize(PageName = "TFReservelist")]
-    public class TFReservelistController : Controller
+    public class TFReservelistController : BaseController
     {
 
         ITFReservelist repo = new TFResevelistEFRepository();
