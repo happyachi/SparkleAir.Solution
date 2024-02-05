@@ -4,6 +4,13 @@
     ViewBag.Title = "Index";
 }
 
+<style>
+    #img {
+        width: 700px;
+        height: 200px;
+    }
+</style>
+
 <h2>機場列表</h2>
 
 <p>
@@ -76,8 +83,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Continent)
                 </td>
-                <td style="display: none ">
-                    @Html.DisplayFor(modelItem => item.Img)
+                <td >
+                    @*@Html.DisplayFor(modelItem => item.Img)*@
+                    <img id="img" src="@Url.Content($"~/Files/Airports/{item.Img}")" alt="你死圖了">
                 </td>
                 <td>
                     <a href='@Url.Action("Edit/")@item.Id' class="btn btn-sm btn-dark ps-2 pe-2 btn-edit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;編輯</a>

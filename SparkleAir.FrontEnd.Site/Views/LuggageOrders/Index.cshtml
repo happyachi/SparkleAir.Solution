@@ -58,6 +58,7 @@
     <a href='@Url.Action("Create")' class="btn btn-sm btn-dark ps-3 pe-3 btn-create"><i class="fa-solid fa-plus"></i>&nbsp;&nbsp;新增</a>
 </p>
 
+@*下拉選單*@
 <label for="selecttotal">航班代號：</label>
 <select id="selecttotal" class="form-select mb-2" aria-label="Default select example" name="FlightCode">
     @*name="Lata" 要放要得欄位才抓地到值*@
@@ -70,6 +71,7 @@
 
 
 </select>
+
 
 @*跳出alert的位置*@
 <div id="icon" class="alert alert-warning alert-dismissible fade show  popup mt-3 border border-warning" aria-hidden="true" style="display:none"
@@ -209,7 +211,7 @@
         const btnss = document.querySelectorAll('.detailBtn');
         btnss.forEach(function (btn) {
             btn.addEventListener('click',async function () {
-                const id2 = this.getAttribute('value');
+                const id2 = this.getAttribute('value'); //this = btn
 
                 const modalDiv1 = document.querySelector('.modal-body');
                  // 将 HTML 内容更新到 modalDiv 中

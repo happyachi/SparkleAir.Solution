@@ -51,7 +51,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.LuggageOrders
 
             var data = service.Get(id);
 
-            return Json(data, JsonRequestBehavior.AllowGet);
+            return Json(data, JsonRequestBehavior.AllowGet); //一定要加 "JsonRequestBehavior.AllowGet " 才可傳回Json檔
         }
         
         public ActionResult PartialIndex(string flightcode)
