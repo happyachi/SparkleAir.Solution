@@ -58,7 +58,7 @@ namespace SparkleAir.BLL.Service.MealMessages
     
         }
 
-        public string Update(AirMealDto dto)
+        public void Update(AirMealDto dto)
         {
             AirMealEntity entity = new AirMealEntity
             {
@@ -71,7 +71,7 @@ namespace SparkleAir.BLL.Service.MealMessages
                 Category = dto.Category
             };
             _repo.Update(entity);
-            return $"{entity.Name}修改成功";
+            //return $"{entity.Name}修改成功";
         }
     }
 }

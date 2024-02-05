@@ -26,6 +26,9 @@ namespace SparkleAir.Infa.ViewModel.MealMessage
         [MaxLength(3000)]
         public string Image { get; set; }
 
+        [Display(Name = "參考圖片")]
+        [MaxLength(3000)]
+        public string UploadedImage { get; set; }
 
         //[MaxLength(100)]
         //public byte[] ImageBit { get; set; }

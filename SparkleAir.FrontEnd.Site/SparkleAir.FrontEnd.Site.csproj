@@ -146,8 +146,6 @@
     <Compile Include="Controllers\AirFlight\AirFlightsController.cs" />
     <Compile Include="Controllers\AirFlight\AirFlightSeatsController.cs" />
     <Compile Include="Controllers\AirFlight\AirFlightsManagementController.cs" />
-    <Compile Include="Controllers\Airtype&amp;Owns\OwnsController.cs" />
-    <Compile Include="Controllers\Airtype&amp;Owns\SearchController.cs" />
     <Compile Include="Controllers\Basics\CountriesController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\Campaigns\CampaignsCouponController.cs" />
@@ -313,7 +311,6 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
-    <Content Include="Content\sparkleAir.css" />
     <Content Include="Content\volt.css" />
     <Content Include="Content\brands.css" />
     <Content Include="Content\brands.min.css" />
@@ -428,7 +425,6 @@
     <Content Include="Files\Images\airplane.png" />
     <Content Include="Files\Images\empty.jpg" />
     <Content Include="Files\Images\imgjake.jpg" />
-    <Content Include="Files\Images\loading.gif" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="obj\Debug\SparkleAir.FrontEnd.Site.csproj.FileListAbsolute.txt" />
@@ -625,6 +621,7 @@
     <Content Include="Views\MileageDetail\Index.cshtml" />
     <Content Include="Views\MileageDetail\Create.cshtml" />
     <Content Include="Views\TFItem\Index.cshtml" />
+    <Content Include="Views\TFItem\Create.cshtml" />
     <Content Include="Views\TFItem\Edit.cshtml" />
     <Content Include="Views\TFItem\Details.cshtml" />
     <Content Include="Views\LuggageOrders\Index.cshtml" />
@@ -639,7 +636,6 @@
     <Content Include="Views\AirFlights\_SeatsDetailPartial.cshtml" />
     <Content Include="Views\LuggageOrders\PartialIndex.cshtml" />
     <Content Include="Views\LuggageOrders\Details.cshtml" />
-    <Content Include="Views\Owns\Index.cshtml" />
     <Content Include="CodeTemplates\ApiControllerEmpty\Controller.cs.t4" />
     <Content Include="CodeTemplates\ApiControllerEmpty\Controller.vb.t4" />
     <Content Include="CodeTemplates\ApiControllerWithActions\Controller.cs.t4" />
@@ -718,6 +714,8 @@
     <Content Include="Views\Home\Error404.cshtml" />
     <Content Include="Views\Home\Error500.cshtml" />
     <Content Include="Scripts\vendor\sass\node_modules\immutable\dist\immutable.js.flow" />
+    <Content Include="Views\TFItem\Index.cshtml" />
+    <Content Include="Views\TFItem\Details.cshtml" />
     <Content Include="Views\TFItem\Create.cshtml" />
     <Content Include="Views\CampaignsDiscount\Create.cshtml" />
     <Content Include="Views\CampaignsDiscount\Edit.cshtml" />
@@ -747,17 +745,11 @@
     <Content Include="Views\TFReservelist\Details.cshtml" />
     <Content Include="Views\TFReservelist\Edit.cshtml" />
     <Content Include="Views\TFReservelist\Create.cshtml" />
+    <Content Include="Views\TFItem\Edit.cshtml" />
     <Content Include="Views\Members\Edit.cshtml" />
     <Content Include="Scripts\vendor\sass\node_modules\immutable\dist\immutable.js.flow" />
+    <Content Include="Views\TFItem\Index.cshtml" />
     <Content Include="Views\CampaignsDiscount\SelectProduct.cshtml" />
-    <Content Include="Views\Owns\_PartialIndex.cshtml" />
-    <Content Include="Views\Owns\Create.cshtml" />
-    <Content Include="Views\Owns\Update.cshtml" />
-    <Content Include="Views\Owns\Delete.cshtml" />
-    <Content Include="Views\CampaignsDiscount\IPartialIndex.cshtml" />
-    <Content Include="Views\CampaignsCoupon\IPartialIndex.cshtml" />
-    <Content Include="Views\Members\Index1.cshtml" />
-    <Content Include="Views\Members\Index - 複製.cshtml" />
     <Content Include="Views\AirMeals\Create.cshtml" />
     <Content Include="Views\AirMeals\Delete.cshtml" />
     <Content Include="Views\AirMeals\Details.cshtml" />
@@ -766,14 +758,15 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Files\Airports\" />
+    <Folder Include="Files\AirMealImgs\" />
     <Folder Include="Models\ViewModels\Airtype&amp;Owns\" />
     <Folder Include="Models\ViewModels\Members\" />
     <Folder Include="obj\Debug\TempPE\" />
+    <Folder Include="Views\AirFlightSeats\" />
+    <Folder Include="Views\Airtype&amp;Owns\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Campaigns\" />
     <Folder Include="Views\Companies\" />
-    <Folder Include="Views\Search\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SparkleAir.Infa.Dto.MealMessages;
+using SparkleAir.Infa.EFModel.EFModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -10,7 +12,8 @@ namespace SparkleAir.Infa.Utility.Helper
 {
     public class UploadHelper
     {
-         
+        //private readonly IWebHostEnvironment _host;
+
         public string UploadImageFile(HttpPostedFileBase file, string path)
         {
             //判斷有無上傳檔案，沒有則丟出例外
@@ -30,5 +33,36 @@ namespace SparkleAir.Infa.Utility.Helper
 
             return newFileName;
         }
+
+        //public void UploadToByteHelper(AirMealDto dto, HttpPostedFileBase file)
+        //{
+        //    string fileName = "empty.jpg";
+        //    if (file != null)
+        //    {
+        //        fileName = file.FileName;
+        //    }
+
+        //    //檔案上傳路徑
+        //    string uploadPath = Path.Combine(_host.WebRootPath, "uploads", fileName);
+        //    //檔案上傳
+        //    using (var fileStream = new FileStream(uploadPath, FileMode.Create))
+        //    {
+        //        file?.CopyTo(fileStream);
+        //    }
+
+        //    //轉成二進
+        //    byte[]? imgByte = null;
+        //    using (var memoryStream = new MemoryStream())
+        //    {
+        //        file?.CopyTo(memoryStream);
+        //        imgByte = memoryStream.ToArray();
+        //    }
+        //    member.FileName = fileName;
+        //    member.FileData = imgByte;
+
+        //    //加進資料庫
+        //    _dbContext.Members.Add(member);
+        //    _dbContext.SaveChanges();
+        //}
     }
 }
