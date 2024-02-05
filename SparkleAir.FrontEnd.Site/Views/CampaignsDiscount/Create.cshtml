@@ -24,159 +24,193 @@
         transition: opacity 0.3s ease-in-out;
     }
 
+    #DateStart, #DateEnd {
+        width: 3000px; /* Adjust the width as needed */
+    }
+
     /*Member間距*/
     .member-label {
         margin-right: 50px;
     }
+
+    .productslist {
+        width: 300px; /* Adjust the width as needed */
+        height: 200px;
+    }
+
+    .title {
+        font-weight: bold;
+        font-size: 2.4em; /* 調整文字大小 */
+    }
+
+    .form-horizontal label.control-label {
+        font-weight: bold;
+        font-size: 1.2em; /* 調整文字大小 */
+    }
+
+    .form-horizontal .form-group {
+        margin-bottom: 15px; /* 調整行之間的間距 */
+    }
+
+    /* 如果需要美化細節，也可以針對其他元素進行樣式設定 */
+
+    .discountLabel {
+        font-weight: bold;
+        font-size: 1.2em; /* 調整文字大小 */
+    }
+
+    .productslist {
+        margin-top: 15px; /* 調整間距 */
+    }
 </style>
 
-<h2>新增折扣活動</h2>
+<h2 class="title">新增折扣活動</h2>
 
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        @*<div class="form-group">
-                @Html.LabelFor(model => model.Campaign, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Campaign, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Campaign, "", new { @class = "text-danger" })
-                </div>
-            </div>*@
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.Campaign, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Campaign, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Campaign, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.DateStart, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DateStart, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="datetime-local" id="DateStart" name="DateStart" class="control-label" />
+            @Html.ValidationMessageFor(model => model.DateStart, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DateEnd, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="datetime-local" id="DateEnd" name="DateEnd" class="control-label" />
+            @Html.ValidationMessageFor(model => model.DateEnd, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group mt-3">
+        <p>折扣類型</p>
+        <select name="CampaignId" id="CampaignId" class="form-select CampaignId" aria-label="Default select example">
+            <option selected>請下拉選擇</option>
+            <option value="5">折扣金額</option>
+            <option value="6">折扣折數</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <div class="discountLabel">
+            折扣金額或百分比
+        </div>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DiscountValue, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.DiscountValue, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.DateCreated, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input type="datetime-local" id="DateStart" name="DateStart" class="control-label" />
-                @Html.ValidationMessageFor(model => model.DateStart, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.DateCreated, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DateCreated, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.DateEnd, htmlAttributes: new { @class = "control-label col-md-2" })
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input type="datetime-local" id="DateEnd" name="DateEnd" class="control-label" />
-                @Html.ValidationMessageFor(model => model.DateEnd, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
             </div>
+        </div>*@
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Value, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Value, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Value, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="form-group mt-3">
-            <p>折扣類型</p>
-            <select name="CampaignId" id="CampaignId" class="form-select CampaignId" aria-label="Default select example">
-                <option selected>請下拉選擇</option>
-                <option value="5">折扣金額</option>
-                <option value="6">折扣折數</option>
-            </select>
+    <div class="form-group">
+        @Html.LabelFor(model => model.BundleSKUs, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.BundleSKUs, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.BundleSKUs, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="form-group">
-            <div class="discountLabel">
-                折扣金額或百分比
-            </div>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DiscountValue, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DiscountValue, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-
-        @*<div class="form-group">
-                @Html.LabelFor(model => model.DateCreated, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.DateCreated, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.DateCreated, "", new { @class = "text-danger" })
-                </div>
-            </div>*@
-
-        @*<div class="form-group">
-                @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
-                </div>
-            </div>*@
-
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Value, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Value, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Value, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.BundleSKUs, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.BundleSKUs, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.BundleSKUs, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.MemberCriteria, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="form-check">
-                    @if (ViewBag.Member != null)
+    <div class="form-group">
+        @Html.LabelFor(model => model.MemberCriteria, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="form-check">
+                @if (ViewBag.Member != null)
+                {
+                    foreach (var member in ViewBag.Member)
                     {
-                        foreach (var member in ViewBag.Member)
-                        {
-                            <label class="checkbox-inline member-label">
-                                <input class="form-check-input" type="checkbox" value="@member.Name" data-member="@member.Name" name="members">@member.Name
-                            </label>
-                        }
+                        <label class="checkbox-inline member-label">
+                            <input class="form-check-input" type="checkbox" value="@member.Name" data-member="@member.Name" name="members">@member.Name
+                        </label>
                     }
-                    <input type="hidden" name="MemberCriteria" id="flexCheckDefault" value="" />
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.TFItemsCriteria, htmlAttributes: new { @class = "control-label col-md-2" })
-            @*<div class="col-md-10">
-                    @Html.EditorFor(model => model.TFItemsCriteria, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.TFItemsCriteria, "", new { @class = "text-danger" })
-                </div>*@
-        </div>
-        <div>
-            <button type="button" class="btn btn-sm btn-dark col-sm-1" onclick="toggle()">新增活動商品</button>
-        </div>
-        @*<div class="myproductslist"></div>*@
-        <div class="select" id="selectContainer" style="display: none;">
-            <div id="selectProducts">
-                @*@Html.Partial("SelectProduct")*@
-                @{
-                    var list = ViewBag.List as IEnumerable<TFItemVm>;
-                    Html.RenderPartial("SelectProduct", list);
                 }
-            </div>
-            <button type="button" class="btn btn-sm btn-dark col-sm-1" onclick="cancelProducts()">取消</button>
-            <button type="button" class="btn btn-sm btn-dark col-sm-1" onclick="saveProducts()">儲存</button>
-        </div>
-        @*<div class="myproductslist"></div>*@
-        <input class="productslist" name="TFItemsCriteria" value="" id="productList" />
-
-
-
-        <div class="mb-3">
-            <div class="col-md-offset-2 col-md-10 mt-5">
-                <input type="submit" value="新增" class="btn btn-sm btn-success ps-3 pe-3 btn-create" />
+                <input type="hidden" name="MemberCriteria" id="flexCheckDefault" value="" />
             </div>
         </div>
     </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.TFItemsCriteria, htmlAttributes: new { @class = "control-label col-md-2" })
+        @*<div class="col-md-10">
+                @Html.EditorFor(model => model.TFItemsCriteria, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TFItemsCriteria, "", new { @class = "text-danger" })
+            </div>*@
+    </div>
+    <div>
+        <button type="button" class="btn btn-sm btn-dark col-sm-1" onclick="toggle()">+ 新增活動商品</button>
+    </div>
+    @*<div class="myproductslist"></div>*@
+    <div class="select" id="selectContainer" style="display: none;">
+        <div id="selectProducts">
+            @*@Html.Partial("SelectProduct")*@
+            @{
+                var list = ViewBag.List as IEnumerable<TFItemVm>;
+                Html.RenderPartial("SelectProduct", list);
+            }
+        </div>
+        <button type="button" class="btn btn-sm btn-dark col-sm-1" onclick="cancelProducts()">取消</button>
+        <button type="button" class="btn btn-sm btn-dark col-sm-1" onclick="saveProducts()">儲存</button>
+    </div>
+    @*<div class="myproductslist"></div>*@
+<textarea class="productslist mt-3" name="TFItemsCriteria" id="productList"></textarea>
+
+
+
+    <div class="mb-3">
+        <div class="col-md-offset-2 col-md-10 mt-2">
+            <input type="submit" value="新增" class="btn btn-sm btn-success ps-3 pe-3 btn-create" />
+        </div>
+    </div>
+</div>
 }
 
 <hr>
@@ -266,9 +300,9 @@
                 }
             });
 
-            // Join values with a comma to create a comma-separated string
-            var productListValue = selectedProducts.length > 0 ? selectedProducts.join(',') : '';
-            productListValue = productListValue.startsWith(',') ? productListValue.substring(1) : productListValue;
+            // Join values with a new line to create a new line-separated string
+            var productListValue = selectedProducts.length > 0 ? selectedProducts.join('\n') : '';
+
 
             // Set the value of the productList input field
             document.getElementById('productList').value = productListValue;

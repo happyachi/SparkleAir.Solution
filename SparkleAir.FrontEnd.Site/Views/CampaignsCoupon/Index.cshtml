@@ -8,11 +8,12 @@
     <style>
         .coupon-section {
             display: flex;
-            /*align-items: center;*/ /* 垂直居中 */
+            align-items: baseline; /* 垂直居中 */
         }
 
         .fa-ticket {
             margin-right: 10px; /* 調整圖示和標題之間的間距 */
+            transform: rotate(-30deg); /* 傾斜30度 */
         }
 
         #divMore {
@@ -29,6 +30,11 @@
             z-index: 999;
         }
 
+        .title {
+            font-weight: bold;
+            font-size: 2.4em; /* 調整文字大小 */
+        }
+
         .btn-delete {
             font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif;
         }
@@ -36,7 +42,7 @@
 
     <div class="coupon-section">
         <i class="fa-solid fa-ticket fa-2x"></i>
-        <h2>優惠券活動</h2>
+        <h2 class="title">優惠券活動</h2>
     </div>
 
 <p>

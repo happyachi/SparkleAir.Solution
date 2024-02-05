@@ -16,10 +16,25 @@
     .member-label {
         margin-right: 50px;
     }
+
+    .title {
+        font-weight: bold;
+        font-size: 2.4em; /* 調整文字大小 */
+    }
+
+    .form-horizontal label.control-label {
+        font-weight: bold;
+        font-size: 1.2em; /* 調整文字大小 */
+    }
+
+    .form-horizontal .form-group {
+        margin-bottom: 15px; /* 調整行之間的間距 */
+    }
+
 </style>
 
 <div style="display: flex; align-items: center;">
-    <h2 style="margin-right: 30px;">優惠券編輯</h2>
+    <h2 style="margin-right: 30px;" class="title">優惠券編輯</h2>
     @Html.EditorFor(model => model.Status, new
     {
         htmlAttributes = new
