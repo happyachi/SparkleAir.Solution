@@ -39,17 +39,17 @@ namespace SparkleAir.DAL.EFRepository.MealMessages
 
         public AirMealEntity Get(int id)
         {
-            var a = db.AirMeals.Find(id);
-            var b = new AirMealEntity
-            {
-                Id = a.Id,
-                Name = a.Name,
-                AirCabinId = a.AirCabinId,
-                MealContent = a.MealContent,
-                Image = a.Image,
-                ImageBit = a.ImageBit,
-                Category = a.Category
-            };
+            //var a = db.AirMeals.Find(id);
+            //var b = new AirMealEntity
+            //{
+            //    Id = a.Id,
+            //    Name = a.Name,
+            //    AirCabinId = a.AirCabinId,
+            //    MealContent = a.MealContent,
+            //    Image = a.Image,
+            //    ImageBit = a.ImageBit,
+            //    Category = a.Category
+            //};
 
 
             AirMealEntity data=db.AirMeals.Where(x=>x.Id == id)
@@ -59,9 +59,9 @@ namespace SparkleAir.DAL.EFRepository.MealMessages
             return data;
         }
 
-        public List<AirMealEntity> Search(string name)
+        public List<AirMealEntity> Search()
         {
-            List<AirMealEntity> data=db.AirMeals.AsNoTracking().Where(x=>x.Name.Contains(name)).OrderBy(x=>x.Id).Select(x=>new AirMealEntity
+            List<AirMealEntity> data=db.AirMeals.AsNoTracking().Select(x=>new AirMealEntity
             {
                 Id = x.Id,
                 Name = x.Name,

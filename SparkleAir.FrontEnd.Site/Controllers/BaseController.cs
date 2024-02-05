@@ -104,6 +104,12 @@ namespace SparkleAir.FrontEnd.Site.Controllers
                         Name = "里程管理",
                         ActionName = "Index",
                         ControllerName = "MileageDetail",
+                    },
+                     new MenuItem
+                    {
+                        Name = "飛機餐",
+                        ActionName = "Index",
+                        ControllerName = "AirMeals",
                     }
                 }
             });

@@ -5,6 +5,7 @@ using SparkleAir.Infa.Entity.MealMessageEntity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -39,10 +40,10 @@ namespace SparkleAir.BLL.Service.MealMessages
             _repo.Delete(id);
         }
 
-        //todo問一下GPT
-        public List<AirMealDto> Search(string name)
+        public List<AirMealDto> Search()
         {
-            var entities=_repo.Search(name);
+            
+            var entities=_repo.Search();
             var dtos=entities.Select(x=>new AirMealDto
             {
                 Id = x.Id,
@@ -55,6 +56,38 @@ namespace SparkleAir.BLL.Service.MealMessages
             }).ToList();
             return dtos;
     
+        }
+
+        public void Update(AirMealDto dto)
+        {
+            AirMealEntity entity = new AirMealEntity
+            {
+                Id = dto.Id,
+                Name = dto.Name,
+                AirCabinId = dto.AirCabinId,
+                MealContent = dto.MealContent,
+                Image = dto.Image,
+                ImageBit = dto.ImageBit,
+                Category = dto.Category
+            };
+            _repo.Update(entity);
+            //return $"{entity.Name}修改成功";
+        }
+
+        public AirMealDto Get(int id)
+        {
+            var entity = _repo.Get(id);
+            AirMealDto dto = new AirMealDto
+            {
+                Id = entity.Id,
+                Name = entity.Name,
+                AirCabinId = entity.AirCabinId,
+                MealContent = entity.MealContent,
+                Image = entity.Image,
+                ImageBit = entity.ImageBit,
+                Category = entity.Category
+            };
+            return dto;
         }
     }
 }
