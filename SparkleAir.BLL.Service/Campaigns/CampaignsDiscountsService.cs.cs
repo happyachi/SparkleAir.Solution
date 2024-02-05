@@ -46,9 +46,9 @@ namespace SparkleAir.BLL.Service.Campaigns
 
             if (dto.CampaignId == 6)
             {
-                if (dto.DiscountValue >= 1 || dto.DiscountValue < 0)
+                if (dto.DiscountValue >= 99 || dto.DiscountValue < 10)
                 {
-                    throw new ArgumentException("折數必須介於0-1之間。");
+                    throw new ArgumentException("折數必須介於10-99之間。");
                 }
             }
 

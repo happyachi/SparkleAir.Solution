@@ -28,6 +28,10 @@
         width: 3000px; /* Adjust the width as needed */
     }
 
+    .info-content div {
+        margin-bottom: 10px; /* Adjust the margin-bottom as needed */
+    }
+
     /*Member間距*/
     .member-label {
         margin-right: 50px;
@@ -64,7 +68,9 @@
 </style>
 
 
-<h2 class="title">新增優惠券</h2>
+<h2 class="title">新增優惠券
+    <i class="fa-solid fa-circle-info" id="info-icon" onclick="showUsageInfo()"></i>
+    </h2>
 
 @using (Html.BeginForm())
 {
@@ -346,6 +352,17 @@
             }
         });
 
+        function showUsageInfo() {
+            Swal.fire({
+                title: "建立活動規範",
+                html: "<div class='info-content'>" +
+                    "<div>(1) 開始時間必須於目前時間的半小時以後。</div>" +
+                    "<div>(2) 活動期間不得超過三個月。</div>" +
+                    "<div>(3) 若為打折活動，折數設定限制為最低1折，最高99折。</div>" +
+                    "</div>",
+                icon: "info"
+            });
+        }
 
     </script>
 }
