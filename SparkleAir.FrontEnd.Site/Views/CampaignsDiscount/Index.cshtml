@@ -232,14 +232,19 @@
      const response1 = await fetch(`@Url.Action("GetDetail", "CampaignsDiscount")?id=${id2}`);
      const data1 = await response1.json();
      const dl2 = document.querySelector('#detail')
-    /* const dateTime2 = createDateString(data1.OrderTime)*/
-     const html2 = `<dt>折扣活動名稱:</dt><dd>${data1.Name}</dd>
-                   <dt>狀態:</dt><dd>${data1.Status}</dd>
-                   <dt>折扣類型:</dt><dd>${data1.Type}</dd>
-                   <dt>折扣金額或百分比:</dt><dd>${data1.DiscountValue}</dd>
-                   <dt>最低消費金額:</dt><dd>${data1.Value}</dd>
-                   <dt>商品件數:</dt><dd>${data1.BundleSKUs}</dd>
-                   `
+
+
+        // 給 Value 和 DiscountValue 添加千分位
+        const formattedValue = data1.Value.toLocaleString();
+        const formattedDiscountValue = data1.DiscountValue.toLocaleString();
+
+        const html2 = `<dt>折扣活動名稱:</dt><dd>${data1.Name}</dd>
+                       <dt>狀態:</dt><dd>${data1.Status}</dd>
+                       <dt>折扣類型:</dt><dd>${data1.Type}</dd>
+                       <dt>${data1.Type === "折扣金額" ? "折扣金額" : "折扣百分比"}:</dt><dd>${formattedDiscountValue}</dd>
+                       <dt>最低消費金額:</dt><dd>${formattedValue}</dd>
+                       <dt>最低購買數量:</dt><dd>${data1.BundleSKUs}</dd>`;
+
      dl2.innerHTML = html2;
      console.log(data1);
          });

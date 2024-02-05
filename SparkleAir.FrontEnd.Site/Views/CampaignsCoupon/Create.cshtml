@@ -131,14 +131,15 @@
         </div>*@
 
 
-    <div class="form-group mt-3">
-        <p>折扣類型</p>
-        <select name="CampaignId" id="CampaignId" class="form-select CampaignId" aria-label="Default select example">
-            <option selected>請下拉選擇</option>
-            <option value="1">折扣金額</option>
-            <option value="4">折扣折數</option>
-        </select>
-    </div>
+<div class="form-group mt-3">
+    <p style="font-size: 1.2em; font-weight: bold;">折扣類型</p>
+
+    <select name="CampaignId" id="CampaignId" class="form-select CampaignId" aria-label="Default select example">
+        <option selected>請下拉選擇</option>
+        <option value="1">折扣金額</option>
+        <option value="4">折扣折數</option>
+    </select>
+</div>
 
     <div class="form-group">
         <div class="discountLabel">
@@ -329,6 +330,26 @@
                 selectContainer.style.display = 'none';
             }, 300);
         }
+
+        // 获取选择框元素
+        var campaignSelect = document.getElementById("CampaignId");
+
+        // 获取折扣值输入框元素
+        var discountValueInput = document.getElementById("DiscountValue");
+
+        // 添加事件监听器
+        campaignSelect.addEventListener("change", function () {
+            // 获取选择框当前选中的值
+            var selectedValue = campaignSelect.value;
+
+            // 根据选择的值设置输入框的预设文字
+            if (selectedValue === "4") {
+                discountValueInput.placeholder = "輸入95，表示95折";
+            } else {
+                discountValueInput.placeholder = "輸入100，表示折100元";
+            }
+        });
+
 
     </script>
 }

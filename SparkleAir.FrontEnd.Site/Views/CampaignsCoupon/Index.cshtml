@@ -216,6 +216,7 @@
     }
 
      const btnss = document.querySelectorAll('.detailBtn');
+
     btnss.forEach(function (btn) {
      btn.addEventListener('click',async function () {
          const id2 = this.getAttribute('value');
@@ -225,18 +226,28 @@
          const response1 = await fetch(`@Url.Action("GetDetail", "CampaignsCoupon")?id=${id2}`);
          const data1 = await response1.json();
          const dl2 = document.querySelector('#detail')
-        /* const dateTime2 = createDateString(data1.OrderTime)*/
+
+         // 給數字添加千分位
+         const formattedDiscountValue = data1.DiscountValue.toLocaleString();
+         const formattedDiscountQuantity = data1.DiscountQuantity.toLocaleString();
+         const formattedAvailableQuantity = data1.AvailableQuantity.toLocaleString();
+         const formattedMinimumOrderValue = data1.MinimumOrderValue.toLocaleString();
+         const formattedMaximumDiscountAmount = data1.MaximumDiscountAmount.toLocaleString();
+
+         // 折扣金額或百分比條件判斷
+         const discountTypeLabel = data1.Type === "折扣金額" ? "折扣金額" : "折扣百分比";
+
          const html2 = `<dt>優惠券名稱:</dt><dd>${data1.Name}</dd>
                        <dt>狀態:</dt><dd>${data1.Status}</dd>
                        <dt>折扣類型:</dt><dd>${data1.Type}</dd>
-                       <dt>折扣金額或百分比:</dt><dd>${data1.DiscountValue}</dd>
-                       <dt>可使用數量:</dt><dd>${data1.DiscountQuantity}</dd>
-                       <dt>剩餘可使用數量:</dt><dd>${data1.AvailableQuantity}</dd>
-                       <dt>最低消費金額:</dt><dd>${data1.MinimumOrderValue}</dd>
-                       <dt>最高折扣金額:</dt><dd>${data1.MaximumDiscountAmount}</dd>
+                       <dt>${discountTypeLabel}:</dt><dd>${formattedDiscountValue}</dd>
+                       <dt>可使用數量:</dt><dd>${formattedDiscountQuantity}</dd>
+                       <dt>剩餘可使用數量:</dt><dd>${formattedAvailableQuantity}</dd>
+                       <dt>最低消費金額:</dt><dd>${formattedMinimumOrderValue}</dd>
+                       <dt>最高折扣金額:</dt><dd>${formattedMaximumDiscountAmount}</dd>
                        <dt>折扣碼:</dt><dd>${data1.Code}</dd>
-                       <dt>優惠券顯示設定:</dt><dd>${data1.DisplayDescription}</dd>
-                       `
+                       <dt>優惠券顯示設定:</dt><dd>${data1.DisplayDescription}</dd>`;
+                       
          dl2.innerHTML = html2;
          console.log(data1);
      });
