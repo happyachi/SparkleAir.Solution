@@ -179,6 +179,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Authorize\StaffAuthorizeAttribute.cs" />
+    <Compile Include="Models\Authorize\StaffPrincipal.cs" />
     <Compile Include="Models\MenuItems\IMenuItem.cs" />
     <Compile Include="Models\MenuItems\IMenuItemVisitor.cs" />
     <Compile Include="Models\MenuItems\MenuItem.cs" />
@@ -760,6 +762,7 @@
     <Content Include="Views\Members\Index1.cshtml" />
     <Content Include="Views\Members\Index - 複製.cshtml" />
     <Content Include="Views\StaffAuth\Login.cshtml" />
+    <Content Include="Views\StaffAuth\Unauthorized.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

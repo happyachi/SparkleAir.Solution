@@ -114,5 +114,19 @@ namespace SparkleAir.DAL.EFRepository.CompanyAndPermission
 
             _db.SaveChanges();
         }
+
+        public string[] GetAllowGroupIdsByPageName(string pageName)
+        {
+            var result = _db.PermissionSettings
+                            .Include(x => x.PermissionGroup)
+                            .Include(x => x.PermissionPageInfo)
+                            .AsNoTracking()
+                            .Where(x => x.PermissionPageInfo.PageNumber == pageName)
+                            .Select(x => x.PermissionGroupsId.ToString())
+                            .ToArray();
+
+            return result;
+        }
+
     }
 }

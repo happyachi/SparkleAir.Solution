@@ -13,15 +13,17 @@ using System.Web.Services.Description;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.CompaniesAndPermissions
 {
-    public class StaffAuthController : Controller
+    public class StaffAuthController : BaseController
     {
         private readonly StaffAuthService _service;
         private readonly ICompanyStaffRepository _repo;
+        private readonly IPermissionGroupsAddStaffRepository _groupAddStaffRepo;
 
         public StaffAuthController()
         {
             _repo = new CompanyStaffEFRepository();
-            _service = new StaffAuthService(_repo);
+            _groupAddStaffRepo = new PermissionGroupsAddStaffEFRepository();
+            _service = new StaffAuthService(_repo, _groupAddStaffRepo);
         }
 
         public ActionResult Login()
@@ -62,6 +64,10 @@ namespace SparkleAir.FrontEnd.Site.Controllers.CompaniesAndPermissions
             Session.Abandon();
             FormsAuthentication.SignOut();
             return Redirect("/StaffAuth/Login");
+        }
+        public ActionResult Unauthorized()
+        {
+            return View();
         }
     }
 }

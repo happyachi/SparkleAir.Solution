@@ -82,6 +82,22 @@
                                             登入
                                         </button>
                                     </div>
+                                    <div class="dropdown">
+                                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                            預設帳號
+                                        </a>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                            <li><a class="dropdown-item default-user" data-account="s202402013">總經理</a></li>
+                                            <li><a class="dropdown-item default-user" data-account="s202402001">行銷部-經理</a></li>
+                                            <li><a class="dropdown-item default-user" data-account="s202402003">客服部-經理</a></li>
+                                            <li><a class="dropdown-item default-user" data-account="s202402004">人資部-經理</a></li>
+                                            <li><a class="dropdown-item default-user" data-account="s202402005">業務部-經理</a></li>
+                                            <li><a class="dropdown-item default-user" data-account="s202402007">行銷部-專員</a></li>
+                                            <li><a class="dropdown-item default-user" data-account="s202402009">客服部-專員</a></li>
+                                            <li><a class="dropdown-item default-user" data-account="s202402010">人資部-專員</a></li>
+                                            <li><a class="dropdown-item default-user" data-account="s202402011">業務部-專員</a></li>
+                                        </ul>
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -90,6 +106,7 @@
             </section>
         </main>
     }
+
 
 
     <!-- Core -->
@@ -101,5 +118,19 @@
 
     <!-- Volt JS -->
     <script src='@Url.Content("~/Scripts/volt.js")'></script>
+    <script>
+        const account = document.querySelector("#account");
+        const password = document.querySelector("#password");
+
+        const defaultUser = document.querySelectorAll(".default-user");
+        defaultUser.forEach(element => {
+            element.addEventListener("click", (event) => {
+                account.value = event.target.dataset.account;
+                password.value = event.target.dataset.account;
+            });
+        });
+
+    </script>
+
 </body>
 </html>

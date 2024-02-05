@@ -19,5 +19,7 @@ namespace SparkleAir.IDAL.IRepository.CompanyAndPermission
         void Delete(int id);
 
         PermissionSettingEntity Get(int id);
+
+        string[] GetAllowGroupIdsByPageName(string pageName);
     }
 }

@@ -14,9 +14,11 @@ namespace SparkleAir.BLL.Service.CompanyAndPermission
     public class StaffAuthService
     {
         private readonly ICompanyStaffRepository _repo;
-        public StaffAuthService(ICompanyStaffRepository repo)
+        private readonly IPermissionGroupsAddStaffRepository _groupAddStaffRepo;
+        public StaffAuthService(ICompanyStaffRepository repo, IPermissionGroupsAddStaffRepository groupAddStaffRepo)
         {
             _repo = repo;
+            _groupAddStaffRepo = groupAddStaffRepo;
         }
 
         public (string ReturnUrl, HttpCookie Cookie) Login(CompanyStaffGetCriteria criteria)
@@ -34,15 +36,21 @@ namespace SparkleAir.BLL.Service.CompanyAndPermission
                 throw new Exception("帳號或密碼錯誤");
             }
 
+            // 找出員工所在的群組
+            var groupAddStaffList = _groupAddStaffRepo.SearchByStaffId(entity.Id);
+            var groups = string.Empty;
+            if (groupAddStaffList != null)
+            {
+                groups = string.Join(",", groupAddStaffList.Select(x => x.PermissionGroupsId));
+            }
 
-            return ProcessLogin(criteria);
+            return ProcessLogin(criteria, groups);
         }
 
-        private (string ReturnUrl, HttpCookie Cookie) ProcessLogin(CompanyStaffGetCriteria criteria) // value tuple 元組
+        private (string ReturnUrl, HttpCookie Cookie) ProcessLogin(CompanyStaffGetCriteria criteria, string groups) // value tuple 元組
         {
             var rememberMe = false; // 如果LoginVm有RememberMe屬性, 記得要設定
             var account = criteria.Account;
-            var roles = string.Empty; // 在本範例, 沒有用到角色權限,所以存入空白
 
             // 建立一張認證票
             var ticket =
@@ -52,7 +60,7 @@ namespace SparkleAir.BLL.Service.CompanyAndPermission
                     DateTime.Now,   // 發行日
                     DateTime.Now.AddMinutes(30), // 到期日
                     rememberMe,     // 是否續存
-                    roles,          // userdata
+                    groups,          // userdata角色權限
                     "/" // cookie位置
                 );
             // 將它加密
@@ -63,5 +71,7 @@ namespace SparkleAir.BLL.Service.CompanyAndPermission
             var url = FormsAuthentication.GetRedirectUrl(account, true); //第二個引數沒有用處
             return (url, cookie);
         }
+
+
     }
 }
