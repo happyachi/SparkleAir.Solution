@@ -96,6 +96,7 @@
     <Compile Include="TaxFree\TFReservelistsVm.cs" />
     <Compile Include="TaxFree\TFReservesVm.cs" />
     <Compile Include="TaxFree\TFWishlistsVm.cs" />
+    <Compile Include="Tickets\TicketsIndexVm.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SparkleAir.Infa.Utility\SparkleAir.Infa.Utility.csproj">

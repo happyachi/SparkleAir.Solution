@@ -59,11 +59,11 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
 
         #region Index
 
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
             try
             {
-                //await UpdateAndRetrieveSchedule();
+                await UpdateAndRetrieveSchedule();
                 List<AirFlightIndexVm> datas = GetAll();
                 return View(datas);
             }
