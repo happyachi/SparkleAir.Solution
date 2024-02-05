@@ -23,9 +23,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.SerialNumber)
             </th>
-            @*<th>
+            <th>
                 @Html.DisplayNameFor(model => model.Image)
-            </th>*@
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Quantity)
             </th>
@@ -54,32 +54,53 @@
                         @*<input name="ItemCriteria" id="flexCheckDefault" value="" />*@
                     </td>
                     @*<td>
-                        @Html.DisplayFor(modelItem => item.Id)
-                    </td>*@
+            @Html.DisplayFor(modelItem => item.Id)
+        </td>*@
                     <td>
-                        @Html.DisplayFor(modelItem => item.TFCategoriesName)
+                        @if (item.TFCategoriesName != null)
+                        {
+                            @Html.DisplayFor(modelItem => item.TFCategoriesName)
+                        }
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Name)
+                        @if (item.Name != null)
+                        {
+                            @Html.DisplayFor(modelItem => item.Name)
+                        }
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.SerialNumber)
+                        @if (item.SerialNumber != null)
+                        {
+                            @Html.DisplayFor(modelItem => item.SerialNumber)
+                        }
+                    </td>
+                    <td>
+                        @if (item.Image != null)
+                        {
+                            <img src="@Url.Content($"~/Files/Images/{item.Image}")" alt="Uploaded Image" width="80" />
+                        }
+                    </td>
+                    <td>
+                        @if (item.Quantity != null)
+                        {
+                            @Html.DisplayFor(modelItem => item.Quantity)
+                        }
+                    </td>
+                    <td>
+                        @if (item.UnitPrice != null)
+                        {
+                            @Html.DisplayFor(modelItem => item.UnitPrice)
+                        }
                     </td>
                     @*<td>
-                        @Html.DisplayFor(modelItem => item.Image)
-                    </td>*@
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Quantity)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.UnitPrice)
-                    </td>
-                    @*<td>
-                        @Html.DisplayFor(modelItem => item.Description)
-                    </td>*@
-                    <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>*@
+                <td>
+                    @if (item.IsPublished != null)
+                    {
                         @Html.DisplayFor(modelItem => item.IsPublished)
-                    </td>
+                    }
+                </td>
 
                 </tr>
                 }
