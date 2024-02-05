@@ -76,7 +76,9 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
             try
             {
                 List<AirFlightIndexVm> datas =await GetAll();
-                await UpdateAndRetrieveSchedule();
+                
+                //await UpdateAndRetrieveSchedule(); //todo 修好他 跑太久
+
                 //return View(datas);
                 return PartialView("Index1", datas);
             }
@@ -171,7 +173,8 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
                 ScheduledArrival = nextFlightDate.Add(vm.ArrivalTime),
                 DepartureTimeZone = vm.DepartureTimeZone,
                 ArrivalTimeZone = vm.ArrivalTimeZone,
-                RegistrationNum = vm.RegistrationNum
+                RegistrationNum = vm.RegistrationNum,
+                CrossDay = vm.CrossDay
             };
             return flight;
         }
@@ -229,7 +232,8 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
                 DayofWeek = vm.DayofWeek,
                 DepartureTimeZone = vm.DepartureTimeZone,
                 ArrivalTimeZone = vm.ArrivalTimeZone,
-                RegistrationNum = vm.RegistrationNum
+                RegistrationNum = vm.RegistrationNum,
+                CrossDay = vm.CrossDay
             };
             flights = await _airFlightService.Create(dto);
             return flights;

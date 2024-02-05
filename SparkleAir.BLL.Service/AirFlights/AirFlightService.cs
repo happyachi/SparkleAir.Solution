@@ -49,8 +49,9 @@ namespace SparkleAir.BLL.Service.AirFlights
                     AirFlightSaleStatus = dto.AirFlightSaleStatus,
                     DayofWeek = dto.DayofWeek,
                     ScheduledDeparture = scheduledDeparture,
-                    ScheduledArrival = scheduledArrival,
-                    RegistrationNum = dto.RegistrationNum
+                    ScheduledArrival = scheduledArrival.AddDays(dto.CrossDay),
+                    RegistrationNum = dto.RegistrationNum,
+                    CrossDay = dto.CrossDay
                 };
                 var flight = await _repo.Create(entity);
                 ids.Add((flight.Item1, flight.Item2));
