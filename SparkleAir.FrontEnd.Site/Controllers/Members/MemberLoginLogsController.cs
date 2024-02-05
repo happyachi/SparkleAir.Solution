@@ -1,5 +1,6 @@
 ﻿using SparkleAir.BLL.Service.Members;
 using SparkleAir.DAL.EFRepository.Members;
+using SparkleAir.FrontEnd.Site.Models.Authorize;
 using SparkleAir.IDAL.IRepository.Members;
 using SparkleAir.Infa.Criteria.Members;
 using SparkleAir.Infa.ViewModel.Members;
@@ -13,6 +14,7 @@ using System.Web.UI.WebControls;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.Members
 {
+    [StaffAuthorize(PageName = "MemberLoginLogs")]
     public class MemberLoginLogsController : BaseController
     {
         private readonly IMemberLoginLogRepository _repo;

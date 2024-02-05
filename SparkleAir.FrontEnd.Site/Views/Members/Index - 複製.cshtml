@@ -1,0 +1,82 @@
+﻿@model IEnumerable<SparkleAir.Infa.ViewModel.Members.MemberIndexVm>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>會員</h2>
+
+
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.MemberClassName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CountryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChineseLastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChineseFirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EnglishLastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EnglishFirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateOfBirth)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Phone)
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.MemberClassName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CountryName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ChineseLastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ChineseFirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EnglishLastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EnglishFirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gender)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateOfBirth)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Phone)
+        </td>
+
+        <td>
+            <a href='@Url.Action("Edit/")@item.Id' class="btn btn-sm btn-dark ps-2 pe-2 btn-edit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;編輯</a> |
+            <a href='@Url.Action("Details/")@item.Id' class="btn btn-sm btn-dark ps-2 pe-2 btn-detail"><i class="fa-solid fa-file"></i>&nbsp;&nbsp;詳細資訊</a> |
+        </td>
+    </tr>
+}
+
+</table>

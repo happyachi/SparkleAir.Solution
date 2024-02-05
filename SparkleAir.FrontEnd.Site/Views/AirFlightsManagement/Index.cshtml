@@ -1,40 +1,28 @@
 ﻿@model IEnumerable<SparkleAir.Infa.ViewModel.AirFlights.AirFlightManagementIndexVm>
-
+@using SparkleAir.Infa.ViewModel.AirFlights
 @{
 	ViewBag.Title = "Index";
 }
 
 @section styles{
 	<style>
-		#divMore {
-			width: auto;
-			height: auto;
-			border: 1px solid gray;
-			position: absolute;
-			background-color: white;
-			box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-			/*四周隱影*/
-			border-radius: 10px;
-			padding: 10px;
-			font-size: 0.8em;
-			z-index: 999;
+		.flight-details p {
+			margin: 10px 0;
+			line-height: 1.5;
+		}
+
+		.flight-details strong {
+			color: #161A30; /* Blue color for strong tags */
 		}
 	</style>
 }
 <h2>航班管理</h2>
+<p>
+	<button type="button" class="btn btn-sm btn-dark ps-2 pe-2 btn-create createbtn" data-bs-toggle="modal" data-bs-target="#createpage" onclick="createPage()"> <i class="fa-solid fa-plus"></i>&nbsp;&nbsp;新增</button>
 
-@Html.ActionLink("新增航班", "Create", null, new { @class = "btn btn-sm btn-dark mt-2 mb-2" })
+</p>
 <div class="row" id="datas">
 	<div style="overflow:auto">
-		<!--<form id="filterForm" class="text-center align-items-center">
-			<div class="form-group row">
-				<div class="d-flex">
-					<input type="text" class="form-control me-1" id="FlightCode" name="FlightCode">
-				</div>
-				<button type="button" class="btn btn-sm btn-dark col-sm-1" onclick="applyFilter()">搜尋</button>
-			</div>-->
-			<!-- 其他篩選條件... -->
-		<!--</form>-->
 		<table class="table text-center table_jq" id="flights">
 			<thead>
 				<tr>
@@ -82,13 +70,12 @@
 							@Html.DisplayFor(modelItem => item.DayofWeek)
 						</td>
 						<td>
-							@Html.ActionLink("編輯", "Edit", new { id = item.Id }, new { @class = "btn btn-sm btn-dark" }) |
-							@*<button type="button" class="btn btn-sm btn-dark edit-link" data-bs-toggle="modal" data-bs-target="#editModel" onclick="edit('@item.Id')">編輯</button> |*@
-							<button type="button" class="btn btn-sm btn-dark details-link" data-bs-toggle="modal" data-bs-target="#model" onclick="showModal('@item.Id')">詳細資訊</button> |
-							@Html.ActionLink("機型設定", "Create", "AirFlights", new { id = item.Id }, new { @class = "btn btn-sm btn-dark" })
+							<a href='@Url.Action("Edit/")@item.Id' class="btn btn-sm btn-dark ps-2 pe-2 btn-edit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;編輯</a> |
+							@*<button type="button" class="btn btn-sm btn-dark ps-2 pe-2 btn-edit update-link" data-bs-toggle="modal" data-bs-target="#updatepage" onclick="update('@item.Id')"> <i class="fa-solid fa-file"></i>&nbsp;&nbsp;編輯</button> |*@
+							<button type="button" class="btn btn-sm btn-dark ps-2 pe-2 btn-detail details-link" data-bs-toggle="modal" data-bs-target="#model" onclick="showModal('@item.Id')"> <i class="fa-solid fa-file"></i>&nbsp;&nbsp;詳細資訊</button> |
+							<a href='@Url.Action("Create","Airflights")/@item.Id' class="btn btn-sm btn-dark ps-2 pe-2 btn-create"><i class="fa-solid fa-plus"></i>&nbsp;&nbsp;機型設定</a>
+
 							@*@Html.ActionLink("刪除航班", "Delete", new { id = item.Id }, new { @class = "btn btn-sm btn-dark" })*@
-
-
 						</td>
 					</tr>
 				}
@@ -97,15 +84,16 @@
 	</div>
 </div>
 
+<!--detail-->
 <div class="modal fade" tabindex="-1" id="model" aria-labelledby="title" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered">
+	<div class="modal-dialog modal-dialog-centered modal-dialog-auto">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h3 id="title" class="flex-grow-1 d-flex align-items-center justify-content-center"></h3>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
-				<div id="detail">
+				<div id="detail" class="text-center">
 
 				</div>
 			</div>
@@ -113,21 +101,90 @@
 	</div>
 </div>
 
+<!--Create-->
+<div class="modal fade" tabindex="-1" id="createpage" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="createTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-dialog-auto modal-dialog-scrollable modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3 id="createTitle" class="flex-grow-1 d-flex align-items-center justify-content-center">新增航班</h3>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<div id="createPage" class="d-flex align-items-center justify-content-center">
+					@{
+						Html.RenderPartial("Create", new AirFlightManagementCreateVm());
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 
-@*<div id="divMore" style="display:none"></div>*@
+<!--Edit-->
+<div class="modal fade" tabindex="-1" id="updatepage" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="updateTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-dialog-auto modal-dialog-scrollable modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3 id="updateTitle" class="flex-grow-1 d-flex align-items-center justify-content-center">更新航班</h3>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<div id="updatePage" class="d-flex align-items-center justify-content-center">
 
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 
 @section Scripts
 {
 	<script>
-    document.querySelectorAll(".details-link").forEach(function (link) {
-        link.addEventListener('click', function (event) {
-            event.preventDefault();
-        });
+		document.querySelectorAll(".details-link").forEach(function (link) {
+			link.addEventListener('click', function (event) {
+				event.preventDefault();
+			});
+		});
 
-    })
+		document.querySelectorAll(".update-link").forEach(function (link) {
+			link.addEventListener('click', function (event) {
+				event.preventDefault();
+			});
+		});
 
-    async function showModal(itemId) {
+		document.querySelector(".createbtn").addEventListener('click', function (event) {
+			event.preventDefault();
+		});
+
+		function createPage() {
+			try {
+				document.getElementById("createpage").style.display = "block";
+				$('#create').modal('show');
+			} catch (error) {
+				console.error('Error:', error);
+			}
+		};
+
+		async function update(itemId) {
+			  try {
+        const response = await fetch('@Url.Content("~/AirFlightsManagement/Edit")' + `?id=${itemId}`);
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        const modalContent = document.querySelector('#updatePage');
+        modalContent.innerHTML = data;
+
+        $('#updatepage').modal('show');
+		} catch (error) {
+        console.error('Error:', error);
+			}
+		};
+
+		    async function showModal(itemId) {
         try {
             const response = await fetch('@Url.Content("~/AirFlightsManagement/GetFlightDetails")' + `?id=${itemId}`);
             if (!response.ok) {
@@ -135,7 +192,7 @@
             }
 
             const data = await response.json();
-            console.log(data);
+
             const formattedDepartureTime = data.DepartureTime.Minutes.toString().padStart(2, '0')
             const formattedArrivalTime = data.ArrivalTime.Minutes.toString().padStart(2, '0')
             if (data.DepartureTerminal == null) {
@@ -144,64 +201,141 @@
             if (data.ArrivalTerminal == null) {
                 data.ArrivalTerminal = '';
             }
+            if (data.FlightModel == '') {
+                data.FlightModel = '未設定'
+            }
             const div = document.querySelector('#detail');
             const title = document.querySelector('#title');
             title.innerHTML = `${data.FlightCode}`
             div.innerHTML = `
-
-<p>機型: ${data.FlightModel} </p>
-<p>出發地: ${data.DepartureAirport} </p>
-<p>目的地: ${data.ArrivalAirport} </p>
-<p>出發航廈: ${data.DepartureTerminal} </p>
-<p>抵達航廈: ${data.ArrivalTerminal} </p>
-<p>出發時間: ${data.DepartureTime.Hours}:${formattedDepartureTime} UTC ${data.DepartureTimeZone}</p>
-<p>抵達時間: ${data.ArrivalTime.Hours}:${formattedArrivalTime} UTC ${data.ArrivalTimeZone}</p>
-
-<p>執飛時間: ${data.DayofWeek} </p>
-<p>飛行里程: ${data.Mile}</p>
+<div class="flight-details">
+    <p><strong>機型:</strong> ${data.FlightModel}</p>
+    <p><strong>出發地:</strong> ${data.DepartureAirport}</p>
+    <p><strong>目的地:</strong> ${data.ArrivalAirport}</p>
+    <p><strong>出發航廈:</strong> ${data.DepartureTerminal}</p>
+    <p><strong>抵達航廈:</strong> ${data.ArrivalTerminal}</p>
+    <p><strong>出發時間:</strong> ${data.DepartureTime.Hours}:${formattedDepartureTime} UTC ${data.DepartureTimeZone}</p>
+    <p><strong>抵達時間:</strong> ${data.ArrivalTime.Hours}:${formattedArrivalTime} UTC ${data.ArrivalTimeZone}</p>
+    <p><strong>執飛日:</strong> ${data.DayofWeek}</p>
+    <p><strong>飛行里程:</strong> ${data.Mile}</p>
+</div>
     `;
             $('#model').modal('show');
         } catch (error) {
             console.error('Error:', error);
         }
-    }
+		};
 
+		const departureAirport = document.querySelector('#departureAir');
+		const departureTime = document.querySelector('.deptTimeZone')
+		departureAirport.addEventListener('change', () => {
+			const dept = departureAirport.querySelector(`[value=${departureAirport.value}]`);
+			departureTime.value = dept.getAttribute('data-yu-dept');
+		});
 
-    async function applyFilter() {
-        // 獲取表單數據
-        var formData = $('#filterForm').serialize();
+		const arrivalAirpoirt = document.querySelector('#arrivalAir');
+		const arrivalTime = document.querySelector('.arriTimeZone')
+		arrivalAirpoirt.addEventListener('change', () => {
+			const arri = arrivalAirpoirt.querySelector(`[value=${arrivalAirpoirt.value}]`);
+			arrivalTime.value = arri.getAttribute('data-yu-arri');
+		});
 
+		const createCheckboxes = document.querySelectorAll('.day-checkbox');
+		createCheckboxes.forEach(function (checkbox) {
+			checkbox.addEventListener('change', function () {
+				updateDayOfWeekSelection();
+			});
+		});
 
+		function updateDayOfWeekSelection() {
+			const selectedDays = Array.from(createCheckboxes)
+				.filter(checkbox => checkbox.checked)
+				.map(checkbox => checkbox.value.toString()); // 將數字轉換為字符串
+			console.log(selectedDays);
+			// 將選中的星期以逗號分隔的字串形式存儲到 DayOfWeekSelection 屬性
+			document.getElementById('DayofWeek').value = selectedDays.join(',');
+		};
 
+		$(".create").on("click", function (e) {
+			e.preventDefault();
 
-        const content = document.querySelector('#content');
-        const response = await fetch('@Url.Content("~/AirFlightsManagement/SearchPartial")' + `?${formData}`);
-        const data = await response.json();
-        console.log(data);
-        // 發送 AJAX 請求
-        //const response = await fetch(url);
-        //const data = await response.text();
-        /*$('#datas').html(data);*/
-        content.innerHTML = '';
-        data.forEach(item => {
+			$.ajax({
+				url: "/AirFlightsManagement/Create",
+				type: "POST",
+				data: $("form").serialize(),
+				success: function (result) {
+					if (result.success) {
+						// 成功處理
+						Swal.fire({
+							icon: "success",
+							title: "航班已新增",
+							showConfirmButton: false,
+							timer: 1700
+						}).then(() => {
+									window.location.href = '@Url.Action("Index", "AirFlightsManagement")';
+								});;
+						// 關閉 modal 或執行其他操作
+					} else {
+						// 顯示錯誤信息
+						Swal.fire({
+							icon: "error",
+							title: "錯誤",
+							text: result.errors.join("\n")
+						});
+					}
+				},
+				error: function () {
+					// 處理錯誤
+					console.log("Error");
+				}
+			});
+		});
 
-            // 以類似的方式建立其他單元格...
+		$(".update").on("click", function (e) {
+			e.preventDefault();
+			Swal.fire({
+				title: "你確定要更新嗎?",
+				showCancelButton: true,
+				confirmButtonText: "更新",
+				cancelButtonText: "取消",
+			}).then((result) => {
 
-            // 在每個單元格中加入資料
-            content.innerHTML = `
-    <td>${item.FlightCode}</td>
-    <td>${item.DepartureAirport}</td>
-    <td>${item.ArrivalAirport}</td>
-    <td>${item.DepartureTime.Hours}:${item.DepartureTime.Minutes.toString().padStart(2, '0')}</td>
-    <td>${item.ArrivalTime.Hours}:${item.ArrivalTime.Minutes.toString().padStart(2, '0')}</td>
-    <td>${item.DayofWeek}</td>
-    <td>
-
-
-    </td>
-`;
-        });
-    }
+				if (result.isConfirmed) {
+					$.ajax({
+						url: "/AirFlightsManagement/Edit",
+						type: "POST",
+						data: $("form").serialize(),
+						success: function (result) {
+							if (result.success) {
+								// 成功處理
+								Swal.fire({
+									icon: "success",
+									title: "航班已更新",
+									showConfirmButton: false,
+									timer: 1700
+								});
+							} else {
+								// 顯示錯誤信息
+								Swal.fire({
+									icon: "error",
+									title: "錯誤",
+									text: result.errors.join("\n")
+								});
+							}
+						},
+						error: function () {
+							// 處理錯誤
+							console.log("Error");
+						}
+					});
+				} else if (result.isCanceled) {
+					Swal.fire({
+						title: "取消變更",
+						icon: "info",
+						timer: 1000
+					});
+				}
+			});
+		});
 	</script>
 }
-

@@ -6,6 +6,7 @@ using SparkleAir.BLL.Service.TaxFree;
 using SparkleAir.DAL.EFRepository.Campaigns;
 using SparkleAir.DAL.EFRepository.Members;
 using SparkleAir.DAL.EFRepository.TaxFree;
+using SparkleAir.FrontEnd.Site.Models.Authorize;
 using SparkleAir.FrontEnd.Site.Models.ViewModels.Campaigns;
 using SparkleAir.IDAL.IRepository.TaxFree;
 using SparkleAir.Infa.Criteria.Campaigns;
@@ -23,13 +24,11 @@ using System.Xml.Linq;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
 {
+    [StaffAuthorize(PageName = "CampaignsDiscount")]
     public class CampaignsDiscountController : BaseController
     {
 
-
         CampaignsDiscountsEFRepository repo = new CampaignsDiscountsEFRepository();
-        ITFRepository repoit = new TFItemEFRepository();
-
         MemberClassEFRepository memberRepo = new MemberClassEFRepository();
         public ActionResult Index()
         {
@@ -110,7 +109,6 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
             service.Create(dto);
         }
 
- 
         public ActionResult SelectProduct()
         {
             if (!ModelState.IsValid) return View();
@@ -152,7 +150,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
         public ActionResult Edit(int id)
         {
             var memberservice = new MemberClassService(memberRepo);
-            ViewBag.Member = memberservice.Get(id);
+            ViewBag.Member = memberservice.Search();
             if (ViewBag.Member == null)  return RedirectToAction("Error");
     
             var discount = Get(id);
@@ -162,7 +160,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
         private CampaignsDiscountVm Get(int id)
         {
             var memberservice = new MemberClassService(memberRepo);
-            ViewBag.Member = memberservice.Get(id);
+            //ViewBag.Member = memberservice.Get(id);
             var service = new CampaignsDiscountsService(repo);
             var get = service.Get(id);
             return new CampaignsDiscountVm

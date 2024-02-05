@@ -54,6 +54,7 @@
     <Compile Include="AirFlights\AirFlightSeatsEFRepository.cs" />
     <Compile Include="AirFlights\AirTicketPriceEFRepository.cs" />
     <Compile Include="AirFlights\SeatGroupEFRepository.cs" />
+    <Compile Include="Airtype&amp;Owns\OwnRepository.cs" />
     <Compile Include="Basics\CountryEFRepository.cs" />
     <Compile Include="Campaigns\CampaignsCouponsEFRepository.cs" />
     <Compile Include="Campaigns\CampaignsDiscountsEFRepository.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="TaxFree\TFReseveEFRepository.cs" />
     <Compile Include="TaxFree\TFResevelistEFRepository.cs" />
     <Compile Include="TaxFree\TFWishlistEFRepository.cs" />
+    <Compile Include="Tickets\TicketsEFRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SparkleAir.IDAL.IRepository\SparkleAir.IDAL.IRepository.csproj">

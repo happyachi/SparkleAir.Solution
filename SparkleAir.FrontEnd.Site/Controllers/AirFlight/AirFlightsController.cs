@@ -3,6 +3,7 @@ using SparkleAir.BLL.Service.AirFlights;
 using SparkleAir.BLL.Service.Airtype_Owns;
 using SparkleAir.DAL.EFRepository.AirFlights;
 using SparkleAir.DAL.EFRepository.Airtype_Owns;
+using SparkleAir.FrontEnd.Site.Models.Authorize;
 using SparkleAir.IDAL.IRepository.AirFlights;
 using SparkleAir.IDAL.IRepository.Airtype_Owns;
 using SparkleAir.Infa.Criteria.AirFlights;
@@ -20,6 +21,7 @@ using System.Web.Mvc;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
 {
+    [StaffAuthorize(PageName = "AirFlights")]
     public class AirFlightsController : BaseController
     {
         #region CTOR
@@ -59,11 +61,11 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
 
         #region Index
 
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
             try
             {
-                //await UpdateAndRetrieveSchedule();
+                await UpdateAndRetrieveSchedule();
                 List<AirFlightIndexVm> datas = GetAll();
                 return View(datas);
             }
@@ -245,6 +247,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
                     ScheduledDeparture = model.ScheduledDeparture,
                     Seats = GetSeatInfo(model.Id)
                 };
+                //return Json(vm,JsonRequestBehavior.AllowGet);
                 return View(vm);
             }
             catch (Exception ex)
@@ -276,8 +279,8 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
             var model = _flightSeatsService.GetEachSeatInfo(id);
             model.Gender = (model.Gender == "0") ? "男" : "女";
             model.CheckInstatus = (model.CheckInstatus == "1") ? "已報到" : "未報到";
-
-            return PartialView("_SeatsDetailPartial", model);
+            return Json(model,JsonRequestBehavior.AllowGet);
+            //return PartialView("_SeatsDetailPartial", model);
         }
 
         #endregion

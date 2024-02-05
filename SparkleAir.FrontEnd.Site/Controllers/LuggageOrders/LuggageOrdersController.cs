@@ -22,10 +22,12 @@ using SparkleAir.IDAL.IRepository.AirFlights;
 using SparkleAir.DAL.EFRepository.AirFlights;
 using SparkleAir.BLL.Service.AirFlights;
 using SparkleAir.Infa.ViewModel.Airports;
+using SparkleAir.FrontEnd.Site.Models.Authorize;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.LuggageOrders
 {
-    public class LuggageOrdersController : Controller
+    [StaffAuthorize(PageName = "LuggageOrders")]
+    public class LuggageOrdersController : BaseController
     {
         ILuggageOrderRepository efRLuggageorder = new LuggageOrderEFRepository();
         IAirFlightManagementRepository efAirFlightManagement = new AirFlightManagementEFRepository();
@@ -35,6 +37,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.LuggageOrders
             var service = new LuggageOrderService(efRLuggageorder);
             
             var flightService = new AirFlightManagementService(efAirFlightManagement);
+
             List<LuggageOrderIndexVm> data = GetAll();
 
             ViewBag.luggageorder = flightService.GetAll(); //回傳所有的資料
@@ -43,6 +46,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.LuggageOrders
             return View(data);
         }
 
+        //bootstrap 的傳回資料
         public ActionResult GetDetail(int id)
         {
             var service = new LuggageOrderService(efRLuggageorder);

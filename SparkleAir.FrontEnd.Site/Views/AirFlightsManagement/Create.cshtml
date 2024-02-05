@@ -1,11 +1,7 @@
 ﻿@model SparkleAir.Infa.ViewModel.AirFlights.AirFlightManagementCreateVm
 
-@{
-	ViewBag.Title = "Create";
-}
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css" rel="stylesheet">
-<h2>新增航班</h2>
 
 
 @using (Html.BeginForm())
@@ -13,11 +9,10 @@
 	@Html.AntiForgeryToken()
 
 	<div class="form-horizontal">
-		<hr />
 		@Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
 		<div class="mb-3">
-			@Html.LabelFor(model => model.FlightCode, htmlAttributes: new { @class = "control-label col-md-2" })
+			@Html.LabelFor(model => model.FlightCode, htmlAttributes: new { @class = "control-label " })
 
 			@Html.EditorFor(model => model.FlightCode, new { htmlAttributes = new { @class = "form-control" } })
 			@Html.ValidationMessageFor(model => model.FlightCode, "", new { @class = "text-danger" })
@@ -25,53 +20,54 @@
 		</div>
 
 		<div class="mb-3">
-			@Html.LabelFor(model => model.DepartureAirport, htmlAttributes: new { @class = "control-label col-md-2" })
+			@Html.LabelFor(model => model.DepartureAirport, htmlAttributes: new { @class = "control-label" })
 			<select class="form-select" aria-label="Default select example" name="DepartureAirport" id="departureAir">
 				<option selected></option>
 
 				@foreach (var airport in ViewBag.Airports)
 				{
-					<option value="@airport.Lata" data-yu-dept="@(airport.TimeArea)">@airport.Lata</option>
+					<option value="@airport.Lata" data-yu-dept="@(airport.TimeArea)">@airport.Lata @airport.AirPortName</option>
 				}
 			</select>
-		</div>
-
-		<div class="mb-3">
-			@Html.LabelFor(model => model.DepartureTimeZone, htmlAttributes: new { @class = "control-label col-md-2" })
-
-			@Html.EditorFor(model => model.DepartureTimeZone, new { htmlAttributes = new { @class = "form-control deptTimeZone" } })
 			@Html.ValidationMessageFor(model => model.DepartureTimeZone, "", new { @class = "text-danger" })
 		</div>
 
 		<div class="mb-3">
-			@Html.LabelFor(model => model.ArrivalAirport, htmlAttributes: new { @class = "control-label col-md-2" })
+			@Html.LabelFor(model => model.DepartureTimeZone, htmlAttributes: new { @class = "control-label " })
+
+			@Html.EditorFor(model => model.DepartureTimeZone, new { htmlAttributes = new { @class = "form-control deptTimeZone", @readonly = "readonly" } })
+			@Html.ValidationMessageFor(model => model.DepartureTimeZone, "", new { @class = "text-danger" })
+		</div>
+
+		<div class="mb-3">
+			@Html.LabelFor(model => model.ArrivalAirport, htmlAttributes: new { @class = "control-label " })
 			<select class="form-select" aria-label="Default select example" name="ArrivalAirport" id="arrivalAir">
 				<option selected></option>
 
 				@foreach (var airport in ViewBag.Airports)
 				{
-					<option value="@airport.Lata" data-yu-arri="@(airport.TimeArea)">@airport.Lata</option>
+					<option value="@airport.Lata" data-yu-arri="@(airport.TimeArea)">@airport.Lata @airport.AirPortName</option>
 				}
 			</select>
-
+			@Html.ValidationMessageFor(model => model.ArrivalAirport, "", new { @class = "text-danger" })
 		</div>
 
 		<div class="mb-3">
-			@Html.LabelFor(model => model.ArrivalTimeZone, htmlAttributes: new { @class = "control-label col-md-2" })
+			@Html.LabelFor(model => model.ArrivalTimeZone, htmlAttributes: new { @class = "control-label " })
 
-			@Html.EditorFor(model => model.ArrivalTimeZone, new { htmlAttributes = new { @class = "form-control arriTimeZone" } })
+			@Html.EditorFor(model => model.ArrivalTimeZone, new { htmlAttributes = new { @class = "form-control arriTimeZone", @readonly = "readonly" } })
 			@Html.ValidationMessageFor(model => model.ArrivalTimeZone, "", new { @class = "text-danger" })
 		</div>
 
 		<div class="mb-3">
-			@Html.LabelFor(model => model.DepartureTerminal, htmlAttributes: new { @class = "control-label col-md-2" })
+			@Html.LabelFor(model => model.DepartureTerminal, htmlAttributes: new { @class = "control-label " })
 
 			@Html.EditorFor(model => model.DepartureTerminal, new { htmlAttributes = new { @class = "form-control" } })
 			@Html.ValidationMessageFor(model => model.DepartureTerminal, "", new { @class = "text-danger" })
 		</div>
 
 		<div class="mb-3">
-			@Html.LabelFor(model => model.ArrivalTerminal, htmlAttributes: new { @class = "control-label col-md-2" })
+			@Html.LabelFor(model => model.ArrivalTerminal, htmlAttributes: new { @class = "control-label " })
 
 			@Html.EditorFor(model => model.ArrivalTerminal, new { htmlAttributes = new { @class = "form-control" } })
 			@Html.ValidationMessageFor(model => model.ArrivalTerminal, "", new { @class = "text-danger" })
@@ -79,7 +75,7 @@
 		</div>
 
 		<div class="mb-3">
-			@Html.LabelFor(model => model.DepartureTime, htmlAttributes: new { @class = "control-label col-md-2" })
+			@Html.LabelFor(model => model.DepartureTime, htmlAttributes: new { @class = "control-label" })
 
 			<input type="time" id="DepartureTime" name="DepartureTime" class="form-control" />
 
@@ -87,20 +83,20 @@
 		</div>
 
 		<div class="mb-3">
-			@Html.LabelFor(model => model.ArrivalTime, htmlAttributes: new { @class = "control-label col-md-2" })
+			@Html.LabelFor(model => model.ArrivalTime, htmlAttributes: new { @class = "control-label " })
 
 			<input type="time" id="ArrivalTime" name="ArrivalTime" class="form-control" />
 
 			@Html.ValidationMessageFor(model => model.ArrivalTime, "", new { @class = "text-danger" })
 		</div>
 		<div class="mb-3">
-			@Html.LabelFor(model => model.CrossDay, htmlAttributes: new { @class = "control-label col-md-2" })
+			@Html.LabelFor(model => model.CrossDay, htmlAttributes: new { @class = "control-label " })
 
 			@Html.EditorFor(model => model.CrossDay, new { htmlAttributes = new { @class = "form-control" } })
 			@Html.ValidationMessageFor(model => model.CrossDay, "", new { @class = "text-danger" })
 		</div>
 		<div class="mb-3">
-			@Html.LabelFor(model => model.DayofWeek, htmlAttributes: new { @class = "control-label col-md-2" })<br />
+			@Html.LabelFor(model => model.DayofWeek, htmlAttributes: new { @class = "control-label" })<br />
 
 
 			@foreach (var day in Enumerable.Range(0, 7))
@@ -115,16 +111,8 @@
 
 		</div>
 
-		@*<div class="mb-3">
-				@Html.LabelFor(model => model.DayofWeek, htmlAttributes: new { @class = "control-label col-md-2" })
-
-				@Html.EditorFor(model => model.DayofWeek, new { htmlAttributes = new { @class = "form-control" } })
-				@Html.ValidationMessageFor(model => model.DayofWeek, "", new { @class = "text-danger" })
-
-			</div>*@
-
 		<div class="mb-3">
-			@Html.LabelFor(model => model.Mile, htmlAttributes: new { @class = "control-label col-md-2" })
+			@Html.LabelFor(model => model.Mile, htmlAttributes: new { @class = "control-label" })
 
 			@Html.EditorFor(model => model.Mile, new { htmlAttributes = new { @class = "form-control" } })
 			@Html.ValidationMessageFor(model => model.Mile, "", new { @class = "text-danger" })
@@ -133,8 +121,8 @@
 
 		<div class="mb-3">
 			<div class="col-md-offset-2 col-md-10">
-				<button class="btn btn-dark create" onclick="create()">新增</button>
-				@Html.ActionLink("返回", "Index", null, new { @class = "btn btn-dark" })
+				<button type="submit" class="btn btn-dark create" onclick="create()">新增</button>
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
 			</div>
 		</div>
 	</div>
@@ -143,44 +131,4 @@
 
 @section Scripts {
 	@Scripts.Render("~/bundles/jqueryval")
-	<script>
-		const deptAir = document.querySelector('#departureAir');
-		const detpTime = document.querySelector('.deptTimeZone')
-		deptAir.addEventListener('change', () => {
-			const dept = deptAir.querySelector(`[value=${deptAir.value}]`);
-			detpTime.value = dept.getAttribute('data-yu-dept');
-		})
-
-		const arriAir = document.querySelector('#arrivalAir');
-		const arriTime = document.querySelector('.arriTimeZone')
-		arriAir.addEventListener('change', () => {
-			const arri = arriAir.querySelector(`[value=${arriAir.value}]`);
-			arriTime.value = arri.getAttribute('data-yu-arri');
-		})
-
-		const checkboxes = document.querySelectorAll('.day-checkbox');
-		checkboxes.forEach(function (checkbox) {
-			checkbox.addEventListener('change', function () {
-				updateDayOfWeekSelection();
-			});
-		});
-
-		function updateDayOfWeekSelection() {
-			const selectedDays = Array.from(checkboxes)
-				.filter(checkbox => checkbox.checked)
-				.map(checkbox => checkbox.value.toString()); // 將數字轉換為字符串
-
-			// 將選中的星期以逗號分隔的字串形式存儲到 DayOfWeekSelection 屬性
-			document.getElementById('DayofWeek').value = selectedDays.join(',');
-		}
-
-		const create = () => {
-			Swal.fire({
-				icon: "success",
-				title: "航班已新增",
-				showConfirmButton: false,
-				timer: 1700
-			})
-		}
-	</script>
 }
