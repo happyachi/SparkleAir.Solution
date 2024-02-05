@@ -41,7 +41,6 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
             var service = new CampaignsDiscountsService(repo);
 
             List<CampaignsDiscountDto> dto = service.GetAll();
-
             List<CampaignsDiscountIndexVm> vm = dto.Select(d => new CampaignsDiscountIndexVm
             {
                 Id = d.Id,
@@ -72,6 +71,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
             if (!ModelState.IsValid) return View();
             var memberservice = new MemberClassService(memberRepo);
             ViewBag.Member = memberservice.Search();
+            ViewBag.List = CreateSelectProducts();
 
             try
             {
@@ -114,8 +114,8 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
             if (!ModelState.IsValid) return View();
             try
             {
-                List<TFItemVm> vms = CreateSelectProducts();
-                return PartialView("SelectProduct",vms);
+                var vms = CreateSelectProducts();
+                return PartialView("SelectProduct", vms);
             }
             catch (Exception ex)
             {
@@ -124,7 +124,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
             }
         }
 
-        private List<TFItemVm> CreateSelectProducts()
+        private IEnumerable<SparkleAir.Infa.ViewModel.TaxFree.TFItemVm> CreateSelectProducts()
         {
             var dtos = new TaxFreeService(new TFItemEFRepository()).Get();
             var products = dtos.Select(x => new TFItemVm
@@ -176,7 +176,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
                 BundleSKUs= get.BundleSKUs,
                 MemberCriteria = get.MemberCriteria,
                 TFItemsCriteria = get.TFItemsCriteria,
-                //Campaign = get.Campaign
+                Campaign = get.Campaign
             };
         }
 
@@ -282,6 +282,13 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
         }
         #endregion
 
-       
+        #region GetDetail
+        public ActionResult GetDetail(int id)
+        {
+            var service = new CampaignsDiscountsService(repo);
+            var data = service.Get(id);
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
     }
 }

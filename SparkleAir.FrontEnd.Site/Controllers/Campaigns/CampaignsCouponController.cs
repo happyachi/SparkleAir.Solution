@@ -11,6 +11,7 @@ using SparkleAir.IDAL.IRepository.Campaigns;
 using SparkleAir.Infa.Criteria.AirFlights;
 using SparkleAir.Infa.Criteria.Campaigns;
 using SparkleAir.Infa.Dto.Campaigns;
+using SparkleAir.Infa.EFModel.EFModels;
 using SparkleAir.Infa.ViewModel.AirFlights;
 using SparkleAir.Infa.ViewModel.TaxFree;
 using System;
@@ -60,6 +61,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
         {
             var memberservice = new MemberClassService(memberRepo);
             ViewBag.Member = memberservice.Search();
+            ViewBag.List = CreateSelectFlights();
             return View();
         }
 
@@ -69,6 +71,8 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
             if (!ModelState.IsValid) return View();
             var memberservice = new MemberClassService(memberRepo);
             ViewBag.Member = memberservice.Search();
+            ViewBag.List = CreateSelectFlights();
+
             try
             {
                 CreateCoupon(coupon);
@@ -108,41 +112,39 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
             service.Create(dto);
         }
 
-        //public ActionResult SelectFlights()
-        //{
-        //    if (!ModelState.IsValid) return View();
-        //    try
-        //    {
-        //        List<TFItemVm> vms = CreateSelectFlights();
-        //        return PartialView("SelectFlights", vms);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        ModelState.AddModelError(string.Empty, ex.Message);
-        //        return View();
-        //    }
-        //}
+        public ActionResult SelectFlights()
+        {
+            if (!ModelState.IsValid) return View();
+            try
+            {
+                List<AirFlightVm> vms = CreateSelectFlights();
+                return PartialView("SelectFlights", vms);
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, ex.Message);
+                return View();
+            }
+        }
 
-        //private List<TFItemVm> CreateSelectFlights()
-        //{
-        //    var dtos = new AirFlightService(new AirFlightEFRepository()).GetAll();
-        //    var flights = dtos.Select(x=> new AirFlightVm
-        //    {
-        //        Id = x.Id,
-        //        AirOwnId = x.AirOwnId,
-        //        AirFlightManagementId = x.AirFlightManagementId,
-        //        ScheduledDeparture = x.ScheduledDeparture,
-        //        ScheduledArrival = x.ScheduledArrival,
-        //        AirFlightSaleStatus = x.AirFlightSaleStatus,
-        //        FlightModel = x.FlightModel,
-        //        FlightCode = x.FlightCode,
-        //        DepartureAirPort=x.DepartureAirPort,
-        //        ArrivalAriPort=x.ArrivalAriPort,
-        //        AirFlightSaleStatusId=x.AirFlightSaleStatusId,
-        //    }).ToList();    
+        private List<AirFlightVm> CreateSelectFlights()
+        {
+            var dtos = new AirFlightService(new AirFlightEFRepository()).GetAll();
+            var flights = dtos.Select(x => new AirFlightVm
+            {
+                Id = x.Id,
+                AirOwnId = x.AirOwnId,
+                AirFlightManagementId = x.AirFlightManagementId,
+                ScheduledDeparture = x.ScheduledDeparture,
+                ScheduledArrival = x.ScheduledArrival,
+                AirFlightSaleStatus = x.AirFlightSaleStatus,
+                FlightModel = x.FlightModel,
+                FlightCode = x.FlightCode,
+                AirFlightSaleStatusId = x.AirFlightSaleStatusId,
+            }).ToList();
 
-        //    return flights;
-        //}
+            return flights;
+        }
 
         #endregion
 
@@ -151,6 +153,8 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
         {
             var memberservice = new MemberClassService(memberRepo);
             ViewBag.Member = memberservice.Search();
+            if (ViewBag.Member == null) return RedirectToAction("Error");
+
             var coupon = Get(id);
             return View(coupon);
         }
@@ -158,7 +162,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
         private CampaignsCouponVm Get(int id)
         {
             var memberservice = new MemberClassService(memberRepo);
-            ViewBag.Member = memberservice.Search();
+            //ViewBag.Member = memberservice.Search();
             var service = new CampaignsCouponsService(repo);
             var get = service.Get(id);
             return new CampaignsCouponVm
@@ -187,7 +191,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
         public ActionResult Edit(CampaignsCouponVm coupon)
         {
             var memberservice = new MemberClassService(memberRepo);
-            ViewBag.Member = memberservice.Search();
+            //ViewBag.Member = memberservice.Search();
             if (!ModelState.IsValid) return View();
             try
             {
@@ -204,7 +208,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
         private void Update(CampaignsCouponVm vm)
         {
             var memberservice = new MemberClassService(memberRepo);
-            ViewBag.Member = memberservice.Search();
+            //ViewBag.Member = memberservice.Search();
             var service = new CampaignsCouponsService(repo);
             CampaignsCouponDto dto = new CampaignsCouponDto
             {
@@ -299,14 +303,14 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
         //    return Json(new { data = coupons }, JsonRequestBehavior.AllowGet);
         //}
 
-
+        #region GetDetail
         public ActionResult GetDetail(int id)
         {
             var service = new CampaignsCouponsService(repo);
-
             var data = service.Get(id);
-
             return Json(data, JsonRequestBehavior.AllowGet);
         }
+        #endregion
+
     }
 }

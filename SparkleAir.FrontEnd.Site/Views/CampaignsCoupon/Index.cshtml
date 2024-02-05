@@ -6,6 +6,16 @@
 
 
     <style>
+        .coupon-section {
+            display: flex;
+            align-items: baseline; /* 垂直居中 */
+        }
+
+        .fa-ticket {
+            margin-right: 10px; /* 調整圖示和標題之間的間距 */
+            transform: rotate(-30deg); /* 傾斜30度 */
+        }
+
         #divMore {
             width: auto;
             height: auto;
@@ -19,9 +29,21 @@
             font-size: 0.8em;
             z-index: 999;
         }
+
+        .title {
+            font-weight: bold;
+            font-size: 2.4em; /* 調整文字大小 */
+        }
+
+        .btn-delete {
+            font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
     </style>
 
-<h2>優惠券活動</h2>
+    <div class="coupon-section">
+        <i class="fa-solid fa-ticket fa-2x"></i>
+        <h2 class="title">優惠券活動</h2>
+    </div>
 
 <p>
     <a href='@Url.Action("Create")' class="btn btn-sm btn-dark ps-3 pe-3 btn-create"><i class="fa-solid fa-plus"></i>&nbsp;&nbsp;新增</a>
@@ -96,17 +118,22 @@
                         </td>
 
                         <td>
-                            <a href='@Url.Action("Edit/")@item.Id' class="btn btn-sm btn-dark ps-2 pe-2 btn-edit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;編輯</a> |
+                            @if (item.Status != "已結束")
+                            {
+                                <a href='@Url.Action("Edit/")@item.Id' class="btn btn-sm btn-dark ps-2 pe-2 btn-edit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;編輯</a> 
+                            }
                             @*<a href='@Url.Action("Details/")@item.Id' class="btn btn-sm btn-dark ps-2 pe-2 btn-detail"><i class="fa-solid fa-file"></i>&nbsp;&nbsp;詳細資訊</a> |*@
-                            <button type="button" class="btn btn-sm btn-dark ps-2 pe-2 btn-detail modal-dialog-scrollable detailBtn" data-bs-toggle="modal" data-bs-target="#exampleModal" value="@item.Id">
-                                <i class="fa-solid fa-file"></i>&nbsp;&nbsp;詳細資訊
-                            </button>|
-                            <a href='@Url.Action("Delete/")@item.Id' class="btn btn-sm btn-danger ps-2 pe-2 btn-delete"><i class="fa-solid fa-trash"></i>&nbsp;&nbsp;刪除</a>
 
+                        <button type="button" class="btn btn-sm btn-dark ps-2 pe-2 btn-detail modal-dialog-scrollable detailBtn" data-bs-toggle="modal" data-bs-target="#exampleModal" value="@item.Id">
+                            <i class="fa-solid fa-file"></i>&nbsp;&nbsp;詳細資訊</button>
+                            @if (item.Status != "已結束")
+                            {
+                                <a href='@Url.Action("Delete/")@item.Id' class="btn btn-sm btn-danger ps-2 pe-2 btn-delete"><i class="fa-solid fa-trash"></i>&nbsp;&nbsp;刪除</a>
+                            }
                         </td>
-                    </tr>
-                }
-            </tbody>
+                </tr>
+            }
+</tbody>
         </table>
     </div>
 </div>
@@ -117,7 +144,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">優惠券詳細資訊</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -132,6 +159,7 @@
 </div>
 
 <script>
+
 		document.querySelectorAll(".details-link").forEach(function (link) {
 			link.addEventListener('click', function (event) {
 				event.preventDefault();
@@ -187,8 +215,8 @@
         .catch(error => console.error('Error:', error));
     }
 
-
      const btnss = document.querySelectorAll('.detailBtn');
+
     btnss.forEach(function (btn) {
      btn.addEventListener('click',async function () {
          const id2 = this.getAttribute('value');
@@ -198,18 +226,28 @@
          const response1 = await fetch(`@Url.Action("GetDetail", "CampaignsCoupon")?id=${id2}`);
          const data1 = await response1.json();
          const dl2 = document.querySelector('#detail')
-        /* const dateTime2 = createDateString(data1.OrderTime)*/
+
+         // 給數字添加千分位
+         const formattedDiscountValue = data1.DiscountValue.toLocaleString();
+         const formattedDiscountQuantity = data1.DiscountQuantity.toLocaleString();
+         const formattedAvailableQuantity = data1.AvailableQuantity.toLocaleString();
+         const formattedMinimumOrderValue = data1.MinimumOrderValue.toLocaleString();
+         const formattedMaximumDiscountAmount = data1.MaximumDiscountAmount.toLocaleString();
+
+         // 折扣金額或百分比條件判斷
+         const discountTypeLabel = data1.Type === "折扣金額" ? "折扣金額" : "折扣百分比";
+
          const html2 = `<dt>優惠券名稱:</dt><dd>${data1.Name}</dd>
                        <dt>狀態:</dt><dd>${data1.Status}</dd>
                        <dt>折扣類型:</dt><dd>${data1.Type}</dd>
-                       <dt>折扣金額或百分比:</dt><dd>${data1.DiscountValue}</dd>
-                       <dt>可使用數量:</dt><dd>${data1.DiscountQuantity}</dd>
-                       <dt>剩餘可使用數量:</dt><dd>${data1.AvailableQuantity}</dd>
-                       <dt>最低消費金額:</dt><dd>${data1.MinimumOrderValue}</dd>
-                       <dt>最高折扣金額:</dt><dd>${data1.MaximumDiscountAmount}</dd>
+                       <dt>${discountTypeLabel}:</dt><dd>${formattedDiscountValue}</dd>
+                       <dt>可使用數量:</dt><dd>${formattedDiscountQuantity}</dd>
+                       <dt>剩餘可使用數量:</dt><dd>${formattedAvailableQuantity}</dd>
+                       <dt>最低消費金額:</dt><dd>${formattedMinimumOrderValue}</dd>
+                       <dt>最高折扣金額:</dt><dd>${formattedMaximumDiscountAmount}</dd>
                        <dt>折扣碼:</dt><dd>${data1.Code}</dd>
-                       <dt>優惠券顯示設定:</dt><dd>${data1.DisplayDescription}</dd>
-                       `
+                       <dt>優惠券顯示設定:</dt><dd>${data1.DisplayDescription}</dd>`;
+                       
          dl2.innerHTML = html2;
          console.log(data1);
      });
@@ -227,5 +265,38 @@
         const seconds1 = date1.getSeconds().toString().padStart(2, '0');
         return `${year1}-${month1}-${day1} ${hours1}:${minutes1}:${seconds1}`;
     }
+
+    function showDeleteConfirmation(url) {
+        Swal.fire({
+            title: "確定要刪除嗎？",
+            text: "此操作將無法還原！",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Delete！"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: "刪除成功！",
+                    text: "此筆已被刪除。",
+                    icon: "success"
+                }).then(() => {
+                    // 在確認刪除後，執行實際的刪除操作
+                    window.location.href = url;
+                });
+            }
+        });
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("click", function (e) {
+            if (e.target.classList.contains("btn-delete")) {
+                e.preventDefault();
+                var deleteUrl = e.target.getAttribute("href");
+                showDeleteConfirmation(deleteUrl);
+            }
+        });
+    });
    
 </script>
