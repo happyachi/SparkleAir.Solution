@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<SparkleAir.Infa.ViewModel.CompanyAndPermission.PermissionGroupsAddStaffIndexVm>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "群組權限設定";
 }
 
-<h2>Index</h2>
+<h2>群組權限設定</h2>
 
 <p>
     <a href='@Url.Action("Create")' class="btn btn-sm btn-dark ps-3 pe-3 btn-create"><i class="fa-solid fa-plus"></i>&nbsp;&nbsp;新增</a>
@@ -12,15 +12,15 @@
 <table class="table table_jq">
     <thead>
         <tr>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.PermissionGroupsId)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.PermissionGroupsName)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.CompanyStaffsId)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.CompanyStaffsName)
             </th>
@@ -31,15 +31,15 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>
+                @*<td>
                     @Html.DisplayFor(modelItem => item.PermissionGroupsId)
-                </td>
+                </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.PermissionGroupsName)
                 </td>
-                <td>
+                @*<td>
                     @Html.DisplayFor(modelItem => item.CompanyStaffsId)
-                </td>
+                </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.CompanyStaffsName)
                 </td>

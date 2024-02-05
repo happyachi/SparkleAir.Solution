@@ -37,16 +37,15 @@ namespace SparkleAir.DAL.EFRepository.Members
 
         public MemberClassEntity Get(int id)
         {
-            var memberClass = _db.CampaignsDiscounts.Find(id).ToEntity();
+            var memberClass = _db.MemberClasses.Find(id);
 
-            var member = _db.MemberClasses.Where(x => x.Name == memberClass.MemberCriteria).ToList();
             var entity = new MemberClassEntity
             {
-                Id = member.First().Id,
-                Name = member.First().Name,
-                ClassOrder = member.First().ClassOrder,
-                MileageEnd = member.First().MileageEnd,
-                MileageStart = member.First().MileageStart,
+                Id = memberClass.Id,
+                Name = memberClass.Name,
+                ClassOrder = memberClass.ClassOrder,
+                MileageEnd = memberClass.MileageEnd,
+                MileageStart = memberClass.MileageStart,
             };
             return entity;
         }

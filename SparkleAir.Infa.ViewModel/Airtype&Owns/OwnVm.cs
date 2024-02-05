@@ -12,7 +12,7 @@ namespace SparkleAir.Infa.ViewModel.Airtype_Owns
         public int Id { get; set; }
 
         [Display(Name = "機型代號:")]
-        [Required(ErrorMessage = "{0}必填!請參考[飛機款式]頁面查詢代號")]
+        [Required(ErrorMessage = "{0}必填!請參考[飛機設置]頁面查詢代號")]
 
         public int AirTypeId { get; set; }
 

@@ -17,9 +17,9 @@
 <table class="table table_jq">
     <thead>
         <tr>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.MemberId)
-            </th>
+            </th>*@
             <th>
                 中文姓名
             </th>
@@ -44,9 +44,9 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>
+                @*<td>
                     @Html.DisplayFor(modelItem => item.MemberId)
-                </td>
+                </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.MemberChineseLastName)
                     @Html.DisplayFor(modelItem => item.MemberChineseFirstName)
