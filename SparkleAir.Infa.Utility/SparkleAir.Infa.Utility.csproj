@@ -64,6 +64,7 @@
     <Compile Include="Helper\PartialView.cs" />
     <Compile Include="Helper\TimeZoneHelper.cs" />
     <Compile Include="Helper\SqlDbHelper.cs" />
+    <Compile Include="Helper\UploadHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Helper\UploadImgHelper.cs" />
   </ItemGroup>
