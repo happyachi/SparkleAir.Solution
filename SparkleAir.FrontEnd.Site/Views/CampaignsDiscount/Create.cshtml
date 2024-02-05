@@ -1,10 +1,12 @@
 ﻿@using SparkleAir.Infa.ViewModel.TaxFree
 @model SparkleAir.FrontEnd.Site.Models.ViewModels.Campaigns.CampaignsDiscountVm
 
+
+
 @{
     ViewBag.Title = "Create";
 
-    var list = ViewBag.List as IEnumerable<TFItemVm>;
+    
 }
 
 <style>
@@ -128,11 +130,14 @@
             @Html.LabelFor(model => model.MemberCriteria, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="form-check">
-                    @foreach (var member in ViewBag.Member)
+                    @if (ViewBag.Member != null)
                     {
-                        <label class="checkbox-inline member-label">
-                            <input class="form-check-input" type="checkbox" value="@member.Name" data-member="@member.Name" name="members">@member.Name
-                        </label>
+                        foreach (var member in ViewBag.Member)
+                        {
+                            <label class="checkbox-inline member-label">
+                                <input class="form-check-input" type="checkbox" value="@member.Name" data-member="@member.Name" name="members">@member.Name
+                            </label>
+                        }
                     }
                     <input type="hidden" name="MemberCriteria" id="flexCheckDefault" value="" />
                 </div>
@@ -154,6 +159,7 @@
             <div id="selectProducts">
                 @*@Html.Partial("SelectProduct")*@
                 @{
+                    var list = ViewBag.List as IEnumerable<TFItemVm>;
                     Html.RenderPartial("SelectProduct", list);
                 }
             </div>
@@ -262,6 +268,7 @@
 
             // Join values with a comma to create a comma-separated string
             var productListValue = selectedProducts.length > 0 ? selectedProducts.join(',') : '';
+            productListValue = productListValue.startsWith(',') ? productListValue.substring(1) : productListValue;
 
             // Set the value of the productList input field
             document.getElementById('productList').value = productListValue;
@@ -269,7 +276,7 @@
             // Hide the selectContainer div (you may want to adjust this based on your needs)
             document.getElementById('selectContainer').style.display = 'none';
         }
-       
+
 
     </script>
 }

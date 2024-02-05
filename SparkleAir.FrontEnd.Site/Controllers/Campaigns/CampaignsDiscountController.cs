@@ -69,6 +69,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
             if (!ModelState.IsValid) return View();
             var memberservice = new MemberClassService(memberRepo);
             ViewBag.Member = memberservice.Search();
+            ViewBag.List = CreateSelectProducts();
 
             try
             {
