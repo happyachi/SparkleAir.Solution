@@ -264,18 +264,18 @@
 }
     function showDeleteConfirmation(url) {
         Swal.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
+            title: "確定要刪除嗎？",
+            text: "此操作將無法還原！",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
+            confirmButtonText: "Delete！"
         }).then((result) => {
             if (result.isConfirmed) {
                 Swal.fire({
-                    title: "Deleted!",
-                    text: "Your file has been deleted.",
+                    title: "刪除成功！",
+                    text: "此筆已被刪除。",
                     icon: "success"
                 }).then(() => {
                     // 在確認刪除後，執行實際的刪除操作

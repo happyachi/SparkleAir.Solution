@@ -331,18 +331,14 @@
             }, 300);
         }
 
-        // 获取选择框元素
+       
         var campaignSelect = document.getElementById("CampaignId");
 
-        // 获取折扣值输入框元素
         var discountValueInput = document.getElementById("DiscountValue");
 
-        // 添加事件监听器
         campaignSelect.addEventListener("change", function () {
-            // 获取选择框当前选中的值
             var selectedValue = campaignSelect.value;
 
-            // 根据选择的值设置输入框的预设文字
             if (selectedValue === "4") {
                 discountValueInput.placeholder = "輸入95，表示95折";
             } else {

@@ -44,6 +44,14 @@ namespace SparkleAir.BLL.Service.Campaigns
                 throw new ArgumentException("結束時間不能早於開始時間。");
             }
 
+            if (dto.CampaignId == 6)
+            {
+                if (dto.DiscountValue >= 1 || dto.DiscountValue < 0)
+                {
+                    throw new ArgumentException("折數必須介於0-1之間。");
+                }
+            }
+
             string status = CamapignsTimeHelper.DetermineStatus(dto.DateStart, dto.DateEnd);
 
             CampaignsDiscountEntity entity = new CampaignsDiscountEntity(

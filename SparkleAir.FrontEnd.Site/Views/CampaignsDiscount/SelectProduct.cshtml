@@ -44,44 +44,47 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    <label class="fcheckbox-inline" for="flexCheckproduct">
-                        <input class="form-check-input products" type="checkbox" value="@item.Name" data-member="@item.Name" name="items">
-                    </label>
-                    @*<input name="ItemCriteria" id="flexCheckDefault" value="" />*@
-                </td>
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.Id)
-                </td>*@
-                <td>
-                    @Html.DisplayFor(modelItem => item.TFCategoriesName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SerialNumber)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Image)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Quantity)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UnitPrice)
-                </td>
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>*@
-                <td>
-                    @Html.DisplayFor(modelItem => item.IsPublished)
-                </td>
-               
-            </tr>
-        }
-    </tbody>
+            if (item != null)
+            {
+                <tr>
+                    <td>
+                        <label class="fcheckbox-inline" for="flexCheckproduct">
+                            <input class="form-check-input products" type="checkbox" value="@item.Name" data-member="@item.Name" name="items">
+                        </label>
+                        @*<input name="ItemCriteria" id="flexCheckDefault" value="" />*@
+                    </td>
+                    @*<td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TFCategoriesName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SerialNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Image)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Quantity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UnitPrice)
+                    </td>
+                    @*<td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsPublished)
+                    </td>
+
+                </tr>
+                }
+            }
+        </tbody>
 </table>
 <div class="select" id="selectContainer" style="display: none;">
     <button type="button" class="btn btn-sm btn-dark col-sm-1" onclick="cancelProducts()">取消</button>
