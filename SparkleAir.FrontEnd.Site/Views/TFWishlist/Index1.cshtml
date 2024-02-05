@@ -1,0 +1,106 @@
+﻿@model IEnumerable<SparkleAir.Infa.ViewModel.TaxFree.TFWishlistsVm>
+
+@*@{
+    ViewBag.Title = "Index";
+}*@
+
+<h2>商品願望清單</h2>
+
+@*<p>
+    <a href='@Url.Action("Create")' class="btn btn-sm btn-dark ps-3 pe-3 btn-create"><i class="fa-solid fa-plus"></i>&nbsp;&nbsp;新增</a>
+</p>*@
+
+<p>
+    @Html.ActionLink("Export to Excel", "ExportToExcel", "TFWishlist", new { area = "" }, new { @class = "btn btn-primary" })
+</p>
+
+<table class="table table_jq">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MemberId)
+            </th>
+            <th>
+                中文姓名
+            </th>
+            <th>
+                英文姓名
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MemberPassportNumber)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.TFItemsName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TFItemsSerialNumber)
+            </th>
+            
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MemberId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MemberChineseLastName)
+                    @Html.DisplayFor(modelItem => item.MemberChineseFirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MemberEnglishLastName)
+                    @Html.DisplayFor(modelItem => item.MemberEnglishFirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MemberPassportNumber)
+                </td>
+                @*<td>
+                    
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MemberPhone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MemberEmail)
+                </td>
+                <td>
+                    
+                </td>*@
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.TFItemsId)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.TFItemsName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TFItemsSerialNumber)
+                </td>
+        
+
+            @*<td>
+                @Html.DisplayFor(modelItem => item.TFItemsImage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TFItemsQuantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TFItemsUnitPrice)
+            </td>*@
+            <!--<td>-->
+            @*<a href='@Url.Action("Edit/")@item.Id' class="btn btn-sm btn-dark ps-2 pe-2 btn-edit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;編輯</a> |
+            <a href='@Url.Action("Details/")@item.Id' class="btn btn-sm btn-dark ps-2 pe-2 btn-detail"><i class="fa-solid fa-file"></i>&nbsp;&nbsp;詳細資訊</a> |
+            <a href='@Url.Action("Delete/")@item.Id' class="btn btn-sm btn-danger ps-2 pe-2 btn-delete"><i class="fa-solid fa-trash"></i>&nbsp;&nbsp;刪除</a>*@
+            <!--</td>-->
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+<script>
+
+</script>
