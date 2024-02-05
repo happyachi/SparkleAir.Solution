@@ -777,6 +777,7 @@
     <Content Include="Views\CampaignsDiscount\SelectProduct.cshtml" />
     <Content Include="Views\TFWishlist\Index1.cshtml" />
     <Content Include="Views\TFItem\IndexTFItem.cshtml" />
+    <Content Include="Views\TFOrderlist\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

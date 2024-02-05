@@ -102,9 +102,10 @@ namespace SparkleAir.FrontEnd.Site.Controllers.TaxFree
             {
                 Id = vm.Id,
                 MemberId = vm.MemberId,
+                
                 TFItemsId = vm.TFItemsId,
                 Quantity = vm.Quantity,
-                UnitPrice = vm.UnitPrice
+                UnitPrice = vm.UnitPrice,
             };
             service.Create(dto);
         }
