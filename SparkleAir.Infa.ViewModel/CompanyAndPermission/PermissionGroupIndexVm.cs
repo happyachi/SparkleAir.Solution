@@ -23,7 +23,13 @@ namespace SparkleAir.Infa.ViewModel.CompanyAndPermission
         public string Ddescribe { get; set; }
 
         [Display(Name = "篩選條件")]
-        [Required(ErrorMessage = "{0}必填")]
         public string Criteria { get; set; }
+
+        public List<string> PermissionSettingPageName { get; set; }
+
+        public List<int> PermissionSettingPageId { get; set; }
+
+        public string PermissionSettingPageIdString { get; set; }
+
     }
 }

@@ -16,6 +16,7 @@ namespace SparkleAir.BLL.Service.CompanyAndPermission
         public PermissionSettingService(IPermissionSettingRepository repo)
         {
             _repo = repo;
+
         }
 
         public List<PermissionSettingDto> Search()
@@ -93,6 +94,13 @@ namespace SparkleAir.BLL.Service.CompanyAndPermission
             };
 
             _repo.Update(entity);
+        }
+
+        public string[] GetAllowGroupIdsByPageName(string pageName)
+        {
+            var result = _repo.GetAllowGroupIdsByPageName(pageName);
+
+            return result;
         }
     }
 }

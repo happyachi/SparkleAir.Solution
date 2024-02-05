@@ -15,5 +15,10 @@ namespace SparkleAir.Infa.Entity.CompanyAndPermission
         public string Ddescribe { get; set; }
 
         public string Criteria { get; set; }
+
+        public List<string> PermissionSettingPageName { get; set; }
+
+        public List<int> PermissionSettingPageId { get; set; }
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using SparkleAir.BLL.Service.Airtype_Owns;
 using SparkleAir.DAL.EFRepository.Airtype_Owns;
+using SparkleAir.FrontEnd.Site.Models.Authorize;
 using SparkleAir.IDAL.IRepository.Airtype_Owns;
 using SparkleAir.Infa.ViewModel.Airtype_Owns;
 using System;
@@ -11,6 +12,7 @@ using System.Web.Mvc;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.Airtype_Owns
 {
+    [StaffAuthorize(PageName = "Planes")]
     public class PlanesController : BaseController
     {
         // GET: Planes
