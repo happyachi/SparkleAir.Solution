@@ -28,5 +28,6 @@ namespace SparkleAir.Infa.Dto.AriFlights
         public int ArrivalAirportId { get; set; }
 
         public string RegistrationNum { get; set; }
+        public int CrossDay {  get; set; }
     }
 }

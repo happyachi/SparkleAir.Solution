@@ -98,7 +98,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
             try
             {
                 var flightId = CreateFlight(vm);
-                await _priceService.CreateTicketPirce1500(flightId, vm.Mile);
+                await _priceService.CreateTicketPirce(flightId, vm.Mile);
                 return Json(new { success = true });
             }
             catch (Exception ex)
@@ -118,6 +118,8 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
                 DepartureAirport = vm.DepartureAirport,
                 ArrivalAirport = vm.ArrivalAirport,
                 DepartureTime = vm.DepartureTime,
+                DepartureTerminal = vm.DepartureTerminal,
+                ArrivalTerminal = vm.ArrivalTerminal,
                 ArrivalTime = vm.ArrivalTime,
                 DayofWeek = vm.DayofWeek,
                 Mile = vm.Mile,
