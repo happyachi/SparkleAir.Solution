@@ -35,6 +35,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.LuggageOrders
             var service = new LuggageOrderService(efRLuggageorder);
             
             var flightService = new AirFlightManagementService(efAirFlightManagement);
+
             List<LuggageOrderIndexVm> data = GetAll();
 
             ViewBag.luggageorder = flightService.GetAll(); //回傳所有的資料
@@ -43,6 +44,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.LuggageOrders
             return View(data);
         }
 
+        //bootstrap 的傳回資料
         public ActionResult GetDetail(int id)
         {
             var service = new LuggageOrderService(efRLuggageorder);
