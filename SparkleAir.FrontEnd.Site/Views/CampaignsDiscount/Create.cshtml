@@ -63,9 +63,18 @@
     .productslist {
         margin-top: 15px; /* 調整間距 */
     }
+
+    #info-icon {
+        margin-left: 5px; /* Adjust the margin as needed */
+        cursor: pointer;
+    }
+
 </style>
 
-<h2 class="title">新增折扣活動</h2>
+<h2 class="title">
+    新增折扣活動
+    <i class="fa-solid fa-circle-info" id="info-icon" onclick="showUsageInfo()"></i>
+</h2>
 
 
 @using (Html.BeginForm())
@@ -324,6 +333,16 @@
                 discountValueInput.placeholder = "輸入100，表示折100元";
             }
         });
+
+        function showUsageInfo() {
+            Swal.fire({
+                title: "The Internet?",
+                text: "That thing is still around?",
+                icon: "info"
+            });
+        }
+
+
 
     </script>
 }
