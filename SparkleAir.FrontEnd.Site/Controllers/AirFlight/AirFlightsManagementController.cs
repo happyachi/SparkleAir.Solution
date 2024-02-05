@@ -15,9 +15,11 @@ using SparkleAir.IDAL.IRepository.Airport;
 using SparkleAir.BLL.Service.Airports;
 using SparkleAir.DAL.EFRepository.Airports;
 using System.Threading.Tasks;
+using SparkleAir.FrontEnd.Site.Models.Authorize;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
 {
+    [StaffAuthorize(PageName = "AirFlightsManagement")]
     public class AirFlightsManagementController : BaseController
     {
         #region CTOR

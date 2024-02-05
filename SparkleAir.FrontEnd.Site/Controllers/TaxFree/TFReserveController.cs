@@ -1,5 +1,6 @@
 ﻿using SparkleAir.BLL.Service.TaxFree;
 using SparkleAir.DAL.EFRepository.TaxFree;
+using SparkleAir.FrontEnd.Site.Models.Authorize;
 using SparkleAir.IDAL.IRepository.TaxFree;
 using SparkleAir.Infa.Dto.TaxFree;
 using SparkleAir.Infa.EFModel.EFModels;
@@ -12,6 +13,7 @@ using System.Web.Mvc;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.TaxFree
 {
+    [StaffAuthorize(PageName = " TFReserve")]
     public class TFReserveController : Controller
     {
 

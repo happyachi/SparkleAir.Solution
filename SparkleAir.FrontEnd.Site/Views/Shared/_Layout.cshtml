@@ -16,7 +16,7 @@
 
 -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant">
 <head>
 
 
@@ -65,23 +65,37 @@
 <body>
 	<!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
 	<!-- 漢堡-->
-	<nav class="navbar navbar-dark navbar-theme-primary px-4 col-12" id="hamburger">
-		<div class="d-flex align-items-center" id="Brand">
-			<button class="navbar-toggler me-3 collapsed"
-					type="button"
-					data-bs-toggle="collapse"
-					data-bs-target="#sidebarMenu"
-					aria-controls="sidebarMenu"
-					aria-expanded="false"
-					aria-label="Toggle navigation" id="btn">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<a class="navbar-brand me-lg-5" href="@Url.Action("Index", "Home")">
-				<h2 style="color:white" class="mt-2">Sparkle AirLine</h2>
-			</a>
-		</div>
+    <nav class="navbar navbar-dark navbar-theme-primary px-4 col-12" id="hamburger">
+        <div class="d-flex align-items-center" id="Brand">
+            <button class="navbar-toggler me-3 collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#sidebarMenu"
+                    aria-controls="sidebarMenu"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation" id="btn">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand me-lg-5" href="@Url.Action("Index", "Home")">
+                <h2 style="color:white" class="mt-2">Sparkle AirLine</h2>
+            </a>
 
-	</nav>
+        </div>
+
+        <!-- 右側登出-->
+        <div class="dropdown text-end dropstart">
+            <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <div class="btn btn-sm btn-dark  rounded-circle justify-content-center text-center m-2 " id="btn-plus"><i class="fa-solid fa-user"></i></div>
+            </a>
+            <ul class="dropdown-menu text-small" style="">
+                @*<li><a class="dropdown-item" href="#">New project...</a></li>
+                <li><a class="dropdown-item" href="#">Settings</a></li>
+                <li><a class="dropdown-item" href="#">Profile</a></li>
+                <li><hr class="dropdown-divider"></li>*@
+                <li><a class="dropdown-item" href='@Url.Content("~/StaffAuth/Logout")'>登出</a></li>
+            </ul>
+        </div>
+    </nav>
 
 	<button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Enable both scrolling & backdrop</button>
 

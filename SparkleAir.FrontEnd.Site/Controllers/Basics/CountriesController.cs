@@ -1,5 +1,6 @@
 ﻿using SparkleAir.BLL.Service.Basics;
 using SparkleAir.DAL.EFRepository.Basics;
+using SparkleAir.FrontEnd.Site.Models.Authorize;
 using SparkleAir.IDAL.IRepository.Basics;
 using SparkleAir.Infa.Dto.Basics;
 using SparkleAir.Infa.Dto.CompanyAndPermission;
@@ -13,6 +14,7 @@ using System.Web.Mvc;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.Basics
 {
+    [StaffAuthorize(PageName = "Countries")]
     public class CountriesController : BaseController
     {
         private readonly CountryService _service;

@@ -2,6 +2,7 @@
 using SparkleAir.BLL.Service.Luggage;
 using SparkleAir.DAL.EFRepository.Airports;
 using SparkleAir.DAL.EFRepository.Luggages;
+using SparkleAir.FrontEnd.Site.Models.Authorize;
 using SparkleAir.IDAL.IRepository.Airport;
 using SparkleAir.IDAL.IRepository.Luggage;
 using SparkleAir.Infa.Dto.Airport;
@@ -17,6 +18,7 @@ using System.Web.Mvc;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.Luggages
 {
+    [StaffAuthorize(PageName = "Luggage")]
     public class LuggageController : BaseController
     {
 

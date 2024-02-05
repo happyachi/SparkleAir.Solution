@@ -2,6 +2,7 @@
 using SparkleAir.BLL.Service.Members;
 using SparkleAir.DAL.DapperRepository.Members;
 using SparkleAir.DAL.EFRepository.Members;
+using SparkleAir.FrontEnd.Site.Models.Authorize;
 using SparkleAir.IDAL.IRepository.Members;
 using SparkleAir.Infa.Criteria.Members;
 using SparkleAir.Infa.Dto.Members;
@@ -17,6 +18,7 @@ using System.Web.Mvc;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.Members
 {
+    [StaffAuthorize(PageName = "Members")]
     public class MembersController : BaseController
     {
 		private readonly IMemberRepository _repo;
