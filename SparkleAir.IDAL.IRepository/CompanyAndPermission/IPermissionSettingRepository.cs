@@ -10,6 +10,7 @@ namespace SparkleAir.IDAL.IRepository.CompanyAndPermission
     public interface IPermissionSettingRepository
     {
         List<PermissionSettingEntity> Search();
+        List<PermissionSettingEntity> Search(int groupId);
 
         void Create(PermissionSettingEntity entity);
 
@@ -18,5 +19,7 @@ namespace SparkleAir.IDAL.IRepository.CompanyAndPermission
         void Delete(int id);
 
         PermissionSettingEntity Get(int id);
+
+        string[] GetAllowGroupIdsByPageName(string pageName);
     }
 }

@@ -2,6 +2,7 @@
 using SparkleAir.BLL.Service.Members;
 using SparkleAir.DAL.DapperRepository.Members;
 using SparkleAir.DAL.EFRepository.Members;
+using SparkleAir.FrontEnd.Site.Models.Authorize;
 using SparkleAir.IDAL.IRepository.Members;
 using SparkleAir.Infa.Criteria.Members;
 using SparkleAir.Infa.Dto.Members;
@@ -17,6 +18,7 @@ using System.Web.Mvc;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.Members
 {
+    [StaffAuthorize(PageName = "Members")]
     public class MembersController : BaseController
     {
 		private readonly IMemberRepository _repo;
@@ -33,6 +35,12 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Members
 		}
         // GET: Members
         public ActionResult Index()
+        { 
+            return View();
+        }
+
+
+        public ActionResult Index1()
         {
             MemberSearchCriteria criteria = null;
 
@@ -56,7 +64,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Members
                 PassportNumber = member.PassportNumber
             }).ToList();
 
-			return View(vmList);
+			return PartialView("Index1",vmList);
         }
 
         public ActionResult Details(int id)

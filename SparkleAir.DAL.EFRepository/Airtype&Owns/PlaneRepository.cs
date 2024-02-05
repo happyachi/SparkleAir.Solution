@@ -90,6 +90,19 @@ namespace SparkleAir.DAL.EFRepository.Airtype_Owns
             db.SaveChanges();
 
         }
+
+        public bool Exists(string flightModel)
+        {
+            var db = new AppDbContext();
+            var existingPlane = db.AirTypes.FirstOrDefault(p => p.FlightModel == flightModel);
+            if (existingPlane != null)
+            {
+                // 如果存在，可以選擇拋出異常或回傳錯誤訊息
+                throw new InvalidOperationException("相同的飛機款式已存在");
+            }
+
+            return false; // 如果不存在相同的 FlightModel
+        }
     }
 
 }

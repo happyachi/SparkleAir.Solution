@@ -6,8 +6,8 @@
 
 <h2>新增機場</h2>
 
-
-@using (Html.BeginForm())
+@*補了這*@
+@using (Html.BeginForm("Create", "Airports", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -23,10 +23,10 @@
                 <!--<select class="form-select" aria-label="Default select example" name="Lata">--> @* 下拉式選單  ,name="Lata" 要放要得欄位才抓地到值*@
 
                     <!--<option selected></option>
-                    @foreach (var item in ViewBag.editAirport)
+                   @* @foreach (var item in ViewBag.editAirport)
                     {
                         <option value="@item.Lata">@item.Lata</option>
-                    }
+                    }*@
 
                 </select>-->
 
@@ -53,10 +53,10 @@
                 <!--<select class="form-select" aria-label="Default select example" name="Country">-->  @*name="Country" 要放要得欄位才抓地到值*@
 
                     <!--<option selected></option>
-                    @foreach (var item in ViewBag.editAirport)
+                   @* @foreach (var item in ViewBag.editAirport)
                     {
                         <option value="@item.Country">@item.Country</option>
-                    }
+                    }*@
 
                 </select>-->
                 @Html.EditorFor(model => model.Country, new { htmlAttributes = new { @class = "form-control" } })
@@ -108,7 +108,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Img, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Img, new { htmlAttributes = new { @class = "form-control" } })
+                <input class="form-control" type="file" name="file1" id="file1">
+                @*@Html.EditorFor(model => model.Img, new { htmlAttributes = new { @class = "form-control" } })*@
                 @Html.ValidationMessageFor(model => model.Img, "", new { @class = "text-danger" })
             </div>
         </div>

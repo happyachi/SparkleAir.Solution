@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Airtype&amp;Owns\OwnDto.cs" />
+    <Compile Include="Airtype&amp;Owns\SearchDto.cs" />
     <Compile Include="AriFlights\AirFlightDto.cs" />
     <Compile Include="AriFlights\AirFlightManagementDto.cs" />
     <Compile Include="AriFlights\AirFlightSeatsDto.cs" />
@@ -78,6 +80,7 @@
     <Compile Include="TaxFree\TFReservelistsDto.cs" />
     <Compile Include="TaxFree\TFReservesDto.cs" />
     <Compile Include="TaxFree\TFWishlistDto.cs" />
+    <Compile Include="Tickets\TicketsDto.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SparkleAir.Infa.EFModel\SparkleAir.Infa.EFModel.csproj">

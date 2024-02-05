@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="AirFlightsEntity\AirFlightEntity.cs" />
     <Compile Include="AirFlightsEntity\AirFlightManagementEntity.cs" />
+    <Compile Include="Airtype&amp;Owns\OwnEntity.cs" />
     <Compile Include="Basics\CountryEntity.cs" />
     <Compile Include="AirFlightsEntity\AirFlightSeatsEntity.cs" />
     <Compile Include="AirFlightsEntity\AirTicketPriceEntity.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="TaxFree\TFReservelistsEntity.cs" />
     <Compile Include="TaxFree\TFReservesEntity.cs" />
     <Compile Include="TaxFree\TFWishlistsEntity.cs" />
+    <Compile Include="Tickets\TicketsEntity.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SparkleAir.Infa.EFModel\SparkleAir.Infa.EFModel.csproj">

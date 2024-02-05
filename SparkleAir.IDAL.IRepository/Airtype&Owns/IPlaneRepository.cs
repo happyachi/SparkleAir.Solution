@@ -17,5 +17,7 @@ namespace SparkleAir.IDAL.IRepository.Airtype_Owns
 
         PlaneEntity Get(int id);
 
+        bool Exists(string flightModel);
+
     }
 }

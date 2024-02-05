@@ -45,6 +45,13 @@ namespace SparkleAir.BLL.Service.Airtype_Owns
 
         public void Create(PlaneDto dto)
         {
+            if (_repo.Exists(dto.FlightModel))
+            {
+                // 如果存在，可以選擇拋出異常或回傳錯誤訊息
+                throw new InvalidOperationException("相同的飛機款式已存在");
+
+            }
+
             PlaneEntity entity = new PlaneEntity
             {
                 ID = dto.ID,

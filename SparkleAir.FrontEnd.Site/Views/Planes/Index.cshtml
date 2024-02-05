@@ -1,39 +1,48 @@
 ﻿@model IEnumerable<SparkleAir.Infa.ViewModel.Airtype_Owns.PlaneVmIndex>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "飛機款式";
 }
+<style>
+    table th {
+        border-bottom: 10px solid black;
+    }
+
+</style>
+
 
 <h2>飛機款式</h2>
+<!-- 在 head 部分或适当位置引入 Bootstrap 样式表 -->
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("新增機型", "Create", null, new { @class = "btn btn-dark" })
 </p>
-<table class="table table-hover">
+<table class="table table-hover table-text-center">
     <tr>
-        <th class="text-bg-dark">
+        <th style="font-size: 16px; font-weight: bold;">
             @Html.DisplayNameFor(model => model.FlightModel)
         </th>
-        <th class="text-bg-danger">
+        <th style="font-size: 16px; font-weight: bold;">
             @Html.DisplayNameFor(model => model.ManufactureCompany)
         </th>
-        <th class="text-bg-danger"></th>
+        <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
         <tr>
-            <td>
+            <td style="font-size: 15px;">
                 @Html.DisplayFor(modelItem => item.FlightModel)
             </td>
-            <td>
+            <td style="font-size: 15px;">
                 @Html.DisplayFor(modelItem => item.ManufactureCompany)
             </td>
-            <td>
-                @Html.ActionLink("Update", "Update", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            <td style="text-align: right;">
+                @Html.ActionLink("更新", "Update", new { id = item.Id }, new { @class = "btn btn-sm btn-dark" }) |
+                @Html.ActionLink("詳細資訊", "Details", new { id = item.Id }, new { @class = "btn btn-sm btn-dark" }) |
+                @Html.ActionLink("刪除", "Delete", new { id = item.Id }, new { @class = "btn btn-sm btn-dark" })
             </td>
+
         </tr>
     }
 

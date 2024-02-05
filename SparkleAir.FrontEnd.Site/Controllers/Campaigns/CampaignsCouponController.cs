@@ -1,9 +1,11 @@
 ﻿using SparkleAir.BLL.Service.AirFlights;
 using SparkleAir.BLL.Service.Campaigns;
+using SparkleAir.BLL.Service.LuggageOrderService;
 using SparkleAir.BLL.Service.Members;
 using SparkleAir.DAL.EFRepository.AirFlights;
 using SparkleAir.DAL.EFRepository.Campaigns;
 using SparkleAir.DAL.EFRepository.Members;
+using SparkleAir.FrontEnd.Site.Models.Authorize;
 using SparkleAir.FrontEnd.Site.Models.ViewModels.Campaigns;
 using SparkleAir.IDAL.IRepository.Campaigns;
 using SparkleAir.Infa.Criteria.AirFlights;
@@ -21,6 +23,7 @@ using static Dapper.SqlMapper;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
 {
+    [StaffAuthorize(PageName = "CampaignsCoupon")]
     public class CampaignsCouponController : BaseController
     {
         CampaignsCouponsEFRepository repo = new CampaignsCouponsEFRepository();
@@ -51,12 +54,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
 
             return vm;
         }
-        public ActionResult GetData()
-        {
-            List<CampaignsCouponIndexVm> coupons = GetAll();
-            return Json(new { data = coupons }, JsonRequestBehavior.AllowGet);
-        }
-
+     
         #region Create
         public ActionResult Create()
         {
@@ -295,6 +293,20 @@ namespace SparkleAir.FrontEnd.Site.Controllers.Campaigns
         }
         #endregion
 
-        
+        //public ActionResult GetData()
+        //{
+        //    List<CampaignsCouponIndexVm> coupons = GetAll();
+        //    return Json(new { data = coupons }, JsonRequestBehavior.AllowGet);
+        //}
+
+
+        public ActionResult GetDetail(int id)
+        {
+            var service = new CampaignsCouponsService(repo);
+
+            var data = service.Get(id);
+
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
     }
 }

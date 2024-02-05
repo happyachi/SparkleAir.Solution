@@ -53,6 +53,8 @@
     <Compile Include="AirFlights\AirOwnVm.cs" />
     <Compile Include="AirFlights\EachFlightSeatsVm.cs" />
     <Compile Include="AirFlights\EachSeatInfoVm.cs" />
+    <Compile Include="Airtype&amp;Owns\OwnVm.cs" />
+    <Compile Include="Airtype&amp;Owns\OwnVmIndex.cs" />
     <Compile Include="Basics\CountryIndexVm.cs" />
     <Compile Include="Campaigns\CamapignsDiscountSelectProductsVm.cs" />
     <Compile Include="Campaigns\CampaignsCouponIndexVm.cs" />
@@ -63,6 +65,8 @@
     <Compile Include="Airports\AirportIndexVm.cs" />
     <Compile Include="CompanyAndPermission\CompanyDepartmentIndexVm.cs" />
     <Compile Include="CompanyAndPermission\CompanyJobIndexVm.cs" />
+    <Compile Include="CompanyAndPermission\CompanyStaffCreateVm.cs" />
+    <Compile Include="CompanyAndPermission\CompanyStaffLoginVm.cs" />
     <Compile Include="CompanyAndPermission\CompanyStaffIndexVm.cs" />
     <Compile Include="CompanyAndPermission\CompanyStaffLoginLogIndexVm.cs" />
     <Compile Include="CompanyAndPermission\CompanyStaffsChangePasswordLogIndexVm.cs" />
@@ -92,6 +96,7 @@
     <Compile Include="TaxFree\TFReservelistsVm.cs" />
     <Compile Include="TaxFree\TFReservesVm.cs" />
     <Compile Include="TaxFree\TFWishlistsVm.cs" />
+    <Compile Include="Tickets\TicketsIndexVm.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SparkleAir.Infa.Utility\SparkleAir.Infa.Utility.csproj">

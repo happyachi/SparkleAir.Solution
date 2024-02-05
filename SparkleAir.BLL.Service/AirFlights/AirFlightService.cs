@@ -114,13 +114,14 @@ namespace SparkleAir.BLL.Service.AirFlights
         public void UpdateSaleStatus(AirFlightDto dto)
         {
             int stausId = StatusHelper.SaleStatusUpdate(dto.ScheduledDeparture);
+
             AirFlightEntity entity = new AirFlightEntity
             {
                 Id = dto.Id,
                 AirOwnId = dto.AirOwnId,
                 AirFlightManagementId = dto.AirFlightManagementId,
-                ScheduledDeparture = dto.ScheduledDeparture,
-                ScheduledArrival = dto.ScheduledArrival,
+                ScheduledDeparture = dto.ScheduledDeparture.Date + TimeZoneHelper.ConvertToGMT(dto.ScheduledDeparture.TimeOfDay, dto.DepartureTimeZone),
+                ScheduledArrival = dto.ScheduledArrival.Date + TimeZoneHelper.ConvertToGMT(dto.ScheduledArrival.TimeOfDay, dto.ArrivalTimeZone),
                 AirFlightSaleStatusId = stausId,
                 FlightModel = dto.FlightModel,
                 FlightCode = dto.FlightCode,
@@ -142,6 +143,7 @@ namespace SparkleAir.BLL.Service.AirFlights
 
             FlightDate[] days = dto.DayofWeek.FlightDays();
             var today = DateTime.Today;
+            //var today = new DateTime(2024, 3, 2);
             //DateTime currentDate = today.AddMonths(1);
             List<DateTime> scheduledFlights = today.GetScheduledFlights(days, today);
             List<(int, string)> ids = new List<(int, string)>();
@@ -152,7 +154,7 @@ namespace SparkleAir.BLL.Service.AirFlights
                     DateTime scheduledDeparture = scheduledFlight.Date.Date + TimeZoneHelper.ConvertToGMT(dto.ScheduledDeparture.TimeOfDay, dto.DepartureTimeZone);
                     DateTime scheduledArrival = scheduledFlight.Date.Date + TimeZoneHelper.ConvertToGMT(dto.ScheduledArrival.TimeOfDay, dto.ArrivalTimeZone);
 
-                    if (!scheduledFlight.IsExist())
+                    if (!scheduledDeparture.IsExist(dto.AirFlightManagementId))
                     {
                         AirFlightEntity entity = new AirFlightEntity
                         {
