@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -60,6 +61,7 @@
     <Compile Include="CompanyAndPermission\PermissionGroupService.cs" />
     <Compile Include="CompanyAndPermission\PermissionPageInfoService.cs" />
     <Compile Include="CompanyAndPermission\PermissionSettingService.cs" />
+    <Compile Include="CompanyAndPermission\StaffAuthService.cs" />
     <Compile Include="MealMessages\AirMealService.cs" />
     <Compile Include="MealMessages\MessageBoxService.cs" />
     <Compile Include="MealMessages\MessageService.cs" />
@@ -77,6 +79,7 @@
     <Compile Include="TaxFree\TFReservelistService.cs" />
     <Compile Include="TaxFree\TFReserveService.cs" />
     <Compile Include="TaxFree\TFWishlistService.cs" />
+    <Compile Include="Tickets\TicketsService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SparkleAir.DAL.DapperRepository\SparkleAir.DAL.DapperRepository.csproj">

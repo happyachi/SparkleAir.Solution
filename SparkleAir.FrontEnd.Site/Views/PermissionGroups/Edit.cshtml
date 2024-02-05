@@ -9,38 +9,63 @@
 
 @using (Html.BeginForm())
 {
-    @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
     
-    <div class="form-horizontal">
+<div class="form-horizontal">
 
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
+    <input data-val="true" id="PermissionSettingPageIdString" name="PermissionSettingPageIdString" type="hidden" value="">
+    <input data-val="true" id="Criteria" name="Criteria" type="hidden" value="">
 
-        <div class="mb-3">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+    <div class="row">
+        <div class="col-12 col-sm-4 ">
+            <div class="mb-3">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(model => model.Ddescribe, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Ddescribe, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Ddescribe, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            @*<div class="mb-3">
+                @Html.LabelFor(model => model.Criteria, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Criteria, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Criteria, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+        </div>
+        <div class="col-12 col-sm-8">
+            <div class="mb-3">
+                <div>頁面設定 </div>
+                @foreach (var item in ViewBag.pageInfoList)
+                {
+                    string check = (Model.PermissionSettingPageId.Contains(item.Id)) ? "checked" : "";
+
+                    <input type="checkbox" class="btn-check checked-page" id="page_@item.Id" autocomplete="off" @check />
+                    <label class="btn btn-outline-primary" for="page_@item.Id">@item.PageName</label>
+                }
+            </div>
+            <hr />
+            <div class="mb-3">
+                <div>人員設定 </div>
+                <div class="" id="staff-container">
+
+                </div>
+                <div class="btn btn-sm btn-primary  justify-content-center text-center m-2 " style="width:50px" id="btn-plus"><i class="fa-solid fa-plus"></i></div>
+
             </div>
         </div>
-
-        <div class="mb-3">
-            @Html.LabelFor(model => model.Ddescribe, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Ddescribe, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Ddescribe, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="mb-3">
-            @Html.LabelFor(model => model.Criteria, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Criteria, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Criteria, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
         <div class="mb-3">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="儲存" class="btn btn-sm btn-success ps-3 pe-3 btn-update" />
@@ -48,6 +73,7 @@
             </div>
         </div>
     </div>
+</div>
 }
 
 <div>
@@ -58,4 +84,179 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+<script>
+    const checkPage = document.querySelectorAll('.checked-page')
+    const permissionSettingPageIdString = document.querySelector('#PermissionSettingPageIdString')
+
+    let getPageId = () => {
+        let pageId = [];
+        checkPage.forEach(item => {
+            if (item.checked) {
+                pageId.push(item.id.split("_")[1]);
+            }
+        });
+        permissionSettingPageIdString.value = pageId;
+    };
+
+    getPageId()
+
+    checkPage.forEach(item => {
+        item.addEventListener('change', (event) => {
+            getPageId();
+        });
+    });
+
+   /* 把ViewBag.companyJobList轉成物件*/
+    let companyDepartmentAndJob = [];
+    let dep;
+    @foreach (var item in ViewBag.companyJobList)
+    {
+        @:dep = companyDepartmentAndJob.filter(x => x.DepartmentId == @item.CompanyDepartmentId);
+
+        @:if (dep.length == 0) {
+            @:companyDepartmentAndJob.push({
+                @:DepartmentName: "@item.CompanyDepartmentName",
+                @:DepartmentId: @item.CompanyDepartmentId,
+                @:JobList: [{ Id:@item.Id, JobTitle:"@item.JobTitle"}]
+            @:});
+        @:} else {
+            @:dep[0].JobList.push({ Id:@item.Id, JobTitle:"@item.JobTitle"});
+        @:}
+    }
+
+    let createSelect = (i, selectedId) => {
+        let s = `<select class="custom-select font-medium" style="width:100%" id="departmentSelect_${i}"><option selected>請選擇部門</option>`;
+        companyDepartmentAndJob.forEach(item => {
+            let sel = item.DepartmentId == selectedId ? "selected" : "";
+            s += `<option value="${item.DepartmentId}" ${sel}>${item.DepartmentName}</option>`;
+        })
+        s += `</select>`;
+        return s;
+    };
+
+    let createDepartmentDiv = (select, i) => {
+        staffContainer.insertAdjacentHTML('beforeend', `
+        <div class="row staff-row border p-2 border-primary rounded" id="departmentContainer_${i}">
+    <div class="col-12 col-sm-1 ">
+        <div class="btn btn-sm btn-danger  rounded-circle justify-content-center text-center" id="departmentContainerDelete_${i}">
+            <i class="fa-solid fa-xmark"></i>
+        </div>
+    </div>
+    <div class="col-12 col-sm-4 "> ${select}</div><div class="col-12 col-sm-7 "></div></div>`
+        );
+    };
+
+    const staffContainer = document.querySelector('#staff-container');
+    const btnPlus = document.querySelector('#btn-plus');
+
+    let i = 0;
+    btnPlus.addEventListener('click', (event) => {
+        let select = createSelect(i);
+        createDepartmentDiv(select, i);
+
+        let btnDepartmentDelete = document.querySelector(`#departmentContainerDelete_${i}`);
+        btnDepartmentDelete.addEventListener('click', (event) => {
+            let staffRow = event.target.closest('.staff-row');
+            staffRow.remove();
+            ResetJobIdString();
+        });
+
+        let departmentSelect = document.querySelector(`#departmentSelect_${i}`);
+        departmentSelect.addEventListener('change', (event) => {
+            let parent = event.target.closest('.col-12');
+            let nextElementSibling = parent.nextElementSibling;
+            nextElementSibling.innerHTML = "";
+
+            companyDepartmentAndJob.forEach(item => {
+                if (item.DepartmentId == event.target.value) {
+                    item.JobList.forEach(job => {
+                        nextElementSibling.insertAdjacentHTML('beforeend', `
+            <input type="checkbox" class="btn-check checked-job" id="job_${item.DepartmentId}_${job.Id}" autocomplete="off" onclick="ResetJobIdString()"/>
+            <label class="btn btn-outline-primary" for="job_${item.DepartmentId}_${job.Id}">${job.JobTitle}</label>
+                        `);
+                    });
+                }
+            });
+        });
+        i++;
+    });
+
+    let criteriaString = "@Model.Criteria";
+    let criteriaArray = criteriaString.split(',');
+    let depAndJoblist = [];
+
+
+    for (let j = 0; j < criteriaArray.length; j++) {
+        let arr = criteriaArray[j].split('_');
+
+        let filterList = depAndJoblist.filter(x => x.DepartmentId == arr[0]);
+        if (filterList.length == 0) {
+            
+            depAndJoblist.push({
+                DepartmentId: arr[0],
+                JobList: [parseInt(arr[1]) ]
+            });
+        } else {
+            filterList[0].JobList.push(parseInt(arr[1]));
+        }
+    };
+
+    if (depAndJoblist[0].DepartmentId != "") {
+        console.log(depAndJoblist)
+        depAndJoblist = depAndJoblist.sort((a, b) =>  a.DepartmentId - b.DepartmentId );
+        console.log(depAndJoblist)
+
+        depAndJoblist.forEach(item => {
+
+            let select = createSelect(i, item.DepartmentId);
+            createDepartmentDiv(select, i);
+
+            let btnDepartmentDelete = document.querySelector(`#departmentContainerDelete_${i}`);
+            btnDepartmentDelete.addEventListener('click', (event) => {
+                let staffRow = event.target.closest('.staff-row');
+                staffRow.remove();
+                ResetJobIdString();
+            });
+
+            let departmentSelect = document.querySelector(`#departmentSelect_${i}`);
+            let parent = departmentSelect.closest('.col-12');
+            let nextElementSibling = parent.nextElementSibling;
+            nextElementSibling.innerHTML = "";
+
+            companyDepartmentAndJob.forEach(itemB => {
+                if (itemB.DepartmentId == item.DepartmentId) {
+                    itemB.JobList.forEach(job => {
+
+                        let checkedJob = item.JobList.includes(job.Id) ? "checked" : "";
+
+                        nextElementSibling.insertAdjacentHTML('beforeend', `
+<input type="checkbox" class="btn-check checked-job" id="job_${itemB.DepartmentId}_${job.Id}" autocomplete="off" onclick="ResetJobIdString()" ${checkedJob}/>
+<label class="btn btn-outline-primary" for="job_${itemB.DepartmentId}_${job.Id}">${job.JobTitle}</label>
+                    `);
+                    });
+                }
+            });
+            i++;
+        });
+    }
+    
+
+
+
+    const criteria = document.querySelector('#Criteria');
+
+    let ResetJobIdString = () => {
+        const checkedJob = document.querySelectorAll('.checked-job');
+        let jobId = [];
+        checkedJob.forEach(item => {
+            if (item.checked) {
+                let arr = item.id.split("_");
+                jobId.push(arr[1] + "_" + arr[2]);
+            }
+        });
+        criteria.value = jobId;
+        console.log(criteria.value);
+    };
+    ResetJobIdString();
+</script>
 }

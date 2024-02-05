@@ -56,7 +56,6 @@ namespace SparkleAir.Infa.EFModel.EFModels
         public virtual DbSet<PermissionSetting> PermissionSettings { get; set; }
         public virtual DbSet<SeatArea> SeatAreas { get; set; }
         public virtual DbSet<SeatGroup> SeatGroups { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TFCategory> TFCategories { get; set; }
         public virtual DbSet<TFItem> TFItems { get; set; }
         public virtual DbSet<TFOrderlist> TFOrderlists { get; set; }

@@ -55,10 +55,40 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="EPPlus, Version=7.0.8.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.7.0.8\lib\net462\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus.Interfaces, Version=6.1.1.0, Culture=neutral, PublicKeyToken=a694d7f3b0907a61, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.Interfaces.6.1.1\lib\net462\EPPlus.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus.System.Drawing, Version=6.1.1.0, Culture=neutral, PublicKeyToken=2308d35469c9bac0, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.System.Drawing.6.1.1\lib\net462\EPPlus.System.Drawing.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.IO.RecyclableMemoryStream, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IO.RecyclableMemoryStream.3.0.0\lib\netstandard2.0\Microsoft.IO.RecyclableMemoryStream.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.5.0.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -163,6 +193,7 @@
     <Compile Include="Controllers\CompaniesAndPermissions\PermissionPageInfosController.cs" />
     <Compile Include="Controllers\CompaniesAndPermissions\PermissionSettingsController.cs" />
     <Compile Include="Controllers\Airtype&amp;Owns\PlanesController.cs" />
+    <Compile Include="Controllers\CompaniesAndPermissions\StaffAuthController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LuggageOrders\LuggageOrdersController.cs" />
     <Compile Include="Controllers\Members\MemberClassesController.cs" />
@@ -175,9 +206,12 @@
     <Compile Include="Controllers\TaxFree\TFReserveController.cs" />
     <Compile Include="Controllers\TaxFree\TFReservelistController.cs" />
     <Compile Include="Controllers\TaxFree\TFWishlistController.cs" />
+    <Compile Include="Controllers\Tickets\TicketsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Authorize\StaffAuthorizeAttribute.cs" />
+    <Compile Include="Models\Authorize\StaffPrincipal.cs" />
     <Compile Include="Models\MenuItems\IMenuItem.cs" />
     <Compile Include="Models\MenuItems\IMenuItemVisitor.cs" />
     <Compile Include="Models\MenuItems\MenuItem.cs" />
@@ -425,9 +459,13 @@
     <Content Include="Content\v4-shims.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Files\Images\airplane.png" />
+    <Content Include="Files\Images\background.jpg" />
+    <Content Include="Files\Images\background2.jpg" />
     <Content Include="Files\Images\empty.jpg" />
+    <Content Include="Files\Images\loading.gif" />
     <Content Include="Files\Images\imgjake.jpg" />
     <Content Include="Files\Images\loading.gif" />
+    <Content Include="Files\LayoutImages\signin.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="obj\Debug\SparkleAir.FrontEnd.Site.csproj.FileListAbsolute.txt" />
@@ -749,6 +787,9 @@
     <Content Include="Views\Members\Edit.cshtml" />
     <Content Include="Scripts\vendor\sass\node_modules\immutable\dist\immutable.js.flow" />
     <Content Include="Views\CampaignsDiscount\SelectProduct.cshtml" />
+    <Content Include="Views\TFWishlist\Index1.cshtml" />
+    <Content Include="Views\TFItem\IndexTFItem.cshtml" />
+    <Content Include="Views\TFOrderlist\Create.cshtml" />
     <Content Include="Views\Owns\_PartialIndex.cshtml" />
     <Content Include="Views\Owns\Create.cshtml" />
     <Content Include="Views\Owns\Update.cshtml" />
@@ -757,6 +798,10 @@
     <Content Include="Views\CampaignsCoupon\IPartialIndex.cshtml" />
     <Content Include="Views\Members\Index1.cshtml" />
     <Content Include="Views\Members\Index - 複製.cshtml" />
+    <Content Include="Views\Tickets\Index.cshtml" />
+    <Content Include="Views\StaffAuth\Login.cshtml" />
+    <Content Include="Views\StaffAuth\Unauthorized.cshtml" />
+    <Content Include="Views\AirFlights\Index1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -767,6 +812,7 @@
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Campaigns\" />
     <Folder Include="Views\Companies\" />
+    <Folder Include="Views\Login\" />
     <Folder Include="Views\Search\" />
   </ItemGroup>
   <ItemGroup>

@@ -1,5 +1,6 @@
 ﻿using SparkleAir.BLL.Service.TaxFree;
 using SparkleAir.DAL.EFRepository.TaxFree;
+using SparkleAir.FrontEnd.Site.Models.Authorize;
 using SparkleAir.IDAL.IRepository.TaxFree;
 using SparkleAir.Infa.Dto.TaxFree;
 using SparkleAir.Infa.ViewModel.TaxFree;
@@ -8,17 +9,66 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using OfficeOpenXml;
+using OfficeOpenXml.Style;
+using System.IO;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.TaxFree
 {
-    public class TFWishlistController : Controller
+    [StaffAuthorize(PageName = "TFWishlist")]
+    public class TFWishlistController : BaseController
     {
         ITFWishlist repo = new TFWishlistEFRepository();
         // GET: TFWishlist
         public ActionResult Index()
         {
-            List<TFWishlistsVm> data = Get();
-            return View(data);
+            return View();
+        }
+        public ActionResult Index1()
+        { 
+
+           
+            List<TFWishlistsVm> wishlists = Get();
+
+            //// 使用LINQ進行分組和整理
+            //var groupedWishlists = wishlists
+            //    .GroupBy(x => x.MemberId)
+            //    .Select(group => new
+            //    {
+            //        MemberId = group.Key,
+            //        MemberChineseLastName = group.First().MemberChineseLastName,
+            //        MemberChineseFirstName = group.First().MemberChineseFirstName,
+            //        MemberEnglishLastName = group.First().MemberEnglishLastName,
+            //        MemberEnglishFirstName = group.First().MemberEnglishFirstName,
+            //        TFItems = string.Join(", ", group.Select(item => $"{item.TFItemsName} ({item.TFItemsSerialNumber})"))
+            //    });
+
+           return PartialView("Index1", wishlists);
+        }
+
+        public ActionResult ExportToExcel()
+        {
+            var data = Get();
+            ExcelPackage.LicenseContext = LicenseContext.Commercial;
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+
+            using (var package = new ExcelPackage())
+            {
+                // 建立一個工作表
+                var worksheet = package.Workbook.Worksheets.Add("Sheet1");
+
+                // 填充資料
+                worksheet.Cells.LoadFromCollection(data, true);
+
+                // 設定列寬
+                worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
+
+                // 保存 Excel 檔案
+                byte[] fileBytes = package.GetAsByteArray();
+
+                // 透過 File 方法回傳檔案至使用者端
+                return File(fileBytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "ExportedData.xlsx");
+            }
         }
 
         public ActionResult Details(int id)
@@ -43,6 +93,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.TaxFree
         {
             return View(); 
         }
+
 
         [HttpPost]
         public ActionResult Create(TFWishlistsVm vm)
@@ -116,6 +167,13 @@ namespace SparkleAir.FrontEnd.Site.Controllers.TaxFree
             {
                 Id = p.Id,
                 MemberId = p.MemberId,
+                MemberChineseFirstName = p.MemberChineseFirstName,
+                MemberChineseLastName = p.MemberChineseLastName,
+                MemberEnglishFirstName = p.MemberEnglishFirstName,
+                MemberEnglishLastName = p.MemberEnglishLastName,
+                MemberPassportNumber = p.MemberPassportNumber,
+                TFItemsName = p.TFItemsName,
+                TFItemsSerialNumber = p.TFItemsSerialNumber,
                 TFItemsId = p.TFItemsId
             }).ToList();
             return vm;
@@ -128,7 +186,13 @@ namespace SparkleAir.FrontEnd.Site.Controllers.TaxFree
             return new TFWishlistsVm 
             {
                 Id = dto.Id, 
-                MemberId = dto.MemberId, 
+                MemberId = dto.MemberId,
+                MemberChineseFirstName = dto.MemberChineseFirstName,
+                MemberChineseLastName = dto.MemberChineseLastName,
+                MemberEnglishFirstName = dto.MemberEnglishFirstName,
+                MemberEnglishLastName = dto.MemberEnglishLastName,
+                TFItemsName = dto.TFItemsName,
+                TFItemsSerialNumber = dto.TFItemsSerialNumber,
                 TFItemsId = dto.TFItemsId 
             };
         }

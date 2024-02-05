@@ -14,7 +14,7 @@ namespace SparkleAir.Infa.ViewModel.CompanyAndPermission
 
         [Display(Name = "頁面編號")]
         [Required(ErrorMessage = "{0}必填")]
-        [MaxLength(10)]
+        [MaxLength(50)]
         public string PageNumber { get; set; }
 
         [Display(Name = "頁面名稱")]

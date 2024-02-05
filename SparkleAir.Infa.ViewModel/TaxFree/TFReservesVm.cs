@@ -9,8 +9,7 @@ namespace SparkleAir.Infa.ViewModel.TaxFree
 {
     public class TFReservesVm
     {
-        
-
+       
         public int Id { get; set; }
 
         public int MemberId { get; set; }

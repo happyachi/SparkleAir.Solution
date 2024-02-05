@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace SparkleAir.DAL.EFRepository.CompanyAndPermission
@@ -53,6 +54,42 @@ namespace SparkleAir.DAL.EFRepository.CompanyAndPermission
             var entities = _db.PermissionGroupsAddStaffs
                 .Include(x => x.PermissionGroup)
                 .Include(x => x.CompanyStaff)
+                .Select(x => new PermissionGroupsAddStaffEntity
+                {
+                    Id = x.Id,
+                    PermissionGroupsId = x.PermissionGroupsId,
+                    PermissionGroupsName = x.PermissionGroup.Name,
+                    CompanyStaffsId = x.CompanyStaffsId,
+                    CompanyStaffsName = x.CompanyStaff.FirstName + " " + x.CompanyStaff.LastName
+                }).ToList();
+
+            return entities;
+        }
+
+        public List<PermissionGroupsAddStaffEntity> SearchByGroupId(int groupId)
+        {
+            var entities = _db.PermissionGroupsAddStaffs
+                .Include(x => x.PermissionGroup)
+                .Include(x => x.CompanyStaff)
+                .Where(x => x.PermissionGroupsId == groupId)
+                .Select(x => new PermissionGroupsAddStaffEntity
+                {
+                    Id = x.Id,
+                    PermissionGroupsId = x.PermissionGroupsId,
+                    PermissionGroupsName = x.PermissionGroup.Name,
+                    CompanyStaffsId = x.CompanyStaffsId,
+                    CompanyStaffsName = x.CompanyStaff.FirstName + " " + x.CompanyStaff.LastName
+                }).ToList();
+
+            return entities;
+        }
+
+        public List<PermissionGroupsAddStaffEntity> SearchByStaffId(int staffId)
+        {
+            var entities = _db.PermissionGroupsAddStaffs
+                .Include(x => x.PermissionGroup)
+                .Include(x => x.CompanyStaff)
+                .Where(x => x.CompanyStaffsId == staffId)
                 .Select(x => new PermissionGroupsAddStaffEntity
                 {
                     Id = x.Id,

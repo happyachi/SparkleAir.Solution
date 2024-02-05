@@ -69,6 +69,7 @@ namespace SparkleAir.Infa.Utility.Exts.Models
                 FlightCode = afm.FlightCode,
                 DepartureAirportId = afm.DepartureAirportId,
                 ArrivalAirportId = afm.ArrivalAirportId,
+                DepartureTerminal = afm.DepartureTerminal,
                 ArrivalTerminal = afm.ArrivalTerminal,
                 DepartureTime = afm.DepartureTime,
                 ArrivalTime = afm.ArrivalTime,
@@ -112,8 +113,9 @@ namespace SparkleAir.Infa.Utility.Exts.Models
         public static List<DateTime> GetScheduledFlights(this DateTime currentDate, FlightDate[] days, DateTime today)
         {
             var scheduledFlights = new List<DateTime>();
-            var currentMonth = currentDate.Month;
-            for (int month = currentMonth; month <= (currentMonth); month++)
+            var currentMonth = currentDate.Month;  
+            var nextMonth = currentMonth + 1;
+            for (int month = currentMonth; month <= nextMonth; month++)
             {
                 var daysInMonth = DateTime.DaysInMonth(currentDate.Year, month);
                 for (int day = 1; day <= daysInMonth; day++)
@@ -191,11 +193,11 @@ namespace SparkleAir.Infa.Utility.Exts.Models
             return entity;
         }
 
-        public static bool IsExist(this DateTime deptTime)
+        public static bool IsExist(this DateTime deptTime,int afmId)
         {
             AppDbContext db = new AppDbContext();
             var flights = db.AirFlights
-      .Where(f => DbFunctions.TruncateTime(f.ScheduledDeparture) == deptTime)
+      .Where(f => f.ScheduledDeparture == deptTime && f.AirFlightManagementId == afmId)
       .ToList();
             if(flights.Count > 0)
             {

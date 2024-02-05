@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 
+
 namespace SparkleAir.FrontEnd.Site
 {
     public class MvcApplication : System.Web.HttpApplication
@@ -18,6 +19,7 @@ namespace SparkleAir.FrontEnd.Site
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            
         }
     }
 }

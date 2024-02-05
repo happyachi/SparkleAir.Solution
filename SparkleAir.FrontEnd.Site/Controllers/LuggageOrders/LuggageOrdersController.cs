@@ -22,9 +22,11 @@ using SparkleAir.IDAL.IRepository.AirFlights;
 using SparkleAir.DAL.EFRepository.AirFlights;
 using SparkleAir.BLL.Service.AirFlights;
 using SparkleAir.Infa.ViewModel.Airports;
+using SparkleAir.FrontEnd.Site.Models.Authorize;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.LuggageOrders
 {
+    [StaffAuthorize(PageName = "LuggageOrders")]
     public class LuggageOrdersController : BaseController
     {
         ILuggageOrderRepository efRLuggageorder = new LuggageOrderEFRepository();
