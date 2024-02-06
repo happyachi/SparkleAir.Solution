@@ -1,0 +1,74 @@
+﻿@model SparkleAir.Infa.ViewModel.MealMessage.AirMealVm
+
+@{
+    ViewBag.Title = "刪除商品";
+}
+
+<h2>刪除商品</h2>
+
+<h3>確定要刪除這筆資料嗎?</h3>
+<div>
+    @*<h4>AirMealVm</h4>*@
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AirCabinId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AirCabinId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MealContent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MealContent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+
+        <dd>
+            @*@Html.DisplayFor(model => model.Image)*@
+            <img src="@Url.Content($"~/Files/AirMealImgs/{Model.Image}")" alt="Image" width="300" />
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.UploadedImage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UploadedImage)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Category)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+<div class="form-actions no-color">
+    <input type="submit" value="確定刪除" class="btn btn-sm btn-danger ps-3 pe-3 btn-delete" /> |
+    <a href='@Url.Action("Index/")' class="btn btn-sm btn-dark ps-2 pe-2 btn-back-to-list"><i class="fa-solid fa-backward"></i>&nbsp;&nbsp;回清單頁</a>
+    @*@Html.ActionLink("Back to List", "Index")*@
+</div>
+    }
+</div>

@@ -51,6 +51,7 @@
     <Compile Include="AirFlights\AirFlightSeatsVm.cs" />
     <Compile Include="AirFlights\AirFlightVm.cs" />
     <Compile Include="AirFlights\AirOwnVm.cs" />
+    <Compile Include="AirFlights\AirTicketPriceVm.cs" />
     <Compile Include="AirFlights\EachFlightSeatsVm.cs" />
     <Compile Include="AirFlights\EachSeatInfoVm.cs" />
     <Compile Include="Airtype&amp;Owns\OwnVm.cs" />

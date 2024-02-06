@@ -1,9 +1,41 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+@section Styles{
+    <style>
+        .bg-cover {
+            height: 80vh;
+            background-image: url('/Files/LayoutImages/signin.svg');
+            background-position: center;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container_title {
+            text-align: center;
 
-<main>
-    <div class="container">
-        <h1>歡迎登入 Sparkle Airline</h1>
-    </div>
-</main>
+            @@font-face {
+                font-family: 'fa-brands-400';
+                src: url('@Url.Content("~/webFonts/fa-brands-400.woff")') format("woff"),
+                    url('@Url.Content("~/webFonts/fa-brands-400.ttf")') format("truetype"), 
+                    url('@Url.Content("~/webFonts/fa-brands-400.eot")') format("embedded-opentype");
+            }
+        }
+
+
+
+    </style>
+}
+
+
+<div class="bg-cover">
+    <main class="d-flex justify-content-center text-center align-items-center">
+        <div class="container_title justify-content-center text-center">
+            <h1>歡迎登入</h1>
+            <h2>SAPRKLE AIRLINE</h2>
+            <h2>Elevate Your Experience with Sky's Sparkle</h2>
+        </div>
+    </main>
+</div>

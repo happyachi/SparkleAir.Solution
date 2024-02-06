@@ -18,8 +18,6 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-
-
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<!-- Primary Meta Tags -->
 	<title>@ViewBag.Title - </title>
@@ -79,13 +77,11 @@
             <a class="navbar-brand me-lg-5" href="@Url.Action("Index", "Home")">
                 <h2 style="color:white" class="mt-2">Sparkle AirLine</h2>
             </a>
-
         </div>
-
         <!-- 右側登出-->
         <div class="dropdown text-end dropstart">
             <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                <div class="btn btn-sm btn-dark  rounded-circle justify-content-center text-center m-2 " id="btn-plus"><i class="fa-solid fa-user"></i></div>
+                <div class="btn btn-sm btn-dark  rounded-circle justify-content-center text-center m-2 " id=""><i class="fa-solid fa-user"></i></div>
             </a>
             <ul class="dropdown-menu text-small" style="">
                 @*<li><a class="dropdown-item" href="#">New project...</a></li>
@@ -96,9 +92,7 @@
             </ul>
         </div>
     </nav>
-
 	<button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Enable both scrolling & backdrop</button>
-
 	<div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
 		<div class="offcanvas-header">
 			<h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Backdrop with scrolling</h5>
@@ -133,18 +127,13 @@
 				</div>
 			</div>
 			<ul class="nav flex-column pt-3 pt-md-0" id="navContene">
-
 				<!--動態生成menu items-->
 				@Html.Raw(ViewBag.MenuItems)
-
-
-
 				<li role="separator"
 					class="dropdown-divider mt-4 mb-3 border-gray-700"></li>
-
-			</ul>
-		</div>
-	</nav>
+            </ul>
+        </div>
+    </nav>
 	<!-- 內容-->
 	<main class="content p-4" style="margin-left:0">
 		@RenderBody()
@@ -152,7 +141,6 @@
 	<footer>
 		<p class="ms-3">&copy; @DateTime.Now.Year - Sparkle Airline</p>
 	</footer>
-
 
 	@Scripts.Render("~/bundles/jquery")
 	@Scripts.Render("~/bundles/bootstrap")
@@ -182,7 +170,6 @@
 				footer.style.marginLeft = (sidebarMenu.style.display === "none") ? "0" : sidebarMenu.offsetWidth + "px";
 				sparkle.style.marginLeft = (sidebarMenu.style.display === "none") ? "0" : sidebarMenu.offsetWidth + "px";
 			});
-
 
 			document.addEventListener("mouseenter", function (e) {
 				// 確認事件目標不在左側欄內部

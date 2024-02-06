@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Edit";
+    bool isChecked = false;
 }
 
 <style>
@@ -10,20 +11,54 @@
         color: #555; /* 深灰色文字 */
         cursor: not-allowed; /* 顯示禁用的游標 */
     }
+
+    /*Member間距*/
+    .member-label {
+        margin-right: 50px;
+    }
+
+    .title {
+        font-weight: bold;
+        font-size: 2.4em; /* 調整文字大小 */
+    }
+
+    .form-horizontal label.control-label {
+        font-weight: bold;
+        font-size: 1.2em; /* 調整文字大小 */
+    }
+
+    .form-horizontal .form-group {
+        margin-bottom: 15px; /* 調整行之間的間距 */
+    }
+
 </style>
 
-<h2>Edit</h2>
+<div style="display: flex; align-items: center;">
+    <h2 style="margin-right: 30px;" class="title">優惠券編輯</h2>
+    @Html.EditorFor(model => model.Status, new
+    {
+        htmlAttributes = new
+        {
+            @class = "form-control",
+            @readonly = "readonly",
+            @style = "background-color: #d2f5e3; width: 130px; cursor: not-allowed; text-align: center;"
+        }
+    })
+</div>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
 <div class="form-horizontal">
-    <h4>CampaignsCouponVm</h4>
+    <h4>@*CampaignsCouponVm*@</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @Html.HiddenFor(model => model.Id)
-
+    @Html.HiddenFor(model => model.CampaignId)
+    @Html.HiddenFor(model => model.DateCreated)
+    @Html.HiddenFor(model => model.Campaign)
+    @Html.HiddenFor(model => model.Status)
     @*<div class="form-group">
             @Html.LabelFor(model => model.Campaign, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -40,18 +75,18 @@
         </div>
     </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.CampaignId, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.CampaignId, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.CampaignId, "", new { @class = "text-danger" })
-        </div>
-    </div>
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.CampaignId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CampaignId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CampaignId, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
 
     <div class="form-group">
         @Html.LabelFor(model => model.DateStart, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.DateStart, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.DateStart, new { htmlAttributes = new { @class = "form-control readonly-field", @readonly = "readonly" } })
             @Html.ValidationMessageFor(model => model.DateStart, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -80,13 +115,29 @@
             </div>
         </div>*@
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.DiscountValue, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.DiscountValue, new { htmlAttributes = new { @class = "form-control readonly-field", @readonly = "readonly" } })
-            @Html.ValidationMessageFor(model => model.DiscountValue, "", new { @class = "text-danger" })
-        </div>
+<div class="form-group">
+    @{
+        string label = "";
+        string editorFormat = "";
+
+        if (Model.CampaignId == 1)
+        {
+            label = "折扣金額";
+            editorFormat = "{0:N0}";
+        }
+        else if (Model.CampaignId == 4)
+        {
+            label = "折扣折數";
+            editorFormat = "{0:0}%"; // 加上 % 符號
+        }
+    }
+
+    @Html.Label(label, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(model => model.DiscountValue, string.Format(editorFormat, Model.DiscountValue), new { @class = "form-control readonly-field", @readonly = "readonly" })
+        @Html.ValidationMessageFor(model => model.DiscountValue, "", new { @class = "text-danger" })
     </div>
+</div>
 
     <div class="form-group">
         @Html.LabelFor(model => model.DiscountQuantity, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -99,7 +150,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.AvailableQuantity, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.AvailableQuantity, new { htmlAttributes = new { @class = "form-control readonly-field", @readonly = "readonly" } })
+            @Html.TextBoxFor(model => model.AvailableQuantity, "{0:N0}", new { @class = "form-control readonly-field", @readonly = "readonly" })
             @Html.ValidationMessageFor(model => model.AvailableQuantity, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -107,7 +158,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.MinimumOrderValue, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.MinimumOrderValue, new { htmlAttributes = new { @class = "form-control readonly-field", @readonly = "readonly" } })
+            @Html.TextBoxFor(model => model.MinimumOrderValue, "{0:N0}", new { @class = "form-control readonly-field", @readonly = "readonly" })
             @Html.ValidationMessageFor(model => model.MinimumOrderValue, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -115,7 +166,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.MaximumDiscountAmount, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.MaximumDiscountAmount, new { htmlAttributes = new { @class = "form-control readonly-field", @readonly = "readonly" } })
+            @Html.TextBoxFor(model => model.MaximumDiscountAmount, "{0:N0}", new { @class = "form-control readonly-field", @readonly = "readonly" })
             @Html.ValidationMessageFor(model => model.MaximumDiscountAmount, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -138,34 +189,69 @@
         </div>
     </div>
 
+
     <div class="form-group">
         @Html.LabelFor(model => model.MemberCriteria, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.MemberCriteria, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.MemberCriteria, "", new { @class = "text-danger" })
+            <div class="form-check">
+                @if (ViewBag.Member != null)
+                {
+                    foreach (var member in ViewBag.Member)
+                    {
+                        <label class="checkbox-inline member-label">
+                            @if (!string.IsNullOrEmpty(Model.MemberCriteria))
+                            {
+                                string[] members = Model.MemberCriteria.Split(',');
+                                isChecked = members.Contains(member.Name as string);
+                                <input class="form-check-input" type="checkbox" value="@member.Name" data-member="@member.Name" name="members" @(isChecked ? "checked" : "") onclick="updateMember()" />@member.Name
+                            }
+                        </label>
+                    }
+                }
+                <input type="hidden" name="MemberCriteria" id="flexCheckDefault" value="" />
+            </div>
         </div>
     </div>
-
     <div class="form-group">
         @Html.LabelFor(model => model.AirFlightsCriteria, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.AirFlightsCriteria, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.TextAreaFor(model => model.AirFlightsCriteria, new { @class = "form-control", rows = 4 }) <!-- 設定 rows 屬性來指定行數 -->
             @Html.ValidationMessageFor(model => model.AirFlightsCriteria, "", new { @class = "text-danger" })
         </div>
     </div>
 
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Save" class="btn btn-default" />
+    <div class="mb-3">
+        <div class="col-md-offset-2 col-md-10 mt-5">
+            <input type="submit" value="儲存" class="btn btn-sm btn-success ps-3 pe-3 btn-create" />
         </div>
     </div>
 </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    <a href='@Url.Action("Index/")' class="btn btn-sm btn-dark ps-2 pe-2 btn-back-to-list mt-2"><i class="fa-solid fa-backward"></i>&nbsp;&nbsp;回清單頁</a>
 </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+<script>
+    function updateMember() {
+        console.log("123");
+        const checks = document.querySelectorAll('.form-check-input');
+        const members = Array.from(checks)
+            .filter(checkbox => checkbox.checked)
+            .map(checkbox => checkbox.value);
+
+        document.getElementById('flexCheckDefault').value = members.join(',');
+        console.log(members);
+    }
+
+        //狀態欄位修飾
+        window.onload = function () {
+          var statusInput = document.getElementById('@Html.IdFor(model => model.Status)');
+          statusInput.value += "的活動";
+        }
+
+    updateMember();
+</script>
 }

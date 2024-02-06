@@ -16,7 +16,7 @@ using System.IO;
 namespace SparkleAir.FrontEnd.Site.Controllers.TaxFree
 {
     [StaffAuthorize(PageName = "TFWishlist")]
-    public class TFWishlistController : Controller
+    public class TFWishlistController : BaseController
     {
         ITFWishlist repo = new TFWishlistEFRepository();
         // GET: TFWishlist

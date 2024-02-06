@@ -1,0 +1,172 @@
+﻿@model IEnumerable<SparkleAir.Infa.ViewModel.AirFlights.AirFlightVm>
+
+@*<p>
+        <a href='@Url.Action("Create")' class="btn btn-sm btn-dark ps-3 pe-3 btn-create"><i class="fa-solid fa-plus"></i>&nbsp;&nbsp;新增</a>
+    </p>*@
+<table class="table table_jq">
+    <thead>
+        <tr>
+            <th>
+                <input class="form-check-input checkAll" type="checkbox" value="" id="selectAllitemCheckbox">
+                <label class="form-check-label" for="flexCheckDefault"></label>
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.AirOwnId)
+            </th>*@
+        <th>
+            航班代碼
+        </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ScheduledDeparture)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ScheduledArrival)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.AirFlightSaleStatusId)
+            </th>*@
+            @*<th>
+                @Html.DisplayNameFor(model => model.FlightModel)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.FlightCode)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.DepartureAirPort)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArrivalAriPort)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.AirFlightSaleStatus)
+            </th>
+            @*<th></th>*@
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            if (item != null)
+            {
+            <tr>
+                <td>
+                    <label class="fcheckbox-inline" for="flexCheckDefault">
+                        <input class="form-check-input products" type="checkbox" value="@item.FlightCode" data-member="@item.FlightCode" name="items">
+                    </label>
+                    @*<input name="ItemCriteria" id="flexCheckDefault" value="" />*@
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.AirOwnId)
+                </td>*@
+                <td>
+                    @if (item.AirFlightManagementId != null)
+                    { 
+                    @Html.DisplayFor(modelItem => item.AirFlightManagementId)
+                    }
+                </td>
+                <td>
+                    @if (item.ScheduledDeparture != null)
+                    {
+                    @Html.DisplayFor(modelItem => item.ScheduledDeparture)
+                    }
+                </td>
+                <td>
+                    @if (item.ScheduledArrival != null)
+                    {
+                    @Html.DisplayFor(modelItem => item.ScheduledArrival)
+                    }
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.AirFlightSaleStatusId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FlightModel)
+                </td>*@
+            <td>
+                @if (item.FlightCode != null){
+                @Html.DisplayFor(modelItem => item.FlightCode)
+                }
+            </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.DepartureAirPort)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArrivalAriPort)
+                </td>*@
+            <td>
+                @if (item.AirFlightSaleStatus != null)
+                {
+                @Html.DisplayFor(modelItem => item.AirFlightSaleStatus)
+                }
+            </td>
+                @*<td>
+            <a href='@Url.Action("Edit/")@item.Id' class="btn btn-sm btn-dark ps-2 pe-2 btn-edit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;編輯</a> |
+            <a href='@Url.Action("Details/")@item.Id' class="btn btn-sm btn-dark ps-2 pe-2 btn-detail"><i class="fa-solid fa-file"></i>&nbsp;&nbsp;詳細資訊</a> |
+            <a href='@Url.Action("Delete/")@item.Id' class="btn btn-sm btn-danger ps-2 pe-2 btn-delete"><i class="fa-solid fa-trash"></i>&nbsp;&nbsp;刪除</a>
+        </td>*@
+            </tr>
+            }
+        }
+    </tbody>
+</table>
+<div class="select" id="selectContainer" style="display: none;">
+    <button type="button" class="btn btn-sm btn-dark col-sm-1" onclick="cancelProducts()">取消</button>
+    <button type="button" class="btn btn-sm btn-dark col-sm-1" onclick="saveProducts()">儲存</button>
+</div>
+
+<script>
+
+    const selectAll = document.querySelector('#selectAllitemCheckbox');
+    const select = document.querySelectorAll('.products');
+
+    selectAll.addEventListener('change', function () {
+        const isChecked = selectAll.checked;
+        select.forEach(product => {
+            product.checked = isChecked;
+        });
+    });
+
+    function updateItems() {
+        console.log("123");
+        const items = Array.from(checks)
+            .filter(checkbox => checkbox.checked)
+            .map(checkbox => checkbox.value);
+
+        document.getElementById('flexCheckDefault').value = items.join(',');
+        console.log(items);
+    }
+
+    const items = document.querySelector('#flexCheckDefault');
+
+
+    const selectedIds = []; // 儲存選的item.Id
+
+    selectAll.addEventListener('change', function () {
+        const isChecked = selectAll.checked;
+        select.forEach(product => {
+            product.checked = isChecked;
+            updateItems(); // 更新選中的項目
+        });
+    });
+
+    select.forEach(product => {
+        product.addEventListener('change', function () {
+            updateItems(); // 更新選中的項目
+        });
+    });
+
+    function updateItems() {
+        selectedIds.length = 0; // 清空
+        select.forEach(product => {
+            if (product.checked) {
+                const itemId = product.getAttribute('data-member');
+                selectedIds.push(itemId);
+            }
+        });
+
+        document.getElementById('flexCheckDefault').value = selectedIds.join(',');
+        console.log(selectedIds);
+    }
+
+</script>
+

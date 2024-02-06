@@ -196,6 +196,7 @@
     <Compile Include="Controllers\CompaniesAndPermissions\StaffAuthController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LuggageOrders\LuggageOrdersController.cs" />
+    <Compile Include="Controllers\MealMessages\AirMealsController.cs" />
     <Compile Include="Controllers\Members\MemberClassesController.cs" />
     <Compile Include="Controllers\Members\MemberLoginLogsController.cs" />
     <Compile Include="Controllers\Luggages\LuggageController.cs" />
@@ -346,7 +347,6 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
-    <Content Include="Content\sparkleAir.css" />
     <Content Include="Content\volt.css" />
     <Content Include="Content\brands.css" />
     <Content Include="Content\brands.min.css" />
@@ -458,7 +458,25 @@
     <Content Include="Content\v4-shims.css" />
     <Content Include="Content\v4-shims.min.css" />
     <Content Include="favicon.ico" />
+    <Content Include="Files\Airports\007fa287a57d45b7ad2951e13a73478d.jpg" />
+    <Content Include="Files\Airports\1284.jpg" />
+    <Content Include="Files\Airports\1476.gif" />
+    <Content Include="Files\Airports\2e0f2dd08db7416abcb6393ded033498.jpg" />
+    <Content Include="Files\Airports\38b321b3aebf46d9a32e1e96087c6a3f.jpg" />
+    <Content Include="Files\Airports\3dce195138f94fd79195af0527c2d6fb.png" />
+    <Content Include="Files\Airports\50f60782f4794a05b164193a08811eca.jpg" />
+    <Content Include="Files\Airports\65a433bb9bfa41008d8d9fb73b82cc9f.jpg" />
+    <Content Include="Files\Airports\7f45528a2bf2462c85be6de738209431.jpg" />
+    <Content Include="Files\Airports\8eaf534ea516401c9fba00c50a3ca203.jpg" />
+    <Content Include="Files\Airports\b11e21055036440f91cc07d39d3fc9ef.jpg" />
+    <Content Include="Files\Airports\b5760427766141458210f869e6713e4e.jpg" />
+    <Content Include="Files\Airports\bfcf2e2be75b48638781642ae050fce6.JPG" />
+    <Content Include="Files\Airports\d89ed13a2be74a41bcefccd5d4952dc4.jpg" />
+    <Content Include="Files\Airports\dctqg3yf.yy4.gif" />
+    <Content Include="Files\Airports\e739d3a369554c18bd1e96a12e8110d2.jpg" />
     <Content Include="Files\Images\airplane.png" />
+    <Content Include="Files\Images\background.jpg" />
+    <Content Include="Files\Images\background2.jpg" />
     <Content Include="Files\Images\empty.jpg" />
     <Content Include="Files\Images\loading.gif" />
     <Content Include="Files\Images\imgjake.jpg" />
@@ -660,6 +678,7 @@
     <Content Include="Views\MileageDetail\Index.cshtml" />
     <Content Include="Views\MileageDetail\Create.cshtml" />
     <Content Include="Views\TFItem\Index.cshtml" />
+    <Content Include="Views\TFItem\Create.cshtml" />
     <Content Include="Views\TFItem\Edit.cshtml" />
     <Content Include="Views\TFItem\Details.cshtml" />
     <Content Include="Views\LuggageOrders\Index.cshtml" />
@@ -674,7 +693,6 @@
     <Content Include="Views\AirFlights\_SeatsDetailPartial.cshtml" />
     <Content Include="Views\LuggageOrders\PartialIndex.cshtml" />
     <Content Include="Views\LuggageOrders\Details.cshtml" />
-    <Content Include="Views\Owns\Index.cshtml" />
     <Content Include="CodeTemplates\ApiControllerEmpty\Controller.cs.t4" />
     <Content Include="CodeTemplates\ApiControllerEmpty\Controller.vb.t4" />
     <Content Include="CodeTemplates\ApiControllerWithActions\Controller.cs.t4" />
@@ -753,6 +771,8 @@
     <Content Include="Views\Home\Error404.cshtml" />
     <Content Include="Views\Home\Error500.cshtml" />
     <Content Include="Scripts\vendor\sass\node_modules\immutable\dist\immutable.js.flow" />
+    <Content Include="Views\TFItem\Index.cshtml" />
+    <Content Include="Views\TFItem\Details.cshtml" />
     <Content Include="Views\TFItem\Create.cshtml" />
     <Content Include="Views\CampaignsDiscount\Create.cshtml" />
     <Content Include="Views\CampaignsDiscount\Edit.cshtml" />
@@ -782,9 +802,16 @@
     <Content Include="Views\TFReservelist\Details.cshtml" />
     <Content Include="Views\TFReservelist\Edit.cshtml" />
     <Content Include="Views\TFReservelist\Create.cshtml" />
+    <Content Include="Views\TFItem\Edit.cshtml" />
     <Content Include="Views\Members\Edit.cshtml" />
     <Content Include="Scripts\vendor\sass\node_modules\immutable\dist\immutable.js.flow" />
+    <Content Include="Views\TFItem\Index.cshtml" />
     <Content Include="Views\CampaignsDiscount\SelectProduct.cshtml" />
+    <Content Include="Views\AirMeals\Create.cshtml" />
+    <Content Include="Views\AirMeals\Delete.cshtml" />
+    <Content Include="Views\AirMeals\Details.cshtml" />
+    <Content Include="Views\AirMeals\Edit.cshtml" />
+    <Content Include="Views\AirMeals\Index.cshtml" />
     <Content Include="Views\TFWishlist\Index1.cshtml" />
     <Content Include="Views\TFItem\IndexTFItem.cshtml" />
     <Content Include="Views\TFOrderlist\Create.cshtml" />
@@ -794,18 +821,22 @@
     <Content Include="Views\Owns\Delete.cshtml" />
     <Content Include="Views\CampaignsDiscount\IPartialIndex.cshtml" />
     <Content Include="Views\CampaignsCoupon\IPartialIndex.cshtml" />
+    <Content Include="Views\CampaignsCoupon\SelectFlights.cshtml" />
     <Content Include="Views\Members\Index1.cshtml" />
     <Content Include="Views\Members\Index - 複製.cshtml" />
     <Content Include="Views\Tickets\Index.cshtml" />
     <Content Include="Views\StaffAuth\Login.cshtml" />
     <Content Include="Views\StaffAuth\Unauthorized.cshtml" />
+    <Content Include="Views\AirFlights\Index1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Files\Airports\" />
+    <Folder Include="Files\AirMealImgs\" />
     <Folder Include="Models\ViewModels\Airtype&amp;Owns\" />
     <Folder Include="Models\ViewModels\Members\" />
     <Folder Include="obj\Debug\TempPE\" />
+    <Folder Include="Views\AirFlightSeats\" />
+    <Folder Include="Views\Airtype&amp;Owns\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Campaigns\" />
     <Folder Include="Views\Companies\" />
@@ -877,7 +908,7 @@
       <Name>SparkleAir.Infa.Utility</Name>
     </ProjectReference>
     <ProjectReference Include="..\SparkleAir.Infa.ViewModel\SparkleAir.Infa.ViewModel.csproj">
-      <Project>{4B7A6ECF-2F6D-449B-83D0-6E08D3E43A40}</Project>
+      <Project>{4b7a6ecf-2f6d-449b-83d0-6e08d3e43a40}</Project>
       <Name>SparkleAir.Infa.ViewModel</Name>
     </ProjectReference>
   </ItemGroup>

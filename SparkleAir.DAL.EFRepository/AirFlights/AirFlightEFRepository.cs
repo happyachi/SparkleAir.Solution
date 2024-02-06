@@ -49,6 +49,11 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
             return flights;
         }
 
+        public Task<List<AirFlightEntity>> GetAllAsync()
+        {
+            throw new NotImplementedException();
+        }
+
         public AirFlightEntity GetById(int id)
         {
             var flight = db.AirFlights

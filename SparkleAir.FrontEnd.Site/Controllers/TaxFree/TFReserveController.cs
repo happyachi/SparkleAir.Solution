@@ -13,8 +13,8 @@ using System.Web.Mvc;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.TaxFree
 {
-    [StaffAuthorize(PageName = " TFReserve")]
-    public class TFReserveController : Controller
+    [StaffAuthorize(PageName = "TFReserve")]
+    public class TFReserveController : BaseController
     {
 
         ITFReserve repo = new TFReseveEFRepository();

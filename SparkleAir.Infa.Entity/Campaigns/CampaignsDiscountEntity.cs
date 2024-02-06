@@ -53,7 +53,7 @@ namespace SparkleAir.Infa.Entity.Campaigns
 
         public string Type { get; set; }
 
-        //public string Campaign { get; set; }
+        public string Campaign { get; set; }
 
 
         public virtual ICollection<CampaignsDiscountMember> CampaignsDiscountMembers { get; set; }

@@ -1,16 +1,16 @@
 ﻿@model SparkleAir.Infa.ViewModel.CompanyAndPermission.PermissionPageInfoIndexVm
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "編輯";
 }
 
-<h2>Edit</h2>
+<h2>編輯</h2>
 
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
 
         <hr />
@@ -44,18 +44,37 @@
         <div class="mb-3">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="儲存" class="btn btn-sm btn-success ps-3 pe-3 btn-update" />
-                <a href='@Url.Action("Delete/")@Model.Id' class="btn btn-sm btn-danger ps-2 pe-2 btn-delete"><i class="fa-solid fa-trash"></i>&nbsp;&nbsp;刪除</a>
+                <a data-href='@Url.Action("Delete/")@Model.Id' class="btn btn-sm btn-danger ps-2 pe-2 btn-delete"><i class="fa-solid fa-trash"></i>&nbsp;&nbsp;刪除</a>
             </div>
         </div>
     </div>
 }
 
 <div>
- <hr>
-  <a href='@Url.Action("Index/")' class="btn btn-sm btn-dark ps-2 pe-2 btn-back-to-list"><i class="fa-solid fa-backward"></i>&nbsp;&nbsp;回清單頁</a>
-      
+    <hr>
+    <a href='@Url.Action("Index/")' class="btn btn-sm btn-dark ps-2 pe-2 btn-back-to-list"><i class="fa-solid fa-backward"></i>&nbsp;&nbsp;回清單頁</a>
+
 </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script>
+    const btnDelete = document.querySelectorAll('.btn-delete');
+    btnDelete.forEach((item) => {
+        item.addEventListener('click', function () {
+            Swal.fire({
+                title: "你確定要刪除嗎？",
+                showConfirmButton: false,
+                showDenyButton: true,
+                showCancelButton: true,
+                denyButtonText: `確定刪除`,
+                cancelButtonText: `取消`
+            }).then((result) => {
+                if (result.isDenied) {
+                    window.location.href = this.dataset.href;
+                }
+            });
+        });
+    });
+    </script>
 }

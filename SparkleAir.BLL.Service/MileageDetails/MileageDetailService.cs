@@ -3,8 +3,10 @@ using SparkleAir.IDAL.IRepository.Luggage;
 using SparkleAir.IDAL.IRepository.Members;
 using SparkleAir.IDAL.IRepository.MileageDetails;
 using SparkleAir.Infa.Criteria.Members;
+using SparkleAir.Infa.Dto.Airport;
 using SparkleAir.Infa.Dto.Luggage;
 using SparkleAir.Infa.Dto.MileageDetails;
+using SparkleAir.Infa.Entity.Airports;
 using SparkleAir.Infa.Entity.Luggage;
 using SparkleAir.Infa.Entity.Members;
 using SparkleAir.Infa.Entity.MileageDetails;
@@ -72,7 +74,7 @@ namespace SparkleAir.BLL.Service.MileageDetails
 
             MileageDetailEntity entity = new MileageDetailEntity
             {
-                Id = dto.Id,
+                //Id = dto.Id,
                 MermberIsd = dto.MermberIsd,
                 TotalMile = changemile,
                 OriginalMile = sb,
@@ -95,7 +97,27 @@ namespace SparkleAir.BLL.Service.MileageDetails
             return entity.Id;
 
 
+        }
 
+
+        public void Update(MileageDetailDto dto)
+        {
+            MileageDetailEntity entity = new MileageDetailEntity
+            {
+                Id = dto.Id,
+                MermberIsd = dto.MermberIsd,
+                TotalMile = dto.TotalMile,
+                OriginalMile = dto.OriginalMile,
+                ChangeMile = dto.ChangeMile,
+                FinalMile = dto.FinalMile,
+                MileValidity = dto.MileValidity,
+                MileReason = dto.MileReason,
+                OrderNumber = dto.OrderNumber,
+                ChangeTime = dto.ChangeTime,
+            };
+
+
+            _repo.Update(entity);
         }
 
 

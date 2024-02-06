@@ -13,7 +13,7 @@ using System.Web.Mvc;
 namespace SparkleAir.FrontEnd.Site.Controllers.TaxFree
 {
     [StaffAuthorize(PageName = "TFOrderlist")]
-    public class TFOrderlistController : Controller
+    public class TFOrderlistController : BaseController
     {
         ITFOrderRepository TFOrderRepo = new TFOrderlistEFRepository();
         // GET: TFOrderlist

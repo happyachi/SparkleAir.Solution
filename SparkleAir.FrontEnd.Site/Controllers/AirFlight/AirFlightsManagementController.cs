@@ -16,7 +16,8 @@ using SparkleAir.BLL.Service.Airports;
 using SparkleAir.DAL.EFRepository.Airports;
 using System.Threading.Tasks;
 using SparkleAir.FrontEnd.Site.Models.Authorize;
-
+using SparkleAir.Infa.EFModel.EFModels;
+using System.Data.Entity;
 namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
 {
     [StaffAuthorize(PageName = "AirFlightsManagement")]
@@ -100,7 +101,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
             try
             {
                 var flightId = CreateFlight(vm);
-                await _priceService.CreateTicketPirce1500(flightId, vm.Mile);
+                await _priceService.CreateTicketPirce(flightId, vm.Mile);
                 return Json(new { success = true });
             }
             catch (Exception ex)
@@ -120,6 +121,8 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
                 DepartureAirport = vm.DepartureAirport,
                 ArrivalAirport = vm.ArrivalAirport,
                 DepartureTime = vm.DepartureTime,
+                DepartureTerminal = vm.DepartureTerminal,
+                ArrivalTerminal = vm.ArrivalTerminal,
                 ArrivalTime = vm.ArrivalTime,
                 DayofWeek = vm.DayofWeek,
                 Mile = vm.Mile,
@@ -287,6 +290,24 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
         {
             var flightDetail = _service.GetById(id);
             return Json(flightDetail, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult GetPrice(int id)
+        {
+            AppDbContext db = new AppDbContext();
+            List<AirTicketPriceVm> ticketPrice = db.AriTicketPrices
+                .Include(x => x.AirFlightManagement)
+                .Include(x => x.AirCabinRule)
+                .Include(x => x.AirCabinRule.AirCabin)
+                .Where(x => x.AirFlightManagementId == id)
+                .Select(x => new AirTicketPriceVm
+                {
+                    FlightCode = x.AirFlightManagement.FlightCode,
+                    CabinName = x.AirCabinRule.AirCabin.CabinClass,
+                    CabinCode = x.AirCabinRule.CabinCode,
+                    Price = x.Price
+                }).ToList();
+            return Json(ticketPrice, JsonRequestBehavior.AllowGet);
         }
         #endregion
     }

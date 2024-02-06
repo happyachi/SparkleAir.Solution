@@ -50,14 +50,11 @@
 							@Html.DisplayFor(modelItem => seat.IsSeated)
 						</td>
 						<td>
-							@if (seat.IsSeated == false)
+							@if (seat.IsSeated == true)
 							{
 								<button class="btn btn-sm btn-dark link" onclick="showModal('@seat.Id')">訂位資訊</button>
 							}
-							else
-							{
-								<button class="btn btn-sm btn-dark link" disabled>訂位資訊</button>
-							}
+							
 						</td>
 					</tr>
 				}

@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<SparkleAir.Infa.ViewModel.CompanyAndPermission.PermissionGroupIndexVm>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "群組設定";
 }
 
-<h2>Index</h2>
+<h2>群組設定</h2>
 
 <p>
     <a href='@Url.Action("Create")' class="btn btn-sm btn-dark ps-3 pe-3 btn-create"><i class="fa-solid fa-plus"></i>&nbsp;&nbsp;新增</a>
@@ -18,9 +18,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Ddescribe)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.Criteria)
-            </th>
+            </th>*@
             <th></th>
         </tr>
     </thead>
@@ -34,9 +34,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Ddescribe)
                 </td>
-                <td>
+                @*<td>
                     @Html.DisplayFor(modelItem => item.Criteria)
-                </td>
+                </td>*@
                 <td>
                     <a href='@Url.Action("Edit/")@item.Id' class="btn btn-sm btn-dark ps-2 pe-2 btn-edit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;編輯</a> 
                 </td>
