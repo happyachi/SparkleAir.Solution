@@ -5,14 +5,30 @@
 }
 
 <style>
-        #img {
-            width: 600px;
-            height: 200px;
-        }
+    #img {
+      
+      
+        width: 500px;
+        height: 200px;
+    }
 
-  
+    .square {
+        width: 350px;
+        height: 200px;
+        background: red;
+        display: black;
+        transition: width 2s, height 1s;
+    }
 
+    .square:hover {
+            width: 500px;
+            height: 300px;
+     }
 </style>
+<script>
+
+
+</script>
 
 
 <h2>機場列表</h2>
@@ -87,9 +103,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Continent)
                 </td>
-                <td>
+                <td id="img">
                     @*@Html.DisplayFor(modelItem => item.Img)*@
-                    <img id="img" src="@Url.Content($"~/Files/Airports/{item.Img}")" class="rounded animated-image" alt="你死圖了">
+                    <img @*id="img"*@ src="@Url.Content($"~/Files/Airports/{item.Img}")" class="rounded  square square:hover animated-image"  alt="你死圖了">
                 </td>
                 <td>
                     <a href='@Url.Action("Edit/")@item.Id' class="btn btn-sm btn-dark ps-2 pe-2 btn-edit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;編輯</a>
@@ -135,4 +151,6 @@
             }
         });
     });
+
+
 </script>
