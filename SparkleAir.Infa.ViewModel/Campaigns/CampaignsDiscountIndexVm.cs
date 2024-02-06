@@ -24,7 +24,7 @@ namespace SparkleAir.FrontEnd.Site.Models.ViewModels.Campaigns
         [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime DateEnd { get; set; }
 
-        [Display(Name = "最新更新日期")]
+        [Display(Name = "活動創建日期")]
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime DateCreated { get; set; }
