@@ -49,8 +49,9 @@ namespace SparkleAir.BLL.Service.AirFlights
                     AirFlightSaleStatus = dto.AirFlightSaleStatus,
                     DayofWeek = dto.DayofWeek,
                     ScheduledDeparture = scheduledDeparture,
-                    ScheduledArrival = scheduledArrival,
-                    RegistrationNum = dto.RegistrationNum
+                    ScheduledArrival = scheduledArrival.AddDays(dto.CrossDay),
+                    RegistrationNum = dto.RegistrationNum,
+                    CrossDay = dto.CrossDay
                 };
                 var flight = await _repo.Create(entity);
                 ids.Add((flight.Item1, flight.Item2));
@@ -184,6 +185,34 @@ namespace SparkleAir.BLL.Service.AirFlights
             }
 
             return ids;
+        }
+        public async Task<List<AirFlightDto>> GetAllAsync()
+        {
+            List<AirFlightEntity> entity = await _repo.GetAllAsync();
+
+            //會過濾掉起飛的飛機
+            List<AirFlightDto> dto = entity.Where(x => x.AirFlightSaleStatusId != 5).Select(x => new AirFlightDto
+            {
+                Id = x.Id,
+                AirOwnId = x.AirOwnId,
+                AirFlightManagementId = x.AirFlightManagementId,
+                ScheduledDeparture = x.ScheduledDeparture.Date + TimeZoneHelper.ConvertToLocal(x.ScheduledDeparture.TimeOfDay, x.DepartureTimeZone),
+                ScheduledArrival = x.ScheduledArrival.Date + TimeZoneHelper.ConvertToLocal(x.ScheduledArrival.TimeOfDay, x.ArrivalTimeZone),
+                AirFlightSaleStatusId = StatusHelper.SaleStatusUpdate(x.ScheduledDeparture),
+                FlightModel = x.FlightModel,
+                FlightCode = x.FlightCode,
+                DepartureAirport = x.DepartureAirport,
+                ArrivalAirport = x.ArrivalAirport,
+                AirFlightSaleStatus = x.AirFlightSaleStatus,
+                DayofWeek = x.DayofWeek,
+                DepartureTimeZone = x.DepartureTimeZone,
+                ArrivalTimeZone = x.ArrivalTimeZone,
+                DepartureAirportId = x.DepartureAirportId,
+                ArrivalAirportId = x.ArrivalAirportId,
+                RegistrationNum = x.RegistrationNum
+            }).ToList();
+
+            return dto;
         }
     }
 }
