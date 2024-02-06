@@ -6,10 +6,10 @@
     ViewBag.Title = "Index";
 }*@
 
-<h2> Index</h2>
-<p>
+<h2> 會員</h2>
+@*<p>
     <a href='@Url.Action("Create")' class="btn btn-sm btn-dark ps-3 pe-3 btn-create"><i class="fa-solid fa-plus"></i>&nbsp;&nbsp;新增</a>
-</p>
+</p>*@
 <table class="table table_jq">
     <thead>
         <tr>
@@ -90,7 +90,7 @@
 
                     @*要把刪除的 "href" 屬性 改成 "data-href"  ，這樣按下刪除件時才不會直接觸發刪除
                     要在class 加上 "btn-delete"*@
-                    <a data-href='@Url.Action("Delete/")@item.Id' class="btn btn-sm btn-danger ps-2 pe-2 btn-delete"><i class="fa-solid fa-trash"></i>&nbsp;&nbsp;刪除</a>
+                    @*<a data-href='@Url.Action("Delete/")@item.Id' class="btn btn-sm btn-danger ps-2 pe-2 btn-delete"><i class="fa-solid fa-trash"></i>&nbsp;&nbsp;刪除</a>*@
                 </td>
             </tr>
         }

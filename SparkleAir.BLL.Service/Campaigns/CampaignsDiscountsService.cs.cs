@@ -39,6 +39,19 @@ namespace SparkleAir.BLL.Service.Campaigns
                 throw new ArgumentException("最高折扣金額不得大於最低消費金額。");
             }
 
+            if (dto.DateEnd < dto.DateStart)
+            {
+                throw new ArgumentException("結束時間不能早於開始時間。");
+            }
+
+            if (dto.CampaignId == 6)
+            {
+                if (dto.DiscountValue >= 99 || dto.DiscountValue < 10)
+                {
+                    throw new ArgumentException("折數必須介於10-99之間。");
+                }
+            }
+
             string status = CamapignsTimeHelper.DetermineStatus(dto.DateStart, dto.DateEnd);
 
             CampaignsDiscountEntity entity = new CampaignsDiscountEntity(
@@ -86,7 +99,8 @@ namespace SparkleAir.BLL.Service.Campaigns
                 BundleSKUs = entity.BundleSKUs,
                 MemberCriteria = entity.MemberCriteria,
                 TFItemsCriteria = entity.TFItemsCriteria,
-                //Campaign = entity.Campaign
+                Type = entity.Type,
+                Campaign = entity.Campaign
             };
             return dto;
         }
