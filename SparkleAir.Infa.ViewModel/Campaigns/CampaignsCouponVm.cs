@@ -53,7 +53,7 @@ namespace SparkleAir.FrontEnd.Site.Models.ViewModels.Campaigns
         [Display(Name = "最低消費金額")]
         public int? MinimumOrderValue { get; set; }
 
-        [Display(Name = "最高折扣金額")]
+        [Display(Name = "單筆最高折扣金額")]
         public int MaximumDiscountAmount { get; set; }
 
         [Display(Name = "折扣碼")]
