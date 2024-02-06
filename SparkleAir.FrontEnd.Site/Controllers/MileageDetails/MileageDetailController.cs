@@ -1,4 +1,5 @@
-﻿using SparkleAir.BLL.Service.Luggage;
+﻿using SparkleAir.BLL.Service.Airports;
+using SparkleAir.BLL.Service.Luggage;
 using SparkleAir.BLL.Service.Members;
 using SparkleAir.BLL.Service.MileageDetails;
 using SparkleAir.DAL.EFRepository.Members;
@@ -6,9 +7,13 @@ using SparkleAir.DAL.EFRepository.MileageDetails;
 using SparkleAir.FrontEnd.Site.Models.Authorize;
 using SparkleAir.IDAL.IRepository.Members;
 using SparkleAir.IDAL.IRepository.MileageDetails;
+using SparkleAir.IDAL.IRepository.TaxFree;
 using SparkleAir.Infa.Criteria.Members;
+using SparkleAir.Infa.Dto.Airport;
 using SparkleAir.Infa.Dto.Luggage;
 using SparkleAir.Infa.Dto.MileageDetails;
+using SparkleAir.Infa.EFModel.EFModels;
+using SparkleAir.Infa.ViewModel.Airports;
 using SparkleAir.Infa.ViewModel.Luggage;
 using SparkleAir.Infa.ViewModel.MileageDetails;
 using System;
@@ -35,6 +40,69 @@ namespace SparkleAir.FrontEnd.Site.Controllers.MileageDetails
             List<MileageDetailIndexVm> data = GetAll();
             return View(data); 
         }
+
+        //初始自動加入會員的初始資料
+        public ActionResult Example()
+        {
+            var ser = new MileageDetailService(efRMileage, memberRepo);
+            var cc = new MemberSearchCriteria();
+
+            var  service = new MemberService(memberRepo);
+            var get =service.Search(cc);
+
+            var db =new AppDbContext();
+
+            foreach (var item in get)
+            {
+                var dd = db.MileageDetails.Where(x => x.MermberIsd == item.Id).FirstOrDefault();
+                if (dd == null)
+                {
+                    var dto = new MileageDetailDto
+                    {
+                        MermberIsd = item.Id,
+                        TotalMile = item.TotalMileage,
+                        OriginalMile = 0,
+                        ChangeMile = item.TotalMileage,
+                        FinalMile = item.TotalMileage,
+                        MileValidity = DateTime.Now.AddYears(1),
+                        MileReason = "初始",
+                        OrderNumber = "VX000",
+                        ChangeTime = DateTime.Now,
+
+                    };
+                    ser.Create(dto);
+                }
+                else { 
+
+                }
+            }
+            return View();
+
+        }
+
+
+
+        private void Update(MileageDetailIndexVm mileage)
+        {
+            var service = new MileageDetailService(efRMileage, memberRepo);
+            MileageDetailDto dto = new MileageDetailDto
+            {
+                Id = mileage.Id,
+                MermberIsd = mileage.MermberIsd,
+                TotalMile = mileage.TotalMile,
+                OriginalMile = mileage.OriginalMile,
+                ChangeMile = mileage.ChangeMile,
+                FinalMile = mileage.FinalMile,
+                MileValidity = mileage.MileValidity,
+                MileReason = mileage.MileReason,
+                OrderNumber = mileage.OrderNumber,
+                ChangeTime = mileage.ChangeTime,
+            };
+            service.Update(dto);
+        }
+
+
+
 
         private List<MileageDetailIndexVm> GetAll()
         {
