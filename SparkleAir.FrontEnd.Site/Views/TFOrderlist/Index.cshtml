@@ -10,7 +10,7 @@
     @Html.ActionLink("Create New", "Create")
 </p>*@
 
-<button id="createOrderBtn">創建訂單</button>
+<button id="createOrderBtn" class="btn btn-dribbble">創建訂單</button>
 
 <table class="table table_jq">
     <thead>
@@ -139,8 +139,8 @@
                 url: '@Url.Action("Create", "TFOrderlist")',
                 type: 'POST',
                 data: {
-                    MemberId: Math.floor(Math.random() * 29) + 1,
-                    TFItemsId: Math.floor(Math.random() * 6) + 1
+                    MemberId: Math.floor(Math.random() * 49) + 1,
+                    TFItemsId: Math.floor(Math.random() * 4) + 1
                 },
                 success: function (data) {
                     // 在這裡更新 View 以顯示新的訂單內容
@@ -154,46 +154,23 @@
         });
     });
 
-    function showAjaxContent(itemId) {
-    fetch('@Url.Content("~/TFWishlist/Index1")')
-    .then(response => response.text())
-    .then(data => {
-        const main = document.querySelector('main');
-        main.innerHTML = data;
 
-        /* 如果要用搜尋套件，要加下面這個 */
-        $(document).ready(function () {
-            $('.table_jq').DataTable({
-                language: {
-                    url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/zh-HANT.json',
-                },
-            });
-        });
+        var animateButton = function (e) {
 
-        /*刪除前確認事件*/
-        const btnDelete = document.querySelectorAll('.btn-delete');
-        btnDelete.forEach((item) => {
-            item.addEventListener('click', function () {
-                Swal.fire({
-                    title: "你確定要刪除嗎？",
-                    showConfirmButton: false,
-                    showDenyButton: true,
-                    showCancelButton: true,
-                    denyButtonText: `確定刪除`,
-                    cancelButtonText: `取消`
-                }).then((result) => {
-                    if (result.isDenied) {
-                        <a href="~/Views/TFItem/Index.cshtml">~/Views/TFItem/Index.cshtml</a>
-                        window.location.href = this.dataset.href;
-                    }
-                });
-            });
-        });
-    })
-    .catch(error => console.error('Error:', error));
-}
+            e.preventDefault;
+            e.target.classList.remove('animate');
+            e.target.classList.add('animate');
+            setTimeout(function () {
+                e.target.classList.remove('animate');
+            }, 700);
+        };
 
-showAjaxContent();
+        var bubblyButtons = document.getElementsByClassName("bubbly-button");
+
+        for (var i = 0; i < bubblyButtons.length; i++) {
+            bubblyButtons[i].addEventListener('click', animateButton, false);
+        }
+
     </script>
     
     }
