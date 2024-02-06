@@ -6,11 +6,11 @@
 
 <h2>訂單檢視</h2>
 
-<p>
+@*<p>
     @Html.ActionLink("Create New", "Create")
-</p>
+</p>*@
 
-<button id="createOrderBtn">創建訂單</button>
+<button id="createOrderBtn" class="btn btn-dribbble">創建訂單</button>
 
 <table class="table">
     <tr>
@@ -148,6 +148,24 @@
             });
         });
     });
+
+
+        var animateButton = function (e) {
+
+            e.preventDefault;
+            e.target.classList.remove('animate');
+            e.target.classList.add('animate');
+            setTimeout(function () {
+                e.target.classList.remove('animate');
+            }, 700);
+        };
+
+        var bubblyButtons = document.getElementsByClassName("bubbly-button");
+
+        for (var i = 0; i < bubblyButtons.length; i++) {
+            bubblyButtons[i].addEventListener('click', animateButton, false);
+        }
+
     </script>
     
     }
