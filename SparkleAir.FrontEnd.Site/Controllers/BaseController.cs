@@ -67,20 +67,20 @@ namespace SparkleAir.FrontEnd.Site.Controllers
                     }
                 }
             });
-            menuItems.Add(new TopLevelMenuComponent
-            {
-                Name = "票務",
-                Icon = "<i class=\"fa-solid fa-ticket\"></i>",
-                MenuItems = new List<IMenuItem>
-                {
-                    new MenuItem
-                    {
-                        Name = "無",
-                        ActionName = "",
-                        ControllerName = "",
-                    }
-                }
-            });
+            //menuItems.Add(new TopLevelMenuComponent
+            //{
+            //    Name = "票務",
+            //    Icon = "<i class=\"fa-solid fa-ticket\"></i>",
+            //    MenuItems = new List<IMenuItem>
+            //    {
+            //        new MenuItem
+            //        {
+            //            Name = "無",
+            //            ActionName = "",
+            //            ControllerName = "",
+            //        }
+            //    }
+            //});
             menuItems.Add(new TopLevelMenuComponent
             {
                 Name = "加值服務",
@@ -126,18 +126,18 @@ namespace SparkleAir.FrontEnd.Site.Controllers
                         ControllerName = "TFItem",
                     },
                     
-                    new MenuItem
-                    {
-                        Name = "免稅品預訂單檢視",
-                        ActionName = "Index",
-                        ControllerName = "TFReserve",
-                    },
-                    new MenuItem
-                    {
-                        Name = "免稅品預訂管理",
-                        ActionName = "Index",
-                        ControllerName = "TFReservelist",
-                    },
+                    //new MenuItem
+                    //{
+                    //    Name = "免稅品預訂單檢視",
+                    //    ActionName = "Index",
+                    //    ControllerName = "TFReserve",
+                    //},
+                    //new MenuItem
+                    //{
+                    //    Name = "免稅品預訂管理",
+                    //    ActionName = "Index",
+                    //    ControllerName = "TFReservelist",
+                    //},
                     new MenuItem
                     {
                         Name = "備貨量檢視",
@@ -177,34 +177,34 @@ namespace SparkleAir.FrontEnd.Site.Controllers
 
 
 
-            menuItems.Add(new TopLevelMenuComponent
-            {
-                Name = "金流",
-                Icon = "<i class=\"fa-solid fa-money-bill-wave\"></i>",
-                MenuItems = new List<IMenuItem>
-                {
-                    new MenuItem
-                    {
-                        Name = "無",
-                        ActionName = "",
-                        ControllerName = "",
-                    }
-                }
-            });
-            menuItems.Add(new TopLevelMenuComponent
-            {
-                Name = "客服",
-                Icon = "<i class=\"fa-solid fa-comment\"></i>",
-                MenuItems = new List<IMenuItem>
-                {
-                    new MenuItem
-                    {
-                        Name = "無",
-                        ActionName = "",
-                        ControllerName = "",
-                    }
-                }
-            });
+            //menuItems.Add(new TopLevelMenuComponent
+            //{
+            //    Name = "金流",
+            //    Icon = "<i class=\"fa-solid fa-money-bill-wave\"></i>",
+            //    MenuItems = new List<IMenuItem>
+            //    {
+            //        new MenuItem
+            //        {
+            //            Name = "無",
+            //            ActionName = "",
+            //            ControllerName = "",
+            //        }
+            //    }
+            //});
+            //menuItems.Add(new TopLevelMenuComponent
+            //{
+            //    Name = "客服",
+            //    Icon = "<i class=\"fa-solid fa-comment\"></i>",
+            //    MenuItems = new List<IMenuItem>
+            //    {
+            //        new MenuItem
+            //        {
+            //            Name = "無",
+            //            ActionName = "",
+            //            ControllerName = "",
+            //        }
+            //    }
+            //});
             menuItems.Add(new TopLevelMenuComponent
             {
                 Name = "會員管理",
@@ -229,12 +229,12 @@ namespace SparkleAir.FrontEnd.Site.Controllers
                         ActionName = "Index",
                         ControllerName = "Members",
                     },
-                    new MenuItem
-                    {
-                        Name = "會員登入紀錄",
-                        ActionName = "Index",
-                        ControllerName = "MemberLoginLogs",
-                    }
+                    //new MenuItem
+                    //{
+                    //    Name = "會員登入紀錄",
+                    //    ActionName = "Index",
+                    //    ControllerName = "MemberLoginLogs",
+                    //}
                 }
             });
             menuItems.Add(new TopLevelMenuComponent
@@ -261,18 +261,18 @@ namespace SparkleAir.FrontEnd.Site.Controllers
                         ActionName = "Index",
                         ControllerName = "CompanyStaffs",
                     },
-                    new MenuItem
-                    {
-                        Name = "職員登入紀錄",
-                        ActionName = "Index",
-                        ControllerName = "CompanyStaffLoginLogs",
-                    },
-                    new MenuItem
-                    {
-                        Name = "職員更換密碼紀錄",
-                        ActionName = "Index",
-                        ControllerName = "CompanyStaffsChangePasswordLogs",
-                    },
+                    //new MenuItem
+                    //{
+                    //    Name = "職員登入紀錄",
+                    //    ActionName = "Index",
+                    //    ControllerName = "CompanyStaffLoginLogs",
+                    //},
+                    //new MenuItem
+                    //{
+                    //    Name = "職員更換密碼紀錄",
+                    //    ActionName = "Index",
+                    //    ControllerName = "CompanyStaffsChangePasswordLogs",
+                    //},
                 }
             });
             menuItems.Add(new TopLevelMenuComponent

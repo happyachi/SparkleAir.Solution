@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
+using SparkleAir.Infa.Entity.Airports;
 
 namespace SparkleAir.DAL.EFRepository.MileageDetails
 {
@@ -19,7 +20,7 @@ namespace SparkleAir.DAL.EFRepository.MileageDetails
         {
             MileageDetail mileagedetail = new MileageDetail
             {
-                Id = model.Id,
+                //Id = model.Id,
                 MermberIsd = model.MermberIsd,
                 TotalMile = model.TotalMile,
                 OriginalMile = model.OriginalMile,
@@ -70,7 +71,27 @@ namespace SparkleAir.DAL.EFRepository.MileageDetails
 
         public void Update(MileageDetailEntity model)
         {
-            throw new NotImplementedException();
+            var get = db.MileageDetails.Find(model.Id);
+            if (get != null)
+            {
+                get.Id = model.Id;
+                get.MermberIsd = model.MermberIsd;
+                get.TotalMile = model.TotalMile;
+                get.OriginalMile = model.OriginalMile;
+                get.ChangeMile = model.ChangeMile;
+                get.FinalMile = model.FinalMile;
+                get.MileValidity = model.MileValidity;
+                get.MileReason = model.MileReason;
+                get.OrderNumber = model.OrderNumber;
+                get.ChangeTime = model.ChangeTime;
+
+            }
+            else
+            {
+                throw new Exception("找不到要修改的資料");
+            }
+
+            db.SaveChanges();
         }
 
 
@@ -81,11 +102,19 @@ namespace SparkleAir.DAL.EFRepository.MileageDetails
                                       .OrderByDescending(p=>p.ChangeTime)
                                       .FirstOrDefault();
 
-            return memberfinalmaile.FinalMile;
+            if(memberfinalmaile == null)
+            {
+                return 0;
+            }
 
-            
+            return memberfinalmaile.FinalMile;     
 
         }
+
+
+
+
+
 
     }
 }

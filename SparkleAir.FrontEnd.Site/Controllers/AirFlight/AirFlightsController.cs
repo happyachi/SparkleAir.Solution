@@ -1,6 +1,7 @@
 ﻿
 using SparkleAir.BLL.Service.AirFlights;
 using SparkleAir.BLL.Service.Airtype_Owns;
+using SparkleAir.DAL.DapperRepository.AirFlights;
 using SparkleAir.DAL.EFRepository.AirFlights;
 using SparkleAir.DAL.EFRepository.Airtype_Owns;
 using SparkleAir.FrontEnd.Site.Models.Authorize;
@@ -28,6 +29,8 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
 
         private IAirFlightRepository _airFlightRepo;
         private AirFlightService _airFlightService;
+        private IAirFlightRepository _airDPFlightRepo;
+        private AirFlightService _airDPFlightService;
 
         private IAirFlightManagementRepository _flightManagementRepo;
         private AirFlightManagementService _flightManagementService;
@@ -40,7 +43,6 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
 
         private IPlaneRepository _planeRepo;
         private PlaneService _planeService;
-
 
 
         public AirFlightsController()
@@ -56,6 +58,9 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
 
             _planeRepo = new PlaneRepository();
             _planeService = new PlaneService(_planeRepo);
+
+            _airDPFlightRepo = new AirFlightDapperRepository();
+            _airDPFlightService = new AirFlightService(_airDPFlightRepo);
         }
         #endregion
 
@@ -70,20 +75,22 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
         {
             try
             {
-                await UpdateAndRetrieveSchedule();
-                List<AirFlightIndexVm> datas = GetAll();
+                List<AirFlightIndexVm> datas =await GetAll();
+                
+                //await UpdateAndRetrieveSchedule(); //todo 修好他 跑太久
+
                 //return View(datas);
                 return PartialView("Index1", datas);
             }
             catch (Exception ex)
             {
-                return View("Error"); // 返回一个错误视图
+                return View("Error");
             }
 
         }
-        private List<AirFlightIndexVm> GetAll()
+        private async Task<List<AirFlightIndexVm>> GetAll()
         {
-            List<AirFlightDto> dto = _airFlightService.GetAll();
+            List<AirFlightDto> dto = await _airDPFlightService.GetAllAsync();
 
             foreach (var item in dto)
             {
@@ -106,7 +113,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
         }
         private async Task<List<AirFlightIndexVm>> UpdateAndRetrieveSchedule()
         {
-            List<AirFlightDto> dto = _airFlightService.GetAll();
+            List<AirFlightDto> dto = _airDPFlightService.GetAll();
             List<(int, string)> updatedIds = new List<(int, string)>();
 
             foreach (var item in dto)
@@ -115,7 +122,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
                 updatedIds.AddRange(await _airFlightService.UpdateScheduleIfNeeded(item));
             }
 
-            // 获取更新后的数据并传递给视图
+
             List<AirFlightIndexVm> vm = dto.Select(x => new AirFlightIndexVm
             {
                 // 映射逻辑
@@ -166,7 +173,8 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
                 ScheduledArrival = nextFlightDate.Add(vm.ArrivalTime),
                 DepartureTimeZone = vm.DepartureTimeZone,
                 ArrivalTimeZone = vm.ArrivalTimeZone,
-                RegistrationNum = vm.RegistrationNum
+                RegistrationNum = vm.RegistrationNum,
+                CrossDay = vm.CrossDay
             };
             return flight;
         }
@@ -224,7 +232,8 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
                 DayofWeek = vm.DayofWeek,
                 DepartureTimeZone = vm.DepartureTimeZone,
                 ArrivalTimeZone = vm.ArrivalTimeZone,
-                RegistrationNum = vm.RegistrationNum
+                RegistrationNum = vm.RegistrationNum,
+                CrossDay = vm.CrossDay
             };
             flights = await _airFlightService.Create(dto);
             return flights;
