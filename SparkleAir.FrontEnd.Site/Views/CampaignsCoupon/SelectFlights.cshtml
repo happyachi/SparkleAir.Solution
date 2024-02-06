@@ -10,33 +10,33 @@
                 <input class="form-check-input checkAll" type="checkbox" value="" id="selectAllitemCheckbox">
                 <label class="form-check-label" for="flexCheckDefault"></label>
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.AirOwnId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AirFlightManagementId)
-            </th>
+            </th>*@
+        <th>
+            航班代碼
+        </th>
             <th>
                 @Html.DisplayNameFor(model => model.ScheduledDeparture)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ScheduledArrival)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.AirFlightSaleStatusId)
-            </th>
-            <th>
+            </th>*@
+            @*<th>
                 @Html.DisplayNameFor(model => model.FlightModel)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.FlightCode)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.DepartureAirPort)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ArrivalAriPort)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.AirFlightSaleStatus)
             </th>
@@ -46,6 +46,8 @@
     <tbody>
         @foreach (var item in Model)
         {
+            if (item != null)
+            {
             <tr>
                 <td>
                     <label class="fcheckbox-inline" for="flexCheckDefault">
@@ -53,42 +55,57 @@
                     </label>
                     @*<input name="ItemCriteria" id="flexCheckDefault" value="" />*@
                 </td>
-                <td>
+                @*<td>
                     @Html.DisplayFor(modelItem => item.AirOwnId)
-                </td>
+                </td>*@
                 <td>
+                    @if (item.AirFlightManagementId != null)
+                    { 
                     @Html.DisplayFor(modelItem => item.AirFlightManagementId)
+                    }
                 </td>
                 <td>
+                    @if (item.ScheduledDeparture != null)
+                    {
                     @Html.DisplayFor(modelItem => item.ScheduledDeparture)
+                    }
                 </td>
                 <td>
+                    @if (item.ScheduledArrival != null)
+                    {
                     @Html.DisplayFor(modelItem => item.ScheduledArrival)
+                    }
                 </td>
-                <td>
+                @*<td>
                     @Html.DisplayFor(modelItem => item.AirFlightSaleStatusId)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.FlightModel)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FlightCode)
-                </td>
-                <td>
+                </td>*@
+            <td>
+                @if (item.FlightCode != null){
+                @Html.DisplayFor(modelItem => item.FlightCode)
+                }
+            </td>
+                @*<td>
                     @Html.DisplayFor(modelItem => item.DepartureAirPort)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ArrivalAriPort)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AirFlightSaleStatus)
-                </td>
+                </td>*@
+            <td>
+                @if (item.AirFlightSaleStatus != null)
+                {
+                @Html.DisplayFor(modelItem => item.AirFlightSaleStatus)
+                }
+            </td>
                 @*<td>
             <a href='@Url.Action("Edit/")@item.Id' class="btn btn-sm btn-dark ps-2 pe-2 btn-edit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;編輯</a> |
             <a href='@Url.Action("Details/")@item.Id' class="btn btn-sm btn-dark ps-2 pe-2 btn-detail"><i class="fa-solid fa-file"></i>&nbsp;&nbsp;詳細資訊</a> |
             <a href='@Url.Action("Delete/")@item.Id' class="btn btn-sm btn-danger ps-2 pe-2 btn-delete"><i class="fa-solid fa-trash"></i>&nbsp;&nbsp;刪除</a>
         </td>*@
             </tr>
+            }
         }
     </tbody>
 </table>
