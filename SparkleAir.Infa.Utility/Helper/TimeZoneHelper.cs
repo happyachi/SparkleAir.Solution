@@ -31,18 +31,36 @@ namespace SparkleAir.Infa.Utility.Helper
 
         private static TimeSpan AdjustTimeToValidRange(TimeSpan time)
         {
-            // 將時間值調整為有效範圍
-            if (time < TimeSpan.Zero)
+            string formattedTime = time.ToString(@"hh\:mm\:ss");
+
+            // 如果格式化後的時間字串為空，表示原始時間為零，則返回 TimeSpan.Zero
+            if (string.IsNullOrEmpty(formattedTime))
             {
-                return TimeSpan.FromHours(24) + time; // 將負值時間轉換為對應的正值時間
+                return TimeSpan.Zero;
             }
-            else if (time > TimeSpan.FromHours(23) + TimeSpan.FromMinutes(59) + TimeSpan.FromSeconds(59))
+
+            // 將格式化後的字串轉換為 TimeSpan
+            TimeSpan adjustedTime;
+            if (TimeSpan.TryParse(formattedTime, out adjustedTime))
             {
-                return TimeSpan.FromHours(0) +time;
+                // 將時間調整為有效範圍
+                if (adjustedTime < TimeSpan.Zero)
+                {
+                    return TimeSpan.FromHours(24) + adjustedTime; // 將負值時間轉換為對應的正值時間
+                }
+                else if (adjustedTime > TimeSpan.FromHours(23) + TimeSpan.FromMinutes(59) + TimeSpan.FromSeconds(59))
+                {
+                    return TimeSpan.FromHours(0) + adjustedTime;
+                }
+                else
+                {
+                    return adjustedTime;
+                }
             }
             else
             {
-                return time;
+                // 轉換失敗時返回 TimeSpan.Zero 或其他預設值
+                return TimeSpan.Zero;
             }
         }
     }

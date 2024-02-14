@@ -109,18 +109,28 @@ namespace SparkleAir.Infa.Utility.Exts.Models
         }
 
         //用迴圈跑值班表(一個月內的)
-        //todo 可以設定要跑出多久之後的班表
+        //自動更新班表
         public static List<DateTime> GetScheduledFlights(this DateTime currentDate, FlightDate[] days, DateTime today)
         {
             var scheduledFlights = new List<DateTime>();
             var currentMonth = currentDate.Month;  
             var nextMonth = currentMonth + 1;
-            for (int month = currentMonth; month <= nextMonth; month++)
+
+            if (nextMonth > 12)
             {
-                var daysInMonth = DateTime.DaysInMonth(currentDate.Year, month);
+                nextMonth = 1;
+            }
+
+            int targetMonth = nextMonth;
+
+            for (int month = currentMonth; month <= targetMonth || (month == 12 && targetMonth == 1); month = (month % 12) + 1)
+            {
+                int year = (month == 1) ? currentDate.Year + 1 : currentDate.Year;
+                int daysInMonth = DateTime.DaysInMonth(year, month);
+
                 for (int day = 1; day <= daysInMonth; day++)
                 {
-                    var currentDay = new DateTime(currentDate.Year, month, day);
+                    var currentDay = new DateTime(year, month, day);
 
                     foreach (var flightDay in days)
                     {
@@ -160,15 +170,18 @@ namespace SparkleAir.Infa.Utility.Exts.Models
                 ArrivalTimeZone = db.AirPorts.Find(af.AirFlightManagement.ArrivalAirportId).TimeArea,
                 AirFlightSaleStatus = af.AirFlightSaleStatus.Status,
                 DayofWeek = af.AirFlightManagement.DayofWeek,
-                RegistrationNum = af.AirOwn.RegistrationNum
+                RegistrationNum = af.AirOwn.RegistrationNum,
+                CrossDay = af.AirFlightManagement.CrossDay,
             };
             return entity;
         }
+
         public static string GetSaleStatus(this int statusId, AppDbContext db)
         {
             var status = db.AirFlightSaleStatuses.Find(statusId);
             return status.Status;
         }
+
         //取得ToAirFlightEntity所需相關訊息
         //出發地ID 目的地ID
         public static (int, int) GetFlightCode(this AppDbContext db, int id)

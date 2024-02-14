@@ -16,7 +16,7 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
         private AppDbContext db = new AppDbContext();
         private Func<AirFlight, AirFlightEntity> ToEntityFunc = (f) => f.ToAirFlightEntity();
 
-        public async Task<(int,string)> Create(AirFlightEntity entity)
+        public async Task<(int, string)> Create(AirFlightEntity entity)
         {
             AirFlight airFlight = new AirFlight
             {
@@ -28,7 +28,14 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
                 AirFlightSaleStatusId = entity.AirFlightSaleStatusId
             };
             db.AirFlights.Add(airFlight);
-            await db.SaveChangesAsync();
+            try
+            {
+                await db.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+             
+            }
             var id = airFlight.Id;
             var ati = airFlight.AirOwn.AirType.FlightModel;
             return (id, ati);
@@ -63,11 +70,12 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
             return flight;
         }
 
-        public void UpdateSaleStatus(AirFlightEntity entity)
+        public async Task UpdateSaleStatusAsync(AirFlightEntity entity)
         {
             var flight = db.AirFlights
-                 .Include(f => f.AirOwn)
-                 .FirstOrDefault(f => f.Id == entity.Id);
+         .Include(f => f.AirOwn)
+         .FirstOrDefault(f => f.Id == entity.Id);
+
             if (flight != null)
             {
                 flight.Id = entity.Id;
@@ -77,7 +85,8 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
                 flight.ScheduledArrival = entity.ScheduledArrival;
                 flight.AirFlightSaleStatusId = entity.AirFlightSaleStatusId;
             }
-                db.SaveChanges();
+            await db.SaveChangesAsync();
+           
         }
     }
 }
