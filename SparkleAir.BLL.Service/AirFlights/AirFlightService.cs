@@ -106,13 +106,14 @@ namespace SparkleAir.BLL.Service.AirFlights
                 ArrivalTimeZone = x.ArrivalTimeZone,
                 DepartureAirportId = x.DepartureAirportId,
                 ArrivalAirportId = x.ArrivalAirportId,
-                RegistrationNum = x.RegistrationNum
+                RegistrationNum = x.RegistrationNum,
+                CrossDay = x.CrossDay
             }).ToList();
 
             return dto;
         }
 
-        public void UpdateSaleStatus(AirFlightDto dto)
+        public async Task UpdateSaleStatusAsync(AirFlightDto dto)
         {
             int stausId = StatusHelper.SaleStatusUpdate(dto.ScheduledDeparture);
 
@@ -136,7 +137,7 @@ namespace SparkleAir.BLL.Service.AirFlights
                 ArrivalAirportId = dto.ArrivalAirportId,
                 RegistrationNum = dto.RegistrationNum
             };
-            _repo.UpdateSaleStatus(entity);
+            await _repo.UpdateSaleStatusAsync(entity);
         }
 
         public async Task<List<(int, string)>> UpdateScheduleIfNeeded(AirFlightDto dto)
@@ -144,8 +145,7 @@ namespace SparkleAir.BLL.Service.AirFlights
 
             FlightDate[] days = dto.DayofWeek.FlightDays();
             var today = DateTime.Today;
-            //var today = new DateTime(2024, 3, 2);
-            //DateTime currentDate = today.AddMonths(1);
+            //var today = new DateTime(2024, 12, 1);
             List<DateTime> scheduledFlights = today.GetScheduledFlights(days, today);
             List<(int, string)> ids = new List<(int, string)>();
             try
@@ -169,8 +169,9 @@ namespace SparkleAir.BLL.Service.AirFlights
                             AirFlightSaleStatus = dto.AirFlightSaleStatus,
                             DayofWeek = dto.DayofWeek,
                             ScheduledDeparture = scheduledDeparture,
-                            ScheduledArrival = scheduledArrival,
-                            RegistrationNum = dto.RegistrationNum
+                            ScheduledArrival = scheduledArrival.AddDays(dto.CrossDay),
+                            RegistrationNum = dto.RegistrationNum,
+                            CrossDay = dto.CrossDay
                         };
 
                         var flight = await _repo.Create(entity);

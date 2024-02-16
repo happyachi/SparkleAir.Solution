@@ -38,7 +38,8 @@ namespace SparkleAir.DAL.DapperRepository.AirFlights
                 arr.TimeArea AS ArrivalTimeZone,
                 afs.Status AS AirFlightSaleStatus,
                 afm.DayofWeek,
-                ao.RegistrationNum
+                ao.RegistrationNum,
+                afm.CrossDay
              FROM AirFlights af
             JOIN AirOwns ao ON af.AirOwnId = ao.Id
             JOIN AirTypes aoat ON ao.AirTypeId = aoat.Id
@@ -57,7 +58,7 @@ namespace SparkleAir.DAL.DapperRepository.AirFlights
             throw new NotImplementedException();
         }
 
-        public void UpdateSaleStatus(AirFlightEntity entity)
+        public async Task UpdateSaleStatusAsync(AirFlightEntity entity)
         {
             throw new NotImplementedException();
         }

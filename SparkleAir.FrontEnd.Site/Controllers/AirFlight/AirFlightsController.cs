@@ -76,8 +76,8 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
             try
             {
                 List<AirFlightIndexVm> datas =await GetAll();
-                
-                //await UpdateAndRetrieveSchedule(); //todo 修好他 跑太久
+
+                _ = Task.Run(() => UpdateAndRetrieveSchedule());  // 在後台跑班表
 
                 //return View(datas);
                 return PartialView("Index1", datas);
@@ -90,55 +90,60 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
         }
         private async Task<List<AirFlightIndexVm>> GetAll()
         {
-            List<AirFlightDto> dto = await _airDPFlightService.GetAllAsync();
+            List<AirFlightDto> dtoList = await _airDPFlightService.GetAllAsync();
 
-            foreach (var item in dto)
-            {
-                _airFlightService.UpdateSaleStatus(item);
-            }
+            // 使用非同步方式進行 SaleStatus 的更新
+            await Task.WhenAll(dtoList.Select(dto => _airFlightService.UpdateSaleStatusAsync(dto)));
 
-            List<AirFlightIndexVm> vm = dto.Select(x => new AirFlightIndexVm
+            List<AirFlightIndexVm> vmList = dtoList.Select(dto => new AirFlightIndexVm
             {
-                Id = x.Id,
-                FlightCode = x.FlightCode,
-                FlightModel = x.FlightModel,
-                DepartureAirport = x.DepartureAirport,
-                ArrivalAirport = x.ArrivalAirport,
-                ScheduledDeparture = x.ScheduledDeparture,
-                ScheduledArrival = x.ScheduledArrival,
-                RegistrationNum = x.RegistrationNum
+                Id = dto.Id,
+                FlightCode = dto.FlightCode,
+                FlightModel = dto.FlightModel,
+                DepartureAirport = dto.DepartureAirport,
+                ArrivalAirport = dto.ArrivalAirport,
+                ScheduledDeparture = dto.ScheduledDeparture,
+                ScheduledArrival = dto.ScheduledArrival,
+                RegistrationNum = dto.RegistrationNum,
+                CrossDay = dto.CrossDay
             }).ToList();
 
-            return vm;
+            return vmList;
         }
+
         private async Task<List<AirFlightIndexVm>> UpdateAndRetrieveSchedule()
         {
             List<AirFlightDto> dto = _airDPFlightService.GetAll();
-            List<(int, string)> updatedIds = new List<(int, string)>();
+            List<(int, string)> updatedFlights = new List<(int, string)>();
 
             foreach (var item in dto)
             {
-                _airFlightService.UpdateSaleStatus(item);
-                updatedIds.AddRange(await _airFlightService.UpdateScheduleIfNeeded(item));
+                List<(int, string)> updatedIds = await _airFlightService.UpdateScheduleIfNeeded(item);
+                foreach (var id in updatedIds)
+                {
+                    // 在更新循環中創建座位
+                    await _flightSeatsService.CreateSeats(id.Item1, id.Item2);
+                }
             }
-
 
             List<AirFlightIndexVm> vm = dto.Select(x => new AirFlightIndexVm
             {
-                // 映射逻辑
+                
             }).ToList();
 
             return vm;
         }
+
         //public ActionResult CalendarPartial()
         //{
         //    List<AirFlightIndexVm> datas = GetAll();
         //    return PartialView("_CalendarPartial", datas);
         //}
+
         #endregion
 
         #region Create & Connect AirOwnId & Create Flight Model Seats
-        //先 get AirFlightManagementVm 的資料 => 設定AirOwnID(FlightModel) => Create 一個月內的班表 
+        //先 get AirFlightManagementVm 的資料 => 設定AirOwnID(FlightModel) => Create 2個月內的班表 
         public ActionResult Create(int id)
         {
             var db = new AppDbContext();

@@ -53,7 +53,7 @@
         .then(response => response.text())
         .then(data => {
             const main = document.querySelector('main');
-            main.innerHTML = data;
+			main.innerHTML = data;
 
             /* 如果要用搜尋套件，要加下面這個 */
             $(document).ready(function () {
@@ -86,7 +86,18 @@
         .catch(error => console.error('Error:', error));
     }
 
-    showAjaxContent();
+		function fetchDataPeriodically() {
+			setInterval(function () {
+				showAjaxContent();
+			console.log("update")
+			}, 30000);  // 每 5 秒輪詢一次，根據需求調整時間間隔
+		}
+
+		/* 初次載入及定期輪詢 */
+		$(document).ready(function () {
+			showAjaxContent();  // 初次載入
+			//fetchDataPeriodically();  // 定期輪詢
+		});
 	</script>
 }
 

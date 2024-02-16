@@ -34,5 +34,7 @@ namespace SparkleAir.Infa.ViewModel.AirFlights
         [Display(Name = "抵達時間")]
         [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime ScheduledArrival { get; set; }
+
+        public int CrossDay { get; set; }
     }
 }
