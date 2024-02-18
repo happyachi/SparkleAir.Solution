@@ -20,19 +20,30 @@ namespace SparkleAir.FrontEnd.Site
 						"~/Scripts/modernizr-*"));
 
 			bundles.Add(new Bundle("~/bundles/bootstrap").Include(
-					  "~/Scripts/bootstrap.bundle.js"));
+					  "~/Scripts/bootstrap.bundle.js")
+				
+				);
+            bundles.Add(new ScriptBundle("~/Scripts/js").Include(
+                      "~/Scripts/js/main.js",
+                      "~/Scripts/js/jquery.min.js",
+                      "~/Scripts/js/main.js", 
+					  "~/Scripts/js/index.js")
+                );
 
             bundles.Add(new Bundle("~/bundles/volt").Include(
                       "~/Scripts/volt.js",
                       "~/Scripts/popper.min.js",
-                      "~/Scripts/simplebar.min.js"));
+                      "~/Scripts/simplebar.min.js","~/Sc")
+				);
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
 					  "~/Content/site.css",
                       "~/Content/volt.css",
 					  "~/Content/bootstrap.css",
-                      "~/Content/sparkleAir.css"
-					  ));
+                      "~/Content/sparkleAir.css",
+                      "~/Content/css/extra-icons.css"
+
+                      ));
 		}
 	}
 }
