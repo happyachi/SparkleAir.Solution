@@ -29,16 +29,17 @@ namespace SparkleAir.FrontEnd.Site.Models.MenuItems
         public void Visit(TopLevelMenuComponent topLevelMenuComponent)
         {
             string template = @"
+                <div>                
                 <ul class=""metismenu"" id=""sidenav"">
-          <li>
-            <a href=""javascript:;"" class=""has-arrow"">
-              <div class=""parent-icon""><i class=""material-icons-outlined"">{0}</i>
-              </div>
-              <div class=""menu-title"">{1}</div>
-            </a>
+                          <li>
+                            <a href=""javascript:;"" class=""has-arrow"">
+                              <div class=""parent-icon""><i class=""material-icons-outlined"">{0}</i>
+                              </div>
+                              <div class=""menu-title"">{1}</div>
+                            </a>
             
-          </li>
-</ul>
+                          </li>
+                </ul>
 
                 ";
 
