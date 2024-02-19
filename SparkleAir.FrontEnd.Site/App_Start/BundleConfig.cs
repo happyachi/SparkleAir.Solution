@@ -23,12 +23,11 @@ namespace SparkleAir.FrontEnd.Site
 					  "~/Scripts/bootstrap.bundle.js")
 				
 				);
-            bundles.Add(new ScriptBundle("~/Scripts/js").Include(
-                      "~/Scripts/js/main.js",
-                      "~/Scripts/js/jquery.min.js",
-                      "~/Scripts/js/main.js", 
-					  "~/Scripts/js/index.js",
-                      "~/Scripts/main.js")
+            bundles.Add(new ScriptBundle("~/Scripts").Include(
+                      "~/Scripts/main.js",
+                      "~/Scripts/jquery.min.js",
+                      "~/Scripts/main.js", 
+					  "~/Scripts/index.js")
                 );
 
             bundles.Add(new Bundle("~/bundles/volt").Include(
@@ -38,14 +37,24 @@ namespace SparkleAir.FrontEnd.Site
 				);
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-					  "~/Content/site.css",
+                "~/Content/bootstrap-extended.css",
+
+                      "~/Content/site.css",
                       "~/Content/volt.css",
 					  "~/Content/bootstrap.css",
                       "~/Content/sparkleAir.css",
-                      "~/Content/extra-icons.css",
-                      "~/Content/bootstrap-extended.css"
+                      "~/Content/extra-icons.css"
+                      
+					  
 
                       ));
-		}
+            bundles.Add(new StyleBundle("~/sass").Include(
+                      "~/sass/main.css",
+                      "~/sass/dark-theme.css",
+                      "~/sass/responsive.css",
+                      "~/sass/bordered-theme.css"
+
+                      ));
+        }
 	}
 }

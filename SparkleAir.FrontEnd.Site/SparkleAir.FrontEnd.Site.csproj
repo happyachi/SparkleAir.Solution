@@ -493,6 +493,7 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\extra-icons.css" />
+    <Content Include="Content\sparkleAir.css" />
     <Content Include="Content\volt.css" />
     <Content Include="Content\brands.css" />
     <Content Include="Content\brands.min.css" />

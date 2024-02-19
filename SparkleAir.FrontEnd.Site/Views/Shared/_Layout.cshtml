@@ -11,25 +11,26 @@
     <meta name="description" content="sparkle air" />
     <meta name="keywords" content="sparkle air" />
     <!--favicon-->
-    <link rel="icon" href="assets/images/favicon-32x32.png" type="image/png">
+    <link rel="icon" href="~/assets/images/logo-icon.png" type="image/png">
 
     <!--plugins-->
-    <link href="assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="assets/plugins/metismenu/metisMenu.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/plugins/metismenu/mm-vertical.css">
+    <link href="~/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="~/assets/plugins/metismenu/metisMenu.min.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/plugins/metismenu/mm-vertical.css">
     <!--bootstrap css-->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Material+Icons+Outlined" rel="stylesheet">
     <!--main css-->
-    <link href="assets/css/bootstrap-extended.css" rel="stylesheet">
-    <link href="sass/main.css" rel="stylesheet">
-    <link href="sass/dark-theme.css" rel="stylesheet">
-    <link href="sass/semi-dark.css" rel="stylesheet">
-    <link href="sass/bordered-theme.css" rel="stylesheet">
-    <link href="sass/responsive.css" rel="stylesheet">
+    <link href="~/Content/bootstrap-extended.css" rel="stylesheet">
+    <link href="~/sass/main.css" rel="stylesheet">
+    <link href="~/sass/dark-theme.css" rel="stylesheet">
+    <link href="~/sass/semi-dark.css" rel="stylesheet">
+    <link href="~/sass/bordered-theme.css" rel="stylesheet">
+    <link href="~/sass/responsive.css" rel="stylesheet">
 
-    @Styles.Render("~/Content")
+    @Styles.Render("~/Content/bootstrap.css")
+    @Styles.Render("~/sass/main.css")
     @Scripts.Render("~/bundles/modernizr")
     @RenderSection("styles", required: false)
     <style>
@@ -207,15 +208,15 @@
         <div class="quick-menu">
             <nav class="nav flex-column gap-1">
                 <a class="nav-link" href="index.html"><i class="material-icons-outlined">home</i></a>
-                <a class="nav-link" href="index2.html"><i class="material-icons-outlined">poll</i></a>
+                @*<a class="nav-link" href="index2.html"><i class="material-icons-outlined">poll</i></a>
                 <a class="nav-link" href="javascript:;"><i class="material-icons-outlined">apps</i></a>
                 <a class="nav-link" href="ecommerce-products.html"><i class="material-icons-outlined">shopping_cart</i></a>
                 <a class="nav-link" href="javascript:;"><i class="material-icons-outlined">forum</i></a>
-                <a class="nav-link" href="javascript:;"><i class="material-icons-outlined">event</i></a>
+                <a class="nav-link" href="javascript:;"><i class="material-icons-outlined">event</i></a>*@
             </nav>
         </div>
         <div class="mini-footer dark-mode">
-            <a href="javascript:;" class="footer-icon dark-mode-icon">
+            <a href="javascript:;" id="Darkmode" class="footer-icon dark-mode-icon" ">
                 <i class="material-icons-outlined">dark_mode</i>
             </a>
         </div>
@@ -223,38 +224,6 @@
 
 
     <!-- 左側-->
-    <!--<nav id="sidebarMenu"
-         class="sidebar  bg-gray-800 text-white collapse"
-         data-simplebar>
-        <div class="sidebar-inner px-4 pt-3" style="width:auto">
-            <div class="user-card d-flex d-md-none align-items-center justify-content-between justify-content-md-center pb-4">
-                <div class="collapse-close d-md-none">
-                    <a href="#sidebarMenu"
-                       data-bs-toggle="collapse"
-                       data-bs-target="#sidebarMenu"
-                       aria-controls="sidebarMenu"
-                       aria-expanded="true"
-                       aria-label="Toggle navigation">
-                        <svg class="icon icon-xs"
-                             fill="currentColor"
-                             viewBox="0 0 20 20"
-                             xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd"
-                                  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                                  clip-rule="evenodd"></path>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-            <ul class="nav flex-column pt-3 pt-md-0" id="navContene">-->
-                <!--動態生成menu items-->
-                <!--@Html.Raw(ViewBag.MenuItems)
-                <li role="separator"
-                    class="dropdown-divider mt-4 mb-3 border-gray-700"></li>
-            </ul>
-        </div>
-    </nav>-->
-
     <!--start primary menu offcanvas-->
     <div class="offcanvas offcanvas-start w-260" data-bs-scroll="true" tabindex="-1" id="offcanvasPrimaryMenu">
         <div class="offcanvas-header border-bottom h-70">
@@ -263,37 +232,26 @@
                 <i class="material-icons-outlined">close</i>
             </a>
         </div>
-        <div class="offcanvas-body">
+        
+        <div @*class="offcanvas-body"*@>
             <nav id="sidebarMenu" class="sidebar-nav sidebar">
                 <ul class="metismenu" id="sidenav">
-                    <li>
-                        <a href="#sidebarMenu"
-                           data-bs-toggle="collapse"
-                           data-bs-target="#sidebarMenu"
-                           aria-controls="sidebarMenu"
-                           aria-expanded="true"
-                           aria-label="Toggle navigation">
-                            <svg class="icon icon-xs"
-                                 fill="currentColor"
-                                 viewBox="0 0 20 20"
-                                 xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                      d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                                      clip-rule="evenodd"></path>
-                            </svg>
-                        </a>
+                    @Html.Raw(ViewBag.MenuItems)
+                    @*<li>
+            <ul class="nav flex-column pt-3 pt-md-0 collapse" id="sidebarMenu">
 
-                        <ul class="nav flex-column pt-3 pt-md-0" id="navContene">
-                            <!--動態生成menu items-->
-                            @Html.Raw(ViewBag.MenuItems)
-                            <li role="separator"
-                                class="dropdown-divider mt-4 mb-3 border-gray-700"></li>
-                        </ul>
 
+                <li role="separator"
+                    class="dropdown-divider mt-4 mb-3 border-gray-700"></li>
+            </ul>
+        </li>*@
+                </ul>
+            </nav>
+        </div>
                         
         <div class="offcanvas-footer p-3 border-top h-70">
             <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" role="switch" id="DarkMode">
+                <input class="form-check-input" type="checkbox" role="switch" id="DarkMode" onchange="toggleDarkMode()">
                 <label class="form-check-label" for="DarkMode">Dark Mode</label>
             </div>
         </div>
@@ -309,25 +267,25 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/main")
+    @*@Scripts.Render("~/Script/main.js")*@
     @Scripts.Render("~/bundles/volt")
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
     <!--bootstrap js-->
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    @*<script src="~/Scripts/bootstrap.bundle.min.js"></script>*@
 
     <!--plugins-->
-    <script src="assets/js/jquery.min.js"></script>
+    @*<script src="~/Scripts/jquery.min.js"></script>*@
     <!--plugins-->
-    <script src="assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
-    <script src="assets/plugins/metismenu/metisMenu.min.js"></script>
-    <script src="assets/plugins/apexchart/apexcharts.min.js"></script>
-    <script src="assets/js/index.js"></script>
-    <script src="assets/plugins/peity/jquery.peity.min.js"></script>
-    <script>
+    @*<script src="~/assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>*@
+    @*<script src="~/assets/plugins/metismenu/metisMenu.min.js"></script>*@
+    @*<script src="assets/plugins/apexchart/apexcharts.min.js"></script>*@
+    @*<script src="~/Scripts/index.js"></script>*@
+    @*<script src="~/assets/plugins/peity/jquery.peity.min.js"></script>*@
+    @*<script>
         $(".data-attributes span").peity("donut")
-    </script>
-    <script src="assets/js/main.js"></script>
+    </script>*@
+    <script src="~/Scripts/main.js"></script>
 
     @RenderSection("scripts", required: false)
     <script>
@@ -338,37 +296,10 @@
                 },
             });
         });
-        document.addEventListener("DOMContentLoaded", function () {
-            var sidebarMenu = document.getElementById("sidebarMenu");
-            var content = document.querySelector(".content");
-            var sparkle = document.querySelector("#Brand");
-            var footer = document.querySelector("footer");
-            var opensidebar = document.querySelector("#btn");
+       
 
-            opensidebar.addEventListener("mouseenter", function () {
-                sidebarMenu.style.display = (sidebarMenu.style.display === "none") ? "block" : "none";
-                content.style.marginLeft = (sidebarMenu.style.display === "none") ? "0" : sidebarMenu.offsetWidth + "px";
-                footer.style.marginLeft = (sidebarMenu.style.display === "none") ? "0" : sidebarMenu.offsetWidth + "px";
-                sparkle.style.marginLeft = (sidebarMenu.style.display === "none") ? "0" : sidebarMenu.offsetWidth + "px";
-            });
+        
 
-            document.addEventListener("mouseenter", function (e) {
-                // 確認事件目標不在左側欄內部
-                if (!sidebarMenu.contains(e.target) && !sparkle.contains(e.target)) {
-                    sidebarMenu.style.display = "none";
-                    sparkle.style.marginLeft = "0";
-                    content.style.marginLeft = "0";
-                    footer.style.marginLeft = "0";
-                }
-            });
-            content.addEventListener("mouseenter", function () {
-                // 當滑鼠進入內容區域時，隱藏左側欄
-                sidebarMenu.style.display = "none";
-                sparkle.style.marginLeft = "0";
-                content.style.marginLeft = "0";
-                footer.style.marginLeft = "0";
-            });
-        });
 
     </script>
 </body>
