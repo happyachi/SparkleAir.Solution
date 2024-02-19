@@ -222,9 +222,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="assets\css\bootstrap-extended.css" />
-    <Content Include="assets\css\bootstrap.min.css" />
-    <Content Include="assets\css\extra-icons.css" />
     <Content Include="assets\fonts\boxicons.svg" />
     <Content Include="assets\fonts\LineIcons.svg" />
     <Content Include="assets\images\apps\01.png" />
@@ -288,11 +285,6 @@
     <Content Include="assets\images\projects\python.png" />
     <Content Include="assets\images\projects\react.png" />
     <Content Include="assets\images\projects\vue.png" />
-    <Content Include="assets\js\bootstrap.bundle.min.js" />
-    <Content Include="assets\js\index.js" />
-    <Content Include="assets\js\index2.js" />
-    <Content Include="assets\js\jquery.min.js" />
-    <Content Include="assets\js\main.js" />
     <Content Include="assets\plugins\apexchart\apex-custom-chart.js" />
     <Content Include="assets\plugins\apexchart\apexcharts.min.js" />
     <Content Include="assets\plugins\apexchart\data-cards.js" />
@@ -483,6 +475,7 @@
     <Content Include="bin\zh-Hant\System.Web.WebPages.resources.dll" />
     <Content Include="Content\all.css" />
     <Content Include="Content\all.min.css" />
+    <Content Include="Content\bootstrap-extended.css" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -499,6 +492,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\extra-icons.css" />
     <Content Include="Content\volt.css" />
     <Content Include="Content\brands.css" />
     <Content Include="Content\brands.min.css" />
@@ -668,7 +662,6 @@
     <Content Include="bin\SparkleAir.Infa.EFModel.dll.config" />
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
-    <Content Include="assets\css\bootstrap.min.css.map" />
     <Content Include="assets\fonts\boxicons.eot" />
     <Content Include="assets\fonts\boxicons.ttf" />
     <Content Include="assets\fonts\boxicons.woff" />
@@ -677,7 +670,6 @@
     <Content Include="assets\fonts\LineIcons.ttf" />
     <Content Include="assets\fonts\LineIcons.woff" />
     <Content Include="assets\fonts\LineIcons.woff2" />
-    <Content Include="assets\js\bootstrap.bundle.min.js.map" />
     <Content Include="assets\plugins\metismenu\metisMenu.min.css.map" />
     <Content Include="assets\plugins\metismenu\metisMenu.min.js.map" />
     <Content Include="sass\bordered-theme.css.map" />
@@ -768,6 +760,10 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\index.js" />
+    <Content Include="Scripts\index2.js" />
+    <Content Include="Scripts\jquery.min.js" />
+    <Content Include="Scripts\main.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\popper.min.js" />
     <Content Include="Scripts\simplebar.min.js" />

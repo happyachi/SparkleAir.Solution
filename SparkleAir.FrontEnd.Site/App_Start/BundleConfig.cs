@@ -27,13 +27,14 @@ namespace SparkleAir.FrontEnd.Site
                       "~/Scripts/js/main.js",
                       "~/Scripts/js/jquery.min.js",
                       "~/Scripts/js/main.js", 
-					  "~/Scripts/js/index.js")
+					  "~/Scripts/js/index.js",
+                      "~/Scripts/main.js")
                 );
 
             bundles.Add(new Bundle("~/bundles/volt").Include(
                       "~/Scripts/volt.js",
                       "~/Scripts/popper.min.js",
-                      "~/Scripts/simplebar.min.js","~/Sc")
+                      "~/Scripts/simplebar.min.js")
 				);
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
@@ -41,7 +42,8 @@ namespace SparkleAir.FrontEnd.Site
                       "~/Content/volt.css",
 					  "~/Content/bootstrap.css",
                       "~/Content/sparkleAir.css",
-                      "~/Content/css/extra-icons.css"
+                      "~/Content/extra-icons.css",
+                      "~/Content/bootstrap-extended.css"
 
                       ));
 		}
