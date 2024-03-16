@@ -14,7 +14,7 @@ namespace SparkleAir.DAL.DapperRepository.AirFlights
 {
     public class AirFlightDapperRepository : IAirFlightRepository
     {
-        public Task<(int, string)> Create(AirFlightEntity entity)
+        public Task<(int, string,DateTime,DateTime)> Create(AirFlightEntity entity)
         {
             throw new NotImplementedException();
         }

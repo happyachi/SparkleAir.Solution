@@ -1,4 +1,5 @@
-﻿using SparkleAir.IDAL.IRepository.AirFlights;
+﻿using SparkleAir.DAL.EFRepository.AirFlights;
+using SparkleAir.IDAL.IRepository.AirFlights;
 using SparkleAir.Infa.Criteria.AirFlights;
 using SparkleAir.Infa.Dto.AriFlights;
 using SparkleAir.Infa.Entity.AirFlightsEntity;
@@ -16,13 +17,12 @@ namespace SparkleAir.BLL.Service.AirFlights
     public class AirFlightService
     {
         private readonly IAirFlightRepository _repo;
-        private readonly IAirFlightSeatsRepository _repoSeats;
         public AirFlightService(IAirFlightRepository repo)
         {
             _repo = repo;
         }
 
-        public async Task<List<(int, string)>> Create(AirFlightDto dto)
+        public async Task<List<(int, string,DateTime,DateTime)>> Create(AirFlightDto dto)
         {
             FlightDate[] days = dto.DayofWeek.FlightDays();
             var today = DateTime.Today;
@@ -30,7 +30,7 @@ namespace SparkleAir.BLL.Service.AirFlights
             int thisYear = today.Year;
             DateTime currentDate = new DateTime(thisYear, thisMonth, 1);
             List<DateTime> scheduledFlights = currentDate.GetScheduledFlights(days, today);
-            List<(int, string)> ids = new List<(int, string)>();
+            List<(int, string,DateTime,DateTime)> ids = new List<(int, string,DateTime,DateTime)>();
             foreach (var scheduledFlight in scheduledFlights)
             {
                 // 將起飛時間和抵達時間與日期結合
@@ -54,7 +54,7 @@ namespace SparkleAir.BLL.Service.AirFlights
                     CrossDay = dto.CrossDay
                 };
                 var flight = await _repo.Create(entity);
-                ids.Add((flight.Item1, flight.Item2));
+                ids.Add((flight.Item1, flight.Item2, flight.Item3, flight.Item4));
 
             }
             return ids;
@@ -140,14 +140,14 @@ namespace SparkleAir.BLL.Service.AirFlights
             await _repo.UpdateSaleStatusAsync(entity);
         }
 
-        public async Task<List<(int, string)>> UpdateScheduleIfNeeded(AirFlightDto dto)
+        public async Task<List<(int, string,DateTime,DateTime)>> UpdateScheduleIfNeeded(AirFlightDto dto)
         {
 
             FlightDate[] days = dto.DayofWeek.FlightDays();
             var today = DateTime.Today;
             //var today = new DateTime(2024, 12, 1);
             List<DateTime> scheduledFlights = today.GetScheduledFlights(days, today);
-            List<(int, string)> ids = new List<(int, string)>();
+            List<(int, string, DateTime, DateTime)> ids = new List<(int, string, DateTime, DateTime)>();
             try
             {
                 foreach (var scheduledFlight in scheduledFlights)
@@ -175,7 +175,7 @@ namespace SparkleAir.BLL.Service.AirFlights
                         };
 
                         var flight = await _repo.Create(entity);
-                        ids.Add((flight.Item1, flight.Item2));
+                        ids.Add((flight.Item1, flight.Item2, flight.Item3, flight.Item4));
                     }
                 }
 

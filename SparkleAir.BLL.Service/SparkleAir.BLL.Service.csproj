@@ -45,6 +45,7 @@
     <Compile Include="AirFlights\AirFlightManagementService.cs" />
     <Compile Include="AirFlights\AirFlightSeatsService.cs" />
     <Compile Include="AirFlights\AirFlightService.cs" />
+    <Compile Include="AirFlights\AirTakeOffService.cs" />
     <Compile Include="Airtype&amp;Owns\OwnService.cs" />
     <Compile Include="AirFlights\AirTicketPriceService.cs" />
     <Compile Include="AirFlights\SeatGroupService.cs" />

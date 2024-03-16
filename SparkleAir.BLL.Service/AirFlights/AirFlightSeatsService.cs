@@ -26,7 +26,7 @@ namespace SparkleAir.BLL.Service.AirFlights
             {
                 await _repo.Create78710(flightId);
             }
-            if (flightModel == "A320neo")
+            if (flightModel == "A321neo")
             {
                 await _repo.CreateA320neo(flightId);
             }

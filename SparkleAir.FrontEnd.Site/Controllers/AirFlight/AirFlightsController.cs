@@ -19,6 +19,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Windows.Media.Media3D;
 
 namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
 {
@@ -44,7 +45,8 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
         private IPlaneRepository _planeRepo;
         private PlaneService _planeService;
 
-
+        private IAirTakeOffRepository _takeOffRepo;
+        private AirTakeOffService _takeOffService;
         public AirFlightsController()
         {
             _airFlightRepo = new AirFlightEFRepository();
@@ -61,6 +63,9 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
 
             _airDPFlightRepo = new AirFlightDapperRepository();
             _airDPFlightService = new AirFlightService(_airDPFlightRepo);
+
+            _takeOffRepo = new AirTakeOffEFRepository();
+            _takeOffService = new AirTakeOffService(_takeOffRepo);
         }
         #endregion
 
@@ -75,7 +80,7 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
         {
             try
             {
-                List<AirFlightIndexVm> datas =await GetAll();
+                List<AirFlightIndexVm> datas = await GetAll();
 
                 _ = Task.Run(() => UpdateAndRetrieveSchedule());  // 在後台跑班表
 
@@ -93,7 +98,11 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
             List<AirFlightDto> dtoList = await _airDPFlightService.GetAllAsync();
 
             // 使用非同步方式進行 SaleStatus 的更新
-            await Task.WhenAll(dtoList.Select(dto => _airFlightService.UpdateSaleStatusAsync(dto)));
+            foreach (var dto in dtoList)
+            {
+                _ = _airFlightService.UpdateSaleStatusAsync(dto);
+            }
+            //await Task.WhenAll(dtoList.Select(dto => _airFlightService.UpdateSaleStatusAsync(dto)));
 
             List<AirFlightIndexVm> vmList = dtoList.Select(dto => new AirFlightIndexVm
             {
@@ -118,17 +127,18 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
 
             foreach (var item in dto)
             {
-                List<(int, string)> updatedIds = await _airFlightService.UpdateScheduleIfNeeded(item);
+                List<(int, string, DateTime, DateTime)> updatedIds = await _airFlightService.UpdateScheduleIfNeeded(item);
                 foreach (var id in updatedIds)
                 {
                     // 在更新循環中創建座位
                     await _flightSeatsService.CreateSeats(id.Item1, id.Item2);
+                    await _takeOffService.Create(id.Item1, id.Item3, id.Item4);
                 }
             }
 
             List<AirFlightIndexVm> vm = dto.Select(x => new AirFlightIndexVm
             {
-                
+
             }).ToList();
 
             return vm;
@@ -206,10 +216,11 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
             if (!ModelState.IsValid) return View();
             try
             {
-                List<(int, string)> flightIds = await CreateFlight(vm);
+                List<(int, string,DateTime,DateTime)> flightIds = await CreateFlight(vm);
                 foreach (var flightId in flightIds)
                 {
                     await _flightSeatsService.CreateSeats(flightId.Item1, flightId.Item2);
+                    await _takeOffService.Create(flightId.Item1, flightId.Item3, flightId.Item4);
                 }
                 return RedirectToAction("Index", "AirFlightsManagement");
             }
@@ -220,9 +231,9 @@ namespace SparkleAir.FrontEnd.Site.Controllers.AirFlight
             }
         }
 
-        private async Task<List<(int, string)>> CreateFlight(AirFlightCreateVm vm)
+        private async Task<List<(int, string,DateTime,DateTime)>> CreateFlight(AirFlightCreateVm vm)
         {
-            List<(int, string)> flights;
+            List<(int, string,DateTime,DateTime)> flights;
             AirFlightDto dto = new AirFlightDto
             {
                 AirOwnId = vm.AirOwnId,

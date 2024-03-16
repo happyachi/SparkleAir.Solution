@@ -114,7 +114,7 @@ namespace SparkleAir.Infa.Utility.Exts.Models
         {
             var scheduledFlights = new List<DateTime>();
             var currentMonth = currentDate.Month;  
-            var nextMonth = currentMonth + 1;
+            var nextMonth = currentMonth + 2;
 
             if (nextMonth > 12)
             {

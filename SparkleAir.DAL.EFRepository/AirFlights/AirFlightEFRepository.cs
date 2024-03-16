@@ -16,7 +16,7 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
         private AppDbContext db = new AppDbContext();
         private Func<AirFlight, AirFlightEntity> ToEntityFunc = (f) => f.ToAirFlightEntity();
 
-        public async Task<(int, string)> Create(AirFlightEntity entity)
+        public async Task<(int, string,DateTime,DateTime)> Create(AirFlightEntity entity)
         {
             AirFlight airFlight = new AirFlight
             {
@@ -38,7 +38,7 @@ namespace SparkleAir.DAL.EFRepository.AirFlights
             }
             var id = airFlight.Id;
             var ati = airFlight.AirOwn.AirType.FlightModel;
-            return (id, ati);
+            return (id, ati,airFlight.ScheduledDeparture,airFlight.ScheduledArrival);
         }
 
         public List<AirFlightEntity> GetAll()
